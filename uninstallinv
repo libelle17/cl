@@ -1,0 +1,6 @@
+rm -f /root/rootscrontab;crontab -l|sed '/cl -noia/d'>/root/rootscrontab; crontab /root/rootscrontab;
+# sh -c 'rm -f /root/rootscrontab;crontab -l|sed '/cl -noia/d'>/root/rootscrontab; echo "*/2 * * * * /usr/bin/ionice -c2 -n7 /usr/bin/nice -n19 /root/cl/cl -noia -cf /root/.cl.conf >/dev/null 2>&1">>/root/rootscrontab; crontab /root/rootscrontab;'
+printf "(Inst: 2018-01-13 13:44:57): $blau%s$reset\n" "rm -f /root/rootscrontab;crontab -l|sed '/cl -noia/d'>/root/rootscrontab; crontab /root/rootscrontab;"
+rmdir 'localhost'
+# mkdir -m 700 'localhost'
+printf "(Inst: 2018-01-13 13:45:03): $blau%s$reset\n" "rmdir 'localhost'"
