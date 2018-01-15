@@ -842,7 +842,7 @@ class optcl
     long Txi2=-1;
     string *rottxt=0; // ggf rot zu markierender Text zwischen Txi und Txi2
 //    string oerkl;
-    int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird
+    int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
     schlArr *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
@@ -850,7 +850,7 @@ class optcl
 		// ermittelte Optionen:
     uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
     string bemerkung="";
-		uchar obcl=0; // ob die Option ueber die Kommandozeile gesetzt wurde
+		uchar obcl=0; // wie oft die Option ueber die Kommandozeile gesetzt wurde
     void setzebem(schlArr *cpA,const char *pname);
 };
 
@@ -1170,8 +1170,10 @@ class hcl
 		linst_cl* linstp=0;
 		vector<string> benutzer; // Benutzer aus /etc/passwd, bearbeitet durch setzbenutzer(&user)
 		uchar obsotiff=0; // 1 = tiff wird von der source verwendet
-		map<string,optcl> omap; // map der Optionen
-		map<string,optcl>::iterator omit; // Optionen-Iterator
+		map<string,optcl*> omap; // map der Optionen
+		map<string,optcl*> okmap; // map der Optionen, sortiert nach Tx[<kurzi>]
+		map<string,optcl*> olmap; // map der Optionen, sortiert nach Tx[<langi>]
+		map<string,optcl*>::iterator omit; // Optionen-Iterator
 	protected:
     virtual void lgnzuw(); // in vorgaben, lieskonfein, getcommandl0, getcommandline, rueckfragen
 		void setztmpcron();
@@ -1205,6 +1207,7 @@ class hcl
 		void zeigversion(const string& ltiffv=nix);
 		void zeigkonf();
 		void gcl0();
+		virtual void spezopt()=0;
 		uchar pruefcron(const string& cm);
 		void dodovi(const svec d1,const svec d2);
 		void dovi();

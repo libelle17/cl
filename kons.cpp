@@ -507,6 +507,7 @@ Txkonscl::Txkonscl()
 }
 */
 class TxB Txk((const char* const* const* const*)kons_T);
+extern class TxB Tx;
 
 ////class Txkonscl Txk;
 
@@ -5150,23 +5151,49 @@ void hcl::gcl0()
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	static optcl hopts[]={
-		/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib},
-		/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib},
-		/*4*/{/*pname*/"",/*pptr*/&plusverb,/*art*/pzahl,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0},
-		/*2*/{/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logvneu},
-		/*3a*/{/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&logdneu},
-		/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pzahl,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib},
-		/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/psons,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0},
-		/*2*/{/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/0,/*obschreibp*/0},
-		/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_sh,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0},
-		/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0},
-		{""}
+		/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
+		,/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
+		,/*4*/{/*pname*/"",/*pptr*/&plusverb,/*art*/pzahl,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*2*/{/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logvneu}
+		,/*3a*/{/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logdneu}
+		,/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pzahl,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib}
+		,/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/psons,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*2*/{/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
 	};
 	for(size_t i=0;i<sizeof hopts/sizeof *hopts;i++) {
 		hopts[i].obno=(hopts[i].obschreibp!=0);
 		// Bemerkung erst beim Schreiben setzen
 	}
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
+	size_t ru=0;
+	for(omit=omap.begin();omit!=omap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
+	caus<<endl; ru=0;
+	for(omit=okmap.begin();omit!=okmap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
+	caus<<endl; ru=0;
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
+	caus<<"Ende Schleife"<<endl;
+	spezopt();
+	caus<<"nach spezopt"<<endl;
+	ru=0;
+	for(omit=omap.begin();omit!=omap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
+	caus<<endl; ru=0;
+	for(omit=okmap.begin();omit!=okmap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
+	caus<<endl; ru=0;
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+	}
 	opts_=hopts; // evtl. unnötig
 
 
@@ -5222,6 +5249,7 @@ void hcl::gcl0()
 		} //     if (!logdname.empty())
 		obkschreib=1;
 	} // if (logvneu ||logdneu) 
+	caus<<"Ende gcl0"<<endl;
 } // void hcl::gcl0()
 
 // in lieskonfein, getcommandl0, getcommandline, rueckfragen
@@ -5876,7 +5904,9 @@ void hcl::setzbenutzer(string *user)
 void hcl::omapzuw(optcl *optp,size_t optz)
 {
 	for(size_t i=0;i<optz;i++) {
-		omap[optp[i].pname]=optp[i];
+		omap[optp[i].pname]=&optp[i];
+		okmap[(*optp[i].TxBp)[optp[i].kurzi]]=&optp[i];
+		olmap[(*optp[i].TxBp)[optp[i].langi]]=&optp[i];
 	}
 }
 

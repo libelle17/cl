@@ -18,11 +18,14 @@ class hhcl:public hcl
 	string p1;
 	int p2;
 	string p3;
+	uchar oblista=0;
+	long listz=30;
  private:
 	void lgnzuw();
  public:
   hhcl(const int argc, const char *const *const argv);
   ~hhcl();
+	void spezopt(); // (programm-)spezifische Optionen
 	void pruefggfmehrfach();
 	int  initDB();
 	int  pruefDB(const string& db);

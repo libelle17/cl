@@ -3,7 +3,7 @@ p1 p1
 .br
 
 .br
-p2 p2 -1312768210
+p2 p2 0
 .br
 
 .br
@@ -17,50 +17,14 @@ p1
 .br
 p3 gefällig
 .br
-p2 -1312768210
+p2 0
 .br
-\fBOptions which are not saved: \fR
+n
 .br
-\fB -v, --verbose\fR: screen output more verbose
+languagelang
 .br
-\fB -lfn, --logfilenew\fR: delete log file afore
+logdnameld
 .br
-\fB -cf, --conffile <string>\fR: uses configuration file <string> instead of '\fB\fR'
+logvzlvz
 .br
-\fB -sqlv, --sql-verbose\fR: screen output with SQL commands
-.br
-\fB -ia, --interactive\fR: all parameters will be prompted (some of them not shown here)
-.br
-\fB -noia, --nointeraction\fR: no questions, e.g. for a call of cl within cron
-.br
-\fB -info, --version\fR: shows the program version
-.br
-\fB -vi, --vi\fR: edit/view configuration and log file (finish with ':qa')
-.br
-\fB -h, --help\fR: Explanation of frequent options
-.br
-\fB -lh, --longhelp\fR: Explanation of all options
-.br
-\fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
-.br
-\fB -lg, --language <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBe\fR'
-.br
-\fB -ldr, --logdir <path>\fR: choses <path> as log directory, currently '\fB/var/log\fR'
-.br
-\fB -lf, --logfilename <string>\fR: log file <string> (in path '\fB/var/log\fR') will be used instead of '\fBcl.log\fR'
-.br
-\fB -l, --log\fR: put detailed logs in file '\fB/var/log/cl.log\fR' (otherwise shorter)
-.br
-\fB -host, --host <string>\fR: takes the database on host <string> instead of '\fBlocalhost\fR'
-.br
-\fB -muser, --muser <string>\fR: takes the user <string> for MySQL/MariaDB instead of '\fB\fR'
-.br
-\fB -mpwd, --mpwd <string>\fR: takes the password <string> for MySQL/MariaDB
-.br
-\fB -db, --database <string>\fR: uses the database <string> instead of '\fBfaxe\fR'
-.br
-\fB -tb, --table <string>\fR: uses the table <string> instead of '\fB\fR'
-.br
-\fB -cm, --cronminutes <zahl>\fR: every how many minutes shall \fBcl\fR be called in crontab (0=not at all), instead of  '\fB2\fR'
-.br
-\fB -autoupd, --autoupdate\fR: Update program automatically\fB or not\fR
+oblogl

@@ -82,6 +82,12 @@ enum T_
 	T_aufgerufen_werden_0_ist_gar_nicht,
 	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,
 	T_Fuege_ein, //ω
+	T_lista_k,
+	T_lista_l,
+	T_listz_k,
+	T_listz_l,
+	T_listet_Zeilen_auf,
+	T_listet_n_Zeilen_auf_anstatt,
 	T_MAX //α
 }; // enum T_ //ω
 // für verschiedene Sprachen //α
@@ -234,6 +240,18 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)","all parameters will be prompted (some of them not shown here)"},
 	// T_Fuege_ein
 	{"Füge ein: ","Inserting: "}, //ω
+	// T_lista_k,
+	{"lista","lista"},
+	// T_lista_l,
+	{"lista","lista"},
+	// T_listz_k,
+	{"n","n"},
+	// T_listz_l,
+	{"zahl","number"},
+	// T_listet_Zeilen_auf
+	{"listet Zeilen auf","lists lines"},
+	// T_listet_n_Zeilen_auf_anstatt
+	{"listet n Zeilen auf anstatt","lists n lines instead of"},
 	{"",""} //α
 }; // char const *DPROG_T[T_MAX+1][SprachZahl]=
 
@@ -266,6 +284,16 @@ void hhcl::lgnzuw()
 	Txd.lgn=Tx.lgn=Txk.lgn;
 } // void hhcl::lgnzuw
 
+void hhcl::spezopt()
+{
+	string rottext=ltoan(listz);
+	static optcl hopts[]={
+		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/psons,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/psons,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+	};
+	omapzuw(hopts,sizeof hopts/sizeof *hopts);
+}
+
 // wird aufgerufen in: main
 void hhcl::getcommandl0()
 {
@@ -278,6 +306,7 @@ void hhcl::getcommandl0()
 	}; //α
 	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
 	gcl0(); //ω
+	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 
 void hhcl::VorgbAllg()
@@ -515,6 +544,7 @@ int hhcl::pruefDB(const string& db)
 int main(int argc,char** argv)
 {
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
+	/*
 	optcl opt[]={{"p1",&hhi.p1,psons},{"p3",&hhi.p3,psons},{"p2",&hhi.p2,pzahl}};
 
 	hhi.omapzuw(opt,sizeof opt/sizeof *opt);
@@ -524,15 +554,15 @@ int main(int argc,char** argv)
 		}
 	}
 	for(hhi.omit=hhi.omap.begin();hhi.omit!=hhi.omap.end();hhi.omit++) {
-		caus<<(*hhi.omit).first<<" "<<(*hhi.omit).second.pname<<" ";
-		if ((*hhi.omit).second.art==pzahl) {
-		 caus<<*(int*)(*hhi.omit).second.pptr<<endl;
+		caus<<(*hhi.omit).first<<" "<<(*hhi.omit).second->pname<<" ";
+		if ((*hhi.omit).second->art==pzahl) {
+		 caus<<*(int*)(*hhi.omit).second->pptr<<endl;
 		} else {
-		 caus<<*(string*)(*hhi.omit).second.pptr<<endl;
+		 caus<<*(string*)(*hhi.omit).second->pptr<<endl;
 		}
 		caus<<endl;
 	}
-	caus<<"nach Suche: "<<*(string*)hhi.omap["p3"].pptr<<endl;
+	caus<<"nach Suche: "<<*(string*)hhi.omap["p3"]->pptr<<endl;
 	for(size_t i=0;i<sizeof opt/sizeof *opt;i++) {
 		caus<<opt[i].pname<<" ";
 		if (opt[i].art==pzahl) {
@@ -542,6 +572,7 @@ int main(int argc,char** argv)
 		}
 		caus<<endl;
 	}
+	*/
 	/*//
 		if (argc>1) {
 		} // (argc>1)
@@ -555,8 +586,10 @@ int main(int argc,char** argv)
 		hhi.lieskonfein(DPROG);
 	} // if (hhi.obhilfe==3)
 	hhi.lieszaehlerein(&hhi.aufrufe,&hhi.tagesaufr,&hhi.monatsaufr,&hhi.laufrtag);
+	caus<<"vor getcommandline"<<endl;
 	if (hhi.getcommandline()) 
 		exit(8); // Hilfe angezeigt
+	caus<<"nach getcommandline"<<endl;
 	if (hhi.obvi) hhi.dovi(); 
 	if (hhi.obvs) exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
 	if (hhi.zeigvers) {

@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "14.01.18" "Version 0.10068" "Manual-Seite für ²DPROG²"
+.TH man 1 "15.01.18" "Version 0.10082" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -19,7 +19,7 @@ p1 p1
 .br
 
 .br
-p2 p2 -1597149394
+p2 p2 0
 .br
 
 .br
@@ -33,7 +33,7 @@ p1
 .br
 p3 gefällig
 .br
-p2 -1597149394
+p2 0
 .br
 \fBOptionen, die nicht gespeichert werden: \fR
 .br
