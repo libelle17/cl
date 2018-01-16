@@ -370,7 +370,7 @@ int hhcl::getcommandline()
 	// hier wird die Befehlszeile ueberprueft:
 	for(;optslsz<opts.size();optslsz++) {
 		for(size_t i=0;i<argcmv.size();i++) {
-			if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe,Tx.lgn)) {
+			if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe)) {
 				if (opts[optslsz].kurzi==T_cm_k) { // cronminuten
 					keineverarbeitung=1;
 					cmeingegeben=1;

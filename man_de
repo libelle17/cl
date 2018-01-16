@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "15.01.18" "Version 0.10082" "Manual-Seite für ²DPROG²"
+.TH man 1 "16.01.18" "Version 0.10091" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -15,32 +15,104 @@
 .SH OPTIONEN 
 .SH VORAUSSETZUNGEN
 .br
-p1 p1 
+Ende Schleife
+.br
+nach spezopt
+.br
+1                     libtest
+.br
+2            language ling
+.br
+3               lista lista
+.br
+4            logdname lf
+.br
+5               logvz ldr
+.br
+6                   n n
+.br
+7               oblog l
 .br
 
 .br
-p2 p2 0
+1                  cf cf
+.br
+2                  kd cf
+.br
+3                   l l
+.br
+4                lang ling
+.br
+5                  ld lf
+.br
+6                 ldn lfn
+.br
+7                 ldr ldr
+.br
+8                  lf lf
+.br
+9                 lfn lfn
+.br
+10                  lg lg
+.br
+11             libtest libtest
+.br
+12                ling ling
+.br
+13               lista lista
+.br
+14                 lvz ldr
+.br
+15                   n n
+.br
+16                  sh sh
+.br
+17                  sp lg
+.br
+18                   v v
+.br
+19                   w v
 .br
 
 .br
-p3 p3 gefällig
+1            conffile cf
 .br
-
+2           konfdatei cf
 .br
-nach Suche: gefällig
+3            language lg
 .br
-p1 
+4             libtest libtest
 .br
-p3 gefällig
+5              lingua ling
 .br
-p2 0
+6              lingue ling
 .br
-n
+7               lista lista
 .br
-languagelang
+8                 log l
 .br
-logdnameld
+9         logdateineu lfn
 .br
-logvzlvz
+10              logdir ldr
 .br
-oblogl
+11            logdname lf
+.br
+12         logfilename lf
+.br
+13          logfilenew lfn
+.br
+14               logvz ldr
+.br
+15              number n
+.br
+16             sprache lg
+.br
+17        standardhelp sh
+.br
+18       standardhilfe sh
+.br
+19             verbose v
+.br
+20           wortreich v
+.br
+21                zahl n

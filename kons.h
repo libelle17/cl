@@ -821,7 +821,7 @@ class optioncl
 // /*9*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,int *pptr,int wert) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr((uchar*)pptr),wert(wert) {}
 /*9a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,int *pptr,int wert) : 
                kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr((uchar*)pptr),wert(wert),art(psons) {}
-    int pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe, Sprache lg); // 1 = das war der Parameter, 0 = nicht
+    int pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe); // 1 = das war der Parameter, 0 = nicht
     string& machbemerkung(Sprache lg,binaer obfarbe=wahr);
     void hilfezeile(Sprache lg);
 }; // class optioncl
@@ -851,6 +851,8 @@ class optcl
     uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
     string bemerkung="";
 		uchar obcl=0; // wie oft die Option ueber die Kommandozeile gesetzt wurde
+		uchar gegenteil=0;
+		uchar nichtspeichern=0;
     void setzebem(schlArr *cpA,const char *pname);
 };
 

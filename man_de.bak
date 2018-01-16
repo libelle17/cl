@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "15.01.18" "Version 0.10082" "Manual-Seite für ²DPROG²"
+.TH man 1 "16.01.18" "Version 0.10091" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -15,25 +15,81 @@
 .SH OPTIONEN 
 .SH VORAUSSETZUNGEN
 .br
-p1 p1 
+Ende Schleife
+.br
+nach spezopt
+.br
+1                     libtest
+.br
+2            language lang
+.br
+3               lista lista
+.br
+4            logdname ld
+.br
+5               logvz lvz
+.br
+6                   n n
+.br
+7               oblog l
 .br
 
 .br
-p2 p2 0
+1                  kd kd
+.br
+2                   l l
+.br
+3                lang lang
+.br
+4                  ld ld
+.br
+5                 ldn ldn
+.br
+6             libtest libtest
+.br
+7               lista lista
+.br
+8                 lvz lvz
+.br
+9                   n n
+.br
+10                  sh sh
+.br
+11                  sp sp
+.br
+12                   w w
 .br
 
 .br
-p3 p3 gefällig
+1           konfdatei kd
 .br
-
+2             libtest libtest
 .br
-nach Suche: gefällig
+3              lingue lang
 .br
-p1 
+4               lista lista
 .br
-p3 gefällig
+5                 log l
 .br
-p2 0
+6         logdateineu ldn
+.br
+7            logdname ld
+.br
+8               logvz lvz
+.br
+9             sprache sp
+.br
+10       standardhilfe sh
+.br
+11           wortreich w
+.br
+12                zahl n
+.br
+Ende gcl0
+.br
+Ende getcommandl0
+.br
+vor getcommandline
 .br
 \fBOptionen, die nicht gespeichert werden: \fR
 .br
