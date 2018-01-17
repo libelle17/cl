@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "16.01.18" "Version 0.10091" "\fB²DPROG²\fR man page"
+.TH man 1 "17.01.18" "Version 0.10091" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -116,3 +116,57 @@ nach spezopt
 20           wortreich v
 .br
 21                zahl n
+.br
+Ende gcl0
+.br
+Ende getcommandl0
+.br
+vor getcommandline
+.br
+\fBParameter: \fBe\fB not identified!\fR
+.br
+\fBOptions which are not saved: \fR
+.br
+\fB -v, --verbose\fR: screen output more verbose
+.br
+\fB -lfn, --logfilenew\fR: delete log file afore
+.br
+\fB -cf, --conffile <string>\fR: uses configuration file <string> instead of '\fB\fR'
+.br
+\fB -sqlv, --sql-verbose\fR: screen output with SQL commands
+.br
+\fB -ia, --interactive\fR: all parameters will be prompted (some of them not shown here)
+.br
+\fB -noia, --nointeraction\fR: no questions, e.g. for a call of cl within cron
+.br
+\fB -info, --version\fR: shows the program version
+.br
+\fB -vi, --vi\fR: edit/view configuration and log file (finish with ':qa')
+.br
+\fB -h, --help\fR: Explanation of frequent options
+.br
+\fB -lh, --longhelp\fR: Explanation of all options
+.br
+\fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
+.br
+\fB -lg, --language <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBe\fR'
+.br
+\fB -ldr, --logdir <path>\fR: choses <path> as log directory, currently '\fB/var/log\fR'
+.br
+\fB -lf, --logfilename <string>\fR: log file <string> (in path '\fB/var/log\fR') will be used instead of '\fBcl.log\fR'
+.br
+\fB -l, --log\fR: put detailed logs in file '\fB/var/log/cl.log\fR' (otherwise shorter)
+.br
+\fB -host, --host <string>\fR: takes the database on host <string> instead of '\fBlocalhost\fR'
+.br
+\fB -muser, --muser <string>\fR: takes the user <string> for MySQL/MariaDB instead of '\fB\fR'
+.br
+\fB -mpwd, --mpwd <string>\fR: takes the password <string> for MySQL/MariaDB
+.br
+\fB -db, --database <string>\fR: uses the database <string> instead of '\fBfaxe\fR'
+.br
+\fB -tb, --table <string>\fR: uses the table <string> instead of '\fB\fR'
+.br
+\fB -cm, --cronminutes <zahl>\fR: every how many minutes shall \fBcl\fR be called in crontab (0=not at all), instead of  '\fB2\fR'
+.br
+\fB -autoupd, --autoupdate\fR: Update program automatically\fB or not\fR

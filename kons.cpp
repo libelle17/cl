@@ -5158,10 +5158,10 @@ void hcl::gcl0()
 		,/*2*/{/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logvneu}
 		,/*3a*/{/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logdneu}
 		,/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pzahl,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib}
-		,/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/psons,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/pzahl,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
 		,/*2*/{/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/psons,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/pzahl,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/pzahl,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
 	caus<<"Ende Schleife"<<endl;
@@ -5184,7 +5184,8 @@ void hcl::gcl0()
 	// (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
 	for(size_t ai=0;ai<argcmv.size();ai++) {
 	}
-	for(vector<argcl>::iterator ap=argcmv.begin();ap!=argcmv.end();ap++) {
+	vector<argcl>::iterator ap,apn;
+	for(ap=argcmv.begin();ap!=argcmv.end();ap++) {
 		uchar nichtspeichern=0, gegenteil=0, kurzp=0, langp=0;
 		const char *acstr=ap->argcs;
 		////    <<rot<<"acstr: "<<schwarz<<acstr<<endl;
@@ -5210,141 +5211,194 @@ void hcl::gcl0()
 					acstr+=2;
 					aclen-=2;
 				}
-				if (langp) {
-					for(omit=olmap.begin();omit!=olmap.end();omit++) {
-						if (!omit->first.find(acstr)) {
-							ap->agef++;
-							omit->second->gegenteil=gegenteil;
-							omit->second->nichtspeichern=nichtspeichern;
-							if (omit->second->pptr && omit->second->wert) {
-								if (omit->second->art==pzahl) {
-									*(int*)omit->second->pptr=omit->second->wert;
-								} else {
-									*(string*)omit->second->pptr=omit->second->wert;
+				for(int iru=0;iru<2;iru++) {
+					map<string,optcl*> *omp=0;
+					if (!iru) if (langp) omp=&olmap;
+					if (!iru) if (kurzp) omp=&okmap;
+					if (omp) {
+						for(omit=omp->begin();omit!=omp->end();omit++) {
+							if (!omit->first.find(acstr)) {
+								ap->agef++;
+								omit->second->gegenteil=gegenteil;
+								omit->second->nichtspeichern=nichtspeichern;
+								if (omit->second->pptr) {
+									// wenn wert, dann diesen Wert zuweisen
+									if (omit->second->wert) {
+										if (omit->second->art==pzahl) {
+											*(int*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
+										} else {
+											*(string*)omit->second->pptr=omit->second->wert;
+										}
+										omit->second->obcl=1;
+										if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
+										// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
+									} else {
+										uchar wiefalsch=0;
+										apn=ap; apn++;
+										const char *nacstr=apn->argcs;
+													// er also nicht mit '-' anfaengt ...
+										if (apn!=argcmv.end() && *nacstr!='-') {
+											struct stat entryarg={0};
+											switch (omit->second->art) {
+												// und das ein "sonstiger Parameter" ist, ...
+												case psons:
+													// ... dann zuweisen
+													*(string*)omit->second->pptr=nacstr;
+													break;
+													// wenn es ein Verzeichnis oder eine Datei sein soll ...
+												case pverz:
+												case pfile:
+													// ... die also nicht mit '-' anfaengt
+													// ... und sie bestimmte existentielle Bedingungen erfuellt ...
+													if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
+													else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
+													// ... dann zuweisen
+													else *(string*)omit->second->pptr=nacstr;
+													break;
+													// oder wenn es eine Zahl sein soll ...
+												case pzahl:
+													// und tatsaechlich numerisch ist ...
+													if (!isnumeric(nacstr)) wiefalsch=1;
+													// dann zuweisen
+													else *(string*)omit->second->pptr=nacstr;
+													break;
+											} // switch (art) 
+											if (!wiefalsch) {
+												ap++;
+												omit->second->obcl=1;
+											}
+											if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
+										} else {
+											wiefalsch=3; // kein geeigneter Parameter gefunden
+										}
+										if (wiefalsch) {
+											// wenn kein Zusatzparameter erkennbar, dann melden
+											switch (omit->second->art) {
+												case psons:
+													Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
+													break;
+												case pverz:
+												case pfile:
+													Log(drots+Txk[T_Fehler_Parameter]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+" "+
+															(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
+													break;
+												case pzahl:
+													Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
+															+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
+													break;
+											} // switch (art)
+											if (!obhilfe) obhilfe=1;
+										}
+									}
 								}
 							}
 						}
-					} // 					for(omit=olmap.begin();omit!=olmap.end();omit++) 
-				} else if (kurzp) {
-					for(omit=okmap.begin();omit!=okmap.end();omit++) {
-						if (!omit->first.find(acstr)) {
-							ap->agef++;
-							omit->second->gegenteil=gegenteil;
-							omit->second->nichtspeichern=nichtspeichern;
-							if (omit->second->pptr && omit->second->wert) {
-								if (omit->second->art==pzahl) {
-									*(int*)omit->second->pptr=omit->second->wert;
-								} else {
-									*(string*)omit->second->pptr=omit->second->wert;
-								}
-							}
-						}
-					} // 					for(omit=olmap.begin();omit!=olmap.end();omit++) 
-				} // 				if (langp) else if (kurzp)
+					}
+				}
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
 		/*
 		// wenn Kommandozeilenparameter gefunden ...
 		if (argcvm->at(*akt).agef) {
-// ... und zu setzender binaerer Parameter hinterlegt ...
-if (pptr) {
-		// ggf. auf Gegenteil korrigieren
-		if (gegenteil) wert=!wert;
-		// ... und dieser noch nicht richtig gesetzt ist ...
-		if (*pptr!=wert) {
-		// ... dann setzen ...
-		 *pptr=wert;
-		// ... merken, dass die Konfigurationsdatei geschrieben werden muss ...
-		if (!nichtspeichern) {
-		if (obschreibp) *obschreibp=1;
-		// ... und wenn ein Konfigurationsarray uebergeben wurde und ein Elementname dazu ...
-		if (cpA && pname) {
-		// ... dann diesen auch auf den Wert setzen
-		cpA->setze(pname,ltoan(wert));
-		} //             if (cpA && pname)
-		} // if (!nichtspeichern)
-		} // if (*pptr!=wert) 
-		// wenn also kein binaerer Parameter hinterlegt (=> Textparameter)
-		} else {
-		const char *pstr=0;
-		uchar wiefalsch=0;
-		// und hinter dem aktuellen Parameter noch einer kommt ...
-		if (*akt<argcvm->size()-1) {
-		const char *nacstr=argcvm->at(*akt+1).argcs;
-		struct stat entryarg={0};
-		switch (art) {
-		// und das ein "sonstiger Parameter" ist, ...
-		case psons:
-		// er also nicht mit '-' oder '/' anfaengt ...
-		if (!strchr("-/",nacstr[0])) {
-// ... dann zuweisen
-pstr=nacstr;
-}
-break;
-// wenn es ein Verzeichnis oder eine Datei sein soll ...
-case pverz:
-case pfile:
-// ... die also nicht mit '-' anfaengt
-if (nacstr[0]!='-') {
-		// ... und sie bestimmte existentielle Bedingungen erfuellt ...
-		if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
-		else if ((art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
-		// ... dann zuweisen
-		else pstr=nacstr;
-		} //               if (nacstr[0]!='-')
-		break;
-// oder wenn es eine Zahl sein soll ...
-case pzahl:
-// und sie nicht mit '-' oder '/' anfaengt ...
-if (!strchr("-/",nacstr[0])) {
-// und tatsaechlich numerisch ist ...
-if (!isnumeric(nacstr)) wiefalsch=1;
-// dann zuweisen
-else pstr=nacstr;
-} // if (!strchr("-/",nacstr[0])) 
-break;
-} // switch (art) 
-} // if (*akt<argcvm->size()-1)
-/// wenn nacstr als Zusatzparameter bestaetigt
-if (pstr) {
-		// ... und dessen Inhalt sich von zptr unterscheidet ...
-		if (*zptr!=pstr) {
-		// ... dann zuweisen ...
-		 *zptr=pstr; 
-		// ... und ggf. Konfigurationsdatei speichern, 
-		if (!nichtspeichern) {
-		if (obschreibp) *obschreibp=1;
-		// wenn Konfigurationsarray und ein Indexname dort uebergeben ... 
-		if (cpA && pname) {
-			// dann Inhalt dort zuweisen
-			cpA->setze(pname,pstr);
-		} // if (cpA && pname)
-} // if (!nichtspeichern)
-} // if (*zptr!=pstr) 
-argcvm->at(++(*akt)).agef=1;
-} else {
-	// wenn kein Zusatzparameter erkennbar, dann melden
-	switch (art) {
-		case psons:
-			Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
-			break;
-		case pverz:
-		case pfile:
-			Log(drots+Txk[T_Fehler_Parameter]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+" "+(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?
-						Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
-			break;
-		case pzahl:
-			Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
-					+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
-			break;
-	} // switch (art)
-	if (!*hilfe) *hilfe=1;
-} // if (pstr) else
-} // if (pptr) else
-return 1;
-} // if (argcvm->at(*akt).agef)
-} // if (*akt<argcvm->size()) if (!argcvm->at(*akt).agef) 
-*/
+			// ... und zu setzender binaerer Parameter hinterlegt ...
+			if (pptr) {
+				// ggf. auf Gegenteil korrigieren
+				if (gegenteil) wert=!wert;
+				// ... und dieser noch nicht richtig gesetzt ist ...
+				if (*pptr!=wert) {
+					// ... dann setzen ...
+					*pptr=wert;
+					// ... merken, dass die Konfigurationsdatei geschrieben werden muss ...
+					if (!nichtspeichern) {
+						if (obschreibp) *obschreibp=1;
+						// ... und wenn ein Konfigurationsarray uebergeben wurde und ein Elementname dazu ...
+						if (cpA && pname) {
+							// ... dann diesen auch auf den Wert setzen
+							cpA->setze(pname,ltoan(wert));
+						} //             if (cpA && pname)
+					} // if (!nichtspeichern)
+				} // if (*pptr!=wert) 
+				// wenn also kein binaerer Parameter hinterlegt (=> Textparameter)
+			} else {
+				const char *pstr=0;
+				uchar wiefalsch=0;
+				// und hinter dem aktuellen Parameter noch einer kommt ...
+				if (*akt<argcvm->size()-1) {
+					const char *nacstr=argcvm->at(*akt+1).argcs;
+					struct stat entryarg={0};
+					switch (art) {
+						// und das ein "sonstiger Parameter" ist, ...
+						case psons:
+							// er also nicht mit '-' oder '/' anfaengt ...
+							if (!strchr("-/",nacstr[0])) {
+								// ... dann zuweisen
+								pstr=nacstr;
+							}
+							break;
+							// wenn es ein Verzeichnis oder eine Datei sein soll ...
+						case pverz:
+						case pfile:
+							// ... die also nicht mit '-' anfaengt
+							if (nacstr[0]!='-') {
+								// ... und sie bestimmte existentielle Bedingungen erfuellt ...
+								if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
+								else if ((art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
+								// ... dann zuweisen
+								else pstr=nacstr;
+							} //               if (nacstr[0]!='-')
+							break;
+							// oder wenn es eine Zahl sein soll ...
+						case pzahl:
+							// und sie nicht mit '-' oder '/' anfaengt ...
+							if (!strchr("-/",nacstr[0])) {
+								// und tatsaechlich numerisch ist ...
+								if (!isnumeric(nacstr)) wiefalsch=1;
+								// dann zuweisen
+								else pstr=nacstr;
+							} // if (!strchr("-/",nacstr[0])) 
+							break;
+					} // switch (art) 
+				} // if (*akt<argcvm->size()-1)
+				/// wenn nacstr als Zusatzparameter bestaetigt
+				if (pstr) {
+					// ... und dessen Inhalt sich von zptr unterscheidet ...
+					if (*zptr!=pstr) {
+						// ... dann zuweisen ...
+						*zptr=pstr; 
+						// ... und ggf. Konfigurationsdatei speichern, 
+						if (!nichtspeichern) {
+							if (obschreibp) *obschreibp=1;
+							// wenn Konfigurationsarray und ein Indexname dort uebergeben ... 
+							if (cpA && pname) {
+								// dann Inhalt dort zuweisen
+								cpA->setze(pname,pstr);
+							} // if (cpA && pname)
+						} // if (!nichtspeichern)
+					} // if (*zptr!=pstr) 
+					argcvm->at(++(*akt)).agef=1;
+				} else {
+					// wenn kein Zusatzparameter erkennbar, dann melden
+					switch (art) {
+						case psons:
+							Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
+							break;
+						case pverz:
+						case pfile:
+							Log(drots+Txk[T_Fehler_Parameter]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+" "+(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?
+										Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
+							break;
+						case pzahl:
+							Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
+									+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
+							break;
+					} // switch (art)
+					if (!*hilfe) *hilfe=1;
+				} // if (pstr) else
+			} // if (pptr) else
+			return 1;
+		} // if (argcvm->at(*akt).agef)
+	} // if (*akt<argcvm->size()) if (!argcvm->at(*akt).agef) 
+		*/
 }
 
 

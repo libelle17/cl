@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "16.01.18" "Version 0.10091" "Manual-Seite für ²DPROG²"
+.TH man 1 "17.01.18" "Version 0.10091" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -116,3 +116,57 @@ nach spezopt
 20           wortreich v
 .br
 21                zahl n
+.br
+Ende gcl0
+.br
+Ende getcommandl0
+.br
+vor getcommandline
+.br
+\fBParameter: \fBd\fB nicht erkannt!\fR
+.br
+\fBOptionen, die nicht gespeichert werden: \fR
+.br
+\fB -w, --wortreich\fR: Bildschirmausgabe gespraechiger
+.br
+\fB -ldn, --logdateineu\fR: logdatei vorher loeschen
+.br
+\fB -kd, --konfdatei <string>\fR: verwendet Konfigurationsdatei <string> anstatt '\fB\fR'
+.br
+\fB -sqlw, --sql-wortreich\fR: Bildschirmausgabe mit SQL-Befehlen
+.br
+\fB -rf, --rueckfragen\fR: alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)
+.br
+\fB -krf, --keinerueckfragen\fR: keine Rueckfragen, z.B. für Aufruf aus cron
+.br
+\fB -info, --version\fR: Zeigt die Programmversion an
+.br
+\fB -vi, --vi\fR: Konfigurations- u.Logdatei bearbeiten/sehen (beenden mit ':qa')
+.br
+\fB -h, --hilfe\fR: Erklärung häufiger Optionen
+.br
+\fB -lh, --langhilfe\fR: Erklärung aller Optionen
+.br
+\fBOptionen z.Speich. i.Konfigur'datei (vorausg. '1'=doch nicht speichern, 'no'=Gegenteil, z.B. '-noocra','-1noocri'):\fR
+.br
+\fB -sp, --sprache <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBd\fR'
+.br
+\fB -lvz, --logvz <pfad>\fR: waehlt als Logverzeichnis <pfad>, derzeit '\fB/var/log\fR'
+.br
+\fB -ld, --logdname <string>\fR: logdatei <string> (im Pfad '\fB/var/log\fR') wird verwendet anstatt '\fBcl.log\fR'
+.br
+\fB -l, --log\fR: protokolliert ausfuehrlich in Datei '\fB/var/log/cl.log\fR' (sonst knapper)
+.br
+\fB -host, --host <string>\fR: verwendet die Datenbank auf Host <string> anstatt auf '\fBlocalhost\fR'
+.br
+\fB -muser, --muser <string>\fR: verwendet fuer MySQL/MariaDB den Benutzer <string> anstatt '\fB\fR'
+.br
+\fB -mpwd, --mpwd <string>\fR: verwendet fuer MySQL/MariaDB das Passwort <string>
+.br
+\fB -db, --datenbank <string>\fR: verwendet die Datenbank <string> anstatt '\fBfaxe\fR'
+.br
+\fB -tb, --tabelle <string>\fR: verwendet die Tabelle <string> anstatt '\fB\fR'
+.br
+\fB -cm, --cronminuten <zahl>\fR: alle wieviel Minuten soll \fBcl\fR ueber crontab aufgerufen werden (0=gar nicht), anstatt  '\fB2\fR'
+.br
+\fB -autoakt, --autoaktual\fR: Programm automatisch aktualisieren\fB oder nicht\fR
