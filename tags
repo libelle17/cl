@@ -408,7 +408,7 @@ TxB	kons.h	/^class TxB \/\/ Text-Basisklasse$/;"	c
 TxBp	kons.h	/^    TxB *TxBp=0;$/;"	m	class:optcl
 TxBp	kons.h	/^    TxB *TxBp=0;$/;"	m	class:optioncl
 Txdb_	DB.h	/^enum Txdb_ $/;"	g
-Txi	kons.h	/^    const long Txi=0;$/;"	m	class:optioncl
+Txi	kons.h	/^    const long Txi=-1;$/;"	m	class:optioncl
 Txi	kons.h	/^    long Txi=0;$/;"	m	class:optcl
 Txi2	kons.h	/^    long Txi2=-1;$/;"	m	class:optcl
 Txi2	kons.h	/^    long Txi2=-1;$/;"	m	class:optioncl
@@ -466,7 +466,6 @@ aufrufe	kons.h	/^		ulong aufrufe=0; \/\/ Zahl der bisherigen Programmaufrufe$/;"
 ausgab1000	kons.cpp	/^void perfcl::ausgab1000(const string& stelle)$/;"	f	class:perfcl
 ausgeb	kons.cpp	/^int find3cl::ausgeb()$/;"	f	class:find3cl
 ausgeb	kons.cpp	/^void find2cl::ausgeb()$/;"	f	class:find2cl
-ausgeb	kons.cpp	/^void optcl::ausgeb()$/;"	f	class:optcl
 ausgeb	kons.cpp	/^void perfcl::ausgeb(const string& stelle,uchar obdauer)$/;"	f	class:perfcl
 ausgeb	kons.cpp	/^void schlArr::ausgeb()$/;"	f	class:schlArr
 auswert	kons.cpp	/^void confdat::auswert(schlArr *sA, int obverb, const char tz)$/;"	f	class:confdat
@@ -852,6 +851,7 @@ num_rows	DB.h	/^    unsigned long long  num_rows;$/;"	m	class:RS
 nurexec	kons.h	/^		int nurexec;$/;"	m	class:find3cl
 nurexecp	kons.cpp	/^int *find3cl::nurexecp;$/;"	m	class:find3cl	file:
 nurexecp	kons.h	/^		static int *nurexecp;$/;"	m	class:find3cl
+oausgeb	kons.cpp	/^void optcl::oausgeb()$/;"	f	class:optcl
 obauto	DB.h	/^    bool obauto;$/;"	m	class:Feld
 obcl	kons.h	/^		uchar obcl=0; \/\/ ob die Option ueber die Kommandozeile gesetzt wurde$/;"	m	class:optioncl
 obcl	kons.h	/^		uchar obcl=0; \/\/ wie oft die Option ueber die Kommandozeile gesetzt wurde$/;"	m	class:optcl
@@ -941,10 +941,10 @@ pidcl	kons.h	/^class pidcl$/;"	c
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 pmconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
-pname	kons.h	/^		string pname; \/\/ Name des Konfigurationsparameters$/;"	m	class:optcl
+pname	kons.h	/^		string pname=""; \/\/ Name des Konfigurationsparameters$/;"	m	class:optcl
 pname	kons.h	/^    const char *pname; \/\/ Name des Konfigurationsparameters$/;"	m	class:optioncl
+pptr	kons.h	/^    const void *pptr=0; \/\/ Zeiger auf Parameter, der hier eingestellt werden kann$/;"	m	class:optcl
 pptr	kons.h	/^    uchar *pptr=0; \/\/ Zeiger auf binären Parameter, der hier eingestellt werden kann$/;"	m	class:optioncl
-pptr	kons.h	/^    void *pptr=0; \/\/ Zeiger auf Parameter, der hier eingestellt werden kann$/;"	m	class:optcl
 prec	DB.h	/^    const string prec;$/;"	m	class:Feld
 prec	DB.h	/^    vector<long> prec;$/;"	m	class:RS
 pres	DB.h	/^		PGresult *pres;$/;"	m	class:RS
@@ -1119,7 +1119,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5946;"	d	file:
+uebersichtlich	kons.cpp	5977;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v

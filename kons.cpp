@@ -5196,24 +5196,23 @@ void hcl::gcl0()
 	caus<<"Ende Schleife"<<endl;
 	spezopt();
 	caus<<"nach spezopt"<<endl;
-	ru=0;
 	/*
-	for(omit=omap.begin();omit!=omap.end();omit++) {
-		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-	}
-	caus<<endl; ru=0;
-	for(omit=okmap.begin();omit!=okmap.end();omit++) {
-		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-	}
-	caus<<endl; ru=0;
-	for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-	}
-	for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		caus<<"ru: "<<gelb<<ru<<schwarz;
-		omit->second->oausgeb();
-	}
-	*/
+		 for(omit=omap.begin();omit!=omap.end();omit++) {
+		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+		 }
+		 caus<<endl; ru=0;
+		 for(omit=okmap.begin();omit!=okmap.end();omit++) {
+		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+		 }
+		 caus<<endl; ru=0;
+		 for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
+		 }
+		 for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		 caus<<"ru: "<<gelb<<ru<<schwarz;
+		 omit->second->oausgeb();
+		 }
+	 */
 	caus<<"Fertig mit der Ausgabe"<<endl;
 	opts_=hopts; // evtl. unnötig
 
@@ -5272,7 +5271,7 @@ void hcl::gcl0()
 										uchar wiefalsch=0;
 										apn=ap; apn++;
 										const char *nacstr=apn->argcs;
-													// er also nicht mit '-' anfaengt ...
+										// er also nicht mit '-' anfaengt ...
 										if (apn!=argcmv.end() && *nacstr!='-') {
 											struct stat entryarg={0};
 											switch (omit->second->art) {
@@ -5301,7 +5300,7 @@ void hcl::gcl0()
 													if (!isnumeric(nacstr)) wiefalsch=1;
 													// dann zuweisen
 													else {
-													caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+														caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
 														omit->second->pptr=nacstr;
 													}
 													break;
@@ -5331,173 +5330,72 @@ void hcl::gcl0()
 													break;
 											} // switch (art)
 											if (!obhilfe) obhilfe=1;
-										}
-									}
-								}
-							}
-						}
-					}
-				}
+										} // 										if (wiefalsch)
+									} // 									if (omit->second->wert) else
+								} // 								if (omit->second->pptr)
+							} // 							if (!omit->first.find(acstr))
+						} // 						for(omit=omp->begin();omit!=omp->end();omit++)
+					} // 					if (omp)
+				} // 				for(int iru=0;iru<2;iru++)
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
-		/*
-		// wenn Kommandozeilenparameter gefunden ...
-		if (argcvm->at(*akt).agef) {
-			// ... und zu setzender binaerer Parameter hinterlegt ...
-			if (pptr) {
-				// ggf. auf Gegenteil korrigieren
-				if (gegenteil) wert=!wert;
-				// ... und dieser noch nicht richtig gesetzt ist ...
-				if (*pptr!=wert) {
-					// ... dann setzen ...
-					*pptr=wert;
-					// ... merken, dass die Konfigurationsdatei geschrieben werden muss ...
-					if (!nichtspeichern) {
-						if (obschreibp) *obschreibp=1;
-						// ... und wenn ein Konfigurationsarray uebergeben wurde und ein Elementname dazu ...
-						if (cpA && pname) {
-							// ... dann diesen auch auf den Wert setzen
-							cpA->setze(pname,ltoan(wert));
-						} //             if (cpA && pname)
-					} // if (!nichtspeichern)
-				} // if (*pptr!=wert) 
-				// wenn also kein binaerer Parameter hinterlegt (=> Textparameter)
-			} else {
-				const char *pstr=0;
-				uchar wiefalsch=0;
-				// und hinter dem aktuellen Parameter noch einer kommt ...
-				if (*akt<argcvm->size()-1) {
-					const char *nacstr=argcvm->at(*akt+1).argcs;
-					struct stat entryarg={0};
-					switch (art) {
-						// und das ein "sonstiger Parameter" ist, ...
-						case psons:
-							// er also nicht mit '-' oder '/' anfaengt ...
-							if (!strchr("-/",nacstr[0])) {
-								// ... dann zuweisen
-								pstr=nacstr;
-							}
-							break;
-							// wenn es ein Verzeichnis oder eine Datei sein soll ...
-						case pverz:
-						case pfile:
-							// ... die also nicht mit '-' anfaengt
-							if (nacstr[0]!='-') {
-								// ... und sie bestimmte existentielle Bedingungen erfuellt ...
-								if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
-								else if ((art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
-								// ... dann zuweisen
-								else pstr=nacstr;
-							} //               if (nacstr[0]!='-')
-							break;
-							// oder wenn es eine Zahl sein soll ...
-						case pzahl:
-							// und sie nicht mit '-' oder '/' anfaengt ...
-							if (!strchr("-/",nacstr[0])) {
-								// und tatsaechlich numerisch ist ...
-								if (!isnumeric(nacstr)) wiefalsch=1;
-								// dann zuweisen
-								else pstr=nacstr;
-							} // if (!strchr("-/",nacstr[0])) 
-							break;
-					} // switch (art) 
-				} // if (*akt<argcvm->size()-1)
-				/// wenn nacstr als Zusatzparameter bestaetigt
-				if (pstr) {
-					// ... und dessen Inhalt sich von zptr unterscheidet ...
-					if (*zptr!=pstr) {
-						// ... dann zuweisen ...
-						*zptr=pstr; 
-						// ... und ggf. Konfigurationsdatei speichern, 
-						if (!nichtspeichern) {
-							if (obschreibp) *obschreibp=1;
-							// wenn Konfigurationsarray und ein Indexname dort uebergeben ... 
-							if (cpA && pname) {
-								// dann Inhalt dort zuweisen
-								cpA->setze(pname,pstr);
-							} // if (cpA && pname)
-						} // if (!nichtspeichern)
-					} // if (*zptr!=pstr) 
-					argcvm->at(++(*akt)).agef=1;
-				} else {
-					// wenn kein Zusatzparameter erkennbar, dann melden
-					switch (art) {
-						case psons:
-							Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
-							break;
-						case pverz:
-						case pfile:
-							Log(drots+Txk[T_Fehler_Parameter]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+" "+(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?
-										Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
-							break;
-						case pzahl:
-							Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
-									+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
-							break;
-					} // switch (art)
-					if (!*hilfe) *hilfe=1;
-				} // if (pstr) else
-			} // if (pptr) else
-			return 1;
-		} // if (argcvm->at(*akt).agef)
-	} // if (*akt<argcvm->size()) if (!argcvm->at(*akt).agef) 
-		*/
+	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
+	ru=0;
 	for(omit=olmap.begin();omit!=olmap.end();omit++) {
 		caus<<"ru: "<<gelb<<++ru<<schwarz;
 		omit->second->oausgeb();
 	}
-}
 
 
-for(unsigned iru=0;iru<3;iru++) {
-	switch (iru) {
-		case 0:
-			opts.push_back(/*2*/optioncl(T_lg_k,T_language_l, &Txk,T_sprachstr,/*wi=*/1,&langu,psons,&agcnfA,"language",&oblgschreib)); agcnfA.setzbemv("language",&Txk,T_sprachstr,1);
-			opts.push_back(/*2*/optioncl(T_lang_k,T_lingue_l, &Txk,-1,/*wi=*/1,&langu,psons));
-			break;
-		case 1:
-			opts.push_back(/*4*/optioncl(T_v_k,T_verbose_l, &Txk, T_Bildschirmausgabe_gespraechiger,/*wi=*/1,&plusverb,/*wert=*/1));
+	for(unsigned iru=0;iru<3;iru++) {
+		switch (iru) {
+			case 0:
+				opts.push_back(/*2*/optioncl(T_lg_k,T_language_l, &Txk,T_sprachstr,/*wi=*/1,&langu,psons,&agcnfA,"language",&oblgschreib)); agcnfA.setzbemv("language",&Txk,T_sprachstr,1);
+				opts.push_back(/*2*/optioncl(T_lang_k,T_lingue_l, &Txk,-1,/*wi=*/1,&langu,psons));
+				break;
+			case 1:
+				opts.push_back(/*4*/optioncl(T_v_k,T_verbose_l, &Txk, T_Bildschirmausgabe_gespraechiger,/*wi=*/1,&plusverb,/*wert=*/1));
+				setzlog();
+				opts.push_back(/*2*/optioncl(T_lvz_k,T_logvz_l, &Txk, T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi=*/0,&logvz, pverz, &agcnfA,"logvz",&logvneu));
+				opts.push_back(/*3a*/optioncl(T_ld_k,T_logdname_l, &Txk, T_logdatei_string_im_Pfad, /*wi=*/0, &logvz, T_wird_verwendet_anstatt, &logdname, psons, &agcnfA,"logdname",&logdneu));
+				opts.push_back(/*3b*/optioncl(T_l_k,T_log_l,&Txk, T_protokolliert_ausfuehrlich_in_Datei, /*wi=*/1, &loggespfad, T_sonst_knapper, &oblog,pzahl, &agcnfA,"oblog",&obkschreib));
+				logdt=&loggespfad.front();
+				opts.push_back(/*4*/optioncl(T_ldn_k,T_logdateineu_l, &Txk, T_logdatei_vorher_loeschen, /*wi=*/0, &logdateineu, /*wert=*/1));
+				break;
+			case 2:
+				opts.push_back(/*2*/optioncl(T_kd_k,T_konfdatei_l, &Txk, T_verwendet_Konfigurationsdatei_string_anstatt,/*wi=*/0,&akonfdt,pfile));
+				// Hilfe zur Aktualisierung der manpages
+				opts.push_back(/*4*/optioncl(T_sh,T_standardhilfe, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/3));
+				// Auruf zur Prüfung der library-Fehlerung "no version information" (falls lib-Datei nachträglich geändert wurde)
+				opts.push_back(/*4*/optioncl(T_libtest,T_libtest, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/4));
+				break;
+		} //     switch (iru)
+		// hier wird die Befehlszeile ueberprueft:
+		for(;optslsz<opts.size();optslsz++) {
+			for(size_t i=0;i<argcmv.size();i++) {
+				if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe)) {
+					if (iru==1) {
+						if (plusverb) {obverb++;plusverb=0;}
+					} //           if (iru==1)
+					if (opts[optslsz].kurzi!=T_v_k) break;
+				} // if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
+			} // for(size_t i=0;i<argcmv.size();i++) 
+		} //     for(;optslsz<opts.size();optslsz++)
+		optslsz=opts.size();
+		if (!iru) {
+			lgnzuw();
+		} // 		if (!iru)
+	} // for(unsigned iru=0;iru<3;iru++)
+	if (logvneu||logdneu) {
+		if (!logdname.empty()) {
 			setzlog();
-			opts.push_back(/*2*/optioncl(T_lvz_k,T_logvz_l, &Txk, T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi=*/0,&logvz, pverz, &agcnfA,"logvz",&logvneu));
-			opts.push_back(/*3a*/optioncl(T_ld_k,T_logdname_l, &Txk, T_logdatei_string_im_Pfad, /*wi=*/0, &logvz, T_wird_verwendet_anstatt, &logdname, psons, &agcnfA,"logdname",&logdneu));
-			opts.push_back(/*3b*/optioncl(T_l_k,T_log_l,&Txk, T_protokolliert_ausfuehrlich_in_Datei, /*wi=*/1, &loggespfad, T_sonst_knapper, &oblog,pzahl, &agcnfA,"oblog",&obkschreib));
-			logdt=&loggespfad.front();
-			opts.push_back(/*4*/optioncl(T_ldn_k,T_logdateineu_l, &Txk, T_logdatei_vorher_loeschen, /*wi=*/0, &logdateineu, /*wert=*/1));
-			break;
-		case 2:
-			opts.push_back(/*2*/optioncl(T_kd_k,T_konfdatei_l, &Txk, T_verwendet_Konfigurationsdatei_string_anstatt,/*wi=*/0,&akonfdt,pfile));
-			// Hilfe zur Aktualisierung der manpages
-			opts.push_back(/*4*/optioncl(T_sh,T_standardhilfe, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/3));
-			// Auruf zur Prüfung der library-Fehlerung "no version information" (falls lib-Datei nachträglich geändert wurde)
-			opts.push_back(/*4*/optioncl(T_libtest,T_libtest, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/4));
-			break;
-	} //     switch (iru)
-	// hier wird die Befehlszeile ueberprueft:
-	for(;optslsz<opts.size();optslsz++) {
-		for(size_t i=0;i<argcmv.size();i++) {
-			if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe)) {
-				if (iru==1) {
-					if (plusverb) {obverb++;plusverb=0;}
-				} //           if (iru==1)
-				if (opts[optslsz].kurzi!=T_v_k) break;
-			} // if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
-		} // for(size_t i=0;i<argcmv.size();i++) 
-	} //     for(;optslsz<opts.size();optslsz++)
-	optslsz=opts.size();
-	if (!iru) {
-		lgnzuw();
-	} // 		if (!iru)
-} // for(unsigned iru=0;iru<3;iru++)
-if (logvneu||logdneu) {
-	if (!logdname.empty()) {
-		setzlog();
-		//// <<rot<<"logdt: "<<logdt<<endl;
-		//// <<rot<<"loggespfad: "<<loggespfad<<endl;
-		////<<violett<<"logdname: "<<*agcnfA.hole("logdname")<<schwarz<<endl;
-	} //     if (!logdname.empty())
-	obkschreib=1;
-} // if (logvneu ||logdneu) 
-caus<<"Ende gcl0"<<endl;
+			//// <<rot<<"logdt: "<<logdt<<endl;
+			//// <<rot<<"loggespfad: "<<loggespfad<<endl;
+			////<<violett<<"logdname: "<<*agcnfA.hole("logdname")<<schwarz<<endl;
+		} //     if (!logdname.empty())
+		obkschreib=1;
+	} // if (logvneu ||logdneu) 
+	caus<<"Ende gcl0"<<endl;
 } // void hcl::gcl0()
 
 // in lieskonfein, getcommandl0, getcommandline, rueckfragen
@@ -6151,6 +6049,11 @@ void hcl::setzbenutzer(string *user)
 
 void hcl::omapzuw(optcl *optp,size_t optz)
 {
+	size_t ru=0;
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<"ru: "<<violett<<++ru<<schwarz;
+		omit->second->oausgeb();
+	}
 	for(size_t i=0;i<optz;i++) {
 		// interne Berechnungen durchführen
 		// Bemerkung erst beim Schreiben setzen
@@ -6161,7 +6064,14 @@ void hcl::omapzuw(optcl *optp,size_t optz)
 			optp[i].TxBp->lgn=(Sprache)akts;
 			okmap[(*optp[i].TxBp)[optp[i].kurzi]]=&optp[i];
 			olmap[(*optp[i].TxBp)[optp[i].langi]]=&optp[i];
+			caus<<"olmap.size(): "<<olmap.size()<<", (*optp[i].TxBp)[optp[i].langi]: "<<(*optp[i].TxBp)[optp[i].langi]<<endl;
 		}
+	}
+	ru=0;
+//	caus<<"obhilfe: "<<obhilfe<<", &obhilfe: "<<&obhilfe<<endl;
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<"ru: "<<gruen<<++ru<<schwarz;
+		omit->second->oausgeb();
 	}
 }
 
