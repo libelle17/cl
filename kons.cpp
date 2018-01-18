@@ -3082,6 +3082,35 @@ uchar VerzeichnisGibts(const char* vname)
 	return 0;
 } // VerzeichnisGibts
 
+void optcl::oausgeb()
+{
+	caus<<" pname: "<<blau<<pname<<schwarz;
+	caus<<", pptr: "<<blau;
+	if (pptr) {
+		if (art==pzahl) {
+			caus<<*(uchar*)pptr<<" "<<*(int*)pptr;
+		} else {
+			caus<<*(string*)pptr;
+		}
+	}
+	caus<<schwarz;
+	caus<<", kurzi: "<<blau<<(*TxBp)[kurzi]<<schwarz;
+	caus<<", langi: "<<blau<<(*TxBp)[langi]<<schwarz;
+	caus<<", wi: "<<blau<<(int)wi<<schwarz;
+	caus<<", Txi: "<<blau<<Txi<<schwarz;
+	caus<<", rottxt: "<<blau<<(rottxt?*rottxt:string(""))<<schwarz;
+	caus<<", Txi2: "<<blau<<Txi2<<schwarz;
+	caus<<", wert: "<<blau<<wert<<schwarz;
+	caus<<", part: "<<blau<<art<<schwarz;
+	caus<<", obschreibp: "<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
+	caus<<", obno: "<<blau<<(int)obno<<schwarz;
+	caus<<", bemerkung: "<<blau<<bemerkung<<schwarz;
+	caus<<", obcl: "<<blau<<(int)obcl<<schwarz;
+	caus<<", gegenteil: "<<blau<<(int)gegenteil<<schwarz;
+	caus<<", nichtspeichern: "<<blau<<(int)nichtspeichern<<schwarz;
+	caus<<endl;
+}
+
 int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) // 1 = das war der Parameter, 0 = nicht
 	// argcvm = Vektor der Kommandozeilenparameter
 	// *akt = Index auf aktuell zu untersuchenden
@@ -5168,6 +5197,7 @@ void hcl::gcl0()
 	spezopt();
 	caus<<"nach spezopt"<<endl;
 	ru=0;
+	/*
 	for(omit=omap.begin();omit!=omap.end();omit++) {
 		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
 	}
@@ -5179,6 +5209,12 @@ void hcl::gcl0()
 	for(omit=olmap.begin();omit!=olmap.end();omit++) {
 		caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
 	}
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<"ru: "<<gelb<<ru<<schwarz;
+		omit->second->oausgeb();
+	}
+	*/
+	caus<<"Fertig mit der Ausgabe"<<endl;
 	opts_=hopts; // evtl. unnötig
 
 	// (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
@@ -5243,7 +5279,8 @@ void hcl::gcl0()
 												// und das ein "sonstiger Parameter" ist, ...
 												case psons:
 													// ... dann zuweisen
-													*(string*)omit->second->pptr=nacstr;
+													caus<<rot<<"1 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+													*(string*)omit->second->pptr=string(nacstr);
 													break;
 													// wenn es ein Verzeichnis oder eine Datei sein soll ...
 												case pverz:
@@ -5253,14 +5290,20 @@ void hcl::gcl0()
 													if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
 													else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
 													// ... dann zuweisen
-													else *(string*)omit->second->pptr=nacstr;
+													else {
+														caus<<rot<<"2 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+														omit->second->pptr=nacstr;
+													}
 													break;
 													// oder wenn es eine Zahl sein soll ...
 												case pzahl:
 													// und tatsaechlich numerisch ist ...
 													if (!isnumeric(nacstr)) wiefalsch=1;
 													// dann zuweisen
-													else *(string*)omit->second->pptr=nacstr;
+													else {
+													caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+														omit->second->pptr=nacstr;
+													}
 													break;
 											} // switch (art) 
 											if (!wiefalsch) {
@@ -5399,6 +5442,10 @@ void hcl::gcl0()
 		} // if (argcvm->at(*akt).agef)
 	} // if (*akt<argcvm->size()) if (!argcvm->at(*akt).agef) 
 		*/
+	for(omit=olmap.begin();omit!=olmap.end();omit++) {
+		caus<<"ru: "<<gelb<<++ru<<schwarz;
+		omit->second->oausgeb();
+	}
 }
 
 

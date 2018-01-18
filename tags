@@ -38,6 +38,7 @@ Index	DB.h	/^class Index $/;"	c
 LetzteID	DB.cpp	/^void DB::LetzteID(string *erg,const size_t aktc) $/;"	f	class:DB
 Log	kons.cpp	/^int Log(const short screen,const short file, const bool oberr,const short klobverb, const char *format, ...)$/;"	f
 Log	kons.cpp	/^int Log(const string& text, const short screen\/*=1*\/, const short file\/*=1*\/, const bool oberr\/*=0*\/, const short klobverb\/*=0*\/)$/;"	f
+Log	kons.cpp	/^int hcl::Log(const string& text,const bool oberr\/*=0*\/,const short klobverb\/*=0*\/) const$/;"	f	class:hcl
 MusterVorgb	cl.cpp	/^void hhcl::MusterVorgb()$/;"	f	class:hhcl
 My	cl.h	/^	DB* My=0;$/;"	m	class:hhcl
 MySQL	DB.h	/^enum DBSTyp {MySQL, Postgres};$/;"	e	enum:DBSTyp
@@ -465,6 +466,7 @@ aufrufe	kons.h	/^		ulong aufrufe=0; \/\/ Zahl der bisherigen Programmaufrufe$/;"
 ausgab1000	kons.cpp	/^void perfcl::ausgab1000(const string& stelle)$/;"	f	class:perfcl
 ausgeb	kons.cpp	/^int find3cl::ausgeb()$/;"	f	class:find3cl
 ausgeb	kons.cpp	/^void find2cl::ausgeb()$/;"	f	class:find2cl
+ausgeb	kons.cpp	/^void optcl::ausgeb()$/;"	f	class:optcl
 ausgeb	kons.cpp	/^void perfcl::ausgeb(const string& stelle,uchar obdauer)$/;"	f	class:perfcl
 ausgeb	kons.cpp	/^void schlArr::ausgeb()$/;"	f	class:schlArr
 auswert	kons.cpp	/^void confdat::auswert(schlArr *sA, int obverb, const char tz)$/;"	f	class:confdat
@@ -571,6 +573,7 @@ dofind	kons.cpp	/^int find3cl::dofind()$/;"	f	class:find3cl
 doggfinst	kons.cpp	/^int linst_cl::doggfinst(const string& prog,int obverb,int oblog,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
 doinst	kons.cpp	/^int linst_cl::doinst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,const string& fallsnichtda\/*=nix*\/,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
 douninst	kons.cpp	/^int linst_cl::douninst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar obyes\/*=1*\/) $/;"	f	class:linst_cl
+dovi	kons.cpp	/^void hcl::dovi()$/;"	f	class:hcl
 drot	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 drot	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 drots	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
@@ -760,10 +763,13 @@ lesespalten	DB.cpp	/^void Tabelle::lesespalten(size_t aktc,int obverb\/*=0*\/,in
 lfd	kons.h	/^		unsigned lfd;$/;"	m	class:hcl
 lgn	kons.h	/^  Sprache lgn; \/\/ Sprache numerisch$/;"	m	class:TxB
 lgnzuw	cl.cpp	/^void hhcl::lgnzuw()$/;"	f	class:hhcl
+lgnzuw	kons.cpp	/^void hcl::lgnzuw()$/;"	f	class:hcl
 libs	kons.h	/^ string libs; \/\/ alle lib-Verzeichnisse, fuer find ..$/;"	m	class:linst_cl
 lief	kons.cpp	/^int servc::lief()$/;"	f	class:servc
 lies	kons.cpp	/^int confdat::lies(const string& fname, int obverb)$/;"	f	class:confdat
 lieskonfein	cl.cpp	/^void hhcl::lieskonfein(const string& dprog)$/;"	f	class:hhcl
+lieskonfein	kons.cpp	/^void hcl::lieskonfein(const string& DPROG)$/;"	f	class:hcl
+lieszaehlerein	kons.cpp	/^void hcl::lieszaehlerein(ulong *arp\/*=0*\/,ulong *tap\/*=0*\/,ulong *map\/*=0*\/, struct tm *lap\/*=0*\/,$/;"	f	class:hcl
 linst_cl	kons.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_cl
 linst_cl	kons.h	/^class linst_cl$/;"	c
 linstp	DB.h	/^		linst_cl *const linstp=0;$/;"	m	class:DB
@@ -853,7 +859,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	913;"	d
+obfstream	kons.h	914;"	d
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
 obind	DB.h	/^    bool obind;$/;"	m	class:Feld
@@ -948,6 +954,7 @@ progvers	kons.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
 pruefDB	cl.cpp	/^int hhcl::pruefDB(const string& db)$/;"	f	class:hhcl
 pruefberecht	kons.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
 pruefcl	kons.cpp	/^void hcl::pruefcl() \/\/ commandline mit omap und mit argcmv parsen$/;"	f	class:hcl
+pruefcron	kons.cpp	/^uchar hcl::pruefcron(const string& cm)$/;"	f	class:hcl
 prueffunc	DB.cpp	/^void DB::prueffunc(const string& pname, const string& body, const string& para, const size_t aktc, int obverb, int oblog)$/;"	f	class:DB
 pruefggfmehrfach	cl.cpp	/^void hhcl::pruefggfmehrfach()$/;"	f	class:hhcl
 pruefinstv	kons.cpp	/^int hcl::pruefinstv()$/;"	f	class:hcl
@@ -955,6 +962,7 @@ pruefmehrfach	kons.cpp	/^void pruefmehrfach(const string& wen,uchar obstumm\/*=0
 pruefpar	kons.cpp	/^int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) \/\/ 1 = das war der Parameter, 0 = nicht$/;"	f	class:optioncl
 pruefplatte	kons.cpp	/^void pruefplatte()$/;"	f
 pruefrpw	DB.cpp	/^void DB::pruefrpw(const string& wofuer, unsigned versuchzahl)$/;"	f	class:DB
+pruefsamba	kons.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs, const char* DPROG,const string& cuser)$/;"	f	class:hcl
 prueftab	DB.cpp	/^int Tabelle::prueftab(const size_t aktc,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f	class:Tabelle
 prueftif	kons.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
 pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
@@ -993,6 +1001,7 @@ schlArr	kons.cpp	/^schlArr::schlArr()$/;"	f	class:schlArr
 schlArr	kons.cpp	/^schlArr::schlArr(const char* const* sarr,size_t vzahl)$/;"	f	class:schlArr
 schlArr	kons.h	/^class schlArr {$/;"	c
 schlussanzeige	kons.cpp	/^void hcl::schlussanzeige()$/;"	f	class:hcl
+schreibzaehler	kons.cpp	/^void hcl::schreibzaehler($/;"	f	class:hcl
 schwarz	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 schwarz	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 schwarzs	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
@@ -1019,9 +1028,13 @@ setze	kons.h	/^template <> inline void cppSchluess::setze < const string > (cons
 setze	kons.h	/^template <> inline void cppSchluess::setze < string > (string *var) {wert=*var;}$/;"	f	class:cppSchluess
 setze	kons.h	/^template <> inline void cppSchluess::setze < struct tm > (struct tm *tmp) {$/;"	f	class:cppSchluess
 setzebem	kons.cpp	/^void optioncl::setzebem(schlArr *cpA,const char *pname)$/;"	f	class:optioncl
+setzlog	kons.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
 setzrpw	DB.cpp	/^void DB::setzrpw(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ Setze root-password$/;"	f	class:DB
+setztmpcron	kons.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
+setzzaehler	kons.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
 sfeh	kons.cpp	/^const int sfeh[]={ T_Dienst_laeuft,T_Dienst_inexistent, T_Dienst_disabled, T_Dienstdateiname_nicht_ermittelbar, T_Dienst_laeuft_noch_aber_Dienstdatei_inexistent, T_Exec_Dateiname_nicht_ermittelbar, T_Exec_Datei_fehlt, T_activating, T_Dienst_kann_gestartet_werden, T_Sonstiges};$/;"	v
 shpf	kons.h	/^ string shpf; \/\/ Pfad zu sh$/;"	m	class:linst_cl
+smbdt	kons.cpp	/^const char* const hcl::smbdt="\/etc\/samba\/smb.conf";$/;"	m	class:hcl	file:
 smbdt	kons.h	/^		static const char* const smbdt;\/\/ "\/etc\/samba\/smb.conf"$/;"	m	class:hcl
 sname	kons.h	/^    string sname,ename; \/\/ Dienstname, Exename$/;"	m	class:servc
 snprintf	kons.h	78;"	d
@@ -1091,6 +1104,7 @@ tmtosqlmZ	DB.cpp	/^char* DB::tmtosqlmZ(tm *tmh,char* buf) $/;"	f	class:DB
 touch	kons.cpp	/^int touch(const string& pfad,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f
 tstart	kons.h	/^    double tstart, tende;$/;"	m	class:hcl
 tsvec	kons.h	/^class tsvec: public vector<T>$/;"	c
+tucronschreib	kons.cpp	/^void hcl::tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef)$/;"	f	class:hcl
 tuerkis	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 tuerkis	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 tuerkiss	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
@@ -1105,7 +1119,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5881;"	d	file:
+uebersichtlich	kons.cpp	5946;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1161,6 +1175,7 @@ yum	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instpr
 zahl	kons.h	/^ size_t zahl;$/;"	m	class:schlArr
 zahlin	kons.cpp	/^size_t zahlin(const string *const str, const char* const was) $/;"	f
 zcnfA	kons.h	/^		schlArr zcnfA; \/\/ Zaehlkonfiguration$/;"	m	class:hcl
+zeighilfe	kons.cpp	/^int hcl::zeighilfe(const stringstream *const erkl)$/;"	f	class:hcl
 zeigkonf	kons.cpp	/^void hcl::zeigkonf()$/;"	f	class:hcl
 zeigueberschrift	cl.cpp	/^void hhcl::zeigueberschrift()$/;"	f	class:hhcl
 zeigvers	kons.h	/^    uchar zeigvers=0;  \/\/ Version anzeigen$/;"	m	class:hcl

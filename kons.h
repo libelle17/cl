@@ -779,7 +779,7 @@ class optioncl
 		const int kurzi=0;
 		const int langi=0;
     TxB *TxBp=0;
-    const long Txi=0;
+    const long Txi=-1;
 		uchar wi=0; // Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt
     const string *rottxt=0; // ggf rot zu markierender Text zwischen Txi und Txi2
     long Txi2=-1;
@@ -830,8 +830,8 @@ class optioncl
 class optcl
 {
 	public:
-		string pname; // Name des Konfigurationsparameters
-    void *pptr=0; // Zeiger auf Parameter, der hier eingestellt werden kann
+		string pname=""; // Name des Konfigurationsparameters
+    const void *pptr=0; // Zeiger auf Parameter, der hier eingestellt werden kann
     par_t art=psons; // Parameterart
 //		optcl() {if (parart==pzahl) *(int*)par=0;}
 		int kurzi=0;
@@ -854,6 +854,7 @@ class optcl
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
     void setzebem(schlArr *cpA,const char *pname);
+		void oausgeb();
 };
 
 #endif // kons_H_DRIN

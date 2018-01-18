@@ -286,10 +286,10 @@ void hhcl::lgnzuw()
 
 void hhcl::spezopt()
 {
-	string rottext=ltoan(listz);
+	static string rottext=ltoan(listz);
 	static optcl hopts[]={
-		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/psons,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/psons,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/pzahl,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/pzahl,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
 }
