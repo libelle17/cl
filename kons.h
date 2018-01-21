@@ -768,7 +768,7 @@ class confdat
 }; // class confdat
 
 // fuer Commandline-Optionen
-enum par_t:uchar {psons,pverz,pfile,pzahl}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
+enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
 
 
 class optioncl

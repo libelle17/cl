@@ -923,7 +923,7 @@ p2	cl.h	/^	int p2;$/;"	m	class:hhcl
 p3	cl.h	/^	string p3;$/;"	m	class:hhcl
 p3cpf	kons.h	/^ string p3cpf; \/\/ Pfad zu python3-config$/;"	m	class:linst_cl
 pac	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
-par_t	kons.h	/^enum par_t:uchar {psons,pverz,pfile,pzahl}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
+par_t	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 passwd	DB.h	/^    string passwd; \/\/ kann in pruefrpw dem eingegebenen rootpw gleichgesetz werden, deshalb nicht const$/;"	m	class:DB
 passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::
 passwddt	kons.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
@@ -934,12 +934,14 @@ perfcl	kons.h	/^class perfcl$/;"	c
 pfad	kons.h	/^    const string pfad;$/;"	m	class:wele
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem2
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem3
-pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,pzahl}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
 pid	kons.h	/^ pid_t pid;$/;"	m	class:pidcl
 pidcl	kons.h	/^ pidcl(const pid_t pid,const string& name):pid(pid),name(name){}$/;"	f	class:pidcl
 pidcl	kons.h	/^class pidcl$/;"	c
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
+pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
+plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
 pmconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
 pname	kons.h	/^		string pname=""; \/\/ Name des Konfigurationsparameters$/;"	m	class:optcl
 pname	kons.h	/^    const char *pname; \/\/ Name des Konfigurationsparameters$/;"	m	class:optioncl
@@ -966,10 +968,10 @@ pruefsamba	kons.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,cons
 prueftab	DB.cpp	/^int Tabelle::prueftab(const size_t aktc,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f	class:Tabelle
 prueftif	kons.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
 pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
-psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,pzahl}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
-pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,pzahl}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
 pwk	cl.cpp	/^const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; \/\/ fuer Antlitzaenderung$/;"	v
-pzahl	kons.h	/^enum par_t:uchar {psons,pverz,pfile,pzahl}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
 reduzierlibtiff	kons.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
 reg	kons.h	/^    regex_t reg;$/;"	m	class:find3cl
 regp	kons.cpp	/^regex_t *find3cl::regp;$/;"	m	class:find3cl	file:
@@ -1119,7 +1121,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5977;"	d	file:
+uebersichtlich	kons.cpp	5879;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v

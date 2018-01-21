@@ -288,8 +288,8 @@ void hhcl::spezopt()
 {
 	static string rottext=ltoan(listz);
 	static optcl hopts[]={
-		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/pzahl,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/pzahl,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
 }
@@ -357,7 +357,7 @@ int hhcl::getcommandline()
 	opts.push_back(/*2*/optioncl(T_mpwd_k,T_mpwd_l,&Tx, T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,0,&mpwd,psons,&agcnfA,"mpwd",&obkschreib));
 	opts.push_back(/*2*/optioncl(T_db_k,T_datenbank_l,&Tx, T_verwendet_die_Datenbank_string_anstatt,0,&dbq,psons,&agcnfA,"datenbank",&obkschreib));
 	opts.push_back(/*2*/optioncl(T_tb_k,T_tabelle_l,&Tx, T_verwendet_die_Tabelle_string_anstatt,0,&tabelle,psons,&agcnfA,"tabelle",&obkschreib)); //ω
-	opts.push_back(/*3*/optioncl(T_cm_k,T_cronminuten_l,&Tx,T_Alle_wieviel_Minuten_soll,1,&meinname,T_aufgerufen_werden_0_ist_gar_nicht,&cronminut, pzahl, &agcnfA,"cronminut",&obkschreib)); //α
+	opts.push_back(/*3*/optioncl(T_cm_k,T_cronminuten_l,&Tx,T_Alle_wieviel_Minuten_soll,1,&meinname,T_aufgerufen_werden_0_ist_gar_nicht,&cronminut, psons, &agcnfA,"cronminut",&obkschreib)); //α
 	opts.push_back(/*4*/optioncl(T_autoupd_k,T_autoupd_l, &Tx, T_Programm_automatisch_aktualisieren,1,&autoupd,1,&agcnfA,"autoupd",&obkschreib));
 	opts.push_back(/*4*/optioncl(T_sqlv_k,T_sql_verbose_l, &Tx, T_Bildschirmausgabe_mit_SQL_Befehlen,1,&ZDB,1));
 	opts.push_back(/*4*/optioncl(T_rf_k,T_rueckfragen_l, &Tx, T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,1,&rzf,1));

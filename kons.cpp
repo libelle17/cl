@@ -3087,8 +3087,12 @@ void optcl::oausgeb()
 	caus<<" pname: "<<blau<<pname<<schwarz;
 	caus<<", pptr: "<<blau;
 	if (pptr) {
-		if (art==pzahl) {
-			caus<<*(uchar*)pptr<<" "<<*(int*)pptr;
+		if (art==puchar) {
+			caus<<(int)*(uchar*)pptr;
+		} else if (art==pint) {
+			caus<<" "<<*(int*)pptr;
+		} else if (art==plong) {
+			caus<<" "<<*(long*)pptr;
 		} else {
 			caus<<*(string*)pptr;
 		}
@@ -3237,7 +3241,7 @@ int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *h
 							} //               if (nacstr[0]!='-')
 							break;
 							// oder wenn es eine Zahl sein soll ...
-						case pzahl:
+						case puchar: case pint: case plong:
 							// und sie nicht mit '-' oder '/' anfaengt ...
 							if (!strchr("-/",nacstr[0])) {
 								// und tatsaechlich numerisch ist ...
@@ -3276,7 +3280,7 @@ int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *h
 							Log(drots+Txk[T_Fehler_Parameter]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+" "+(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?
 										Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
 							break;
-						case pzahl:
+						case puchar: case pint: case plong:
 							Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
 									+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
 							break;
@@ -5183,14 +5187,14 @@ void hcl::gcl0()
 	static optcl hopts[]={
 		/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
 		,/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
-		,/*4*/{/*pname*/"",/*pptr*/&plusverb,/*art*/pzahl,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&plusverb,/*art*/puchar,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
 		,/*2*/{/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logvneu}
 		,/*3a*/{/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logdneu}
-		,/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pzahl,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib}
-		,/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/pzahl,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pint,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib}
+		,/*4*/{/*pname*/"",/*pptr*/&logdateineu,/*art*/puchar,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
 		,/*2*/{/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/pzahl,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/pzahl,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
 	caus<<"Ende Schleife"<<endl;
@@ -5246,97 +5250,109 @@ void hcl::gcl0()
 					acstr+=2;
 					aclen-=2;
 				}
-				for(int iru=0;iru<2;iru++) {
-					map<string,optcl*> *omp=0;
-					if (!iru) if (langp) omp=&olmap;
-					if (!iru) if (kurzp) omp=&okmap;
-					if (omp) {
-						for(omit=omp->begin();omit!=omp->end();omit++) {
-							if (!omit->first.find(acstr)) {
-								ap->agef++;
-								omit->second->gegenteil=gegenteil;
-								omit->second->nichtspeichern=nichtspeichern;
-								if (omit->second->pptr) {
-									// wenn wert, dann diesen Wert zuweisen
-									if (omit->second->wert) {
-										if (omit->second->art==pzahl) {
-											*(int*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-										} else {
-											*(string*)omit->second->pptr=omit->second->wert;
-										}
-										omit->second->obcl=1;
-										if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
-										// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
+				map<string,optcl*> *omp=0;
+				if (langp) omp=&olmap;
+				else if (kurzp) omp=&okmap;
+				if (omp) {
+					for(omit=omp->begin();omit!=omp->end();omit++) {
+						if (!omit->first.find(acstr)) {
+							ap->agef++;
+							omit->second->gegenteil=gegenteil;
+							omit->second->nichtspeichern=nichtspeichern;
+							if (omit->second->pptr) {
+								// wenn wert, dann diesen Wert zuweisen
+								if (!gegenteil && omit->second->wert==1 && omit->second->art==puchar) {
+										(*((uchar*)omit->second->pptr))++;
+								} else if (!gegenteil && omit->second->wert==1 && omit->second->art==pint) {
+										(*((int*)omit->second->pptr))++;
+								} else if (!gegenteil && omit->second->wert==1 && omit->second->art==plong) {
+										(*((long*)omit->second->pptr))++;
+								} else if (omit->second->wert) {
+									if (omit->second->art==puchar) {
+										*(uchar*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
+										caus<<rot<<"uchar zugewiesen: "<<schwarz<<(int)*(uchar*)omit->second->pptr<<endl;
+									} else if (omit->second->art==pint) {
+										*(int*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
+										caus<<rot<<"int zugewiesen"<<schwarz<<endl;
+									} else if (omit->second->art==plong) {
+										*(long*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
+										caus<<rot<<"long zugewiesen"<<schwarz<<endl;
 									} else {
-										uchar wiefalsch=0;
-										apn=ap; apn++;
-										const char *nacstr=apn->argcs;
-										// er also nicht mit '-' anfaengt ...
-										if (apn!=argcmv.end() && *nacstr!='-') {
-											struct stat entryarg={0};
-											switch (omit->second->art) {
-												// und das ein "sonstiger Parameter" ist, ...
-												case psons:
-													// ... dann zuweisen
-													caus<<rot<<"1 weise zu: "<<violett<<nacstr<<schwarz<<endl;
-													*(string*)omit->second->pptr=string(nacstr);
-													break;
-													// wenn es ein Verzeichnis oder eine Datei sein soll ...
-												case pverz:
-												case pfile:
-													// ... die also nicht mit '-' anfaengt
-													// ... und sie bestimmte existentielle Bedingungen erfuellt ...
-													if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
-													else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
-													// ... dann zuweisen
-													else {
-														caus<<rot<<"2 weise zu: "<<violett<<nacstr<<schwarz<<endl;
-														omit->second->pptr=nacstr;
-													}
-													break;
-													// oder wenn es eine Zahl sein soll ...
-												case pzahl:
-													// und tatsaechlich numerisch ist ...
-													if (!isnumeric(nacstr)) wiefalsch=1;
-													// dann zuweisen
-													else {
-														caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
-														omit->second->pptr=nacstr;
-													}
-													break;
-											} // switch (art) 
-											if (!wiefalsch) {
-												ap++;
-												omit->second->obcl=1;
-											}
-											if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
-										} else {
-											wiefalsch=3; // kein geeigneter Parameter gefunden
+										*(string*)omit->second->pptr=omit->second->wert;
+									}
+									omit->second->obcl=1;
+									if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
+									// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
+								} else {
+									uchar wiefalsch=0;
+									apn=ap; apn++;
+									const char *nacstr=apn->argcs;
+									// er also nicht mit '-' anfaengt ...
+									if (apn!=argcmv.end() && *nacstr!='-') {
+										struct stat entryarg={0};
+										switch (omit->second->art) {
+											// und das ein "sonstiger Parameter" ist, ...
+											case psons:
+												// ... dann zuweisen
+												caus<<rot<<"1 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+												*(string*)omit->second->pptr=string(nacstr);
+												break;
+												// wenn es ein Verzeichnis oder eine Datei sein soll ...
+											case pverz:
+											case pfile:
+												// ... die also nicht mit '-' anfaengt
+												// ... und sie bestimmte existentielle Bedingungen erfuellt ...
+												if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
+												else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
+												// ... dann zuweisen
+												else {
+													caus<<rot<<"2 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+													omit->second->pptr=nacstr;
+												}
+												break;
+												// oder wenn es eine Zahl sein soll ...
+											case puchar: case pint: case plong:
+												// und tatsaechlich numerisch ist ...
+												if (!isnumeric(nacstr)) wiefalsch=1;
+												// dann zuweisen
+												else {
+													caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
+													omit->second->wert=atol(nacstr);
+													omit->second->pptr=&omit->second->wert;
+												}
+												break;
+										} // switch (art) 
+										if (!wiefalsch) {
+											ap++;
+											omit->second->obcl=1;
 										}
-										if (wiefalsch) {
-											// wenn kein Zusatzparameter erkennbar, dann melden
-											switch (omit->second->art) {
-												case psons:
-													Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
-													break;
-												case pverz:
-												case pfile:
-													Log(drots+Txk[T_Fehler_Parameter]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+" "+
-															(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
-													break;
-												case pzahl:
-													Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
-															+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
-													break;
-											} // switch (art)
-											if (!obhilfe) obhilfe=1;
-										} // 										if (wiefalsch)
-									} // 									if (omit->second->wert) else
-								} // 								if (omit->second->pptr)
-							} // 							if (!omit->first.find(acstr))
-						} // 						for(omit=omp->begin();omit!=omp->end();omit++)
-					} // 					if (omp)
-				} // 				for(int iru=0;iru<2;iru++)
+										if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
+									} else {
+										wiefalsch=3; // kein geeigneter Parameter gefunden
+									}
+									if (wiefalsch) {
+										// wenn kein Zusatzparameter erkennbar, dann melden
+										switch (omit->second->art) {
+											case psons:
+												Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
+												break;
+											case pverz:
+											case pfile:
+												Log(drots+Txk[T_Fehler_Parameter]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+" "+
+														(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
+												break;
+											case puchar: case pint: case plong:
+												Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
+														+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
+												break;
+										} // switch (art)
+										if (!obhilfe) obhilfe=1;
+									} // 										if (wiefalsch)
+								} // 									if (omit->second->wert) else
+							} // 								if (omit->second->pptr)
+						} // 							if (!omit->first.find(acstr))
+					} // 						for(omit=omp->begin();omit!=omp->end();omit++)
+				} // 					if (omp)
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
 	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
@@ -5345,6 +5361,8 @@ void hcl::gcl0()
 		caus<<"ru: "<<gelb<<++ru<<schwarz;
 		omit->second->oausgeb();
 	}
+	caus<<"Ende gcl0"<<endl;
+	return;
 
 
 	for(unsigned iru=0;iru<3;iru++) {
@@ -5358,7 +5376,7 @@ void hcl::gcl0()
 				setzlog();
 				opts.push_back(/*2*/optioncl(T_lvz_k,T_logvz_l, &Txk, T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi=*/0,&logvz, pverz, &agcnfA,"logvz",&logvneu));
 				opts.push_back(/*3a*/optioncl(T_ld_k,T_logdname_l, &Txk, T_logdatei_string_im_Pfad, /*wi=*/0, &logvz, T_wird_verwendet_anstatt, &logdname, psons, &agcnfA,"logdname",&logdneu));
-				opts.push_back(/*3b*/optioncl(T_l_k,T_log_l,&Txk, T_protokolliert_ausfuehrlich_in_Datei, /*wi=*/1, &loggespfad, T_sonst_knapper, &oblog,pzahl, &agcnfA,"oblog",&obkschreib));
+				opts.push_back(/*3b*/optioncl(T_l_k,T_log_l,&Txk, T_protokolliert_ausfuehrlich_in_Datei, /*wi=*/1, &loggespfad, T_sonst_knapper, &oblog,psons, &agcnfA,"oblog",&obkschreib));
 				logdt=&loggespfad.front();
 				opts.push_back(/*4*/optioncl(T_ldn_k,T_logdateineu_l, &Txk, T_logdatei_vorher_loeschen, /*wi=*/0, &logdateineu, /*wert=*/1));
 				break;
@@ -5395,7 +5413,6 @@ void hcl::gcl0()
 		} //     if (!logdname.empty())
 		obkschreib=1;
 	} // if (logvneu ||logdneu) 
-	caus<<"Ende gcl0"<<endl;
 } // void hcl::gcl0()
 
 // in lieskonfein, getcommandl0, getcommandline, rueckfragen
