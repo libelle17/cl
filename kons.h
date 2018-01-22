@@ -594,6 +594,7 @@ class cppSchluess {
     uchar gelesen=0;
     string wert;
     string bemerk;
+		cppSchluess(string name);
 //    inline cppSchluess& operator=(cppSchluess zuzuw){name=zuzuw.name;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
     template <typename T> void setze(T *var) { wert=ltoan(*var); }
@@ -630,18 +631,21 @@ template <> inline void cppSchluess::setze < string > (string *var, string& bem)
 template <> inline void cppSchluess::setze < const string > (const string *var, string& bem) {wert=*var; if (!bem.empty()) bemerk=bem;}
 */
 class svec;
+class optcl;
 
 class schlArr {
  public:
- cppSchluess *schl=0; 
- size_t zahl;
+// cppSchluess *schl=0; 
+ vector<cppSchluess> schl;
  schlArr();
  schlArr(const char* const* sarr,size_t vzahl);
- void neu(size_t vzahl=0);
+// void neu(size_t vzahl=0);
  void init(size_t vzahl, ...);
  void init(vector<cppSchluess*> *sqlvp);
- void initd(const char* const* sarr,size_t vzahl);
- inline /*const*/ cppSchluess& operator[](size_t const& nr) const { return schl[nr]; }
+// void initd(const char* const* sarr,size_t vzahl);
+ void initv(vector<optcl*> optpv,vector<size_t> optsv);
+ inline const cppSchluess& operator[](size_t const& nr) const { return schl[nr]; }
+ inline cppSchluess& operator[](size_t const& nr) { return schl[nr]; }
  int setze(const string& name, const string& wert/*, const string& bem=nix*/);
  const string& hole(const string& name);
  void setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
@@ -795,6 +799,7 @@ class optioncl
     const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
     string bemerkung;
 		uchar obcl=0; // ob die Option ueber die Kommandozeile gesetzt wurde
+		uchar obcf=0; // ob die Option schon einmal vorkam für die Konfigurationsdatei
   private:
     void setzebem(schlArr *cpA,const char *pname);
   public:
@@ -1149,7 +1154,6 @@ class hcl
                        // bei jeder Aenderung muss auch logdt neu gesetzt werden!
     string cmd; // string fuer command fuer Betriebssystembefehle
     vector<optioncl> opts;
-		optcl *opts_;
 		vector<argcl> argcmv; // class member vector
 		ulong aufrufe=0; // Zahl der bisherigen Programmaufrufe
 		struct tm laufrtag={0}; // Tag des letztes Aufrufs
@@ -1183,13 +1187,17 @@ class hcl
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg);
 	public:
+		vector<optcl*> optpv; // Vektor der zugewiesenen Optionenzeiger
+		vector<size_t> optsv; // Vektor von deren jeweiliger Größe
 		void omapzuw(optcl *optp,size_t opts); // Optionen an omap zuweisen
+		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv);
 		~hcl();
 		int Log(const string& text,const bool oberr=0,const short klobverb=0) const;
     int pruefinstv();
     void lieskonfein(const string& DPROG);
+    void verarbeitkonf();
 		void setzlog();
 		int zeighilfe(const stringstream *const erkl);
 		void pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs,const char* DPROG,const string& cuser);

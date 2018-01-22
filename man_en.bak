@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "21.01.18" "Version 0.10104" "\fB²DPROG²\fR man page"
+.TH man 1 "22.01.18" "Version 0.10121" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -15,221 +15,75 @@
 .SH OPTIONS 
 .SH PRECONDITIONS
 .br
-olmap.size(): 1, (*optp[i].TxBp)[optp[i].langi]: sprache
+\fB  1\fR pname:\fBlanguage\fR,pptr:\fB         e\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB136\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,obcl:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
 .br
-olmap.size(): 2, (*optp[i].TxBp)[optp[i].langi]: language
+\fB  2\fR pname:\fBlanguage\fR,pptr:\fB         e\fR,kurzi:\fB      ling\fR,langi:\fB      lingua\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 3, (*optp[i].TxBp)[optp[i].langi]: lingue
+\fB  3\fR pname:\fB        \fR,pptr:\fB         0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB149\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 4, (*optp[i].TxBp)[optp[i].langi]: lingua
+\fB  4\fR pname:\fB   logvz\fR,pptr:\fB  /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 5, (*optp[i].TxBp)[optp[i].langi]: wortreich
+\fB  5\fR pname:\fBlogdname\fR,pptr:\fB    cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB       /var/log\fR,Txi2:\fB153\fR,wert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 6, (*optp[i].TxBp)[optp[i].langi]: verbose
+\fB  6\fR pname:\fB   oblog\fR,pptr:\fB         0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB158\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB152\fR,wert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 7, (*optp[i].TxBp)[optp[i].langi]: logvz
+\fB  7\fR pname:\fB        \fR,pptr:\fB         0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 8, (*optp[i].TxBp)[optp[i].langi]: logdir
+\fB  8\fR pname:\fB        \fR,pptr:\fB          \fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 9, (*optp[i].TxBp)[optp[i].langi]: logdname
+\fB  9\fR pname:\fB        \fR,pptr:\fB         3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 10, (*optp[i].TxBp)[optp[i].langi]: logfilename
+\fB 10\fR pname:\fB        \fR,pptr:\fB         3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 11, (*optp[i].TxBp)[optp[i].langi]: log
+\fB 11\fR pname:\fB   lista\fR,pptr:\fB         0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-olmap.size(): 11, (*optp[i].TxBp)[optp[i].langi]: log
-.br
-olmap.size(): 12, (*optp[i].TxBp)[optp[i].langi]: logdateineu
-.br
-olmap.size(): 13, (*optp[i].TxBp)[optp[i].langi]: logfilenew
-.br
-olmap.size(): 14, (*optp[i].TxBp)[optp[i].langi]: konfdatei
-.br
-olmap.size(): 15, (*optp[i].TxBp)[optp[i].langi]: conffile
-.br
-olmap.size(): 16, (*optp[i].TxBp)[optp[i].langi]: standardhilfe
-.br
-olmap.size(): 17, (*optp[i].TxBp)[optp[i].langi]: standardhelp
-.br
-olmap.size(): 18, (*optp[i].TxBp)[optp[i].langi]: libtest
-.br
-olmap.size(): 18, (*optp[i].TxBp)[optp[i].langi]: libtest
-.br
-ru: \fB1\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB2\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB3\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB4\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlibtest\fR, langi: \fBlibtest\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB4\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB5\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB6\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB7\fR pname: \fBoblog\fR, pptr: \fB 0\fR, kurzi: \fBl\fR, langi: \fBlog\fR, wi: \fB1\fR, Txi: \fB158\fR, rottxt: \fB/var/log/cl.log\fR, Txi2: \fB152\fR, wert: \fB1\fR, part: \fB4\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB8\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB9\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB10\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB11\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB12\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB13\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB14\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB15\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB16\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB17\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB18\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-Ende Schleife
-.br
-ru: \fB1\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB2\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB3\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB4\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlibtest\fR, langi: \fBlibtest\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB4\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB5\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB6\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB7\fR pname: \fBoblog\fR, pptr: \fB 0\fR, kurzi: \fBl\fR, langi: \fBlog\fR, wi: \fB1\fR, Txi: \fB158\fR, rottxt: \fB/var/log/cl.log\fR, Txi2: \fB152\fR, wert: \fB1\fR, part: \fB4\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB8\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB9\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB10\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB11\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB12\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB13\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB14\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB15\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB16\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB17\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB18\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-olmap.size(): 19, (*optp[i].TxBp)[optp[i].langi]: lista
-.br
-olmap.size(): 19, (*optp[i].TxBp)[optp[i].langi]: lista
-.br
-olmap.size(): 20, (*optp[i].TxBp)[optp[i].langi]: zahl
-.br
-olmap.size(): 21, (*optp[i].TxBp)[optp[i].langi]: number
-.br
-ru: \fB1\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB2\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB3\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB4\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlibtest\fR, langi: \fBlibtest\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB4\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB5\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB6\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB7\fR pname: \fBlista\fR, pptr: \fB0\fR, kurzi: \fBlista\fR, langi: \fBlista\fR, wi: \fB1\fR, Txi: \fB78\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB8\fR pname: \fBoblog\fR, pptr: \fB 0\fR, kurzi: \fBl\fR, langi: \fBlog\fR, wi: \fB1\fR, Txi: \fB158\fR, rottxt: \fB/var/log/cl.log\fR, Txi2: \fB152\fR, wert: \fB1\fR, part: \fB4\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB9\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB10\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB11\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB12\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB13\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB14\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB15\fR pname: \fBn\fR, pptr: \fB 30\fR, kurzi: \fBn\fR, langi: \fBnumber\fR, wi: \fB1\fR, Txi: \fB79\fR, rottxt: \fB30\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB5\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB16\fR pname: \fBlanguage\fR, pptr: \fBd\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB17\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB18\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB19\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB20\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB21\fR pname: \fBn\fR, pptr: \fB 30\fR, kurzi: \fBn\fR, langi: \fBnumber\fR, wi: \fB1\fR, Txi: \fB79\fR, rottxt: \fB30\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB5\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-nach spezopt
-.br
-Fertig mit der Ausgabe
-.br
-\fB1 weise zu: \fBe\fR
-.br
-\fBuchar zugewiesen: \fR3
-.br
-ru: \fB1\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB2\fR pname: \fB\fR, pptr: \fB\fR, kurzi: \fBcf\fR, langi: \fBconffile\fR, wi: \fB0\fR, Txi: \fB155\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB2\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB3\fR pname: \fBlanguage\fR, pptr: \fBe\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB1\fR, gegenteil: \fB0\fR, nichtspeichern: \fB1\fR
-.br
-ru: \fB4\fR pname: \fB\fR, pptr: \fB3\fR, kurzi: \fBlibtest\fR, langi: \fBlibtest\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB4\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB5\fR pname: \fBlanguage\fR, pptr: \fBe\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB6\fR pname: \fBlanguage\fR, pptr: \fBe\fR, kurzi: \fBling\fR, langi: \fBlingua\fR, wi: \fB1\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB7\fR pname: \fBlista\fR, pptr: \fB0\fR, kurzi: \fBlista\fR, langi: \fBlista\fR, wi: \fB1\fR, Txi: \fB78\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB8\fR pname: \fBoblog\fR, pptr: \fB 0\fR, kurzi: \fBl\fR, langi: \fBlog\fR, wi: \fB1\fR, Txi: \fB158\fR, rottxt: \fB/var/log/cl.log\fR, Txi2: \fB152\fR, wert: \fB1\fR, part: \fB4\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB9\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB10\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB11\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB12\fR pname: \fBlogdname\fR, pptr: \fBcl.log\fR, kurzi: \fBlf\fR, langi: \fBlogfilename\fR, wi: \fB0\fR, Txi: \fB151\fR, rottxt: \fB/var/log\fR, Txi2: \fB153\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB13\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBlfn\fR, langi: \fBlogfilenew\fR, wi: \fB0\fR, Txi: \fB154\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB14\fR pname: \fBlogvz\fR, pptr: \fB/var/log\fR, kurzi: \fBldr\fR, langi: \fBlogdir\fR, wi: \fB0\fR, Txi: \fB150\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB1\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB15\fR pname: \fBn\fR, pptr: \fB 30\fR, kurzi: \fBn\fR, langi: \fBnumber\fR, wi: \fB1\fR, Txi: \fB79\fR, rottxt: \fB30\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB5\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB16\fR pname: \fBlanguage\fR, pptr: \fBe\fR, kurzi: \fBlg\fR, langi: \fBlanguage\fR, wi: \fB1\fR, Txi: \fB136\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB0\fR, obschreibp: \fB0\fR, obno: \fB1\fR, bemerkung: \fB\fR, obcl: \fB1\fR, gegenteil: \fB0\fR, nichtspeichern: \fB1\fR
-.br
-ru: \fB17\fR pname: \fB\fR, pptr: \fB3\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB1\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB18\fR pname: \fB\fR, pptr: \fB3\fR, kurzi: \fBsh\fR, langi: \fBstandardhelp\fR, wi: \fB255\fR, Txi: \fB-1\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB3\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB1\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB19\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB20\fR pname: \fB\fR, pptr: \fB0\fR, kurzi: \fBv\fR, langi: \fBverbose\fR, wi: \fB1\fR, Txi: \fB149\fR, rottxt: \fB\fR, Txi2: \fB-1\fR, wert: \fB1\fR, part: \fB3\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
-.br
-ru: \fB21\fR pname: \fBn\fR, pptr: \fB 30\fR, kurzi: \fBn\fR, langi: \fBnumber\fR, wi: \fB1\fR, Txi: \fB79\fR, rottxt: \fB30\fR, Txi2: \fB-1\fR, wert: \fB0\fR, part: \fB5\fR, obschreibp: \fB0\fR, obno: \fB0\fR, bemerkung: \fB\fR, obcl: \fB0\fR, gegenteil: \fB0\fR, nichtspeichern: \fB0\fR
+\fB 12\fR pname:\fB       n\fR,pptr:\fB        30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,obcl:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
+.br
+schl.size(): 6
+.br
+i: \fB0\fR Name: \fBlanguage\fR Value: \fB\fR
+.br
+i: \fB1\fR Name: \fBlogvz\fR Value: \fB\fR
+.br
+i: \fB2\fR Name: \fBlogdname\fR Value: \fB\fR
+.br
+i: \fB3\fR Name: \fBoblog\fR Value: \fB\fR
+.br
+i: \fB4\fR Name: \fBlista\fR Value: \fB\fR
+.br
+i: \fB5\fR Name: \fBn\fR Value: \fB\fR
+.br
+i: \fB0\fR Name: \fBlanguage\fR Value: \fBfrz\fR
+.br
+i: \fB1\fR Name: \fBlogvz\fR Value: \fB\fR
+.br
+i: \fB2\fR Name: \fBlogdname\fR Value: \fB\fR
+.br
+i: \fB3\fR Name: \fBoblog\fR Value: \fB\fR
+.br
+i: \fB4\fR Name: \fBlista\fR Value: \fB\fR
+.br
+i: \fB5\fR Name: \fBn\fR Value: \fB18\fR
+.br
+Zahl: 6
+.br
+i: 0, language, wert: frz, gefunden, language ueber Konfig festzulegen auf: 
+.br
+
+.br
+i: 1, logvz
+.br
+i: 2, logdname
+.br
+i: 3, oblog
+.br
+i: 4, lista
+.br
+i: 5, n, wert: 18, gefunden, n ueber Konfig festzulegen auf: 
+.br
+
 .br
 Ende getcommandl0
 .br

@@ -1861,26 +1861,26 @@ void confdat::auswert(schlArr *sA, int obverb, const char tz)
         if (obverb>1) Log(Txk[T_stern_zeile]+*zeile,obverb);
         pos=zeile->find(tz);
         if (pos!=string::npos && pos>0) { 
-          size_t ii=sA->zahl,gef;
+          size_t ii=sA->schl.size(),gef;
           while( ii-- ) {
-            gef=zeile->find((*sA)[ii].name);
+            gef=zeile->find(sA->schl[ii].name);
             if (!gef) { // conf[ii].name muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
-              (*sA)[ii].gelesen=1;
-              if (strchr((string(" ")+(char)9+tz).c_str(),zeile->at(gef+(*sA)[ii].name.length()))) {
+              sA->schl[ii].gelesen=1;
+              if (strchr((string(" ")+(char)9+tz).c_str(),zeile->at(gef+sA->schl[ii].name.length()))) {
                 ++richtige;
-                (*sA)[ii].wert=zeile->substr(pos+1);
-                gtrim(&(*sA)[ii].wert); // Leerzeichen entfernen
+                sA->schl[ii].wert=zeile->substr(pos+1);
+                gtrim(&sA->schl[ii].wert); // Leerzeichen entfernen
                 // Anfuehrungszeichen entfernen
-                anfzweg((*sA)[ii].wert);
+                anfzweg(sA->schl[ii].wert);
 ////      if (name.find(<DPROG>)!=string::npos)
 //// <<" name: "<<schwarz<<(*sA)[ii].name<<violett<<" wert: '"<<schwarz<<(*sA)[ii].wert<<"'"<<violett<<" bemerk: '"<<ibemerk<<"'"<<schwarz<<endl;
-                (*sA)[ii].bemerk=ibemerk;
+                sA->schl[ii].bemerk=ibemerk;
                 ibemerk.clear();
               } // if (strchr((string(" ")+(char)9+tz).c_str(),gef+(*sA)[ii].name.length())) 
               break;
             } // if( !strcmp(sA[i].name.c_str(),zeile->c_str()) ) 
             if (!gef)
-              Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+(*sA)[ii].name+rot+Txk[T_nicht_gefunden],obverb+1);
+              Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+sA->schl[ii].name+rot+Txk[T_nicht_gefunden],obverb+1);
           } // while( ii-- ) 
         } // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
       } // if (!zeile->empty()) 
@@ -1974,14 +1974,14 @@ confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obver
 
 void schlArr::ausgeb()
 {
-  for(size_t i=0;i<zahl;i++) {
+  for(size_t i=0;i<schl.size();i++) {
    cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
   }
 } // void schlArr::ausgeb()
 
 void schlArr::reset()
 {
-  for(size_t i=0;i<zahl;i++) {
+  for(size_t i=0;i<schl.size();i++) {
     schl[i].wert.clear();
     schl[i].gelesen=0;
   }
@@ -1989,17 +1989,18 @@ void schlArr::reset()
 
 schlArr::schlArr()
 {
- schl=0;
- zahl=0;
+ //schl=0;
 } // schlArr::schlArr()
 
-
+/*
 void schlArr::neu(size_t vzahl)
 {
- if (schl) delete[] schl;
+// if (schl) delete[] schl;
+ schl.clear();
  zahl=vzahl;
  schl=new cppSchluess[zahl];
 } // void schlArr::neu(size_t vzahl)
+*/
 
 /*// wird vielleicht nicht gebraucht
 schlArr::schlArr(size_t zahl): zahl(zahl)
@@ -2009,15 +2010,17 @@ schlArr::schlArr(size_t zahl): zahl(zahl)
 */
 void schlArr::init(vector<cppSchluess*> *sqlvp)
 {
-  if (schl) delete[] schl;
-  zahl=sqlvp->size();
-  schl = new cppSchluess[zahl];
-  for(size_t sqli=0;sqli<zahl;sqli++) {
-    schl[sqli].name=sqlvp->at(sqli)->name;
-    schl[sqli].wert=sqlvp->at(sqli)->wert;
+// if (schl) delete[] schl;
+	schl.clear();
+  // schl = new cppSchluess[zahl];
+  for(size_t sqli=0;sqli<sqlvp->size();sqli++) {
+//    schl[sqli].name=sqlvp->at(sqli)->name;
+//    schl[sqli].wert=sqlvp->at(sqli)->wert;
+		schl.push_back(*sqlvp->at(sqli));
   }
 } // void schlArr::init
 
+/*
 void schlArr::initd(const char* const* sarr,size_t vzahl)
 {
 	zahl=vzahl;
@@ -2027,21 +2030,52 @@ void schlArr::initd(const char* const* sarr,size_t vzahl)
 		schl[i].name=sarr[i];
 	}
 } // schlArr::initd(const char* const* sarr,size_t vzahl)
+*/
 
-schlArr::schlArr(const char* const* sarr,size_t vzahl)
+cppSchluess::cppSchluess(string name):name(name)
 {
-	initd(sarr,vzahl);
-} // void schlArr:init
+}
+
+void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
+{
+	schl.clear();
+	vector<optcl*>::iterator opp=optpv.begin();
+	vector<size_t>::iterator ops=optsv.begin();
+	for(;opp!=optpv.end();opp++,ops++) {
+		for(size_t iru=0;iru<*ops;iru++) {
+			if (!((optcl*)(*opp))[iru].pname.empty()) {
+				uchar gefunden=0;
+				for(vector<cppSchluess>::iterator sit=schl.begin();sit!=schl.end();sit++) {
+					if (sit->name==((optcl*)(*opp))[iru].pname) {
+						gefunden=1;
+						break;
+					}
+				}
+				if (!gefunden) {
+					schl.push_back(cppSchluess(((optcl*)(*opp))[iru].pname));
+				}
+			}
+		}
+	}
+	caus<<"schl.size(): "<<schl.size()<<endl;
+}
+/*
+	 schlArr::schlArr(const char* const* sarr,size_t vzahl)
+	 {
+	 initd(sarr,vzahl);
+	 } // void schlArr:init
+ */
 
 void schlArr::init(size_t vzahl, ...)
 {
 	va_list list;
 	va_start(list,vzahl);
-	zahl=vzahl;
-	if (schl) delete[] schl;
-	schl = new cppSchluess[zahl];
-	for(size_t i=0;i<zahl;i++) {
-		schl[i].name=va_arg(list,const char*);
+	//if (schl) delete[] schl;
+	// schl = new cppSchluess[zahl];
+	schl.clear();
+	for(size_t i=0;i<vzahl;i++) {
+//		schl[i].name=va_arg(list,const char*);
+		schl.push_back(cppSchluess(va_arg(list,const char*)));
 		//// <<rot<<"schl["<<i<<"].name: "<<schwarz<<schl[i].name<<endl;
 	}
  va_end(list);
@@ -2050,7 +2084,7 @@ void schlArr::init(size_t vzahl, ...)
 // das Setzen auch der Bemerkung wird bisher nicht benoetigt
 int schlArr::setze(const string& name, const string& wert/*, const string& bem*/)
 {
-	for(size_t ind=0;ind<zahl;ind++) {
+	for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].name==name) {
       schl[ind].wert=wert;
 ////      if (!bem.empty()) schl[ind].bemerk=bem;
@@ -2063,7 +2097,7 @@ int schlArr::setze(const string& name, const string& wert/*, const string& bem*/
 const string& schlArr::hole(const string& name)
 {
   static const string nix;
-  for(size_t ind=0;ind<zahl;ind++) {
+  for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].name==name) {
       return schl[ind].wert;
     }
@@ -2100,7 +2134,7 @@ void schlArr::setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe,sv
 		TxBp->lgn=altSpr;
 		vp=&bemv;
 	} // if fertige else
-  for(size_t ind=0;ind<zahl;ind++) {
+  for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].name==name) {
      uchar gefunden=0;
      if (schl[ind].bemerk.empty())
@@ -2124,7 +2158,7 @@ void schlArr::setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe,sv
 
 void schlArr::aschreib(mdatei *const f)
 {
-  for (size_t i = 0;i<zahl;i++) {
+  for (size_t i = 0;i<schl.size();i++) {
     if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
     *f<<schl[i].name<<" = \""<<schl[i].wert<<"\""<<endl;
   } //   for (size_t i = 0;i<zahl;i++)
@@ -2142,7 +2176,8 @@ int schlArr::fschreib(const string& fname)
 
 schlArr::~schlArr()
 {
-  if (schl) delete[] schl;
+//  if (schl) delete[] schl;
+	schl.clear();
 }
 
 int multischlschreib(const string& fname, schlArr *const *const mcnfApp, const size_t cszahl,const string& mpfad)
@@ -3084,36 +3119,36 @@ uchar VerzeichnisGibts(const char* vname)
 
 void optcl::oausgeb()
 {
-	caus<<" pname: "<<blau<<pname<<schwarz;
-	caus<<", pptr: "<<blau;
+	cout<<"pname:"<<blau<<setw(8)<<pname<<schwarz;
+	cout<<",pptr:"<<blau<<setw(10);
 	if (pptr) {
 		if (art==puchar) {
-			caus<<(int)*(uchar*)pptr;
+			cout<<(int)*(uchar*)pptr;
 		} else if (art==pint) {
-			caus<<" "<<*(int*)pptr;
+			cout<<*(int*)pptr;
 		} else if (art==plong) {
-			caus<<" "<<*(long*)pptr;
+			cout<<*(long*)pptr;
 		} else {
-			caus<<*(string*)pptr;
+			cout<<*(string*)pptr;
 		}
 	}
-	caus<<schwarz;
-	caus<<", kurzi: "<<blau<<(*TxBp)[kurzi]<<schwarz;
-	caus<<", langi: "<<blau<<(*TxBp)[langi]<<schwarz;
-	caus<<", wi: "<<blau<<(int)wi<<schwarz;
-	caus<<", Txi: "<<blau<<Txi<<schwarz;
-	caus<<", rottxt: "<<blau<<(rottxt?*rottxt:string(""))<<schwarz;
-	caus<<", Txi2: "<<blau<<Txi2<<schwarz;
-	caus<<", wert: "<<blau<<wert<<schwarz;
-	caus<<", part: "<<blau<<art<<schwarz;
-	caus<<", obschreibp: "<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
-	caus<<", obno: "<<blau<<(int)obno<<schwarz;
-	caus<<", bemerkung: "<<blau<<bemerkung<<schwarz;
-	caus<<", obcl: "<<blau<<(int)obcl<<schwarz;
-	caus<<", gegenteil: "<<blau<<(int)gegenteil<<schwarz;
-	caus<<", nichtspeichern: "<<blau<<(int)nichtspeichern<<schwarz;
-	caus<<endl;
-}
+	cout<<schwarz;
+	cout<<",kurzi:"<<blau<<setw(10)<<(*TxBp)[kurzi]<<schwarz;
+	cout<<",langi:"<<blau<<setw(12)<<(*TxBp)[langi]<<schwarz;
+	cout<<",wi:"<<blau<<setw(3)<<(int)wi<<schwarz;
+	cout<<",Txi:"<<blau<<setw(3)<<Txi<<schwarz;
+	cout<<",rottxt:"<<blau<<setw(15)<<(rottxt?*rottxt:string(""))<<schwarz;
+	cout<<",Txi2:"<<blau<<setw(3)<<Txi2<<schwarz;
+	cout<<",wert:"<<blau<<wert<<schwarz;
+	cout<<",part:"<<blau<<art<<schwarz;
+	cout<<",obschreibp:"<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
+	cout<<",obno:"<<blau<<(int)obno<<schwarz;
+	cout<<",bemkg:"<<blau<<bemerkung<<schwarz;
+	cout<<",obcl:"<<blau<<(int)obcl<<schwarz;
+	cout<<",gegent.:"<<blau<<(int)gegenteil<<schwarz;
+	cout<<",nichtspei.:"<<blau<<(int)nichtspeichern<<schwarz;
+	cout<<endl;
+} // void optcl::oausgeb()
 
 int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) // 1 = das war der Parameter, 0 = nicht
 	// argcvm = Vektor der Kommandozeilenparameter
@@ -5172,7 +5207,7 @@ void hcl::zeigkonf()
 		//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", &tm);
 	} //   if (!lstat(akonfdt.c_str(),&kstat))
 	cout<<"):"<<endl;
-	for(unsigned i=0;i<agcnfA.zahl;i++) {
+	for(unsigned i=0;i<agcnfA.schl.size();i++) {
 		cout<<blau<<setw(20)<<agcnfA[i].name<<schwarz<<": "<<agcnfA[i].wert<<endl;
 	} //   for(unsigned i=0;i<agcnfA.zahl;i++)
 } // void hcl::zeigkonf()
@@ -5180,14 +5215,11 @@ void hcl::zeigkonf()
 
 void hcl::gcl0()
 {
-	uchar plusverb=0;
-	size_t ru;
-
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	static optcl hopts[]={
 		/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
 		,/*2*/{/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&oblgschreib}
-		,/*4*/{/*pname*/"",/*pptr*/&plusverb,/*art*/puchar,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
+		,/*4*/{/*pname*/"",/*pptr*/&obverb,/*art*/puchar,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
 		,/*2*/{/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logvneu}
 		,/*3a*/{/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0,/*cpA*/&agcnfA,/*obschreibp*/&logdneu}
 		,/*3b*/{/*pname*/"oblog",/*pptr*/&oblog,/*art*/pint,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*cpA*/&agcnfA,/*obschreibp*/&obkschreib}
@@ -5197,32 +5229,10 @@ void hcl::gcl0()
 		,/*4*/{/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
-	caus<<"Ende Schleife"<<endl;
 	spezopt();
-	caus<<"nach spezopt"<<endl;
-	/*
-		 for(omit=omap.begin();omit!=omap.end();omit++) {
-		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-		 }
-		 caus<<endl; ru=0;
-		 for(omit=okmap.begin();omit!=okmap.end();omit++) {
-		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-		 }
-		 caus<<endl; ru=0;
-		 for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		 caus<<++ru<<setw(20)<<omit->first<<" "<<(*omit->second->TxBp)[omit->second->kurzi]<<endl;
-		 }
-		 for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		 caus<<"ru: "<<gelb<<ru<<schwarz;
-		 omit->second->oausgeb();
-		 }
-	 */
-	caus<<"Fertig mit der Ausgabe"<<endl;
-	opts_=hopts; // evtl. unnötig
+	// optausg(gruen);
 
 	// (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
-	for(size_t ai=0;ai<argcmv.size();ai++) {
-	}
 	vector<argcl>::iterator ap,apn;
 	for(ap=argcmv.begin();ap!=argcmv.end();ap++) {
 		uchar nichtspeichern=0, gegenteil=0, kurzp=0, langp=0;
@@ -5238,24 +5248,26 @@ void hcl::gcl0()
 				kurzp=1;
 				acstr+=1;
 				aclen-=1;
-			}
+			} // 			if (aclen>2 && acstr[0]=='-'&&acstr[1]=='-') else if
 			if (kurzp||langp) {
 				if (aclen>1 && *acstr=='1') {
 					nichtspeichern=1; 
 					acstr++;
 					aclen--;
-				}
+				} // 				if (aclen>1 && *acstr=='1')
 				if (aclen>2 && acstr[0]=='n'&&acstr[1]=='o') {
 					gegenteil=1;
 					acstr+=2;
 					aclen-=2;
-				}
+				} // 				if (aclen>2 && acstr[0]=='n'&&acstr[1]=='o')
 				map<string,optcl*> *omp=0;
 				if (langp) omp=&olmap;
 				else if (kurzp) omp=&okmap;
 				if (omp) {
 					for(omit=omp->begin();omit!=omp->end();omit++) {
-						if (!omit->first.find(acstr)) {
+						// omit ist also jetzt iterator für die relevante map auf die aktuelle Option
+						if (omit->first==acstr) {
+							uchar wiefalsch=0;
 							ap->agef++;
 							omit->second->gegenteil=gegenteil;
 							omit->second->nichtspeichern=nichtspeichern;
@@ -5270,23 +5282,18 @@ void hcl::gcl0()
 								} else if (omit->second->wert) {
 									if (omit->second->art==puchar) {
 										*(uchar*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-										caus<<rot<<"uchar zugewiesen: "<<schwarz<<(int)*(uchar*)omit->second->pptr<<endl;
 									} else if (omit->second->art==pint) {
 										*(int*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-										caus<<rot<<"int zugewiesen"<<schwarz<<endl;
 									} else if (omit->second->art==plong) {
 										*(long*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-										caus<<rot<<"long zugewiesen"<<schwarz<<endl;
 									} else {
 										*(string*)omit->second->pptr=omit->second->wert;
 									}
-									omit->second->obcl=1;
-									if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 									// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
 								} else {
-									uchar wiefalsch=0;
 									apn=ap; apn++;
-									const char *nacstr=apn->argcs;
+									const char *nacstr=apn==argcmv.end()?"<fehlt>":apn->argcs;
+									// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
 									// er also nicht mit '-' anfaengt ...
 									if (apn!=argcmv.end() && *nacstr!='-') {
 										struct stat entryarg={0};
@@ -5294,7 +5301,6 @@ void hcl::gcl0()
 											// und das ein "sonstiger Parameter" ist, ...
 											case psons:
 												// ... dann zuweisen
-												caus<<rot<<"1 weise zu: "<<violett<<nacstr<<schwarz<<endl;
 												*(string*)omit->second->pptr=string(nacstr);
 												break;
 												// wenn es ein Verzeichnis oder eine Datei sein soll ...
@@ -5306,8 +5312,7 @@ void hcl::gcl0()
 												else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
 												// ... dann zuweisen
 												else {
-													caus<<rot<<"2 weise zu: "<<violett<<nacstr<<schwarz<<endl;
-													omit->second->pptr=nacstr;
+													*(string*)omit->second->pptr=string(nacstr);
 												}
 												break;
 												// oder wenn es eine Zahl sein soll ...
@@ -5316,17 +5321,17 @@ void hcl::gcl0()
 												if (!isnumeric(nacstr)) wiefalsch=1;
 												// dann zuweisen
 												else {
-													caus<<rot<<"3 weise zu: "<<violett<<nacstr<<schwarz<<endl;
-													omit->second->wert=atol(nacstr);
-													omit->second->pptr=&omit->second->wert;
+													switch (omit->second->art) {
+														case puchar:
+															*(uchar*)omit->second->pptr=atol(nacstr); break;
+														case pint:
+															*(int*)omit->second->pptr=atol(nacstr); break;
+														default:
+															*(long*)omit->second->pptr=atol(nacstr);
+													}
 												}
 												break;
 										} // switch (art) 
-										if (!wiefalsch) {
-											ap++;
-											omit->second->obcl=1;
-										}
-										if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 									} else {
 										wiefalsch=3; // kein geeigneter Parameter gefunden
 									}
@@ -5348,23 +5353,38 @@ void hcl::gcl0()
 										} // switch (art)
 										if (!obhilfe) obhilfe=1;
 									} // 										if (wiefalsch)
+									if (!wiefalsch) {
+										ap++;
+										if (ap==argcmv.end()) break;
+									}
 								} // 									if (omit->second->wert) else
+								if (!wiefalsch) {
+//									omit->second->obcl=1;
+									vector<optcl*>::iterator opp=optpv.begin();
+									vector<size_t>::iterator ops=optsv.begin();
+									for(;opp!=optpv.end();opp++,ops++) {
+										for(size_t iru=0;iru<*ops;iru++) {
+											if (((optcl*)(*opp))[iru].pname==omit->second->pname)
+												((optcl*)(*opp))[iru].obcl=1;
+										}
+									}
+								}
+								if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 							} // 								if (omit->second->pptr)
+							break; // Parameter schon gefunden, die anderen nicht mehr suchen
 						} // 							if (!omit->first.find(acstr))
 					} // 						for(omit=omp->begin();omit!=omp->end();omit++)
+					if (ap==argcmv.end()) break;
 				} // 					if (omp)
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
 	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
-	ru=0;
-	for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		caus<<"ru: "<<gelb<<++ru<<schwarz;
-		omit->second->oausgeb();
-	}
+	optausg(gelb);
 	caus<<"Ende gcl0"<<endl;
 	return;
 
 
+	uchar plusverb=0;
 	for(unsigned iru=0;iru<3;iru++) {
 		switch (iru) {
 			case 0:
@@ -5414,6 +5434,36 @@ void hcl::gcl0()
 		obkschreib=1;
 	} // if (logvneu ||logdneu) 
 } // void hcl::gcl0()
+
+void hcl::verarbeitkonf()
+{
+	caus<<"Zahl: "<<agcnfA.schl.size()<<endl;
+	for (size_t i = 0;i<agcnfA.schl.size();i++) {
+		caus<<"i: "<<i<<", "<<agcnfA[i].name;
+		if (!agcnfA[i].wert.empty()) {
+			caus<<", wert: "<<agcnfA[i].wert;
+			omit=omap.find(agcnfA[i].name);
+			if (omit!=omap.end()) {
+				caus<<", gefunden, ";
+				if (!omit->second->obcl) {
+					caus<<omit->second->pname<<" ueber Konfig festzulegen ";
+          // wert zuweisen, s.gcl0
+				}
+			}
+		}
+		caus<<endl;
+	}
+	/*
+		 vector<optcl*>::iterator opp=optpv.begin();
+		 vector<size_t>::iterator ops=optsv.begin();
+		 for(;opp!=optpv.end();opp++,ops++) {
+		 for(size_t iru=0;iru<*ops;iru++) {
+		 caus<<farbe<<setw(3)<<++ru<<schwarz<<" ";
+		 ((optcl*)(*opp))[iru].oausgeb();
+		 }
+		 }
+	 */
+}
 
 // in lieskonfein, getcommandl0, getcommandline, rueckfragen
 void hcl::lgnzuw()
@@ -5674,6 +5724,8 @@ void hcl::lieskonfein(const string& DPROG)
 	rzf=0;
 	lfd=0;
 	afcd.init(akonfdt,&agcnfA,obverb); // hier werden die Daten aus der Datei eingelesen
+	return;
+
 	// wenn die Sprache noch nicht in der Kommandozeile zugewiesen wurde
 	if (langu.empty()) {
 		// und in der Konfigurationsdatei enthalten war 
@@ -6066,11 +6118,8 @@ void hcl::setzbenutzer(string *user)
 
 void hcl::omapzuw(optcl *optp,size_t optz)
 {
-	size_t ru=0;
-	for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		caus<<"ru: "<<violett<<++ru<<schwarz;
-		omit->second->oausgeb();
-	}
+	optpv.push_back(optp);
+	optsv.push_back(optz);
 	for(size_t i=0;i<optz;i++) {
 		// interne Berechnungen durchführen
 		// Bemerkung erst beim Schreiben setzen
@@ -6081,14 +6130,20 @@ void hcl::omapzuw(optcl *optp,size_t optz)
 			optp[i].TxBp->lgn=(Sprache)akts;
 			okmap[(*optp[i].TxBp)[optp[i].kurzi]]=&optp[i];
 			olmap[(*optp[i].TxBp)[optp[i].langi]]=&optp[i];
-			caus<<"olmap.size(): "<<olmap.size()<<", (*optp[i].TxBp)[optp[i].langi]: "<<(*optp[i].TxBp)[optp[i].langi]<<endl;
 		}
 	}
-	ru=0;
-//	caus<<"obhilfe: "<<obhilfe<<", &obhilfe: "<<&obhilfe<<endl;
-	for(omit=olmap.begin();omit!=olmap.end();omit++) {
-		caus<<"ru: "<<gruen<<++ru<<schwarz;
-		omit->second->oausgeb();
+}
+
+void hcl::optausg(const char *farbe)
+{
+	size_t ru=0;
+	vector<optcl*>::iterator opp=optpv.begin();
+	vector<size_t>::iterator ops=optsv.begin();
+	for(;opp!=optpv.end();opp++,ops++) {
+    for(size_t iru=0;iru<*ops;iru++) {
+			caus<<farbe<<setw(3)<<++ru<<schwarz<<" ";
+			((optcl*)(*opp))[iru].oausgeb();
+		}
 	}
 }
 

@@ -302,10 +302,17 @@ void hhcl::getcommandl0()
 		obverb=0;
 	}
 	// Reihenfolge muss koordiniert werden mit lieskonfein und rueckfragen
+	/*
 	const char* const sarr[]={"language","logvz","logdname","oblog","cronminut","autoupd","host","muser","mpwd","datenbank","tabelle" //ω
 	}; //α
-	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
+	*/
+//	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
 	gcl0(); //ω
+  agcnfA.initv(optpv,optsv);
+	agcnfA.ausgeb();
+	hcl::lieskonfein(DPROG);
+	agcnfA.ausgeb();
+	hcl::verarbeitkonf();
 	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 

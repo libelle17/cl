@@ -907,6 +907,7 @@ operator <<	kons.h	/^    inline tsvec<T>& operator<<(const T& str) {$/;"	f	class
 operator <<	kons.h	/^ inline pidvec& operator<<(const pidcl& pd) {$/;"	f	class:pidvec
 operator []	kons.h	/^  inline const char* operator[](long const& nr) const {$/;"	f	class:TxB
 operator []	kons.h	/^ inline \/*const*\/ cppSchluess& operator[](size_t const& nr) const { return schl[nr]; }$/;"	f	class:schlArr
+optausg	kons.cpp	/^void hcl::optausg(const char *farbe)$/;"	f	class:hcl
 optcl	kons.h	/^class optcl$/;"	c
 optioncl	kons.cpp	/^\/*2a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr *cpA,const char *pname,uchar* obschreibp) : $/;"	f	class:optioncl
 optioncl	kons.cpp	/^\/*3a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr *cpA, $/;"	f	class:optioncl
@@ -915,9 +916,11 @@ optioncl	kons.cpp	/^\/*4*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long
 optioncl	kons.h	/^\/*6a*\/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,uchar *pptr,int wert) : $/;"	f	class:optioncl
 optioncl	kons.h	/^\/*9a*\/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,int *pptr,int wert) : $/;"	f	class:optioncl
 optioncl	kons.h	/^class optioncl$/;"	c
+optpv	kons.h	/^		vector<optcl*> optpv; \/\/ Vektor der zugewiesenen Optionenzeiger$/;"	m	class:hcl
 opts	kons.h	/^    vector<optioncl> opts;$/;"	m	class:hcl
 opts_	kons.h	/^		optcl *opts_;$/;"	m	class:hcl
 optslsz	kons.h	/^    size_t optslsz=0; \/\/ last opts.size()$/;"	m	class:hcl
+optsv	kons.h	/^		vector<size_t> optsv; \/\/ Vektor von deren jeweiliger Größe$/;"	m	class:hcl
 p1	cl.h	/^	string p1;$/;"	m	class:hhcl
 p2	cl.h	/^	int p2;$/;"	m	class:hhcl
 p3	cl.h	/^	string p3;$/;"	m	class:hhcl
@@ -1121,7 +1124,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5879;"	d	file:
+uebersichtlich	kons.cpp	5892;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
