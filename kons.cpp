@@ -5213,6 +5213,96 @@ void hcl::zeigkonf()
 } // void hcl::zeigkonf()
 // augerufen in: anhalten(), zeigkonf()
 
+int hcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, const uchar nichtspeichern/*=0*/)
+{
+	int wiefalsch=0;
+	optp->gegenteil=gegenteil;
+	optp->nichtspeichern=nichtspeichern;
+	// wenn wert, dann diesen Wert zuweisen
+	if (!gegenteil && optp->wert==1 && optp->art==puchar) {
+		(*((uchar*)optp->pptr))++;
+	} else if (!gegenteil && optp->wert==1 && optp->art==pint) {
+		(*((int*)optp->pptr))++;
+	} else if (!gegenteil && optp->wert==1 && optp->art==plong) {
+		(*((long*)optp->pptr))++;
+	} else if (optp->wert) {
+		if (optp->art==puchar) {
+			*(uchar*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+		} else if (optp->art==pint) {
+			*(int*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+		} else if (optp->art==plong) {
+			*(long*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+		} else {
+			*(string*)optp->pptr=optp->wert;
+		}
+		// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
+	} else {
+		// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
+		// er also nicht mit '-' anfaengt ...
+		if (*nacstr && *nacstr!='-') {
+			struct stat entryarg={0};
+			switch (optp->art) {
+				// und das ein "sonstiger Parameter" ist, ...
+				case psons:
+					// ... dann zuweisen
+					*(string*)optp->pptr=string(nacstr);
+					break;
+					// wenn es ein Verzeichnis oder eine Datei sein soll ...
+				case pverz:
+				case pfile:
+					// ... die also nicht mit '-' anfaengt
+					// ... und sie bestimmte existentielle Bedingungen erfuellt ...
+					if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
+					else if ((optp->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
+					// ... dann zuweisen
+					else {
+						*(string*)optp->pptr=string(nacstr);
+					}
+					break;
+					// oder wenn es eine Zahl sein soll ...
+				case puchar: case pint: case plong:
+					// und tatsaechlich numerisch ist ...
+					if (!isnumeric(nacstr)) wiefalsch=1;
+					// dann zuweisen
+					else {
+						switch (optp->art) {
+							case puchar:
+								*(uchar*)optp->pptr=atol(nacstr); break;
+							case pint:
+								*(int*)optp->pptr=atol(nacstr); break;
+							default:
+								*(long*)optp->pptr=atol(nacstr);
+						}
+					}
+					break;
+			} // switch (art) 
+		} else {
+			wiefalsch=3; // kein geeigneter Parameter gefunden
+		}
+		if (wiefalsch) {
+			// wenn kein Zusatzparameter erkennbar, dann melden
+			switch (optp->art) {
+				case psons:
+					Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*optp->TxBp)[optp->kurzi]+Txk[T_oder]+(*optp->TxBp)[optp->langi]+"!"+schwarz,1,1);
+					break;
+				case pverz:
+				case pfile:
+					Log(drots+Txk[T_Fehler_Parameter]+(*optp->TxBp)[optp->kurzi]+Txk[T_oder]+(*optp->TxBp)[optp->langi]+" "+
+							(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
+					break;
+				case puchar: case pint: case plong:
+					Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
+							+(*optp->TxBp)[optp->kurzi]+Txk[T_oder]+(*optp->TxBp)[optp->langi]+"!"+schwarz,1,1);
+					break;
+			} // switch (art)
+		} // 										if (wiefalsch)
+		if (!wiefalsch) {
+			return -1;
+		}
+	} // 									if (optp->wert) else
+	return wiefalsch;
+} // int hcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, const uchar nichtspeichern/*=0*/)
+
 void hcl::gcl0()
 {
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
@@ -5267,99 +5357,18 @@ void hcl::gcl0()
 					for(omit=omp->begin();omit!=omp->end();omit++) {
 						// omit ist also jetzt iterator für die relevante map auf die aktuelle Option
 						if (omit->first==acstr) {
-							uchar wiefalsch=0;
 							ap->agef++;
-							omit->second->gegenteil=gegenteil;
-							omit->second->nichtspeichern=nichtspeichern;
 							if (omit->second->pptr) {
-								// wenn wert, dann diesen Wert zuweisen
-								if (!gegenteil && omit->second->wert==1 && omit->second->art==puchar) {
-										(*((uchar*)omit->second->pptr))++;
-								} else if (!gegenteil && omit->second->wert==1 && omit->second->art==pint) {
-										(*((int*)omit->second->pptr))++;
-								} else if (!gegenteil && omit->second->wert==1 && omit->second->art==plong) {
-										(*((long*)omit->second->pptr))++;
-								} else if (omit->second->wert) {
-									if (omit->second->art==puchar) {
-										*(uchar*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-									} else if (omit->second->art==pint) {
-										*(int*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-									} else if (omit->second->art==plong) {
-										*(long*)omit->second->pptr=gegenteil?!omit->second->wert:omit->second->wert;
-									} else {
-										*(string*)omit->second->pptr=omit->second->wert;
-									}
-									// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
-								} else {
-									apn=ap; apn++;
-									const char *nacstr=apn==argcmv.end()?"<fehlt>":apn->argcs;
-									// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
-									// er also nicht mit '-' anfaengt ...
-									if (apn!=argcmv.end() && *nacstr!='-') {
-										struct stat entryarg={0};
-										switch (omit->second->art) {
-											// und das ein "sonstiger Parameter" ist, ...
-											case psons:
-												// ... dann zuweisen
-												*(string*)omit->second->pptr=string(nacstr);
-												break;
-												// wenn es ein Verzeichnis oder eine Datei sein soll ...
-											case pverz:
-											case pfile:
-												// ... die also nicht mit '-' anfaengt
-												// ... und sie bestimmte existentielle Bedingungen erfuellt ...
-												if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
-												else if ((omit->second->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
-												// ... dann zuweisen
-												else {
-													*(string*)omit->second->pptr=string(nacstr);
-												}
-												break;
-												// oder wenn es eine Zahl sein soll ...
-											case puchar: case pint: case plong:
-												// und tatsaechlich numerisch ist ...
-												if (!isnumeric(nacstr)) wiefalsch=1;
-												// dann zuweisen
-												else {
-													switch (omit->second->art) {
-														case puchar:
-															*(uchar*)omit->second->pptr=atol(nacstr); break;
-														case pint:
-															*(int*)omit->second->pptr=atol(nacstr); break;
-														default:
-															*(long*)omit->second->pptr=atol(nacstr);
-													}
-												}
-												break;
-										} // switch (art) 
-									} else {
-										wiefalsch=3; // kein geeigneter Parameter gefunden
-									}
-									if (wiefalsch) {
-										// wenn kein Zusatzparameter erkennbar, dann melden
-										switch (omit->second->art) {
-											case psons:
-												Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
-												break;
-											case pverz:
-											case pfile:
-												Log(drots+Txk[T_Fehler_Parameter]+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+" "+
-														(wiefalsch==1?Txk[T_ohne_gueltigen]:wiefalsch==2?Txk[T_mit_Datei_als]:Txk[T_mit_falschem])+Txk[T_Pfad_angegeben]+schwarz,1,1);
-												break;
-											case puchar: case pint: case plong:
-												Log(drots+(wiefalsch==1?Txk[T_Nicht_numerischer]:Txk[T_Fehlender])+Txk[T_Parameter_nr_zu]
-														+(*omit->second->TxBp)[omit->second->kurzi]+Txk[T_oder]+(*omit->second->TxBp)[omit->second->langi]+"!"+schwarz,1,1);
-												break;
-										} // switch (art)
-										if (!obhilfe) obhilfe=1;
-									} // 										if (wiefalsch)
-									if (!wiefalsch) {
-										ap++;
-										if (ap==argcmv.end()) break;
-									}
-								} // 									if (omit->second->wert) else
-								if (!wiefalsch) {
-//									omit->second->obcl=1;
+								// pzuweis liefert -1, wenn der nächste Parameter als Inhalt verwendet wurde, sonst wiefalsch
+								apn=ap; apn++;
+								const char *nacstr=apn==argcmv.end()?"":apn->argcs;
+								int wiefalsch=pzuweis(omit->second,nacstr,gegenteil,nichtspeichern);
+								if (wiefalsch==-1) {
+									ap++;
+									if (ap==argcmv.end()) break;
+								}
+								if (wiefalsch<=0) {
+									//									omit->second->obcl=1;
 									vector<optcl*>::iterator opp=optpv.begin();
 									vector<size_t>::iterator ops=optsv.begin();
 									for(;opp!=optpv.end();opp++,ops++) {
@@ -5368,6 +5377,8 @@ void hcl::gcl0()
 												((optcl*)(*opp))[iru].obcl=1;
 										}
 									}
+								} else {
+									if (!obhilfe) obhilfe=1;
 								}
 								if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 							} // 								if (omit->second->pptr)
@@ -5448,6 +5459,7 @@ void hcl::verarbeitkonf()
 				if (!omit->second->obcl) {
 					caus<<omit->second->pname<<" ueber Konfig festzulegen ";
           // wert zuweisen, s.gcl0
+					pzuweis(omit->second,agcnfA[i].wert.c_str());
 				}
 			}
 		}

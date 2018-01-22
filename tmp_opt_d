@@ -39,31 +39,31 @@ i: \fB4\fR Name: \fBlista\fR Value: \fB\fR
 .br
 i: \fB5\fR Name: \fBn\fR Value: \fB\fR
 .br
-i: \fB0\fR Name: \fBlanguage\fR Value: \fBfrz\fR
+i: \fB0\fR Name: \fBlanguage\fR Value: \fBd\fR
 .br
-i: \fB1\fR Name: \fBlogvz\fR Value: \fB\fR
+i: \fB1\fR Name: \fBlogvz\fR Value: \fBlocalhost\fR
 .br
-i: \fB2\fR Name: \fBlogdname\fR Value: \fB\fR
+i: \fB2\fR Name: \fBlogdname\fR Value: \fBpraxis\fR
 .br
-i: \fB3\fR Name: \fBoblog\fR Value: \fB\fR
+i: \fB3\fR Name: \fBoblog\fR Value: \fBGWW]U\fR
 .br
 i: \fB4\fR Name: \fBlista\fR Value: \fB\fR
 .br
-i: \fB5\fR Name: \fBn\fR Value: \fB18\fR
+i: \fB5\fR Name: \fBn\fR Value: \fB\fR
 .br
 Zahl: 6
 .br
-i: 0, language, wert: frz, gefunden, 
+i: 0, language, wert: d, gefunden, 
 .br
-i: 1, logvz
+i: 1, logvz, wert: localhost, gefunden, logvz ueber Konfig festzulegen 
 .br
-i: 2, logdname
+i: 2, logdname, wert: praxis, gefunden, logdname ueber Konfig festzulegen 
 .br
-i: 3, oblog
+i: 3, oblog, wert: GWW]U, gefunden, oblog ueber Konfig festzulegen 
 .br
 i: 4, lista
 .br
-i: 5, n, wert: 18, gefunden, n ueber Konfig festzulegen 
+i: 5, n
 .br
 Ende getcommandl0
 .br

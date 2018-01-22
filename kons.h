@@ -1181,6 +1181,8 @@ class hcl
 		map<string,optcl*> okmap; // map der Optionen, sortiert nach Tx[<kurzi>]
 		map<string,optcl*> olmap; // map der Optionen, sortiert nach Tx[<langi>]
 		map<string,optcl*>::iterator omit; // Optionen-Iterator
+	private:
+		int pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil=0, const uchar nichtspeichern=0);
 	protected:
     virtual void lgnzuw(); // in vorgaben, lieskonfein, getcommandl0, getcommandline, rueckfragen
 		void setztmpcron();
