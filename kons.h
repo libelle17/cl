@@ -594,7 +594,8 @@ class cppSchluess {
     uchar gelesen=0;
     string wert;
     string bemerk;
-		cppSchluess(string name);
+		cppSchluess(const string& name); // wird benoetigt in: schlArr::init(size_t vzahl, ...)
+		cppSchluess(const string& name,const string& wert);
 //    inline cppSchluess& operator=(cppSchluess zuzuw){name=zuzuw.name;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
     template <typename T> void setze(T *var) { wert=ltoan(*var); }
@@ -651,7 +652,7 @@ class schlArr {
  void setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
  void aschreib(mdatei *const f);
  int fschreib(const string& fname);
- void ausgeb();
+ void gibaus();
  void reset();
  ~schlArr();
 }; // class schlArr
@@ -847,7 +848,7 @@ class optcl
     long Txi2=-1;
     string *rottxt=0; // ggf rot zu markierender Text zwischen Txi und Txi2
 //    string oerkl;
-    int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter
+    int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
     schlArr *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
@@ -855,7 +856,7 @@ class optcl
 		// ermittelte Optionen:
     uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
     string bemerkung="";
-		uchar obcl=0; // wie oft die Option ueber die Kommandozeile gesetzt wurde
+		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
     void setzebem(schlArr *cpA,const char *pname);

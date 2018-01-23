@@ -309,10 +309,12 @@ void hhcl::getcommandl0()
 //	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
 	gcl0(); //ω
   agcnfA.initv(optpv,optsv);
-	agcnfA.ausgeb();
+	agcnfA.gibaus();
 	hcl::lieskonfein(DPROG);
-	agcnfA.ausgeb();
+	agcnfA.gibaus();
 	hcl::verarbeitkonf();
+	agcnfA.gibaus();
+	optausg(gruen);
 	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 
@@ -584,13 +586,13 @@ int main(int argc,char** argv)
 		if (argc>1) {
 		} // (argc>1)
 	 */
-	hhi.getcommandl0(); // anfangs entscheidende Kommandozeilenparameter abfragen
 	hhi.VorgbAllg();
+	hhi.VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
+	hhi.getcommandl0(); // anfangs entscheidende Kommandozeilenparameter abfragen
 	if (hhi.obhilfe==3) { // Standardausgabe gewaehrleisten
 		hhi.MusterVorgb();
 	} else {
-		hhi.VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
-		hhi.lieskonfein(DPROG);
+//		hhi.lieskonfein(DPROG);
 	} // if (hhi.obhilfe==3)
 	hhi.lieszaehlerein(&hhi.aufrufe,&hhi.tagesaufr,&hhi.monatsaufr,&hhi.laufrtag);
 	caus<<"vor getcommandline"<<endl;

@@ -1838,7 +1838,7 @@ void confdat::Abschn_auswert(int obverb, const char tz)
 void confdat::auswert(schlArr *sA, int obverb, const char tz)
 {
   richtige=0;
-  sA->reset();
+  // sA->reset();
   if (obgelesen) {
     string ibemerk;
     for(size_t i=0;i<zn.size();i++) {
@@ -1972,8 +1972,9 @@ confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obver
 }
 */
 
-void schlArr::ausgeb()
+void schlArr::gibaus()
 {
+	cout<<"gibaus()"<<endl;
   for(size_t i=0;i<schl.size();i++) {
    cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
   }
@@ -2032,7 +2033,11 @@ void schlArr::initd(const char* const* sarr,size_t vzahl)
 } // schlArr::initd(const char* const* sarr,size_t vzahl)
 */
 
-cppSchluess::cppSchluess(string name):name(name)
+cppSchluess::cppSchluess(const string& name):name(name)
+{
+}
+
+cppSchluess::cppSchluess(const string& name,const string& wert):name(name),wert(wert)
 {
 }
 
@@ -2043,29 +2048,35 @@ void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
 	vector<size_t>::iterator ops=optsv.begin();
 	for(;opp!=optpv.end();opp++,ops++) {
 		for(size_t iru=0;iru<*ops;iru++) {
-			if (!((optcl*)(*opp))[iru].pname.empty()) {
+			optcl *op=&((optcl*)(*opp))[iru];
+			if (!op->pname.empty()) {
 				uchar gefunden=0;
 				for(vector<cppSchluess>::iterator sit=schl.begin();sit!=schl.end();sit++) {
-					if (sit->name==((optcl*)(*opp))[iru].pname) {
+					if (sit->name==op->pname) {
 						gefunden=1;
 						break;
 					}
 				}
 				if (!gefunden) {
-					schl.push_back(cppSchluess(((optcl*)(*opp))[iru].pname));
+					const string wert=op->art==plong?ltoan(*(long*)op->pptr):
+						                op->art==pint?ltoan(*(int*)op->pptr):
+													  op->art==puchar?ltoan(*(uchar*)op->pptr):
+														                       *(string*)op->pptr;
+					schl.push_back(cppSchluess(op->pname,wert));
 				}
 			}
 		}
 	}
 	caus<<"schl.size(): "<<schl.size()<<endl;
-}
+} // void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
+
 /*
 	 schlArr::schlArr(const char* const* sarr,size_t vzahl)
 	 {
 	 initd(sarr,vzahl);
 	 } // void schlArr:init
  */
-
+// wird benoetigt in: holsystemsprache(), lieszaehlerein()  
 void schlArr::init(size_t vzahl, ...)
 {
 	va_list list;
@@ -3120,7 +3131,7 @@ uchar VerzeichnisGibts(const char* vname)
 void optcl::oausgeb()
 {
 	cout<<"pname:"<<blau<<setw(8)<<pname<<schwarz;
-	cout<<",pptr:"<<blau<<setw(10);
+	cout<<",pptr:"<<blau<<setw(25);
 	if (pptr) {
 		if (art==puchar) {
 			cout<<(int)*(uchar*)pptr;
@@ -3144,7 +3155,7 @@ void optcl::oausgeb()
 	cout<<",obschreibp:"<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
 	cout<<",obno:"<<blau<<(int)obno<<schwarz;
 	cout<<",bemkg:"<<blau<<bemerkung<<schwarz;
-	cout<<",obcl:"<<blau<<(int)obcl<<schwarz;
+	cout<<",woher:"<<blau<<(int)woher<<schwarz;
 	cout<<",gegent.:"<<blau<<(int)gegenteil<<schwarz;
 	cout<<",nichtspei.:"<<blau<<(int)nichtspeichern<<schwarz;
 	cout<<endl;
@@ -5368,18 +5379,22 @@ void hcl::gcl0()
 									if (ap==argcmv.end()) break;
 								}
 								if (wiefalsch<=0) {
-									//									omit->second->obcl=1;
-									vector<optcl*>::iterator opp=optpv.begin();
-									vector<size_t>::iterator ops=optsv.begin();
-									for(;opp!=optpv.end();opp++,ops++) {
-										for(size_t iru=0;iru<*ops;iru++) {
-											if (((optcl*)(*opp))[iru].pname==omit->second->pname)
-												((optcl*)(*opp))[iru].obcl=1;
-										}
-									}
+									if (omit->second->pname.empty()) {
+										omit->second->woher=1;
+									// bei Optionen ohne leerem Namen Gleichnamige gleichbehandeln
+									} else {
+										vector<optcl*>::iterator opp=optpv.begin();
+										vector<size_t>::iterator ops=optsv.begin();
+										for(;opp!=optpv.end();opp++,ops++) {
+											for(size_t iru=0;iru<*ops;iru++) {
+												if (((optcl*)(*opp))[iru].pname==omit->second->pname)
+													((optcl*)(*opp))[iru].woher=1;
+											}
+										} // 									for(;opp!=optpv.end();opp++,ops++)
+									} // 									if (omit->first.empty()) else
 								} else {
 									if (!obhilfe) obhilfe=1;
-								}
+								} // 								if (wiefalsch<=0) else
 								if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 							} // 								if (omit->second->pptr)
 							break; // Parameter schon gefunden, die anderen nicht mehr suchen
@@ -5456,10 +5471,11 @@ void hcl::verarbeitkonf()
 			omit=omap.find(agcnfA[i].name);
 			if (omit!=omap.end()) {
 				caus<<", gefunden, ";
-				if (!omit->second->obcl) {
+				if (!omit->second->woher) {
 					caus<<omit->second->pname<<" ueber Konfig festzulegen ";
           // wert zuweisen, s.gcl0
 					pzuweis(omit->second,agcnfA[i].wert.c_str());
+					omit->second->woher=2;
 				}
 			}
 		}
