@@ -652,7 +652,7 @@ class schlArr {
  void setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
  void aschreib(mdatei *const f);
  int fschreib(const string& fname);
- void gibaus();
+ void gibaus(const int nr=0);
  void reset();
  ~schlArr();
 }; // class schlArr
@@ -762,12 +762,12 @@ class confdat
     vector<absch> abschv;
     size_t richtige;
     confdat(const string& fname, int obverb);
-    confdat(const string& fname, schlArr *sA, int obverb=0, const char tz='=');
+    confdat(const string& fname, schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 		confdat();
-		void init(const string& fname, schlArr *sA, int obverb=0, const char tz='=');
+		void cinit(const string& fname, schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    confdat(const string& fname,cppSchluess *conf, size_t csize, int obverb=0, char tz='=');
     int lies(const string& fname,int obverb);
-    void auswert(schlArr *sA, int obverb=0, const char tz='=');
+    void auswert(schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    void auswert(cppSchluess *conf, size_t csize, int obverb=0, char tz='=');
     void Abschn_auswert(int obverb=0, const char tz='=');
 }; // class confdat

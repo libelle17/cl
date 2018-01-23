@@ -309,11 +309,11 @@ void hhcl::getcommandl0()
 //	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
 	gcl0(); //ω
   agcnfA.initv(optpv,optsv);
-	agcnfA.gibaus();
+	agcnfA.gibaus(0);
 	hcl::lieskonfein(DPROG);
-	agcnfA.gibaus();
+	agcnfA.gibaus(1);
 	hcl::verarbeitkonf();
-	agcnfA.gibaus();
+	agcnfA.gibaus(2);
 	optausg(gruen);
 	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α

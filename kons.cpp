@@ -1835,10 +1835,12 @@ void confdat::Abschn_auswert(int obverb, const char tz)
 } // void confdat::Abschn_auswert(int obverb, char tz)
 
 // aufgerufen in: confdat::confdat(const string& fname, schlArr *sA, int obverb, char tz):name(fname)
-void confdat::auswert(schlArr *sA, int obverb, const char tz)
+void confdat::auswert(schlArr *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
 {
   richtige=0;
-  // sA->reset();
+  if (mitclear) {
+		sA->reset();
+	}
   if (obgelesen) {
     string ibemerk;
     for(size_t i=0;i<zn.size();i++) {
@@ -1943,25 +1945,25 @@ confdat::confdat(const string& fname,int obverb):name(fname)
   lies(fname,obverb);
 } // confdat::confdat(const string& fname,int obverb):name(fname)
 
-confdat::confdat(const string& fname, schlArr *sA, int obverb, const char tz)
+confdat::confdat(const string& fname, schlArr *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
 {
- init(fname,sA,obverb,tz);
+ cinit(fname,sA,obverb,tz,mitclear);
 } // confdat::confdat
 
 confdat::confdat()
 {
 }
 
-void confdat::init(const string& fname, schlArr *sA, int obverb, const char tz)
+void confdat::cinit(const string& fname, schlArr *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
 {
   name=fname;
   if (obverb>0) 
     cout<<violett<<Txk[T_Lese_Konfiguration_aus]<<blau<<fname<<violett<<"':"<<schwarz<<endl;
   if (!fname.empty()) {
     lies(fname,obverb);
-    auswert(sA,obverb,tz);
+    auswert(sA,obverb,tz,mitclear);
   } //   if (!fname.empty())
-} // void confdat::init
+} // void confdat::cinit
 
 /*//
 confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obverb, char tz)
@@ -1972,9 +1974,9 @@ confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obver
 }
 */
 
-void schlArr::gibaus()
+void schlArr::gibaus(const int nr/*=0*/)
 {
-	cout<<"gibaus()"<<endl;
+	cout<<"gibaus("<<nr<<")"<<endl;
   for(size_t i=0;i<schl.size();i++) {
    cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
   }
@@ -2067,7 +2069,6 @@ void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
 			}
 		}
 	}
-	caus<<"schl.size(): "<<schl.size()<<endl;
 } // void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
 
 /*
@@ -5463,7 +5464,7 @@ void hcl::gcl0()
 
 void hcl::verarbeitkonf()
 {
-	caus<<"Zahl: "<<agcnfA.schl.size()<<endl;
+	caus<<"verarbeitkonf(), Zahl: "<<agcnfA.schl.size()<<endl;
 	for (size_t i = 0;i<agcnfA.schl.size();i++) {
 		caus<<"i: "<<i<<", "<<agcnfA[i].name;
 		if (!agcnfA[i].wert.empty()) {
@@ -5751,7 +5752,7 @@ void hcl::lieskonfein(const string& DPROG)
 	// die Reihenfolge muss der in agcnfA.init (in getcommandl0) sowie der in rueckfragen entsprechen
 	rzf=0;
 	lfd=0;
-	afcd.init(akonfdt,&agcnfA,obverb); // hier werden die Daten aus der Datei eingelesen
+	afcd.cinit(akonfdt,&agcnfA,obverb,'=',/*mitclear=*/0); // hier werden die Daten aus der Datei eingelesen
 	return;
 
 	// wenn die Sprache noch nicht in der Kommandozeile zugewiesen wurde
@@ -6164,6 +6165,7 @@ void hcl::omapzuw(optcl *optp,size_t optz)
 
 void hcl::optausg(const char *farbe)
 {
+	caus<<violett<<"optausg()"<<schwarz<<endl;
 	size_t ru=0;
 	vector<optcl*>::iterator opp=optpv.begin();
 	vector<size_t>::iterator ops=optsv.begin();
