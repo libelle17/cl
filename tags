@@ -666,7 +666,7 @@ getlib64	kons.cpp	/^string& lsyscl::getlib64(int obverb\/*=0*\/,int oblog\/*=0*\
 getmutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
 getstammext	kons.cpp	/^void getstammext(const string *const ganz, string *stamm, string *exten) $/;"	f
 getsys	kons.cpp	/^lsysen lsyscl::getsys(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-gibaus	kons.cpp	/^void schlArr::gibaus()$/;"	f	class:schlArr
+gibaus	kons.cpp	/^void schlArr::gibaus(const int nr\/*=0*\/)$/;"	f	class:schlArr
 gitv	kons.cpp	/^const string& gitv=$/;"	v
 groupdt	kons.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
 groupdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
@@ -1125,7 +1125,7 @@ uchar	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
 uchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5976;"	d	file:
+uebersichtlich	kons.cpp	5973;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
