@@ -544,7 +544,7 @@ string *loeschealleaus(string *u, const char* alt);
 string ersetze(const char *const u, const char* const alt, const char* const neu);
 string *sersetze(string *src, string const& target, string const& repl);
 // wstring ersetze(const wstring& u, const wchar_t* alt, const wchar_t* neu); 
-string nersetze(const string& quelle,string was, string durch);
+string nersetze(const string& quelle, string const& was, string const& durch);
 
 string ersetzAllezu(const string& quelle, const string& alt, const string& neu);
 void ersetzAlle(string& quelle, const string& alt, const string& neu);
@@ -634,19 +634,19 @@ template <> inline void cppSchluess::setze < const string > (const string *var, 
 class svec;
 class optcl;
 
-class schlArr {
+template <class SCL> class schlArr {
  public:
 // cppSchluess *schl=0; 
- vector<cppSchluess> schl;
+ vector<SCL> schl;
  schlArr();
  schlArr(const char* const* sarr,size_t vzahl);
 // void neu(size_t vzahl=0);
  void init(size_t vzahl, ...);
- void init(vector<cppSchluess*> *sqlvp);
+ void init(vector<SCL*> *sqlvp);
 // void initd(const char* const* sarr,size_t vzahl);
  void initv(vector<optcl*> optpv,vector<size_t> optsv);
- inline const cppSchluess& operator[](size_t const& nr) const { return schl[nr]; }
- inline cppSchluess& operator[](size_t const& nr) { return schl[nr]; }
+ inline const SCL& operator[](size_t const& nr) const { return schl[nr]; }
+ inline SCL& operator[](size_t const& nr) { return schl[nr]; }
  int setze(const string& name, const string& wert/*, const string& bem=nix*/);
  const string& hole(const string& name);
  void setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
@@ -762,12 +762,12 @@ class confdat
     vector<absch> abschv;
     size_t richtige;
     confdat(const string& fname, int obverb);
-    confdat(const string& fname, schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+    template<class SCL> confdat(const string& fname, schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 		confdat();
-		void cinit(const string& fname, schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+		template<class SCL> void cinit(const string& fname, schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    confdat(const string& fname,cppSchluess *conf, size_t csize, int obverb=0, char tz='=');
     int lies(const string& fname,int obverb);
-    void auswert(schlArr *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+    template <class SCL> void auswert(schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    void auswert(cppSchluess *conf, size_t csize, int obverb=0, char tz='=');
     void Abschn_auswert(int obverb=0, const char tz='=');
 }; // class confdat
@@ -793,7 +793,7 @@ class optioncl
     int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird
     string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
     const par_t art; // Parameterart
-    schlArr *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
+    schlArr<cppSchluess> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     const char *pname; // Name des Konfigurationsparameters
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
@@ -802,19 +802,19 @@ class optioncl
 		uchar obcl=0; // ob die Option ueber die Kommandozeile gesetzt wurde
 		uchar obcf=0; // ob die Option schon einmal vorkam für die Konfigurationsdatei
   private:
-    void setzebem(schlArr *cpA,const char *pname);
+    template<class SCL> void setzebem(schlArr<SCL> *cpA,const char *pname);
   public:
 ///*1*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi) : 
 //               kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi) {}
 // /*2*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
-/*2a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
+template<class SCL> /*2a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
 // /*3*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr *cpA=0, const char *pname=0,uchar* obschreibp=0);
-/*3a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr *cpA=0,
+template<class SCL> /*3a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr<SCL> *cpA=0,
               const char *pname=0,uchar* obschreibp=0);
-/*3b*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schlArr *cpA=0,
+template<class SCL> /*3b*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schlArr<SCL> *cpA=0,
               const char *pname=0,uchar* obschreibp=0);
 // /*4a*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
-/*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
+template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
 ///*5*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,uchar *pptr,int wert) : 
 //               kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr(pptr),wert(wert) {}
 // /*6*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,uchar *pptr,int wert) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt((string*)rottxt),Txi2(Txi2),pptr(pptr),wert(wert) {}
@@ -850,7 +850,7 @@ class optcl
 //    string oerkl;
     int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
-    schlArr *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
+    schlArr<cppSchluess> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
 		// ermittelte Optionen:
@@ -859,7 +859,7 @@ class optcl
 		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
-    void setzebem(schlArr *cpA,const char *pname);
+    void setzebem(schlArr<cppSchluess> *cpA,const char *pname);
 		void oausgeb();
 };
 
@@ -886,7 +886,7 @@ int Schschreib(const char *fname, Schluessel *conf, size_t csize);
 #endif // notcpp
 int cppschreib(const string& fname, cppSchluess *conf, size_t csize);
 // int multicppschreib(const string& fname, cppSchluess **conf, size_t *csizes, size_t cszahl);
-int multischlschreib(const string& fname, schlArr *const *const confs, const size_t cszahl,const string& mpfad=nix);
+int multischlschreib(const string& fname, schlArr<cppSchluess> *const *const confs, const size_t cszahl,const string& mpfad=nix);
 std::string base_name(const std::string& path); // Dateiname ohne Pfad
 std::string dir_name(const std::string& path);  // Pfadname einer Datei
 int systemrueck(const string& cmd, char obverb=0, int oblog=0, vector<string> *rueck=0, const uchar obsudc=0,
@@ -1171,9 +1171,9 @@ class hcl
     string mpfad;  // meinpfad()
     string meinname; // base_name(meinpfad()) // argv[0] // <DPROG>
     string akonfdt; // name der Konfigurationsdatei
-    schlArr agcnfA; // Gesamtkonfiguration
+    schlArr<cppSchluess> agcnfA; // Gesamtkonfiguration
 		string azaehlerdt; // akonfdt+".zaehl"
-		schlArr zcnfA; // Zaehlkonfiguration
+		schlArr<cppSchluess> zcnfA; // Zaehlkonfiguration
 		string vorcm; // Vor-Cron-Minuten
 		linst_cl* linstp=0;
 		vector<string> benutzer; // Benutzer aus /etc/passwd, bearbeitet durch setzbenutzer(&user)

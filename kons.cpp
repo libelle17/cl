@@ -837,7 +837,7 @@ string *sersetze(string* src, string const& target, string const& repl)
   return src;
 } // sersetze( string src, string const& target, string const& repl)
 
-string nersetze(const string& quelle,string was, string durch)
+string nersetze(const string& quelle, string const& was, string const& durch)
 {
 	string erg,*ep=(string*)&quelle;
 	size_t n=0;
@@ -884,7 +884,7 @@ string holsystemsprache(int obverb/*=0*/)
 {
 	if (obverb)
 		cout<<violett<<Txk[T_holsystemsprache]<<schwarz<<endl;
-	schlArr cglangA; // Systemsprach-Konfiguration
+	schlArr<cppSchluess> cglangA; // Systemsprach-Konfiguration
 	string ret;
 	// OpenSuse, Fedora, Debian
 	const char* const langdt[]={"/etc/sysconfig/language","/etc/locale.conf","/etc/default/locale","/etc/sysconfig/i18n"};
@@ -1835,7 +1835,7 @@ void confdat::Abschn_auswert(int obverb, const char tz)
 } // void confdat::Abschn_auswert(int obverb, char tz)
 
 // aufgerufen in: confdat::confdat(const string& fname, schlArr *sA, int obverb, char tz):name(fname)
-void confdat::auswert(schlArr *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
+template <class SCL> void confdat::auswert(schlArr<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
 {
   richtige=0;
   if (mitclear) {
@@ -1945,7 +1945,7 @@ confdat::confdat(const string& fname,int obverb):name(fname)
   lies(fname,obverb);
 } // confdat::confdat(const string& fname,int obverb):name(fname)
 
-confdat::confdat(const string& fname, schlArr *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
+template<class SCL> confdat::confdat(const string& fname, schlArr<SCL> *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
 {
  cinit(fname,sA,obverb,tz,mitclear);
 } // confdat::confdat
@@ -1954,7 +1954,7 @@ confdat::confdat()
 {
 }
 
-void confdat::cinit(const string& fname, schlArr *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
+template<class SCL> void confdat::cinit(const string& fname, schlArr<SCL> *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
 {
   name=fname;
   if (obverb>0) 
@@ -1974,7 +1974,7 @@ confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obver
 }
 */
 
-void schlArr::gibaus(const int nr/*=0*/)
+template<class SCL> void schlArr<SCL>::gibaus(const int nr/*=0*/)
 {
 	cout<<"gibaus("<<nr<<")"<<endl;
   for(size_t i=0;i<schl.size();i++) {
@@ -1982,7 +1982,7 @@ void schlArr::gibaus(const int nr/*=0*/)
   }
 } // void schlArr::ausgeb()
 
-void schlArr::reset()
+template<class SCL> void schlArr<SCL>::reset()
 {
   for(size_t i=0;i<schl.size();i++) {
     schl[i].wert.clear();
@@ -1990,7 +1990,7 @@ void schlArr::reset()
   }
 } // void schlArr::reset()
 
-schlArr::schlArr()
+template<class SCL> schlArr<SCL>::schlArr()
 {
  //schl=0;
 } // schlArr::schlArr()
@@ -2011,7 +2011,7 @@ schlArr::schlArr(size_t zahl): zahl(zahl)
  schl = new cppSchluess[zahl];
 }
 */
-void schlArr::init(vector<cppSchluess*> *sqlvp)
+template<class SCL> void schlArr<SCL>::init(vector<SCL*> *sqlvp)
 {
 // if (schl) delete[] schl;
 	schl.clear();
@@ -2043,7 +2043,7 @@ cppSchluess::cppSchluess(const string& name,const string& wert):name(name),wert(
 {
 }
 
-void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
+template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
 {
 	schl.clear();
 	vector<optcl*>::iterator opp=optpv.begin();
@@ -2078,7 +2078,7 @@ void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
 	 } // void schlArr:init
  */
 // wird benoetigt in: holsystemsprache(), lieszaehlerein()  
-void schlArr::init(size_t vzahl, ...)
+template<class SCL> void schlArr<SCL>::init(size_t vzahl, ...)
 {
 	va_list list;
 	va_start(list,vzahl);
@@ -2094,7 +2094,7 @@ void schlArr::init(size_t vzahl, ...)
 } // void schlArr::init(size_t vzahl, ...)
 
 // das Setzen auch der Bemerkung wird bisher nicht benoetigt
-int schlArr::setze(const string& name, const string& wert/*, const string& bem*/)
+template<class SCL> int schlArr<SCL>::setze(const string& name, const string& wert/*, const string& bem*/)
 {
 	for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].name==name) {
@@ -2106,7 +2106,7 @@ int schlArr::setze(const string& name, const string& wert/*, const string& bem*/
   return 1;
 } // int schlArr::setze(const string& name, const string& wert)
  
-const string& schlArr::hole(const string& name)
+template<class SCL> const string& schlArr<SCL>::hole(const string& name)
 {
   static const string nix;
   for(size_t ind=0;ind<schl.size();ind++) {
@@ -2129,7 +2129,7 @@ void cppSchluess::hole (struct tm *tmp) {
 // wenn die bisherige Bemerkung in einer Sprache mit der zu setzenden identisch, also nicht zwischenzeitlich manuell geaendert, 
 // dann in aktueller Sprache uebernehmen
 // fertige wird nur aufgerufen aus optioncl::setzebem(
-void schlArr::setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)
+template<class SCL> void schlArr<SCL>::setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)
 {
   string bemst; 
   svec bemv, *vp;
@@ -2168,7 +2168,7 @@ void schlArr::setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe,sv
 } // void schlArr::setzbemv(const string& name,const string& bem)
 
 
-void schlArr::aschreib(mdatei *const f)
+template<class SCL> void schlArr<SCL>::aschreib(mdatei *const f)
 {
   for (size_t i = 0;i<schl.size();i++) {
     if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
@@ -2176,7 +2176,7 @@ void schlArr::aschreib(mdatei *const f)
   } //   for (size_t i = 0;i<zahl;i++)
 } // void schlArr::aschreib(mdatei *f)
 
-int schlArr::fschreib(const string& fname)
+template<class SCL> int schlArr<SCL>::fschreib(const string& fname)
 {
   mdatei f(fname,ios::out);
   if (f.is_open()) {
@@ -2186,13 +2186,13 @@ int schlArr::fschreib(const string& fname)
   return 1;
 } // int schlArr::fschreib(const string& fname)
 
-schlArr::~schlArr()
+template<class SCL> schlArr<SCL>::~schlArr()
 {
 //  if (schl) delete[] schl;
 	schl.clear();
 }
 
-int multischlschreib(const string& fname, schlArr *const *const mcnfApp, const size_t cszahl,const string& mpfad)
+template<class SCL> int multischlschreib(const string& fname, schlArr<SCL> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
 {
   mdatei f(fname,ios::out);
   if (f.is_open()) {
@@ -4331,7 +4331,7 @@ int tuloeschen(const string& zuloe,const string& cuser/*=nix*/, int obverb/*=0*/
 } // int tuloeschen(string zuloe,int obverb, int oblog)
 
 // in optioncl::optioncl
-void optioncl::setzebem(schlArr *cpA,const char *pname)
+template<class SCL> void optioncl::setzebem(schlArr<SCL> *cpA,const char *pname)
 {
 	if (cpA && pname) {
 		svec bems;
@@ -4342,7 +4342,7 @@ void optioncl::setzebem(schlArr *cpA,const char *pname)
 
 // /*2*/optioncl::optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *zptr, par_t art,schlArr *cpA, const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) { setzebem(cpA,pname); }
 
-/*2a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr *cpA,const char *pname,uchar* obschreibp) : 
+template<class SCL> /*2a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr<SCL> *cpA,const char *pname,uchar* obschreibp) : 
 	kurzi(kurzi), langi(langi), TxBp(TxBp), Txi(Txi), wi(wi), zptr(zptr), art(art), cpA(cpA), pname(pname), obschreibp(obschreibp) 
 {
 	setzebem(cpA,pname);
@@ -4350,14 +4350,14 @@ void optioncl::setzebem(schlArr *cpA,const char *pname)
 
 // /*3*/optioncl::optioncl(string kurz, string lang, TxB *TxBp,long Txi,uchar wi,const string *rottxt, long Txi2, string *zptr, par_t art,schlArr *cpA, const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) { setzebem(cpA,pname); }
 
-/*3a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr *cpA, 
+template<class SCL> /*3a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr<SCL> *cpA, 
 		const char *pname,uchar* obschreibp) : 
 	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) 
 {
 	setzebem(cpA,pname);
 }
 
-/*3b*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schlArr *cpA/*=0*/,
+template<class SCL> /*3b*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schlArr<SCL> *cpA/*=0*/,
 		const char *pname/*=0*/,uchar* obschreibp/*=0*/):
 	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr((uchar*)pptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) 
 {
@@ -4366,7 +4366,7 @@ void optioncl::setzebem(schlArr *cpA,const char *pname)
 
 // /*4a*/optioncl::optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,uchar *pptr, int wert,schlArr *cpA,const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),pptr(pptr),wert(wert),cpA(cpA),pname(pname),obschreibp(obschreibp),obno(obschreibp?1:0) { setzebem(cpA,pname); }
 
-/*4*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr *cpA, const char *pname,uchar* obschreibp) :
+template<class SCL> /*4*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr<SCL> *cpA, const char *pname,uchar* obschreibp) :
 	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),pptr(pptr),wert(wert),art(psons),cpA(cpA),pname(pname),obschreibp(obschreibp),obno(obschreibp?1:0)
 {
 	setzebem(cpA,pname);

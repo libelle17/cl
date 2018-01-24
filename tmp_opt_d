@@ -43,7 +43,7 @@ i: \fB5\fR Name: \fBn\fR Value: \fB30\fR
 .br
 gibaus(1)
 .br
-i: \fB0\fR Name: \fBlanguage\fR Value: \fBd\fR
+i: \fB0\fR Name: \fBlanguage\fR Value: \fBfrz\fR
 .br
 i: \fB1\fR Name: \fBlogvz\fR Value: \fB/var/log\fR
 .br
@@ -53,11 +53,11 @@ i: \fB3\fR Name: \fBoblog\fR Value: \fB0\fR
 .br
 i: \fB4\fR Name: \fBlista\fR Value: \fB0\fR
 .br
-i: \fB5\fR Name: \fBn\fR Value: \fB30\fR
+i: \fB5\fR Name: \fBn\fR Value: \fB18\fR
 .br
 verarbeitkonf(), Zahl: 6
 .br
-i: 0, language, wert: d, gefunden, 
+i: 0, language, wert: frz, gefunden, 
 .br
 i: 1, logvz, wert: /var/log, gefunden, logvz ueber Konfig festzulegen 
 .br
@@ -67,11 +67,11 @@ i: 3, oblog, wert: 0, gefunden, oblog ueber Konfig festzulegen
 .br
 i: 4, lista, wert: 0, gefunden, lista ueber Konfig festzulegen 
 .br
-i: 5, n, wert: 30, gefunden, n ueber Konfig festzulegen 
+i: 5, n, wert: 18, gefunden, n ueber Konfig festzulegen 
 .br
 gibaus(2)
 .br
-i: \fB0\fR Name: \fBlanguage\fR Value: \fBd\fR
+i: \fB0\fR Name: \fBlanguage\fR Value: \fBfrz\fR
 .br
 i: \fB1\fR Name: \fBlogvz\fR Value: \fB/var/log\fR
 .br
@@ -81,7 +81,7 @@ i: \fB3\fR Name: \fBoblog\fR Value: \fB0\fR
 .br
 i: \fB4\fR Name: \fBlista\fR Value: \fB0\fR
 .br
-i: \fB5\fR Name: \fBn\fR Value: \fB30\fR
+i: \fB5\fR Name: \fBn\fR Value: \fB18\fR
 .br
 \fBoptausg()\fR
 .br
@@ -99,7 +99,7 @@ i: \fB5\fR Name: \fBn\fR Value: \fB30\fR
 .br
 \fB  7\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  8\fR pname:\fB        \fR,pptr:\fB           /root/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  8\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
@@ -107,7 +107,7 @@ i: \fB5\fR Name: \fBn\fR Value: \fB30\fR
 .br
 \fB 11\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,wert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 12\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 12\fR pname:\fB       n\fR,pptr:\fB                       18\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,wert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende getcommandl0
 .br
