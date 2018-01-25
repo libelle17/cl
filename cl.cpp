@@ -360,6 +360,7 @@ void hhcl::lieskonfein(const string& dprog)
 //wird aufgerufen in: main
 int hhcl::getcommandline()
 {
+#ifdef alt
 	Log(violetts+"getcommandline()"+schwarz);
 	opts.push_back(/*2*/optioncl(T_host_k,T_host_l,&Tx, T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,0,&host,psons,&agcnfA,"host",&obkschreib));
 	opts.push_back(/*2*/optioncl(T_muser_k,T_muser_l,&Tx, T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,0,&muser,psons,&agcnfA, "muser",&obkschreib));
@@ -376,6 +377,7 @@ int hhcl::getcommandline()
 	opts.push_back(/*4*/optioncl(T_h_k,T_hilfe_l, &Tx, T_Erklaerung_haeufiger_Optionen, 1, &obhilfe,1));
 	opts.push_back(/*4*/optioncl(T_lh_k,T_lhilfe_l, &Tx, T_Erklaerung_aller_Optionen, 1, &obhilfe,2));
 	opts.push_back(/*4*/optioncl(T_fgz_k,T_fgz_l, &Tx, -1, 1, &obhilfe,1));
+#endif
 	// hier wird die Befehlszeile ueberprueft:
 	for(;optslsz<opts.size();optslsz++) {
 		for(size_t i=0;i<argcmv.size();i++) {
@@ -480,7 +482,7 @@ void hhcl::autokonfschreib()
 	if (rzf||obkschreib) {
 		Log(gruens+Tx[T_schreibe_Konfiguration]+schwarz);
 	} // if (rzf||obkschreib)
-	schlArr *ggcnfAp[1]={&agcnfA};
+	schlArr<cppSchluess> *ggcnfAp[1]={&agcnfA};
 	multischlschreib(akonfdt, ggcnfAp, sizeof ggcnfAp/sizeof *ggcnfAp, mpfad);
 	chmod(akonfdt.c_str(),S_IRWXU);
 } // void hhcl::autokonfschreib

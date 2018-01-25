@@ -5410,12 +5410,13 @@ void hcl::gcl0()
 	caus<<"Ende gcl0"<<endl;
 	return;
 
-
+#ifdef alt
 	uchar plusverb=0;
 	for(unsigned iru=0;iru<3;iru++) {
 		switch (iru) {
 			case 0:
-				opts.push_back(/*2*/optioncl(T_lg_k,T_language_l, &Txk,T_sprachstr,/*wi=*/1,&langu,psons,&agcnfA,"language",&oblgschreib)); agcnfA.setzbemv("language",&Txk,T_sprachstr,1);
+				opts.push_back(/*2*/optioncl(T_lg_k,T_language_l, &Txk,T_sprachstr,/*wi=*/1,&langu,psons,&agcnfA,"language",&oblgschreib)); 
+				agcnfA.setzbemv("language",&Txk,T_sprachstr,1);
 				opts.push_back(/*2*/optioncl(T_lang_k,T_lingue_l, &Txk,-1,/*wi=*/1,&langu,psons));
 				break;
 			case 1:
@@ -5460,6 +5461,7 @@ void hcl::gcl0()
 		} //     if (!logdname.empty())
 		obkschreib=1;
 	} // if (logvneu ||logdneu) 
+#endif // alt
 } // void hcl::gcl0()
 
 void hcl::verarbeitkonf()
