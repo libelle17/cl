@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "24.01.18" "Version 0.1014" "\fB²DPROG²\fR man page"
+.TH man 1 "26.01.18" "Version 0.10162" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -133,32 +133,4 @@ vor getcommandline
 .br
 \fBOptions which are not saved: \fR
 .br
-\fB -sqlv, --sql-verbose\fR: screen output with SQL commands
-.br
-\fB -ia, --interactive\fR: all parameters will be prompted (some of them not shown here)
-.br
-\fB -noia, --nointeraction\fR: no questions, e.g. for a call of cl within cron
-.br
-\fB -info, --version\fR: shows the program version
-.br
-\fB -vi, --vi\fR: edit/view configuration and log file (finish with ':qa')
-.br
-\fB -h, --help\fR: Explanation of frequent options
-.br
-\fB -lh, --longhelp\fR: Explanation of all options
-.br
 \fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
-.br
-\fB -host, --host <string>\fR: takes the database on host <string> instead of '\fBlocalhost\fR'
-.br
-\fB -muser, --muser <string>\fR: takes the user <string> for MySQL/MariaDB instead of '\fB\fR'
-.br
-\fB -mpwd, --mpwd <string>\fR: takes the password <string> for MySQL/MariaDB
-.br
-\fB -db, --database <string>\fR: uses the database <string> instead of '\fBfaxe\fR'
-.br
-\fB -tb, --table <string>\fR: uses the table <string> instead of '\fB\fR'
-.br
-\fB -cm, --cronminutes <string>\fR: every how many minutes shall \fBcl\fR be called in crontab (0=not at all), instead of  '\fB2\fR'
-.br
-\fB -autoupd, --autoupdate\fR: Update program automatically\fB or not\fR

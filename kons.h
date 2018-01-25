@@ -657,6 +657,15 @@ template <class SCL> class schlArr {
  ~schlArr();
 }; // class schlArr
 
+template<class SCL> void schlArr<SCL>::gibaus(const int nr/*=0*/)
+{
+	cout<<"gibaus("<<nr<<")"<<endl;
+  for(size_t i=0;i<schl.size();i++) {
+   cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
+  }
+} // void schlArr::ausgeb()
+
+
 class abSchl {
  public:
    string name;
@@ -848,7 +857,7 @@ class optcl
     long Txi2=-1;
     string *rottxt=0; // ggf rot zu markierender Text zwischen Txi und Txi2
 //    string oerkl;
-    int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
+    int iwert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
     schlArr<cppSchluess> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
@@ -1230,3 +1239,32 @@ class hcl
 		void reduzierlibtiff();
 		void setzbenutzer(string *user);
 }; // class hcl
+
+template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
+{
+	schl.clear();
+	vector<optcl*>::iterator opp=optpv.begin();
+	vector<size_t>::iterator ops=optsv.begin();
+	for(;opp!=optpv.end();opp++,ops++) {
+		for(size_t iru=0;iru<*ops;iru++) {
+			optcl *op=&((optcl*)(*opp))[iru];
+			if (!op->pname.empty()) {
+				uchar gefunden=0;
+				for(vector<cppSchluess>::iterator sit=schl.begin();sit!=schl.end();sit++) {
+					if (sit->name==op->pname) {
+						gefunden=1;
+						break;
+					}
+				}
+				if (!gefunden) {
+					const string wert=op->art==plong?ltoan(*(long*)op->pptr):
+						                op->art==pint?ltoan(*(int*)op->pptr):
+													  op->art==puchar?ltoan(*(uchar*)op->pptr):
+														                       *(string*)op->pptr;
+					schl.push_back(cppSchluess(op->pname,wert));
+				}
+			}
+		}
+	}
+} // void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
+

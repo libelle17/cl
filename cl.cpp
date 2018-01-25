@@ -475,6 +475,7 @@ void hhcl::rueckfragen()
 	} // if (rzf)
 } // void hhcl::rueckfragen()
 
+
 // wird aufgerufen in: main
 void hhcl::autokonfschreib()
 {

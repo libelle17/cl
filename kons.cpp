@@ -1974,14 +1974,6 @@ confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obver
 }
 */
 
-template<class SCL> void schlArr<SCL>::gibaus(const int nr/*=0*/)
-{
-	cout<<"gibaus("<<nr<<")"<<endl;
-  for(size_t i=0;i<schl.size();i++) {
-   cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
-  }
-} // void schlArr::ausgeb()
-
 template<class SCL> void schlArr<SCL>::reset()
 {
   for(size_t i=0;i<schl.size();i++) {
@@ -2042,34 +2034,6 @@ cppSchluess::cppSchluess(const string& name):name(name)
 cppSchluess::cppSchluess(const string& name,const string& wert):name(name),wert(wert)
 {
 }
-
-template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
-{
-	schl.clear();
-	vector<optcl*>::iterator opp=optpv.begin();
-	vector<size_t>::iterator ops=optsv.begin();
-	for(;opp!=optpv.end();opp++,ops++) {
-		for(size_t iru=0;iru<*ops;iru++) {
-			optcl *op=&((optcl*)(*opp))[iru];
-			if (!op->pname.empty()) {
-				uchar gefunden=0;
-				for(vector<cppSchluess>::iterator sit=schl.begin();sit!=schl.end();sit++) {
-					if (sit->name==op->pname) {
-						gefunden=1;
-						break;
-					}
-				}
-				if (!gefunden) {
-					const string wert=op->art==plong?ltoan(*(long*)op->pptr):
-						                op->art==pint?ltoan(*(int*)op->pptr):
-													  op->art==puchar?ltoan(*(uchar*)op->pptr):
-														                       *(string*)op->pptr;
-					schl.push_back(cppSchluess(op->pname,wert));
-				}
-			}
-		}
-	}
-} // void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
 
 /*
 	 schlArr::schlArr(const char* const* sarr,size_t vzahl)
@@ -2191,30 +2155,6 @@ template<class SCL> schlArr<SCL>::~schlArr()
 //  if (schl) delete[] schl;
 	schl.clear();
 }
-
-template<class SCL> int multischlschreib(const string& fname, schlArr<SCL> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
-{
-  mdatei f(fname,ios::out);
-  if (f.is_open()) {
-    if (!mpfad.empty()) {
-      //// char buf[30];
-      time_t jetzt=time(0);
-			f<<Txk[T_Konfiguration_fuer]<<mpfad<<Txk[T_erstellt_automatisch_durch_dieses_am]<<ztacl(jetzt,"%d.%m.%Y %H.%M.%S")<<endl;
-			//// pthread_mutex_lock(&timemutex);
-			//// tm *ltm = localtime(&jetzt);
-			//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", ltm);
-			//// f<<put_time(localtime(&jetzt),"%d.%m.%Y %H.%M.%S")<<endl;
-			//// pthread_mutex_unlock(&timemutex);
-			//// const string ueberschr=Txk[T_Konfiguration_fuer]+mpfad+Txk[T_erstellt_automatisch_durch_dieses_am]+buf;
-			//// if (!ueberschr.empty()) f<<ueberschr<<endl;
-    } //     if (!mpfad.empty())
-    for (size_t j=0;j<cszahl;j++) {
-     mcnfApp[j]->aschreib(&f);
-    }
-    return 0;
-  } //   if (f.is_open())
-  return 1;
-} // int multischlschreib(const string& fname, schlArr **mcnfApp, size_t cszahl)
 
 string XOR(const string& value, const string& key)
 {
@@ -3151,7 +3091,7 @@ void optcl::oausgeb()
 	cout<<",Txi:"<<blau<<setw(3)<<Txi<<schwarz;
 	cout<<",rottxt:"<<blau<<setw(15)<<(rottxt?*rottxt:string(""))<<schwarz;
 	cout<<",Txi2:"<<blau<<setw(3)<<Txi2<<schwarz;
-	cout<<",wert:"<<blau<<wert<<schwarz;
+	cout<<",iwert:"<<blau<<iwert<<schwarz;
 	cout<<",part:"<<blau<<art<<schwarz;
 	cout<<",obschreibp:"<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
 	cout<<",obno:"<<blau<<(int)obno<<schwarz;
@@ -5230,22 +5170,22 @@ int hcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, c
 	int wiefalsch=0;
 	optp->gegenteil=gegenteil;
 	optp->nichtspeichern=nichtspeichern;
-	// wenn wert, dann diesen Wert zuweisen
-	if (!gegenteil && optp->wert==1 && optp->art==puchar) {
+	// wenn iwert, dann diesen Wert zuweisen
+	if (!gegenteil && optp->iwert==1 && optp->art==puchar) {
 		(*((uchar*)optp->pptr))++;
-	} else if (!gegenteil && optp->wert==1 && optp->art==pint) {
+	} else if (!gegenteil && optp->iwert==1 && optp->art==pint) {
 		(*((int*)optp->pptr))++;
-	} else if (!gegenteil && optp->wert==1 && optp->art==plong) {
+	} else if (!gegenteil && optp->iwert==1 && optp->art==plong) {
 		(*((long*)optp->pptr))++;
-	} else if (optp->wert) {
+	} else if (optp->iwert) {
 		if (optp->art==puchar) {
-			*(uchar*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+			*(uchar*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
 		} else if (optp->art==pint) {
-			*(int*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+			*(int*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
 		} else if (optp->art==plong) {
-			*(long*)optp->pptr=gegenteil?!optp->wert:optp->wert;
+			*(long*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
 		} else {
-			*(string*)optp->pptr=optp->wert;
+			*(string*)optp->pptr=optp->iwert;
 		}
 		// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
 	} else {
@@ -6182,3 +6122,28 @@ void hcl::optausg(const char *farbe)
 void hcl::pruefcl() // commandline mit omap und mit argcmv parsen
 {
 }
+
+int multischlschreib(const string& fname, schlArr<cppSchluess> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
+{
+  mdatei f(fname,ios::out);
+  if (f.is_open()) {
+    if (!mpfad.empty()) {
+      //// char buf[30];
+      time_t jetzt=time(0);
+			f<<Txk[T_Konfiguration_fuer]<<mpfad<<Txk[T_erstellt_automatisch_durch_dieses_am]<<ztacl(jetzt,"%d.%m.%Y %H.%M.%S")<<endl;
+			//// pthread_mutex_lock(&timemutex);
+			//// tm *ltm = localtime(&jetzt);
+			//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", ltm);
+			//// f<<put_time(localtime(&jetzt),"%d.%m.%Y %H.%M.%S")<<endl;
+			//// pthread_mutex_unlock(&timemutex);
+			//// const string ueberschr=Txk[T_Konfiguration_fuer]+mpfad+Txk[T_erstellt_automatisch_durch_dieses_am]+buf;
+			//// if (!ueberschr.empty()) f<<ueberschr<<endl;
+    } //     if (!mpfad.empty())
+    for (size_t j=0;j<cszahl;j++) {
+     mcnfApp[j]->aschreib(&f);
+    }
+    return 0;
+  } //   if (f.is_open())
+  return 1;
+} // int multischlschreib(const string& fname, schlArr **mcnfApp, size_t cszahl)
+
