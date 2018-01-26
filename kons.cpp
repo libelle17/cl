@@ -884,7 +884,7 @@ string holsystemsprache(int obverb/*=0*/)
 {
 	if (obverb)
 		cout<<violett<<Txk[T_holsystemsprache]<<schwarz<<endl;
-	schlArr<cppSchluess> cglangA; // Systemsprach-Konfiguration
+	schlArr<WPcl> cglangA; // Systemsprach-Konfiguration
 	string ret;
 	// OpenSuse, Fedora, Debian
 	const char* const langdt[]={"/etc/sysconfig/language","/etc/locale.conf","/etc/default/locale","/etc/sysconfig/i18n"};
@@ -1895,10 +1895,10 @@ template <class SCL> void confdat::auswert(schlArr<SCL> *sA, int obverb, const c
     KLZ
   KLZ
 */
-} // void sAdat::auswert(cppSchluess *sA, size_t csize, int obverb, char tz)
+} // void sAdat::auswert(WPcl *sA, size_t csize, int obverb, char tz)
 
 /*//
-void confdat::auswert(cppSchluess *conf, size_t csize, int obverb, char tz)
+void confdat::auswert(WPcl *conf, size_t csize, int obverb, char tz)
 {
   richtige=0;
   for(size_t i=0;i<csize;i++) {
@@ -1936,7 +1936,7 @@ void confdat::auswert(cppSchluess *conf, size_t csize, int obverb, char tz)
       } // if (!zeile->empty()) 
     } // for(size_t i=0;i<zn.size();i++) 
   } // if (obgelesen) 
-} // void confdat::auswert(cppSchluess *conf, size_t csize, int obverb, char tz)
+} // void confdat::auswert(WPcl *conf, size_t csize, int obverb, char tz)
 */
 
 confdat::confdat(const string& fname,int obverb):name(fname)
@@ -1966,7 +1966,7 @@ template<class SCL> void confdat::cinit(const string& fname, schlArr<SCL> *sA, i
 } // void confdat::cinit
 
 /*//
-confdat::confdat(const string& fname, cppSchluess *conf, size_t csize, int obverb, char tz)
+confdat::confdat(const string& fname, WPcl *conf, size_t csize, int obverb, char tz)
 {
   if (obverb>0) cout<<violett<<Txk[T_Lese_Konfiguration_aus]<<blau<<fname<<schwarz<<endl;
   lies(fname,obverb);
@@ -1993,21 +1993,21 @@ void schlArr::neu(size_t vzahl)
 // if (schl) delete[] schl;
  schl.clear();
  zahl=vzahl;
- schl=new cppSchluess[zahl];
+ schl=new WPcl[zahl];
 } // void schlArr::neu(size_t vzahl)
 */
 
 /*// wird vielleicht nicht gebraucht
 schlArr::schlArr(size_t zahl): zahl(zahl)
 {
- schl = new cppSchluess[zahl];
+ schl = new WPcl[zahl];
 }
 */
 template<class SCL> void schlArr<SCL>::init(vector<SCL*> *sqlvp)
 {
 // if (schl) delete[] schl;
 	schl.clear();
-  // schl = new cppSchluess[zahl];
+  // schl = new WPcl[zahl];
   for(size_t sqli=0;sqli<sqlvp->size();sqli++) {
 //    schl[sqli].name=sqlvp->at(sqli)->name;
 //    schl[sqli].wert=sqlvp->at(sqli)->wert;
@@ -2020,18 +2020,18 @@ void schlArr::initd(const char* const* sarr,size_t vzahl)
 {
 	zahl=vzahl;
 	if (schl) delete[] schl;
-	schl = new cppSchluess[zahl];
+	schl = new WPcl[zahl];
 	for(size_t i=0;i<zahl;i++) {
 		schl[i].name=sarr[i];
 	}
 } // schlArr::initd(const char* const* sarr,size_t vzahl)
 */
 
-cppSchluess::cppSchluess(const string& name):name(name)
+WPcl::WPcl(const string& name):name(name)
 {
 }
 
-cppSchluess::cppSchluess(const string& name,const string& wert):name(name),wert(wert)
+WPcl::WPcl(const string& name,const string& wert):name(name),wert(wert)
 {
 }
 
@@ -2047,11 +2047,11 @@ template<class SCL> void schlArr<SCL>::init(size_t vzahl, ...)
 	va_list list;
 	va_start(list,vzahl);
 	//if (schl) delete[] schl;
-	// schl = new cppSchluess[zahl];
+	// schl = new WPcl[zahl];
 	schl.clear();
 	for(size_t i=0;i<vzahl;i++) {
 //		schl[i].name=va_arg(list,const char*);
-		schl.push_back(cppSchluess(va_arg(list,const char*)));
+		schl.push_back(WPcl(va_arg(list,const char*)));
 		//// <<rot<<"schl["<<i<<"].name: "<<schwarz<<schl[i].name<<endl;
 	}
  va_end(list);
@@ -2081,14 +2081,14 @@ template<class SCL> const string& schlArr<SCL>::hole(const string& name)
   return nix;
 } // const string* schlArr::hole(const string& name)
 
-void cppSchluess::hole (struct tm *tmp) {
+void WPcl::hole (struct tm *tmp) {
 	if (!wert.empty()) {
 		for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
 			if (strptime(wert.c_str(), tmmoegl[im], tmp)) break;
 		}
 		////		strptime(wert.c_str(), "%d.%m.%y %T", tmp);
 	} // 	if (!wert.empty())
-} // void cppSchluess::hole (struct tm *tmp)
+} // void WPcl::hole (struct tm *tmp)
 
 // wenn die bisherige Bemerkung in einer Sprache mit der zu setzenden identisch, also nicht zwischenzeitlich manuell geaendert, 
 // dann in aktueller Sprache uebernehmen
@@ -2167,7 +2167,7 @@ string XOR(const string& value, const string& key)
   return retval;
 } // string XOR(const string& value, const string& key)
 
-int cppschreib(const string& fname, cppSchluess *conf, size_t csize)
+int cppschreib(const string& fname, WPcl *conf, size_t csize)
 {
   mdatei f(fname,ios::out);
   if (f.is_open()) {
@@ -2177,10 +2177,10 @@ int cppschreib(const string& fname, cppSchluess *conf, size_t csize)
     return 0;
   } //   if (f.is_open())
   return 1;
-} // int cppschreib(const string& fname, cppSchluess *conf, size_t csize)
+} // int cppschreib(const string& fname, WPcl *conf, size_t csize)
 
 /*//
-int multicppschreib(const string& fname, cppSchluess **conf, size_t *csizes, size_t cszahl)
+int multicppschreib(const string& fname, WPcl **conf, size_t *csizes, size_t cszahl)
 {
   mdatei f(fname,ios::out);
   if (f.is_open()) {
@@ -2192,7 +2192,7 @@ int multicppschreib(const string& fname, cppSchluess **conf, size_t *csizes, siz
     return 0;
   }
   return 1;
-} // int multicppschreib(const string& fname, cppSchluess **conf, size_t *csizes, size_t cszahl)
+} // int multicppschreib(const string& fname, WPcl **conf, size_t *csizes, size_t cszahl)
 */
 
 #ifdef notcpp
@@ -3102,6 +3102,7 @@ void optcl::oausgeb()
 	cout<<endl;
 } // void optcl::oausgeb()
 
+#ifdef alt
 int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) // 1 = das war der Parameter, 0 = nicht
 	// argcvm = Vektor der Kommandozeilenparameter
 	// *akt = Index auf aktuell zu untersuchenden
@@ -3313,6 +3314,7 @@ void optioncl::hilfezeile(Sprache lg)
 		} // if (Txi!=-1)
 	} // if (TxBp)
 } // hilfezeile
+#endif
 
 /*//
 	linsten linstcl::checkinst(int obverb, int oblog) 
@@ -4269,7 +4271,7 @@ int tuloeschen(const string& zuloe,const string& cuser/*=nix*/, int obverb/*=0*/
 	if (ausgp&&obverb) *ausgp<<meld<<endl; else Log(meld,obverb,oblog);
 	return 0;
 } // int tuloeschen(string zuloe,int obverb, int oblog)
-
+#ifdef alt
 // in optioncl::optioncl
 template<class SCL> void optioncl::setzebem(schlArr<SCL> *cpA,const char *pname)
 {
@@ -4311,6 +4313,7 @@ template<class SCL> /*4*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long T
 {
 	setzebem(cpA,pname);
 }
+#endif
 
 // gleicht das Datum von <zu> an <gemaess> an, aehnlich touch
 int attrangleich(const string& zu, const string& gemaess,const string* const zeitvondtp/*=0*/, int obverb/*=0*/, int oblog/*=0*/)
@@ -5165,69 +5168,73 @@ void hcl::zeigkonf()
 } // void hcl::zeigkonf()
 // augerufen in: anhalten(), zeigkonf()
 
+// weis einer Option eine Zahl zu
+void optcl::setzwert()
+{
+ long zahl=gegenteil?!iwert:iwert;
+ if (zahl==1) zahl=*(long*)pptr+1;
+ switch (art) {
+	 case puchar: *(uchar*)pptr=zahl; break;
+	 case pint:   *(int*)  pptr=zahl; break;
+	 default: /*case plong:*/ *(long*)pptr=zahl;
+ }
+} // void optcl::setzwert()
+
+// weist einer Option einen c-String zu
+int optcl::setzstr(const char* neuw)
+{
+	struct stat entryarg={0};
+	int wiefalsch=0;
+	switch (art) {
+		// und das ein "sonstiger Parameter" ist, ...
+		case psons:
+			// ... dann zuweisen
+			*(string*)pptr=neuw;
+			break;
+			// wenn es ein Verzeichnis oder eine Datei sein soll ...
+		case pverz:
+		case pfile:
+			// ... die also nicht mit '-' anfaengt
+			// ... und sie bestimmte existentielle Bedingungen erfuellt ...
+			if (stat(neuw,&entryarg)) wiefalsch=1;  // wenn inexistent
+			else if ((art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
+			// ... dann zuweisen
+			else {
+				*(string*)pptr=neuw;
+			}
+			break;
+			// oder wenn es eine Zahl sein soll ...
+		case puchar: case pint: case plong:
+			// und tatsaechlich numerisch ist ...
+			if (!isnumeric(neuw)) wiefalsch=1;
+			// dann zuweisen
+			else {
+				switch (art) {
+					case puchar:
+						*(uchar*)pptr=atol(neuw); break;
+					case pint:
+						*(int*)pptr=atol(neuw); break;
+					default: /* case plong: */
+						*(long*)pptr=atol(neuw);
+				}
+			}
+			break;
+	} // switch (art) 
+	return wiefalsch;
+} // void optcl::setzstr(const string neuw)
+
 int hcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, const uchar nichtspeichern/*=0*/)
 {
 	int wiefalsch=0;
 	optp->gegenteil=gegenteil;
 	optp->nichtspeichern=nichtspeichern;
-	// wenn iwert, dann diesen Wert zuweisen
-	if (!gegenteil && optp->iwert==1 && optp->art==puchar) {
-		(*((uchar*)optp->pptr))++;
-	} else if (!gegenteil && optp->iwert==1 && optp->art==pint) {
-		(*((int*)optp->pptr))++;
-	} else if (!gegenteil && optp->iwert==1 && optp->art==plong) {
-		(*((long*)optp->pptr))++;
-	} else if (optp->iwert) {
-		if (optp->art==puchar) {
-			*(uchar*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
-		} else if (optp->art==pint) {
-			*(int*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
-		} else if (optp->art==plong) {
-			*(long*)optp->pptr=gegenteil?!optp->iwert:optp->iwert;
-		} else {
-			*(string*)optp->pptr=optp->iwert;
-		}
-		// andernfalls, falls möglich, den nächsten Parameter als Wert zuweisen
+  if (optp->iwert) {
+		optp->setzwert();
 	} else {
 		// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
 		// er also nicht mit '-' anfaengt ...
 		if (*nacstr && *nacstr!='-') {
-			struct stat entryarg={0};
-			switch (optp->art) {
-				// und das ein "sonstiger Parameter" ist, ...
-				case psons:
-					// ... dann zuweisen
-					*(string*)optp->pptr=string(nacstr);
-					break;
-					// wenn es ein Verzeichnis oder eine Datei sein soll ...
-				case pverz:
-				case pfile:
-					// ... die also nicht mit '-' anfaengt
-					// ... und sie bestimmte existentielle Bedingungen erfuellt ...
-					if (stat(nacstr,&entryarg)) wiefalsch=1;  // wenn inexistent
-					else if ((optp->art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
-					// ... dann zuweisen
-					else {
-						*(string*)optp->pptr=string(nacstr);
-					}
-					break;
-					// oder wenn es eine Zahl sein soll ...
-				case puchar: case pint: case plong:
-					// und tatsaechlich numerisch ist ...
-					if (!isnumeric(nacstr)) wiefalsch=1;
-					// dann zuweisen
-					else {
-						switch (optp->art) {
-							case puchar:
-								*(uchar*)optp->pptr=atol(nacstr); break;
-							case pint:
-								*(int*)optp->pptr=atol(nacstr); break;
-							default:
-								*(long*)optp->pptr=atol(nacstr);
-						}
-					}
-					break;
-			} // switch (art) 
+			wiefalsch=optp->setzstr(nacstr);
 		} else {
 			wiefalsch=3; // kein geeigneter Parameter gefunden
 		}
@@ -5739,6 +5746,7 @@ int hcl::zeighilfe(const stringstream *const erkl)
 			cout<<erkl->str()<<endl;
 		}
 		cout<<blau<<Txk[T_Optionen_die_nicht_gespeichert_werden]<<schwarz<<endl;
+#ifdef alt
 		for(size_t j=0;j<opts.size();j++) {
 			if (!opts[j].obschreibp && (obhilfe>1 || opts[j].wi))
 				opts[j].hilfezeile(Txk.lgn);
@@ -5748,6 +5756,7 @@ int hcl::zeighilfe(const stringstream *const erkl)
 			if (opts[j].obschreibp && (obhilfe>1 || opts[j].wi))
 				opts[j].hilfezeile(Txk.lgn);
 		} //     for(size_t j=0;j<opts.size();j++)
+#endif
 		} // if (obhilfe==4) else
 		return 1;
 	} // if (obhilfe)
@@ -6101,9 +6110,9 @@ void hcl::omapzuw(optcl *optp,size_t optz)
 			optp[i].TxBp->lgn=(Sprache)akts;
 			okmap[(*optp[i].TxBp)[optp[i].kurzi]]=&optp[i];
 			olmap[(*optp[i].TxBp)[optp[i].langi]]=&optp[i];
-		}
-	}
-}
+		} // 		for(unsigned akts=0;akts<SprachZahl;akts++)
+	} // 	for(size_t i=0;i<optz;i++)
+} // void hcl::omapzuw(optcl *optp,size_t optz)
 
 void hcl::optausg(const char *farbe)
 {
@@ -6123,7 +6132,7 @@ void hcl::pruefcl() // commandline mit omap und mit argcmv parsen
 {
 }
 
-int multischlschreib(const string& fname, schlArr<cppSchluess> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
+int multischlschreib(const string& fname, schlArr<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
 {
   mdatei f(fname,ios::out);
   if (f.is_open()) {
@@ -6146,4 +6155,36 @@ int multischlschreib(const string& fname, schlArr<cppSchluess> *const *const mcn
   } //   if (f.is_open())
   return 1;
 } // int multischlschreib(const string& fname, schlArr **mcnfApp, size_t cszahl)
+
+confdcl::confdcl():obgelesen(0)
+{
+}
+
+// Achtung: Wegen der Notwendigkeit zur Existenz der Datei zum Aufruf von setfacl kann die Datei erstellt werden!
+int confdcl::lies(const string& fname, int obverb)
+{
+	int erg=0;
+	if (fname.empty()) {
+		erg=2;
+	} else {
+		mdatei f(fname,ios::in);
+		if (f.is_open()) {
+			if (obverb>0) cout<<Txk[T_confdat_lies_Datei]<<blau<<fname<<schwarz<<endl;
+			string zeile;
+			while (getline(f,zeile)) {
+				zn<<zeile;
+			}
+			obgelesen=1;
+		} else {
+			erg=1;
+		} //   if (f.is_open())
+	} // 	if (fname.empty())
+	if (obverb>0) {
+		if (erg)
+			cout<<Txk[T_confdat_lies_Misserfolg]<<endl;
+		else
+			cout<<Txk[T_confdat_lies_Erfolg]<<endl;
+	} // 	if (obverb>0) {
+	return erg;
+} // lies(const string& fname, int obverb)
 

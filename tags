@@ -3,7 +3,7 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	Development	//
+!_TAG_PROGRAM_VERSION	5.8	//
 Abfrage	DB.h	/^      int Abfrage(sT psql,const size_t aktc\/*=0*\/,int obverb=0,uchar asy=0,int oblog=0,string *idp=0,my_ulonglong *arowsp=0){$/;"	f	class:RS
 Abschn_auswert	kons.cpp	/^void confdat::Abschn_auswert(int obverb, const char tz)$/;"	f	class:confdat
 B_Alle	kons.h	123;"	d
@@ -417,22 +417,25 @@ Verbindung_zur_Datenbank_nicht_herstellbar	cl.cpp	/^	Verbindung_zur_Datenbank_ni
 VerzeichnisGibts	kons.cpp	/^uchar VerzeichnisGibts(const char* vname)$/;"	f
 VorgbAllg	cl.cpp	/^void hhcl::VorgbAllg()$/;"	f	class:hhcl
 VorgbSpeziell	cl.cpp	/^void hhcl::VorgbSpeziell()$/;"	f	class:hhcl
+WPcl	kons.cpp	/^WPcl::WPcl(const string& name):name(name)$/;"	f	class:WPcl
+WPcl	kons.cpp	/^WPcl::WPcl(const string& name,const string& wert):name(name),wert(wert)$/;"	f	class:WPcl
+WPcl	kons.h	/^class WPcl {$/;"	c
 XOR	kons.cpp	/^string XOR(const string& value, const string& key)$/;"	f
 ZDB	cl.cpp	/^uchar ZDB=0; \/\/ fuer Zusatz-Debugging (SQL): ZDB 1, sonst: 0$/;"	v
 _CRT_SECURE_NO_WARNINGS	DB.h	2;"	d
 _CRT_SECURE_NO_WARNINGS	kons.h	2;"	d
 _access	kons.cpp	32;"	d	file:
 _blau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_blau	kons.h	/^inline std::ostream& _blau(std::ostream &s){$/;"	f	class:std
+_blau	kons.h	/^inline std::ostream& _blau(std::ostream &s){$/;"	f
 _drot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_drot	kons.h	/^inline std::ostream& _drot(std::ostream &s){$/;"	f	class:std
+_drot	kons.h	/^inline std::ostream& _drot(std::ostream &s){$/;"	f
 _gelb	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_gelb	kons.h	/^inline std::ostream& _gelb(std::ostream &s){$/;"	f	class:std
+_gelb	kons.h	/^inline std::ostream& _gelb(std::ostream &s){$/;"	f
 _hgrau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _rot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_rot	kons.h	/^inline std::ostream& _rot(std::ostream &s){$/;"	f	class:std
+_rot	kons.h	/^inline std::ostream& _rot(std::ostream &s){$/;"	f
 _schwarz	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_schwarz	kons.h	/^inline std::ostream& _schwarz(std::ostream &s){$/;"	f	class:std
+_schwarz	kons.h	/^inline std::ostream& _schwarz(std::ostream &s){$/;"	f
 _tuerkis	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 abSchl	kons.h	/^   abSchl(string& vname, string& vwert):name(vname),wert(vwert) {}$/;"	f	class:abSchl
 abSchl	kons.h	/^class abSchl {$/;"	c
@@ -440,7 +443,7 @@ absch	kons.h	/^class absch$/;"	c
 abschv	kons.h	/^    vector<absch> abschv;$/;"	m	class:confdat
 afcd	kons.h	/^		confdat afcd;$/;"	m	class:hcl
 affrows	DB.cpp	/^my_ulonglong DB::affrows(const size_t aktc) const$/;"	f	class:DB
-agcnfA	kons.h	/^    schlArr<cppSchluess> agcnfA; \/\/ Gesamtkonfiguration$/;"	m	class:hcl
+agcnfA	kons.h	/^    schlArr<WPcl> agcnfA; \/\/ Gesamtkonfiguration$/;"	m	class:hcl
 agef	kons.h	/^ uchar agef=0; \/\/ dieser wurde gefunden$/;"	m	class:argcl
 akonfdt	kons.h	/^    string akonfdt; \/\/ name der Konfigurationsdatei$/;"	m	class:hcl
 aktprogverz	kons.cpp	/^string aktprogverz()$/;"	f
@@ -473,12 +476,11 @@ autoupd	kons.h	/^		uchar autoupd;  \/\/ 1=Programm automatisch updadaten$/;"	m	c
 av	kons.h	/^ vector<abSchl> av;$/;"	m	class:absch
 azaehlerdt	kons.h	/^		string azaehlerdt; \/\/ akonfdt+".zaehl"$/;"	m	class:hcl
 base_name	kons.cpp	/^std::string base_name(const std::string& path)$/;"	f
-bemerk	kons.h	/^    string bemerk;$/;"	m	class:cppSchluess
+bemerk	kons.h	/^    string bemerk;$/;"	m	class:WPcl
 bemerkung	kons.h	/^    string bemerkung;$/;"	m	class:optioncl
 bemerkung	kons.h	/^    string bemerkung="";$/;"	m	class:optcl
 benutzer	kons.h	/^		vector<string> benutzer; \/\/ Benutzer aus \/etc\/passwd, bearbeitet durch setzbenutzer(&user)$/;"	m	class:hcl
 betroffen	DB.h	/^		char **betroffen=0; \/\/ fuer Abfrage in postgres$/;"	m	class:RS
-binaer	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	g
 blau	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 blau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 blaus	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
@@ -515,12 +517,9 @@ confdat	kons.cpp	/^template<class SCL> confdat::confdat(const string& fname, sch
 confdat	kons.h	/^class confdat$/;"	c
 conn	DB.h	/^    MYSQL **conn;$/;"	m	class:DB
 conz	DB.h	/^		size_t conz; \/\/ Zahl der Verbindungen (s.o., conn)$/;"	m	class:DB
-cpA	kons.h	/^    schlArr<cppSchluess> *cpA=0; \/\/ Konfigurationsarray, das ggf. geschrieben werden muss$/;"	m	class:optcl
-cpA	kons.h	/^    schlArr<cppSchluess> *cpA=0; \/\/ Konfigurationsarray, das ggf. geschrieben werden muss$/;"	m	class:optioncl
-cppSchluess	kons.cpp	/^cppSchluess::cppSchluess(const string& name):name(name)$/;"	f	class:cppSchluess
-cppSchluess	kons.cpp	/^cppSchluess::cppSchluess(const string& name,const string& wert):name(name),wert(wert)$/;"	f	class:cppSchluess
-cppSchluess	kons.h	/^class cppSchluess {$/;"	c
-cppschreib	kons.cpp	/^int cppschreib(const string& fname, cppSchluess *conf, size_t csize)$/;"	f
+cpA	kons.h	/^    schlArr<WPcl> *cpA=0; \/\/ Konfigurationsarray, das ggf. geschrieben werden muss$/;"	m	class:optcl
+cpA	kons.h	/^    schlArr<WPcl> *cpA=0; \/\/ Konfigurationsarray, das ggf. geschrieben werden muss$/;"	m	class:optioncl
+cppschreib	kons.cpp	/^int cppschreib(const string& fname, WPcl *conf, size_t csize)$/;"	f
 crongeprueft	kons.h	/^		uchar crongeprueft=0;$/;"	m	class:hcl
 cronminut	kons.h	/^    string cronminut; \/\/ Minuten fuer crontab; 0 = kein Crontab-Eintrag$/;"	m	class:hcl
 cronzuplanen	kons.h	/^		uchar cronzuplanen;$/;"	m	class:hcl
@@ -541,7 +540,7 @@ dbp	DB.h	/^		const DB* dbp;$/;"	m	class:Tabelle
 dbp	DB.h	/^    const DB* dbp;$/;"	m	class:RS
 dbq	cl.h	/^	string dbq="faxe"; \/\/ Datenbank$/;"	m	class:hhcl
 dbsv	DB.h	/^    servc *dbsv=0;$/;"	m	class:DB
-deb	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+deb	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 defa	DB.h	/^    string defa;$/;"	m	class:Feld
 defmycharset	DB.cpp	/^const string DB::defmycharset="utf8";$/;"	m	class:DB	file:
 defmycharset	DB.h	/^		static const string defmycharset;$/;"	m	class:DB
@@ -553,7 +552,7 @@ defmyrowform	DB.cpp	/^const string DB::defmyrowform="DYNAMIC";$/;"	m	class:DB	fi
 defmyrowform	DB.h	/^		static const string defmyrowform;$/;"	m	class:DB
 defnachs	kons.cpp	/^const string& defnachs="\/archive\/master.tar.gz";$/;"	v
 defvors	kons.cpp	/^const string& defvors="https:\/\/github.com\/"+gitv+"\/";$/;"	v
-dent	kons.h	/^  struct dirent *dent;$/;"	m	class:find2cl	typeref:struct:find2cl::
+dent	kons.h	/^  struct dirent *dent;$/;"	m	class:find2cl	typeref:struct:find2cl::dirent
 deutsch	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	e	enum:Sprache
 dev	kons.h	/^ string dev; \/\/ Anhaengsel fuer die development-Versionen ("-dev" oder "-devel")$/;"	m	class:linst_cl
 devtty	kons.cpp	/^const string devtty=" >\/dev\/tty";$/;"	v
@@ -622,8 +621,8 @@ ersetzeprog	kons.cpp	/^const string linst_cl::ersetzeprog(const string& prog) co
 erweitern	DB.cpp	/^void DB::erweitern(const string& tabs, vector<instyp> einf,const size_t aktc,int obverb,uchar obsammeln, const unsigned long *maxl) const$/;"	f	class:DB
 exitp	DB.cpp	5;"	d	file:
 exitt	kons.h	135;"	d
-falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
-fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:uchar
+fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 fehler	DB.h	/^    string fehler;$/;"	m	class:RS
 fehler	kons.h	/^    int fehler=0; \/\/ Exit-Code der Exe-Datei$/;"	m	class:servc
 fehnr	DB.h	/^    unsigned int fehnr;$/;"	m	class:DB
@@ -657,7 +656,7 @@ gegenteil	kons.h	/^		uchar gegenteil=0;$/;"	m	class:optcl
 gelb	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 gelb	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 gelbs	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gelesen	kons.h	/^    uchar gelesen=0;$/;"	m	class:cppSchluess
+gelesen	kons.h	/^    uchar gelesen=0;$/;"	m	class:WPcl
 gen	kons.cpp	/^const boost::locale::generator gen;$/;"	v
 getcols	kons.cpp	/^int getcols() $/;"	f
 getcommandl0	cl.cpp	/^void hhcl::getcommandl0()$/;"	f	class:hhcl
@@ -667,13 +666,13 @@ getlib64	kons.cpp	/^string& lsyscl::getlib64(int obverb\/*=0*\/,int oblog\/*=0*\
 getmutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
 getstammext	kons.cpp	/^void getstammext(const string *const ganz, string *stamm, string *exten) $/;"	f
 getsys	kons.cpp	/^lsysen lsyscl::getsys(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-gibaus	kons.cpp	/^template<class SCL> void schlArr<SCL>::gibaus(const int nr\/*=0*\/)$/;"	f	class:schlArr
+gibaus	kons.h	/^template<class SCL> void schlArr<SCL>::gibaus(const int nr\/*=0*\/)$/;"	f	class:schlArr
 gitv	kons.cpp	/^const string& gitv=$/;"	v
 groupdt	kons.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
 groupdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
 gruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 gruens	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f	class:std
+gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f
 hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
 hcl	kons.h	/^class hcl$/;"	c
 hgrau	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
@@ -684,17 +683,17 @@ hhcl	cl.h	/^class hhcl:public hcl$/;"	c
 hilfezeile	kons.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
 holdbaussql	DB.cpp	/^svec holdbaussql(string sql) $/;"	f
 hole	kons.cpp	/^template<class SCL> const string& schlArr<SCL>::hole(const string& name)$/;"	f	class:schlArr
-hole	kons.cpp	/^void cppSchluess::hole (struct tm *tmp) {$/;"	f	class:cppSchluess
+hole	kons.cpp	/^void WPcl::hole (struct tm *tmp) {$/;"	f	class:WPcl
 hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(val); }$/;"	f	class:Schluessel
-hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }$/;"	f	class:cppSchluess
+hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }$/;"	f	class:WPcl
 hole	kons.h	/^template <> inline void Schluessel::hole < binaer > (binaer *var) { *var = (binaer)atoi(val); }$/;"	f	class:Schluessel
 hole	kons.h	/^template <> inline void Schluessel::hole < char* > (char** var) { *var = val; }$/;"	f	class:Schluessel
 hole	kons.h	/^template <> inline void Schluessel::hole < const char* > (const char** var) { *var = val; }$/;"	f	class:Schluessel
 hole	kons.h	/^template <> inline void Schluessel::hole < string > (string *var) { *var = val; }$/;"	f	class:Schluessel
-hole	kons.h	/^template <> inline void cppSchluess::hole < binaer > (binaer *var) { *var = (binaer)atoi(wert.c_str()); }$/;"	f	class:cppSchluess
-hole	kons.h	/^template <> inline void cppSchluess::hole < char* > (char** var) {*var = (char*)wert.c_str(); }$/;"	f	class:cppSchluess
-hole	kons.h	/^template <> inline void cppSchluess::hole < const char* > (const char** var) {*var = wert.c_str(); }$/;"	f	class:cppSchluess
-hole	kons.h	/^template <> inline void cppSchluess::hole < string > (string *var) {*var = wert; }$/;"	f	class:cppSchluess
+hole	kons.h	/^template <> inline void WPcl::hole < binaer > (binaer *var) { *var = (binaer)atoi(wert.c_str()); }$/;"	f	class:WPcl
+hole	kons.h	/^template <> inline void WPcl::hole < char* > (char** var) {*var = (char*)wert.c_str(); }$/;"	f	class:WPcl
+hole	kons.h	/^template <> inline void WPcl::hole < const char* > (const char** var) {*var = wert.c_str(); }$/;"	f	class:WPcl
+hole	kons.h	/^template <> inline void WPcl::hole < string > (string *var) {*var = wert; }$/;"	f	class:WPcl
 holsystemsprache	kons.cpp	/^string holsystemsprache(int obverb\/*=0*\/)$/;"	f
 holvomnetz	kons.cpp	/^int hcl::holvomnetz(const string& datei,const string& vors\/*=defvors*\/,const string& nachs\/*=defnachs*\/)$/;"	f	class:hcl
 host	DB.h	/^    const string host;$/;"	m	class:DB
@@ -709,7 +708,7 @@ init	kons.cpp	/^template<class SCL> void schlArr<SCL>::init(vector<SCL*> *sqlvp)
 init	kons.cpp	/^void elem2::init(const string& vmutter, const string& name) {$/;"	f	class:elem2
 init	kons.cpp	/^void find2cl::init(const string& mutter, const string& name, regex_t *reg, const int folge,const long maxdepth, const int& typbit,$/;"	f	class:find2cl
 initDB	cl.cpp	/^int hhcl::initDB()$/;"	f	class:hhcl
-initv	kons.cpp	/^template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)$/;"	f	class:schlArr
+initv	kons.h	/^template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)$/;"	f	class:schlArr
 ins	DB.h	/^		vector< vector<instyp> > ins;$/;"	m	class:DB
 instmaria	DB.cpp	/^void DB::instmaria(int obverb, int oblog)$/;"	f	class:DB
 instp	kons.h	/^ string instp; \/\/ Befehl zum Installieren ueber das Installationnssystem$/;"	m	class:linst_cl
@@ -736,6 +735,7 @@ it	kons.cpp	/^set<wele>::iterator find3cl::it;$/;"	m	class:find3cl	file:
 it	kons.h	/^    static set<wele>::iterator it;$/;"	m	class:find3cl
 it2	kons.cpp	/^el2set::iterator it2;$/;"	v
 it3	kons.cpp	/^set<elem3>::iterator it3;$/;"	v
+iwert	kons.h	/^    int iwert; \/\/ Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen$/;"	m	class:optcl
 keineverarbeitung	cl.h	/^	uchar keineverarbeitung=0; \/\/ wenn cronminuten geaendert werden sollen, vorher abkuerzen$/;"	m	class:hhcl
 keinp	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 key	kons.h	/^    char key[90];$/;"	m	class:Schluessel
@@ -791,10 +791,9 @@ lst	kons.h	/^    const struct stat lst={0};$/;"	m	class:elem3	typeref:struct:ele
 lstat	kons.h	60;"	d
 lsys	kons.cpp	/^class lsyscl lsys;$/;"	v	typeref:class:lsyscl
 lsyscl	kons.h	/^class lsyscl$/;"	c
-lsysen	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
 ltoa_	kons.cpp	/^char* ltoa_(long value, char* result, int base=10) $/;"	f
 ltoan	kons.cpp	/^string ltoan(long value, int base\/*=10*\/, uchar obtz\/*=0*\/, uchar minstel\/*=0*\/) $/;"	f
-ltrim	kons.h	/^inline std::string *ltrim(std::string *str) {$/;"	f	class:std
+ltrim	kons.h	/^inline std::string *ltrim(std::string *str) {$/;"	f
 m_color	kons.h	/^  WORD m_color;$/;"	m	struct:color
 mab	kons.h	/^    time_t mab,mbis;$/;"	m	class:find3cl
 mabp	kons.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
@@ -824,7 +823,7 @@ monatsaufr	kons.h	/^		ulong monatsaufr=0; \/\/ Zahl der bisherigen Programmaufru
 mpfad	kons.h	/^    string mpfad;  \/\/ meinpfad()$/;"	m	class:hcl
 mpwd	cl.h	/^	string mpwd;  \/\/ Passwort fuer Mysql\/MariaDB \/\/ω$/;"	m	class:hhcl
 msg	kons.h	/^ string msg;$/;"	m	class:errmsgcl
-multischlschreib	kons.cpp	/^template<class SCL> int multischlschreib(const string& fname, schlArr<SCL> *const *const mcnfApp, const size_t cszahl,const string& mpfad)$/;"	f
+multischlschreib	kons.cpp	/^int multischlschreib(const string& fname, schlArr<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)$/;"	f
 muser	cl.h	/^	string muser; \/\/ Benutzer fuer Mysql\/MariaDB$/;"	m	class:hhcl
 myDBS	cl.cpp	/^const DBSTyp myDBS=Postgres;$/;"	v
 myloghost	DB.h	/^    string myloghost; \/\/ einheitliche Benennung von 'localhost' bzw. '%', zu kompliziert, um in jedem DB::DB aufzufuehren, deshalb nicht const$/;"	m	class:DB
@@ -833,8 +832,8 @@ mysqlbef	DB.h	/^    const string mysqlbef="mysql", mysqlben="mysql"; \/\/ mysql-
 mysqlben	DB.h	/^    const string mysqlbef="mysql", mysqlben="mysql"; \/\/ mysql-Befehl, mysql-Benutzer$/;"	m	class:DB
 name	DB.h	/^		const string name;$/;"	m	class:Index
 name	DB.h	/^    const string name;$/;"	m	class:Feld
+name	kons.h	/^    string name;$/;"	m	class:WPcl
 name	kons.h	/^    string name;$/;"	m	class:confdat
-name	kons.h	/^    string name;$/;"	m	class:cppSchluess
 name	kons.h	/^   string name;$/;"	m	class:abSchl
 name	kons.h	/^ string name;$/;"	m	class:pidcl
 nersetze	kons.cpp	/^string nersetze(const string& quelle, string const& was, string const& durch)$/;"	f
@@ -860,7 +859,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	920;"	d
+obfstream	kons.h	930;"	d
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
 obind	DB.h	/^    bool obind;$/;"	m	class:Feld
@@ -901,7 +900,7 @@ operator ()	kons.cpp	/^ostream &ztacl::operator()(std::ostream& out) const {$/;"
 operator <	kons.cpp	/^const bool elem2::operator<(const elem2& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem2
 operator <	kons.cpp	/^const bool elem3::operator<(const elem3& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem3
 operator <	kons.cpp	/^const bool wele::operator<(const wele& el) const {return (this->pfad<el.pfad);}$/;"	f	class:wele
-operator <<	kons.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f	class:std
+operator <<	kons.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f
 operator <<	kons.cpp	/^ostream &operator<<(ostream &out,ztacl ztaus) {$/;"	f
 operator <<	kons.h	/^    inline svec& operator<<(const std::string& str) {$/;"	f	class:svec
 operator <<	kons.h	/^    inline tsvec<T>& operator<<(const T& str) {$/;"	f	class:tsvec
@@ -927,9 +926,8 @@ p2	cl.h	/^	int p2;$/;"	m	class:hhcl
 p3	cl.h	/^	string p3;$/;"	m	class:hhcl
 p3cpf	kons.h	/^ string p3cpf; \/\/ Pfad zu python3-config$/;"	m	class:linst_cl
 pac	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
-par_t	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 passwd	DB.h	/^    string passwd; \/\/ kann in pruefrpw dem eingegebenen rootpw gleichgesetz werden, deshalb nicht const$/;"	m	class:DB
-passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::
+passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::passwd
 passwddt	kons.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
 passwddt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
 pconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
@@ -938,14 +936,14 @@ perfcl	kons.h	/^class perfcl$/;"	c
 pfad	kons.h	/^    const string pfad;$/;"	m	class:wele
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem2
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem3
-pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pid	kons.h	/^ pid_t pid;$/;"	m	class:pidcl
 pidcl	kons.h	/^ pidcl(const pid_t pid,const string& name):pid(pid),name(name){}$/;"	f	class:pidcl
 pidcl	kons.h	/^class pidcl$/;"	c
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
-pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pmconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
 pname	kons.h	/^		string pname=""; \/\/ Name des Konfigurationsparameters$/;"	m	class:optcl
 pname	kons.h	/^    const char *pname; \/\/ Name des Konfigurationsparameters$/;"	m	class:optioncl
@@ -972,9 +970,9 @@ pruefsamba	kons.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,cons
 prueftab	DB.cpp	/^int Tabelle::prueftab(const size_t aktc,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f	class:Tabelle
 prueftif	kons.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
 pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
-psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
-puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
-pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
+puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
+pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pwk	cl.cpp	/^const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; \/\/ fuer Antlitzaenderung$/;"	v
 pzuweis	kons.cpp	/^int hcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil\/*=0*\/, const uchar nichtspeichern\/*=0*\/)$/;"	f	class:hcl
 reduzierlibtiff	kons.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
@@ -1024,19 +1022,21 @@ setzbemv	kons.cpp	/^template<class SCL> void schlArr<SCL>::setzbemv(const string
 setzbenutzer	kons.cpp	/^void hcl::setzbenutzer(string *user)$/;"	f	class:hcl
 setze	kons.cpp	/^template<class SCL> int schlArr<SCL>::setze(const string& name, const string& wert\/*, const string& bem*\/)$/;"	f	class:schlArr
 setze	kons.h	/^    template <typename T> void setze(T *var) { strncpy(val,ltoan(*var),sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
-setze	kons.h	/^    template <typename T> void setze(T *var) { wert=ltoan(*var); }$/;"	f	class:cppSchluess
+setze	kons.h	/^    template <typename T> void setze(T *var) { wert=ltoan(*var); }$/;"	f	class:WPcl
 setze	kons.h	/^template <> inline void Schluessel::setze < char* > (char** var) { strncpy(val,*var,sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
 setze	kons.h	/^template <> inline void Schluessel::setze < const char* > (const char** var) { strncpy(val,*var,sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
 setze	kons.h	/^template <> inline void Schluessel::setze < string > (string *var) { strncpy(val,var->c_str(),sizeof val-1);val[sizeof val-1]=0;}$/;"	f	class:Schluessel
-setze	kons.h	/^template <> inline void cppSchluess::setze < char* > (char** var) {wert=*var;  }$/;"	f	class:cppSchluess
-setze	kons.h	/^template <> inline void cppSchluess::setze < const char* > (const char** var) {wert=*var; }$/;"	f	class:cppSchluess
-setze	kons.h	/^template <> inline void cppSchluess::setze < const string > (const string *var) {wert=*var; }$/;"	f	class:cppSchluess
-setze	kons.h	/^template <> inline void cppSchluess::setze < string > (string *var) {wert=*var;}$/;"	f	class:cppSchluess
-setze	kons.h	/^template <> inline void cppSchluess::setze < struct tm > (struct tm *tmp) {$/;"	f	class:cppSchluess
+setze	kons.h	/^template <> inline void WPcl::setze < char* > (char** var) {wert=*var;  }$/;"	f	class:WPcl
+setze	kons.h	/^template <> inline void WPcl::setze < const char* > (const char** var) {wert=*var; }$/;"	f	class:WPcl
+setze	kons.h	/^template <> inline void WPcl::setze < const string > (const string *var) {wert=*var; }$/;"	f	class:WPcl
+setze	kons.h	/^template <> inline void WPcl::setze < string > (string *var) {wert=*var;}$/;"	f	class:WPcl
+setze	kons.h	/^template <> inline void WPcl::setze < struct tm > (struct tm *tmp) {$/;"	f	class:WPcl
 setzebem	kons.cpp	/^template<class SCL> void optioncl::setzebem(schlArr<SCL> *cpA,const char *pname)$/;"	f	class:optioncl
 setzlog	kons.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
 setzrpw	DB.cpp	/^void DB::setzrpw(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ Setze root-password$/;"	f	class:DB
+setzstr	kons.cpp	/^void optcl::setzstr(const string neuw)$/;"	f	class:optcl
 setztmpcron	kons.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
+setzwert	kons.cpp	/^void optcl::setzwert()$/;"	f	class:optcl
 setzzaehler	kons.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
 sfeh	kons.cpp	/^const int sfeh[]={ T_Dienst_laeuft,T_Dienst_inexistent, T_Dienst_disabled, T_Dienstdateiname_nicht_ermittelbar, T_Dienst_laeuft_noch_aber_Dienstdatei_inexistent, T_Exec_Dateiname_nicht_ermittelbar, T_Exec_Datei_fehlt, T_activating, T_Dienst_kann_gestartet_werden, T_Sonstiges};$/;"	v
 shpf	kons.h	/^ string shpf; \/\/ Pfad zu sh$/;"	m	class:linst_cl
@@ -1084,7 +1084,7 @@ suche	kons.cpp	/^const string& absch::suche(const string& sname)$/;"	f	class:abs
 sudc	kons.cpp	/^const string sudc=(cus.cuid?"sudo ":nix);$/;"	v
 sudoersdt	kons.cpp	/^			hcl::sudoersdt="\/etc\/sudoers";$/;"	m	class:hcl	file:
 sudoersdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
-sus	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+sus	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 svec	kons.h	/^class svec: public vector<std::string>$/;"	c
 svf0	kons.h	/^		int svf0=-1; \/\/ Einstellung nach erstem Ablauf von obsvfeh$/;"	m	class:servc
 svfeh	kons.h	/^    int svfeh=-1; \/\/ Ausgangseinstellung$/;"	m	class:servc
@@ -1123,9 +1123,12 @@ typbit	kons.h	/^    int typbit;$/;"	m	class:find3cl
 typbitp	kons.cpp	/^int *find3cl::typbitp;$/;"	m	class:find3cl	file:
 typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
+uchar	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	g
+uchar	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
+uchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	5975;"	d	file:
+uebersichtlich	kons.cpp	5916;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1138,7 +1141,7 @@ urp	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instpr
 usedb	DB.cpp	/^int DB::usedb(const string& db,const size_t aktc\/*=0*\/)$/;"	f	class:DB
 user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
-usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
 vagenau	kons.cpp	1115;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
@@ -1159,7 +1162,7 @@ vtz	kons.h	26;"	d
 vtzs	kons.h	24;"	d
 vtzs	kons.h	27;"	d
 vznp	kons.h	/^  set<string> *vznp=0; $/;"	m	class:find2cl
-wahr	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
+wahr	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:uchar
 wait	kons.cpp	/^inline void wait () $/;"	f
 wartaufpids	kons.cpp	/^int wartaufpids(pidvec *pidv,const ulong runden\/*=0*\/,const int obverb\/*=0*\/,const int oblog\/*=0*\/,const string& wo\/*=nix*\/)$/;"	f
 weisezu	DB.cpp	/^void RS::weisezu(const DB* pdb) $/;"	f	class:RS
@@ -1169,8 +1172,7 @@ wele	kons.h	/^    wele(const string& pfad=nix, const long& maxd=-1):pfad(pfad),m
 wele	kons.h	/^class wele$/;"	c
 wert	DB.h	/^    string wert;$/;"	m	class:instyp
 wert	kons.h	/^    int wert; \/\/ Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird$/;"	m	class:optioncl
-wert	kons.h	/^    int wert; \/\/ Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen$/;"	m	class:optcl
-wert	kons.h	/^    string wert;$/;"	m	class:cppSchluess
+wert	kons.h	/^    string wert;$/;"	m	class:WPcl
 wert	kons.h	/^   string wert;$/;"	m	class:abSchl
 wi	kons.h	/^		uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	class:optcl
 wi	kons.h	/^		uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	class:optioncl
@@ -1181,7 +1183,7 @@ wurzp	kons.h	/^    static set<wele> *wurzp;$/;"	m	class:find3cl
 xargspf	kons.h	/^ string xargspf; \/\/ Pfad zu xargs$/;"	m	class:linst_cl
 yum	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 zahlin	kons.cpp	/^size_t zahlin(const string *const str, const char* const was) $/;"	f
-zcnfA	kons.h	/^		schlArr<cppSchluess> zcnfA; \/\/ Zaehlkonfiguration$/;"	m	class:hcl
+zcnfA	kons.h	/^		schlArr<WPcl> zcnfA; \/\/ Zaehlkonfiguration$/;"	m	class:hcl
 zeighilfe	kons.cpp	/^int hcl::zeighilfe(const stringstream *const erkl)$/;"	f	class:hcl
 zeigkonf	kons.cpp	/^void hcl::zeigkonf()$/;"	f	class:hcl
 zeigueberschrift	cl.cpp	/^void hhcl::zeigueberschrift()$/;"	f	class:hhcl

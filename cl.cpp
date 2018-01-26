@@ -292,7 +292,7 @@ void hhcl::spezopt()
 		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
 	};
 	omapzuw(hopts,sizeof hopts/sizeof *hopts);
-}
+} // void hhcl::spezopt()
 
 // wird aufgerufen in: main
 void hhcl::getcommandl0()
@@ -377,7 +377,7 @@ int hhcl::getcommandline()
 	opts.push_back(/*4*/optioncl(T_h_k,T_hilfe_l, &Tx, T_Erklaerung_haeufiger_Optionen, 1, &obhilfe,1));
 	opts.push_back(/*4*/optioncl(T_lh_k,T_lhilfe_l, &Tx, T_Erklaerung_aller_Optionen, 1, &obhilfe,2));
 	opts.push_back(/*4*/optioncl(T_fgz_k,T_fgz_l, &Tx, -1, 1, &obhilfe,1));
-#endif
+
 	// hier wird die Befehlszeile ueberprueft:
 	for(;optslsz<opts.size();optslsz++) {
 		for(size_t i=0;i<argcmv.size();i++) {
@@ -394,6 +394,7 @@ int hhcl::getcommandline()
 			} //       if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe,Tx.lgn))
 		} // for(size_t i=0;i<argcmv.size();i++)
 	} //   for(;optslsz<opts.size();optslsz++)
+#endif
 	if (nrzf||obhilfe>2) rzf=0; // 3 oder 4
 	for(size_t i=0;i<argcmv.size();i++) {
 		if (!argcmv[i].agef) {
@@ -483,7 +484,7 @@ void hhcl::autokonfschreib()
 	if (rzf||obkschreib) {
 		Log(gruens+Tx[T_schreibe_Konfiguration]+schwarz);
 	} // if (rzf||obkschreib)
-	schlArr<cppSchluess> *ggcnfAp[1]={&agcnfA};
+	schlArr<WPcl> *ggcnfAp[1]={&agcnfA};
 	multischlschreib(akonfdt, ggcnfAp, sizeof ggcnfAp/sizeof *ggcnfAp, mpfad);
 	chmod(akonfdt.c_str(),S_IRWXU);
 } // void hhcl::autokonfschreib
