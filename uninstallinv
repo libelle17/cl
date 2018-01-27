@@ -4,3 +4,6 @@ printf "(Inst: 2018-01-13 13:44:57): $blau%s$reset\n" "rm -f /root/rootscrontab;
 rmdir 'localhost'
 # mkdir -m 700 'localhost'
 printf "(Inst: 2018-01-13 13:45:03): $blau%s$reset\n" "rmdir 'localhost'"
+rmdir '/var/log//root'
+# mkdir -m 700 '/var/log//root'
+printf "(Inst: 2018-01-27 16:08:59): $blau%s$reset\n" "rmdir '/var/log//root'"

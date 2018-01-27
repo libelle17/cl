@@ -287,11 +287,9 @@ void hhcl::lgnzuw()
 void hhcl::spezopt()
 {
 	static string rottext=ltoan(listz);
-	static optcl hopts[]={
-		/*4*/{/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*cpA*/0,/*obschreibp*/0}
-		,/*4*/{/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*cpA*/0,/*obschreibp*/0}
-	};
-	omapzuw(hopts,sizeof hopts/sizeof *hopts);
+
+	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/0);
+	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*obschreibp*/0);
 } // void hhcl::spezopt()
 
 // wird aufgerufen in: main
@@ -308,13 +306,11 @@ void hhcl::getcommandl0()
 	*/
 //	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
 	gcl0(); //ω
-  agcnfA.initv(optpv,optsv);
-	agcnfA.gibaus(0);
+//  agcnfA.initv(optpv,optsv);
 	hcl::lieskonfein(DPROG);
-	agcnfA.gibaus(1);
 	hcl::verarbeitkonf();
-	agcnfA.gibaus(2);
 	optausg(gruen);
+	lieszaehlerein();
 	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 
@@ -484,7 +480,7 @@ void hhcl::autokonfschreib()
 	if (rzf||obkschreib) {
 		Log(gruens+Tx[T_schreibe_Konfiguration]+schwarz);
 	} // if (rzf||obkschreib)
-	schlArr<WPcl> *ggcnfAp[1]={&agcnfA};
+	schAcl<WPcl> *ggcnfAp[1]={&agcnfA};
 	multischlschreib(akonfdt, ggcnfAp, sizeof ggcnfAp/sizeof *ggcnfAp, mpfad);
 	chmod(akonfdt.c_str(),S_IRWXU);
 } // void hhcl::autokonfschreib

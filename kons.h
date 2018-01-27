@@ -529,6 +529,11 @@ inline std::string *ltrim(std::string *str) {
   return str;
 } // inline std::string *ltrim(std::string *str)
 
+inline std::string *rtrim(std::string *str) {
+  str->erase(str->find_last_not_of("\t ")+1);         //surfixing spaces
+  return str;
+} // inline std::string *ltrim(std::string *str)
+
 inline void rtrim(char* str,size_t size) {
   for (int nd=0,i=size-1;i;i--) {
     if (!str[i]) nd=1; 
@@ -588,19 +593,25 @@ template <> inline void Schluessel::setze < const char* > (const char** var) { s
 template <> inline void Schluessel::setze < string > (string *var) { strncpy(val,var->c_str(),sizeof val-1);val[sizeof val-1]=0;}
 #endif // notcpp
 
-class WPcl {
+enum war_t:uchar {wlong,wbin,wstr,wdat}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
+class WPcl { // Wertepaarklasse
   public:
-    string name;
+    string pname;
+		const void* pptr;
+		war_t wart;
     uchar gelesen=0;
     string wert;
     string bemerk;
-		WPcl(const string& name); // wird benoetigt in: schlArr::init(size_t vzahl, ...)
-		WPcl(const string& name,const string& wert);
-//    inline WPcl& operator=(WPcl zuzuw){name=zuzuw.name;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
+		WPcl(const string& pname,const void* pptr,war_t wart);
+		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
+		WPcl(const string& pname,const string& wert);
+		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
+//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
     template <typename T> void setze(T *var) { wert=ltoan(*var); }
 //    template <typename T> void setze(T *var,string& bem) { wert=ltoan(*var); bemerk=bem;}
 		void hole (struct tm *tmp);
+		void reset();
 }; // class WPcl
 template <> inline void WPcl::hole < char* > (char** var) {*var = (char*)wert.c_str(); }
 template <> inline void WPcl::hole < const char* > (const char** var) {*var = wert.c_str(); }
@@ -654,51 +665,55 @@ class tsvec: public vector<T>
 
 class optcl;
 
-// soll dann confdat unnötig machen
-struct confdcl {
-		svec zn;
-		uchar obgelesen;
-		confdcl();
-		int lies(const string& fname, int obverb);
-};
-
-template <class SCL> class schlArr {
+template <class SCL> class schAcl {
  public:
 // WPcl *schl=0; 
- vector<SCL> schl;
- schlArr();
- schlArr(const char* const* sarr,size_t vzahl);
-// void neu(size_t vzahl=0);
- void init(size_t vzahl, ...);
- void init(vector<SCL*> *sqlvp);
-// void initd(const char* const* sarr,size_t vzahl);
- void initv(vector<optcl*> optpv,vector<size_t> optsv);
+ vector<SCL> schl; // Schlüsselklasse Schlüssel
+ inline schAcl& operator<<(const SCL& sch) { schl.push_back(sch); return *this; }
  inline const SCL& operator[](size_t const& nr) const { return schl[nr]; }
  inline SCL& operator[](size_t const& nr) { return schl[nr]; }
- int setze(const string& name, const string& wert/*, const string& bem=nix*/);
- const string& hole(const string& name);
- void setzbemv(const string& name,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
+ inline size_t size(){return schl.size();}
+ schAcl();
+ schAcl(const char* const* sarr,size_t vzahl);
+ // void neu(size_t vzahl=0);
+ void init(size_t vzahl, ...);
+ void init(vector<SCL*> *sqlvp);
+ // void initd(const char* const* sarr,size_t vzahl);
+ void initv(vector<optcl*> optpv,vector<size_t> optsv);
+ int setze(const string& pname, const string& wert/*, const string& bem=nix*/);
+ const string& hole(const string& pname);
+ void setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
  void aschreib(mdatei *const f);
  int fschreib(const string& fname);
  void gibaus(const int nr=0);
  void reset();
- ~schlArr();
-}; // class schlArr
+ ~schAcl();
+}; // class schAcl
 
-template<class SCL> void schlArr<SCL>::gibaus(const int nr/*=0*/)
+// soll dann confdat unnötig machen
+struct confdcl {
+		svec zn;
+		uchar obgelesen;
+    size_t richtige;
+		confdcl();
+		int lies(const string& fname, int obverb);
+    template <class SCL> void auswert(schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+};
+
+template<class SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
 {
 	cout<<"gibaus("<<nr<<")"<<endl;
   for(size_t i=0;i<schl.size();i++) {
-   cout<<"i: "<<gruen<<i<<schwarz<<" Name: "<<blau<<schl[i].name<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
+   cout<<"i: "<<gruen<<i<<schwarz<<" pname: "<<blau<<schl[i].pname<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
   }
-} // void schlArr::ausgeb()
+} // void schAcl::ausgeb()
 
 
 class abSchl {
  public:
-   string name;
+   string pname;
    string wert;
-   abSchl(string& vname, string& vwert):name(vname),wert(vwert) {}
+   abSchl(string& vname, string& vwert):pname(vname),wert(vwert) {}
 }; // class abSchl
 
 // Linux-System-Enum
@@ -774,16 +789,16 @@ class confdat
   public:
     uchar obgelesen=0;
     svec zn;
-    string name;
+    string pname;
     vector<absch> abschv;
     size_t richtige;
     confdat(const string& fname, int obverb);
-    template<class SCL> confdat(const string& fname, schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+    template<class SCL> confdat(const string& fname, schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 		confdat();
-		template<class SCL> void cinit(const string& fname, schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+		template<class SCL> void cinit(const string& fname, schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    confdat(const string& fname,WPcl *conf, size_t csize, int obverb=0, char tz='=');
     int lies(const string& fname,int obverb);
-    template <class SCL> void auswert(schlArr<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
+    template <class SCL> void auswert(schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 ////    void auswert(WPcl *conf, size_t csize, int obverb=0, char tz='=');
     void Abschn_auswert(int obverb=0, const char tz='=');
 }; // class confdat
@@ -809,7 +824,7 @@ class optioncl
     int wert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird
     string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
     const par_t art; // Parameterart
-    schlArr<WPcl> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
+    schAcl<WPcl> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     const char *pname; // Name des Konfigurationsparameters
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
@@ -818,19 +833,19 @@ class optioncl
 		uchar obcl=0; // ob die Option ueber die Kommandozeile gesetzt wurde
 		uchar obcf=0; // ob die Option schon einmal vorkam für die Konfigurationsdatei
   private:
-    template<class SCL> void setzebem(schlArr<SCL> *cpA,const char *pname);
+    template<class SCL> void setzebem(schAcl<SCL> *cpA,const char *pname);
   public:
 ///*1*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi) : 
 //               kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi) {}
-// /*2*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
-template<class SCL> /*2a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schlArr<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
-// /*3*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr *cpA=0, const char *pname=0,uchar* obschreibp=0);
-template<class SCL> /*3a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schlArr<SCL> *cpA=0,
+// /*2*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl *cpA=0,const char *pname=0,uchar* obschreibp=0);
+template<class SCL> /*2a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
+// /*3*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl *cpA=0, const char *pname=0,uchar* obschreibp=0);
+template<class SCL> /*3a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl<SCL> *cpA=0,
               const char *pname=0,uchar* obschreibp=0);
-template<class SCL> /*3b*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schlArr<SCL> *cpA=0,
+template<class SCL> /*3b*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schAcl<SCL> *cpA=0,
               const char *pname=0,uchar* obschreibp=0);
-// /*4a*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr *cpA=0,const char *pname=0,uchar* obschreibp=0);
-template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schlArr<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
+// /*4a*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schAcl *cpA=0,const char *pname=0,uchar* obschreibp=0);
+template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schAcl<SCL> *cpA=0,const char *pname=0,uchar* obschreibp=0);
 ///*5*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,uchar *pptr,int wert) : 
 //               kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr(pptr),wert(wert) {}
 // /*6*/optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,uchar *pptr,int wert) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt((string*)rottxt),Txi2(Txi2),pptr(pptr),wert(wert) {}
@@ -850,37 +865,40 @@ template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar w
 #endif
 
 // neue Klasse für map
-class optcl
+struct optcl
 {
-	public:
-		string pname=""; // Name des Konfigurationsparameters
+		string pname; // Name des Konfigurationsparameters
     const void *pptr=0; // Zeiger auf Parameter, der hier eingestellt werden kann
     par_t art=psons; // Parameterart
 //		optcl() {if (parart==pzahl) *(int*)par=0;}
-		int kurzi=0;
-		int langi=0;
-    TxB *TxBp=0;
-    long Txi=0;
-		uchar wi=0; // Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt
-    long Txi2=-1;
+		const int kurzi=0;
+		const int langi=0;
+    TxB *TxBp=0; // nicht const, da lgn geändert werden muß
+    const long Txi=0;
+		const uchar wi=0; // Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt
+    const long Txi2=-1;
     string *rottxt=0; // ggf rot zu markierender Text zwischen Txi und Txi2
 //    string oerkl;
     int iwert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
-    schlArr<WPcl> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
+//    schAcl<WPcl> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
 		// ermittelte Optionen:
-    uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
-    string bemerkung="";
+    const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
+    string bemerkung;
 		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
+		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
+				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
 		void setzwert();
-		int setzstr(const char* neuw);
-		void setzebem(schlArr<WPcl> *cpA,const char *pname);
+		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
+		void setzebem(schAcl<WPcl> *cpA,const char *pname);
 		void oausgeb();
-};
+		int pzuweis(const char *nacstr, const uchar vgegenteil=0, const uchar vnichtspeichern=0);
+		void reset();
+}; // struct optcl
 
 #endif // kons_H_DRIN
 
@@ -905,7 +923,7 @@ int Schschreib(const char *fname, Schluessel *conf, size_t csize);
 #endif // notcpp
 int cppschreib(const string& fname, WPcl *conf, size_t csize);
 // int multicppschreib(const string& fname, WPcl **conf, size_t *csizes, size_t cszahl);
-int multischlschreib(const string& fname, schlArr<WPcl> *const *const confs, const size_t cszahl,const string& mpfad=nix);
+int multischlschreib(const string& fname, schAcl<WPcl> *const *const confs, const size_t cszahl,const string& mpfad=nix);
 std::string base_name(const std::string& path); // Dateiname ohne Pfad
 std::string dir_name(const std::string& path);  // Pfadname einer Datei
 int systemrueck(const string& cmd, char obverb=0, int oblog=0, vector<string> *rueck=0, const uchar obsudc=0,
@@ -1153,7 +1171,8 @@ class hcl
     size_t optslsz=0; // last opts.size()
 		unsigned lfd;
     uchar rzf=0; // rueckzufragen
-		confdat afcd;
+//		confdat afcd;
+		confdcl hccd;
 		string tmpcron; // fuer crontab
     string cronminut; // Minuten fuer crontab; 0 = kein Crontab-Eintrag
 		uchar nochkeincron;
@@ -1173,6 +1192,7 @@ class hcl
     string loggespfad; // Gesamtpfad, auf den dann die in kons.h verwiesene und oben definierte Variable logdt zeigt
                        // bei jeder Aenderung muss auch logdt neu gesetzt werden!
     string cmd; // string fuer command fuer Betriebssystembefehle
+		schAcl<optcl> opn; // Optionen
 #ifdef alt
     vector<optioncl> opts;
 #endif
@@ -1192,9 +1212,9 @@ class hcl
     string mpfad;  // meinpfad()
     string meinname; // base_name(meinpfad()) // argv[0] // <DPROG>
     string akonfdt; // name der Konfigurationsdatei
-    schlArr<WPcl> agcnfA; // Gesamtkonfiguration
+    schAcl<WPcl> agcnfA; // Gesamtkonfiguration
 		string azaehlerdt; // akonfdt+".zaehl"
-		schlArr<WPcl> zcnfA; // Zaehlkonfiguration
+		schAcl<WPcl> zcnfA; // Zaehlkonfiguration
 		string vorcm; // Vor-Cron-Minuten
 		linst_cl* linstp=0;
 		vector<string> benutzer; // Benutzer aus /etc/passwd, bearbeitet durch setzbenutzer(&user)
@@ -1204,16 +1224,13 @@ class hcl
 		map<string,optcl*> olmap; // map der Optionen, sortiert nach Tx[<langi>]
 		map<string,optcl*>::iterator omit; // Optionen-Iterator
 	private:
-		int pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil=0, const uchar nichtspeichern=0);
 	protected:
     virtual void lgnzuw(); // in vorgaben, lieskonfein, getcommandl0, getcommandline, rueckfragen
 		void setztmpcron();
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg);
 	public:
-		vector<optcl*> optpv; // Vektor der zugewiesenen Optionenzeiger
-		vector<size_t> optsv; // Vektor von deren jeweiliger Größe
-		void omapzuw(optcl *optp,size_t opts); // Optionen an omap zuweisen
+		void omapzuw(); // Optionen an omap zuweisen
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv);
@@ -1253,7 +1270,7 @@ class hcl
 }; // class hcl
 
 // sollte dann unnötig werden
-template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
+template<class SCL> void schAcl<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
 {
 	schl.clear();
 	vector<optcl*>::iterator opp=optpv.begin();
@@ -1264,7 +1281,7 @@ template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t>
 			if (!op->pname.empty()) {
 				uchar gefunden=0;
 				for(vector<WPcl>::iterator sit=schl.begin();sit!=schl.end();sit++) {
-					if (sit->name==op->pname) {
+					if (sit->pname==op->pname) {
 						gefunden=1;
 						break;
 					}
@@ -1279,5 +1296,5 @@ template<class SCL> void schlArr<SCL>::initv(vector<optcl*> optpv,vector<size_t>
 			}
 		}
 	}
-} // void schlArr::initv(vector<optcl*> optpv,vector<size_t> optsv)
+} // void schAcl::initv(vector<optcl*> optpv,vector<size_t> optsv)
 
