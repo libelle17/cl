@@ -27,30 +27,6 @@
 .br
 Ende gcl0
 .br
-auswert 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-1 auswert ii: 11
-.br
-pname: n, schl[ii].pname: n
-.br
-auswert i: 1
-.br
 verarbeitkonf(), Zahl: 0
 .br
 \fBoptausg()\fR
@@ -69,7 +45,7 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB           /root/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
@@ -77,118 +53,52 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       79\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-azaehlerdt: /root/cl/cl.zaehl
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+2 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+3 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-auswert 0
+4 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-auswert i: 0
+\fB::::::::: aufrufe: \fB0
 .br
-auswert i: 0
+\fBlDatum: \fR28.01.2018 00.50.40
 .br
-auswert i: 0
+\fBtagesaufr: \fR0
 .br
-auswert i: 0
+\fBmonatsaufr: \fR0
 .br
-auswert i: 0
+\fBvor return\fR
 .br
-1 auswert ii: 3
+Ende getcommandl0
 .br
-2 auswert ii: 3
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-1 auswert ii: 2
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-2 auswert ii: 2
+2 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-1 auswert ii: 1
+3 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-2 auswert ii: 1
+4 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-auswert i: 0
+\fB::::::::: aufrufe: \fB0
 .br
-auswert i: 1
+\fBlDatum: \fR28.01.2018 00.50.40
 .br
-auswert i: 1
+\fBtagesaufr: \fR0
 .br
-auswert i: 1
+\fBmonatsaufr: \fR0
 .br
-auswert i: 1
+\fBvor return\fR
 .br
-auswert i: 1
+vor getcommandline
 .br
-1 auswert ii: 3
+\fBParameter: \fBd\fB not identified!\fR
 .br
-2 auswert ii: 3
-.br
-1 auswert ii: 2
-.br
-2 auswert ii: 2
-.br
-1 auswert ii: 1
-.br
-pname: lDatum, schl[ii].pname: lDatum
-.br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 27.01.18 16:05:50
-.br
-Datum 1
-.br
-Datum 2, neuw: 27.01.18 16:05:50, im: 0, tmmoegl[im]: %d.%m.%y
-.br
-Datum 3
-.br
-auswert i: 1
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-1 auswert ii: 3
-.br
-2 auswert ii: 3
-.br
-1 auswert ii: 2
-.br
-pname: tagesaufr, schl[ii].pname: tagesaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 8
-.br
-8
-.br
-auswert i: 2
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-1 auswert ii: 3
-.br
-pname: monatsaufr, schl[ii].pname: monatsaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 358
-.br
-358
-.br
-auswert i: 3
-.br
-azaehlerdt: /root/cl/cl.zaehl
-.br
-aufrufe: 0
+\fBOptions which are not saved: \fR

@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "27.01.18" "Version 0.10208" "Manual-Seite für ²DPROG²"
+.TH man 1 "28.01.18" "Version 0.10211" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -45,28 +45,6 @@ Ende gcl0
 .br
 auswert 0
 .br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-1 auswert ii: 11
-.br
-pname: n, schl[ii].pname: n
-.br
-auswert i: 1
-.br
 verarbeitkonf(), Zahl: 0
 .br
 \fBoptausg()\fR
@@ -85,7 +63,7 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB           /root/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
@@ -93,118 +71,188 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       79\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-azaehlerdt: /root/cl/cl.zaehl
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+2 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
-azaehlerdt: /root/cl/cl.zaehl
+3 azaehlerdt: /home/schade/cl/cl.zaehl
 .br
 auswert 0
 .br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-auswert i: 0
-.br
-1 auswert ii: 3
-.br
-2 auswert ii: 3
-.br
-1 auswert ii: 2
-.br
-2 auswert ii: 2
-.br
-1 auswert ii: 1
-.br
-2 auswert ii: 1
-.br
-auswert i: 0
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-auswert i: 1
-.br
-1 auswert ii: 3
-.br
-2 auswert ii: 3
-.br
-1 auswert ii: 2
-.br
-2 auswert ii: 2
-.br
-1 auswert ii: 1
-.br
 pname: lDatum, schl[ii].pname: lDatum
 .br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 27.01.18 16:05:50
+hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 28.01.18 00:49:30
 .br
-Datum 1
+Datum 2, neuw: 28.01.18 00:49:30, im: 0, tmmoegl[im]: %c
 .br
-Datum 2, neuw: 27.01.18 16:05:50, im: 0, tmmoegl[im]: %d.%m.%y
+Datum 2, neuw: 28.01.18 00:49:30, im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
 .br
-Datum 3
+Datum 2, neuw: 28.01.18 00:49:30, im: 2, tmmoegl[im]: %d.%m.%y
 .br
-auswert i: 1
+Datum 3, tm_year: 118, tm_mon: 0, tm_mday: 28, tm_hour: 0, tm_min: 49
 .br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-auswert i: 2
-.br
-1 auswert ii: 3
-.br
-2 auswert ii: 3
-.br
-1 auswert ii: 2
+Ende Setzstr
 .br
 pname: tagesaufr, schl[ii].pname: tagesaufr
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 8
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
 .br
-8
+2
 .br
-auswert i: 2
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-auswert i: 3
-.br
-1 auswert ii: 3
+Ende Setzstr
 .br
 pname: monatsaufr, schl[ii].pname: monatsaufr
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 358
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
 .br
-358
+2
 .br
-auswert i: 3
+Ende Setzstr
 .br
-azaehlerdt: /root/cl/cl.zaehl
+pname: lDatum, schl[ii].pname: lDatum
 .br
-aufrufe: 0
+hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 
+.br
+Datum 2, neuw: , im: 0, tmmoegl[im]: %c
+.br
+Datum 2, neuw: , im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
+.br
+Datum 2, neuw: , im: 2, tmmoegl[im]: %d.%m.%y
+.br
+Ende Setzstr
+.br
+pname: tagesaufr, schl[ii].pname: tagesaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+.br
+0
+.br
+Ende Setzstr
+.br
+pname: monatsaufr, schl[ii].pname: monatsaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+.br
+0
+.br
+Ende Setzstr
+.br
+4 azaehlerdt: /home/schade/cl/cl.zaehl
+.br
+\fB::::::::: aufrufe: \fB10
+.br
+\fBlDatum: \fR28.01.2018 00.49.30
+.br
+\fBtagesaufr: \fR0
+.br
+\fBmonatsaufr: \fR0
+.br
+\fBvor return\fR
+.br
+Ende getcommandl0
+.br
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+.br
+\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+.br
+2 azaehlerdt: /home/schade/cl/cl.zaehl
+.br
+3 azaehlerdt: /home/schade/cl/cl.zaehl
+.br
+auswert 0
+.br
+pname: aufrufe, schl[ii].pname: aufrufe
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 340
+.br
+340
+.br
+Ende Setzstr
+.br
+pname: lDatum, schl[ii].pname: lDatum
+.br
+hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 28.01.18 00:49:30
+.br
+Datum 2, neuw: 28.01.18 00:49:30, im: 0, tmmoegl[im]: %c
+.br
+Datum 2, neuw: 28.01.18 00:49:30, im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
+.br
+Datum 2, neuw: 28.01.18 00:49:30, im: 2, tmmoegl[im]: %d.%m.%y
+.br
+Datum 3, tm_year: 118, tm_mon: 0, tm_mday: 28, tm_hour: 0, tm_min: 49
+.br
+Ende Setzstr
+.br
+pname: tagesaufr, schl[ii].pname: tagesaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
+.br
+2
+.br
+Ende Setzstr
+.br
+pname: monatsaufr, schl[ii].pname: monatsaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
+.br
+2
+.br
+Ende Setzstr
+.br
+pname: aufrufe, schl[ii].pname: aufrufe
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+.br
+0
+.br
+Ende Setzstr
+.br
+pname: lDatum, schl[ii].pname: lDatum
+.br
+hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 
+.br
+Datum 2, neuw: , im: 0, tmmoegl[im]: %c
+.br
+Datum 2, neuw: , im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
+.br
+Datum 2, neuw: , im: 2, tmmoegl[im]: %d.%m.%y
+.br
+Ende Setzstr
+.br
+pname: tagesaufr, schl[ii].pname: tagesaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+.br
+0
+.br
+Ende Setzstr
+.br
+pname: monatsaufr, schl[ii].pname: monatsaufr
+.br
+hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+.br
+0
+.br
+Ende Setzstr
+.br
+4 azaehlerdt: /home/schade/cl/cl.zaehl
+.br
+\fB::::::::: aufrufe: \fB0
+.br
+\fBlDatum: \fR28.01.2018 00.49.30
+.br
+\fBtagesaufr: \fR0
+.br
+\fBmonatsaufr: \fR0
+.br
+\fBvor return\fR
+.br
+vor getcommandline
+.br
+\fBParameter: \fBd\fB not identified!\fR
+.br
+\fBOptions which are not saved: \fR

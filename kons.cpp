@@ -16,7 +16,7 @@ const char *const dir = "dir ";
 #elif linux
 const char *const dir = "ls -l ";
 #endif
-const char *const tmmoegl[2]={"%d.%m.%y","%c"}; // Moeglichkeiten fuer strptime
+const char *const tmmoegl[]={"%c","%d.%m.%y %H:%M:%S","%d.%m.%y"}; // Moeglichkeiten fuer strptime
 // zum Schutz statischer Speicherbereiche vor gleichzeitigem Zugriff durch mehrere Programmfäden
 pthread_mutex_t printf_mutex, getmutex, timemutex;
 
@@ -1905,11 +1905,9 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
   if (mitclear) {
 		sA->reset();
 	}
-	caus<<"auswert 0"<<endl;
   if (obgelesen) {
     string ibemerk;
     for(size_t i=0;i<zn.size();i++) {
-	caus<<"auswert i: "<<i<<endl;
       string *zeile=&zn[i];
       size_t pos=zeile->find('#');
       if (pos!=string::npos) {
@@ -1924,25 +1922,19 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
         } // if (!pos)
         zeile->erase(pos);
       } // if (pos!=string::npos)
-	caus<<"auswert i: "<<i<<endl;
       ltrim(zeile);
-	caus<<"auswert i: "<<i<<endl;
       if (!zeile->empty()) {
         if (obverb>1) Log(Txk[T_stern_zeile]+*zeile,obverb);
         pos=zeile->find(tz);
         if (pos!=string::npos && pos>0) { 
-	caus<<"auswert i: "<<i<<endl;
           string pname=zeile->substr(0,pos);
 					rtrim(&pname);
 					string wert=zeile->substr(pos+1);
 					gtrim(&wert);
 					anfzweg(wert);
           size_t ii=sA->schl.size();
-	caus<<"auswert i: "<<i<<endl;
           while(--ii) {
-	caus<<"1 auswert ii: "<<ii<<endl;
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
-							caus<<"pname: "<<pname<<", schl[ii].pname: "<<sA->schl[ii].pname<<endl;
 							sA->schl[ii].setzstr(wert.c_str(),ibemerk,/*woher=*/2);
 							++richtige;
 							ibemerk.clear();
@@ -1952,9 +1944,7 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 							 if (!gef)
 							 Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+sA->schl[ii].pname+rot+Txk[T_nicht_gefunden],obverb+1);
 						 */
-	caus<<"2 auswert ii: "<<ii<<endl;
 					} // while( ii-- ) 
-	caus<<"auswert i: "<<i<<endl;
 				} // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
 			} // if (!zeile->empty()) 
 		} // for(size_t i=0;i<zn.size();i++) 
@@ -5274,26 +5264,26 @@ void optcl::reset()
 
 int WPcl::setzstr(const char* neuw,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
-	caus<<"hier Setzstr richtig, wart==wdat: "<<(wart==wdat)<<", (int)wart: "<<(int)wart<<", neuw: "<<neuw<<endl;
-	struct tm tmp={0};
+	struct tm tmp={0},tmmax={0};
+	char *emax=0,*eakt;
 	switch (wart) {
 		case wlong: 
-			caus<<atol(neuw)<<endl;
-			*(long*)pptr=atol(neuw); gelesen=1; break;
-		case wbin: *(binaer*)pptr=(binaer)atoi(neuw); gelesen=1; break;
-		case wstr: *(string*)pptr=string(neuw); gelesen=1; break;
+			if (pptr) *(long*)pptr=atol(neuw); 
+			gelesen=1; 
+			break;
+		case wbin: if (pptr) *(binaer*)pptr=(binaer)atoi(neuw); gelesen=1; break;
+		case wstr: if (pptr) *(string*)pptr=string(neuw); gelesen=1; break;
 		case wdat: 
-							 caus<<"Datum 1"<<endl;
-		for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
-							 caus<<"Datum 2, neuw: "<<neuw<<", im: "<<im<<", tmmoegl[im]: "<<tmmoegl[im]<<endl;
-			if (strptime(neuw, tmmoegl[im], &tmp)) { 
-							 caus<<"Datum 3"<<endl;
-				gelesen=1; break;
-			}
-							 caus<<"Datum 4"<<endl;
-		}
+								 for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
+									 eakt=strptime(neuw, tmmoegl[im], &tmp);
+									 if (eakt>emax) { memcpy(&tmmax,&tmp,sizeof tmp); emax=eakt; }
+								 }
+								 if (emax) {
+									 if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+								 }
+								 break;
 		default: break;
-	} 
+	}
 	return gelesen;
 } // void WPcl::hole (struct tm *tmp)
 
@@ -5905,24 +5895,24 @@ void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/, str
 #else // immerwart
 	const int z=4;
 #endif // immerwart else
-	cout<<"azaehlerdt: "<<azaehlerdt<<endl;
-	zcnfA<<WPcl("aufrufe",&arp,wlong);
-	zcnfA<<WPcl("lDatum",&lap,wdat);
-	zcnfA<<WPcl("tagesaufr",&tap,wlong);
-	zcnfA<<WPcl("monatsaufr",&map,wlong);
-	cout<<"azaehlerdt: "<<azaehlerdt<<endl;
+	ulong ar,ta,ma; struct tm la;
+	if (!arp) arp=&ar;
+	if (!tap) tap=&ta;
+	if (!map) map=&ma;
+	if (!lap) lap=&la;
+	zcnfA<<WPcl("aufrufe",arp,wlong);
+	zcnfA<<WPcl("lDatum",lap,wdat);
+	zcnfA<<WPcl("tagesaufr",tap,wlong);
+	zcnfA<<WPcl("monatsaufr",map,wlong);
 	confdcl zlzn;
-	cout<<"azaehlerdt: "<<azaehlerdt<<endl;
 	zlzn.lies(azaehlerdt,obverb);
-	cout<<"azaehlerdt: "<<azaehlerdt<<endl;
 	zlzn.auswert(&zcnfA);
-	cout<<"azaehlerdt: "<<azaehlerdt<<endl;
-	cout<<"aufrufe: "<<arp<<endl;
 	char buf[30];
-strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", lap);
-  cout<<"lDatum: "<<buf<<endl;
-	cout<<"tagesaufr: "<<*tap<<endl;
-	cout<<"monatsaufr: "<<*map<<endl;
+	strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", lap);
+  cout<<blau<<"lDatum: "<<schwarz<<buf<<endl;
+	cout<<blau<<"tagesaufr: "<<schwarz<<*tap<<endl;
+	cout<<blau<<"monatsaufr: "<<schwarz<<*map<<endl;
+	cout<<blau<<"vor return"<<schwarz<<endl;
 	return;
 	zcnfA.init(z,"aufrufe","lDatum","tagesaufr","monatsaufr"
 #ifdef immerwart

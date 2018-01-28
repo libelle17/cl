@@ -89,7 +89,7 @@ typedef unsigned char uchar; // 1 Byte
 enum binaer:uchar {falsch,wahr};
 enum Sprache {deutsch,englisch,SprachZahl};
 extern const char *const dir;
-extern const char *const tmmoegl[2];
+extern const char *const tmmoegl[];
 //extern const string datei;
 // extern const char *rot, *weinrot, *schwarz, *blau, *gelb; // muss spaeter kompilerunabhaengig
 extern const char *const schwarz, *const dgrau, *const drot, *const rot, *const gruen, *const hgruen, *const braun, *const gelb,
