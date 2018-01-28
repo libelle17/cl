@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "28.01.18" "Version 0.10211" "\fB²DPROG²\fR man page"
+.TH man 1 "28.01.18" "Version 0.10236" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -71,47 +71,67 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+0 zcnfA.zahl: 0
 .br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+1 zcnfA.zahl: 4
 .br
-2 azaehlerdt: /home/schade/cl/cl.zaehl
+auswert() aufrufe vor while, wert: 29
 .br
-3 azaehlerdt: /home/schade/cl/cl.zaehl
+sA->schl[ii].pname: monatsaufr
 .br
-4 azaehlerdt: /home/schade/cl/cl.zaehl
+sA->schl[ii].pname: tagesaufr
 .br
-\fB::::::::: aufrufe: \fB0
+sA->schl[ii].pname: lDatum
 .br
-\fBlDatum: \fR28.01.2018 00.50.40
+sA->schl[ii].pname: aufrufe
 .br
-\fBtagesaufr: \fR0
+\fBsetze!\fR
 .br
-\fBmonatsaufr: \fR0
+nach while
+.br
+auswert() lDatum vor while, wert: 28.01.2018 16.10.06
+.br
+sA->schl[ii].pname: monatsaufr
+.br
+sA->schl[ii].pname: tagesaufr
+.br
+sA->schl[ii].pname: lDatum
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() tagesaufr vor while, wert: 11
+.br
+sA->schl[ii].pname: monatsaufr
+.br
+sA->schl[ii].pname: tagesaufr
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() monatsaufr vor while, wert: 11
+.br
+sA->schl[ii].pname: monatsaufr
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+\fBaufrufe: \fR29
+.br
+\fBletztes Datum: \fR28.01.2018 16.10.06
+.br
+\fBtagesaufr: \fR11
+.br
+\fBmonatsaufr: \fR11
 .br
 \fBvor return\fR
+.br
+Aufrufe: 29
 .br
 Ende getcommandl0
-.br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
-.br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
-.br
-2 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-3 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-4 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-\fB::::::::: aufrufe: \fB0
-.br
-\fBlDatum: \fR28.01.2018 00.50.40
-.br
-\fBtagesaufr: \fR0
-.br
-\fBmonatsaufr: \fR0
-.br
-\fBvor return\fR
 .br
 vor getcommandline
 .br

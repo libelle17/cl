@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "28.01.18" "Version 0.10211" "\fB²DPROG²\fR man page"
+.TH man 1 "28.01.18" "Version 0.10236" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -43,8 +43,6 @@
 .br
 Ende gcl0
 .br
-auswert 0
-.br
 verarbeitkonf(), Zahl: 0
 .br
 \fBoptausg()\fR
@@ -73,183 +71,153 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+0 zcnfA.zahl: 0
 .br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
+1 zcnfA.zahl: 4
 .br
-2 azaehlerdt: /home/schade/cl/cl.zaehl
+auswert() aufrufe vor while, wert: 28
 .br
-3 azaehlerdt: /home/schade/cl/cl.zaehl
+sA->schl[ii].pname: monatsaufr
 .br
-auswert 0
+sA->schl[ii].pname: tagesaufr
 .br
-pname: lDatum, schl[ii].pname: lDatum
+sA->schl[ii].pname: lDatum
 .br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 28.01.18 00:49:30
+sA->schl[ii].pname: aufrufe
 .br
-Datum 2, neuw: 28.01.18 00:49:30, im: 0, tmmoegl[im]: %c
+\fBsetze!\fR
 .br
-Datum 2, neuw: 28.01.18 00:49:30, im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
+in setzstr, mit wlong, neuw: 28, atol(neuw): 28, pptr: 28
 .br
-Datum 2, neuw: 28.01.18 00:49:30, im: 2, tmmoegl[im]: %d.%m.%y
+nach while
 .br
-Datum 3, tm_year: 118, tm_mon: 0, tm_mday: 28, tm_hour: 0, tm_min: 49
+auswert() lDatum vor while, wert: 2018-01-28 16.09.44
 .br
-Ende Setzstr
+sA->schl[ii].pname: monatsaufr
 .br
-pname: tagesaufr, schl[ii].pname: tagesaufr
+sA->schl[ii].pname: tagesaufr
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
+sA->schl[ii].pname: lDatum
 .br
-2
+\fBsetze!\fR
 .br
-Ende Setzstr
+in setzstr, neuw: '2018-01-28 16.09.44' 20.01.1900 00.00.00, im: 0, tmmoegl[im]: %d.%m.%y %H.%M.%S, eakt: 0, emax: 0
 .br
-pname: monatsaufr, schl[ii].pname: monatsaufr
+\fR20.01.1900 00.00.00, im: 1, tmmoegl[im]: %d.%m.%Y %H.%M.%S, eakt: 0, emax: 0
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
+\fR20.01.1900 00.00.00, im: 2, tmmoegl[im]: %d.%m.%y %H:%M:%S, eakt: 0, emax: 0
 .br
-2
+\fR20.01.1900 00.00.00, im: 3, tmmoegl[im]: %d.%m.%Y %H:%M:%S, eakt: 0, emax: 0
 .br
-Ende Setzstr
+\fR20.01.1900 00.00.00, im: 4, tmmoegl[im]: %d.%m.%y %H.%M, eakt: 0, emax: 0
 .br
-pname: lDatum, schl[ii].pname: lDatum
+\fR20.01.1900 00.00.00, im: 5, tmmoegl[im]: %d.%m.%Y %H.%M, eakt: 0, emax: 0
 .br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 
+\fR20.01.1900 00.00.00, im: 6, tmmoegl[im]: %d.%m.%y %H:%M, eakt: 0, emax: 0
 .br
-Datum 2, neuw: , im: 0, tmmoegl[im]: %c
+\fR20.01.1900 00.00.00, im: 7, tmmoegl[im]: %d.%m.%Y %H:%M, eakt: 0, emax: 0
 .br
-Datum 2, neuw: , im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
+\fR20.01.1900 00.00.00, im: 8, tmmoegl[im]: %d.%m.%y, eakt: 0, emax: 0
 .br
-Datum 2, neuw: , im: 2, tmmoegl[im]: %d.%m.%y
+\fR20.01.1900 00.00.00, im: 9, tmmoegl[im]: %d.%m.%Y, eakt: 0, emax: 0
 .br
-Ende Setzstr
+\fR20.01.1900 00.00.00, im: 10, tmmoegl[im]: %d.%m.%y, eakt: 0, emax: 0
 .br
-pname: tagesaufr, schl[ii].pname: tagesaufr
+\fR20.01.1900 00.00.00, im: 11, tmmoegl[im]: %d.%m.%Y, eakt: 0, emax: 0
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+\fR31.01.1900 00.00.00, im: 12, tmmoegl[im]: %m.%y, eakt: 0, emax: 0
 .br
-0
+\fR31.01.1900 00.00.00, im: 13, tmmoegl[im]: %m.%Y, eakt: 0, emax: 0
 .br
-Ende Setzstr
+\fR31.01.1900 00.00.00, im: 14, tmmoegl[im]: %m/%y, eakt: 0, emax: 0
 .br
-pname: monatsaufr, schl[ii].pname: monatsaufr
+\fR31.01.1900 00.00.00, im: 15, tmmoegl[im]: %m/%Y, eakt: 0, emax: 0
 .br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
+\fR31.12.2019 00.00.00, im: 16, tmmoegl[im]: %y-%m-%d %H%M%S, eakt: 0, emax: 0
 .br
-0
+\fR28.01.2018 16.00.00, im: 17, tmmoegl[im]: %Y-%m-%d %H%M%S, eakt: 0, emax: 0
 .br
-Ende Setzstr
+\fR31.12.2019 00.00.00, im: 18, tmmoegl[im]: %y-%m-%d %H%M, eakt: 0, emax: 0
 .br
-4 azaehlerdt: /home/schade/cl/cl.zaehl
+\fR28.01.2018 16.00.00, im: 19, tmmoegl[im]: %Y-%m-%d %H%M, eakt: 0, emax: 0
 .br
-\fB::::::::: aufrufe: \fB10
+\fR31.12.2019 00.00.00, im: 20, tmmoegl[im]: %y-%m-%d %H.%M.%S, eakt: 0, emax: 0
 .br
-\fBlDatum: \fR28.01.2018 00.49.30
+\fR\fB
 .br
-\fBtagesaufr: \fR0
+28.01.2018 16.09.44, im: 21, tmmoegl[im]: %Y-%m-%d %H.%M.%S, eakt: 0x2281513, emax: 0
 .br
-\fBmonatsaufr: \fR0
+\fR31.12.2019 00.00.00, im: 22, tmmoegl[im]: %y-%m-%d %H.%M, eakt: 0, emax: 0x2281513
+.br
+\fR28.01.2018 16.09.00, im: 23, tmmoegl[im]: %Y-%m-%d %H.%M, eakt: 0x2281510, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 24, tmmoegl[im]: %y-%m-%d %H:%M:%S, eakt: 0, emax: 0x2281513
+.br
+\fR28.01.2018 16.00.00, im: 25, tmmoegl[im]: %Y-%m-%d %H:%M:%S, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 26, tmmoegl[im]: %y-%m-%d %H:%M, eakt: 0, emax: 0x2281513
+.br
+\fR28.01.2018 16.00.00, im: 27, tmmoegl[im]: %Y-%m-%d %H:%M, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 28, tmmoegl[im]: %y%m%d %H%M%S, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2017 00.00.00, im: 29, tmmoegl[im]: %Y%m%d %H%M%S, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 30, tmmoegl[im]: %y%m%d %H%M, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2017 00.00.00, im: 31, tmmoegl[im]: %Y%m%d %H%M, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2017 00.00.00, im: 32, tmmoegl[im]: %Y%m%d%H%M%S, eakt: 0, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 33, tmmoegl[im]: %y-%m-%d, eakt: 0, emax: 0x2281513
+.br
+\fR28.01.2018 00.00.00, im: 34, tmmoegl[im]: %Y-%m-%d, eakt: 0x228150a, emax: 0x2281513
+.br
+\fR31.12.2019 00.00.00, im: 35, tmmoegl[im]: %y, eakt: 0x2281502, emax: 0x2281513
+.br
+\fR31.12.2017 00.00.00, im: 36, tmmoegl[im]: %Y, eakt: 0x2281504, emax: 0x2281513
+.br
+\fR31.12.1899 00.00.00, im: 37, tmmoegl[im]: %c, eakt: 0, emax: 0x2281513
+.br
+\fR\fBSieger: 28.01.2018 16.09.44\fR
+.br
+nach while
+.br
+auswert() tagesaufr vor while, wert: 10
+.br
+sA->schl[ii].pname: monatsaufr
+.br
+sA->schl[ii].pname: tagesaufr
+.br
+\fBsetze!\fR
+.br
+in setzstr, mit wlong, neuw: 10, atol(neuw): 10, pptr: 10
+.br
+nach while
+.br
+auswert() monatsaufr vor while, wert: 10
+.br
+sA->schl[ii].pname: monatsaufr
+.br
+\fBsetze!\fR
+.br
+in setzstr, mit wlong, neuw: 10, atol(neuw): 10, pptr: 10
+.br
+nach while
+.br
+\fBaufrufe: \fR28
+.br
+\fBletztes Datum: \fR28.01.2018 16.09.44
+.br
+\fBtagesaufr: \fR10
+.br
+\fBmonatsaufr: \fR10
 .br
 \fBvor return\fR
+.br
+Aufrufe: 28
 .br
 Ende getcommandl0
-.br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
-.br
-\fBazaehlerdt: \fR/home/schade/cl/cl.zaehl
-.br
-2 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-3 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-auswert 0
-.br
-pname: aufrufe, schl[ii].pname: aufrufe
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 340
-.br
-340
-.br
-Ende Setzstr
-.br
-pname: lDatum, schl[ii].pname: lDatum
-.br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 28.01.18 00:49:30
-.br
-Datum 2, neuw: 28.01.18 00:49:30, im: 0, tmmoegl[im]: %c
-.br
-Datum 2, neuw: 28.01.18 00:49:30, im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
-.br
-Datum 2, neuw: 28.01.18 00:49:30, im: 2, tmmoegl[im]: %d.%m.%y
-.br
-Datum 3, tm_year: 118, tm_mon: 0, tm_mday: 28, tm_hour: 0, tm_min: 49
-.br
-Ende Setzstr
-.br
-pname: tagesaufr, schl[ii].pname: tagesaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
-.br
-2
-.br
-Ende Setzstr
-.br
-pname: monatsaufr, schl[ii].pname: monatsaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 2
-.br
-2
-.br
-Ende Setzstr
-.br
-pname: aufrufe, schl[ii].pname: aufrufe
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
-.br
-0
-.br
-Ende Setzstr
-.br
-pname: lDatum, schl[ii].pname: lDatum
-.br
-hier Setzstr richtig, wart==wdat: 1, (int)wart: 3, neuw: 
-.br
-Datum 2, neuw: , im: 0, tmmoegl[im]: %c
-.br
-Datum 2, neuw: , im: 1, tmmoegl[im]: %d.%m.%y %H:%M:%S
-.br
-Datum 2, neuw: , im: 2, tmmoegl[im]: %d.%m.%y
-.br
-Ende Setzstr
-.br
-pname: tagesaufr, schl[ii].pname: tagesaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
-.br
-0
-.br
-Ende Setzstr
-.br
-pname: monatsaufr, schl[ii].pname: monatsaufr
-.br
-hier Setzstr richtig, wart==wdat: 0, (int)wart: 0, neuw: 
-.br
-0
-.br
-Ende Setzstr
-.br
-4 azaehlerdt: /home/schade/cl/cl.zaehl
-.br
-\fB::::::::: aufrufe: \fB0
-.br
-\fBlDatum: \fR28.01.2018 00.49.30
-.br
-\fBtagesaufr: \fR0
-.br
-\fBmonatsaufr: \fR0
-.br
-\fBvor return\fR
 .br
 vor getcommandline
 .br

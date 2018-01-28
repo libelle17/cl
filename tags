@@ -698,6 +698,7 @@ hole	kons.h	/^template <> inline void WPcl::hole < binaer > (binaer *var) { *var
 hole	kons.h	/^template <> inline void WPcl::hole < char* > (char** var) {*var = (char*)wert.c_str(); }$/;"	f	class:WPcl
 hole	kons.h	/^template <> inline void WPcl::hole < const char* > (const char** var) {*var = wert.c_str(); }$/;"	f	class:WPcl
 hole	kons.h	/^template <> inline void WPcl::hole < string > (string *var) {*var = wert; }$/;"	f	class:WPcl
+holstr	kons.cpp	/^string WPcl::holstr()$/;"	f	class:WPcl
 holsystemsprache	kons.cpp	/^string holsystemsprache(int obverb\/*=0*\/)$/;"	f
 holvomnetz	kons.cpp	/^int hcl::holvomnetz(const string& datei,const string& vors\/*=defvors*\/,const string& nachs\/*=defnachs*\/)$/;"	f	class:hcl
 host	DB.h	/^    const string host;$/;"	m	class:DB
@@ -862,7 +863,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	957;"	d
+obfstream	kons.h	959;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
@@ -1117,9 +1118,10 @@ tbname	DB.h	/^    const string tbname;$/;"	m	class:Tabelle
 tbupd	DB.cpp	/^void RS::tbupd(const string& utab, vector< instyp > einf,int obverb, const string& bedingung,const size_t aktc\/*=0*\/,uchar asy\/*=0*\/) $/;"	f	class:RS
 tende	kons.h	/^    double tstart, tende;$/;"	m	class:hcl
 tflag	kons.h	/^    int tflag;$/;"	m	class:elem3
+thr_strftime	kons.cpp	/^size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format\/*="%d.%m.%Y %H.%M.%S"*\/)$/;"	f
 tiffmark	kons.cpp	/^const string tiffmark="\/usr\/local\/sclibtiff";$/;"	v
 timemutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-tmmoegl	kons.cpp	/^const char *const tmmoegl[2]={"%d.%m.%y","%c"}; \/\/ Moeglichkeiten fuer strptime$/;"	v
+tmmoegl	kons.cpp	/^const char *const tmmoegl[]={"%c","%d.%m.%y %H.%M.%S","%d.%m.%Y %H.%M.%S","%d.%m.%Y %H:%M:%S","%d.%m.%Y","%F","%F %T" ,"%d.%m.%Y %H.%M","%d.%m.%Y %H:%M" }; \/\/ Moeglichkeiten fuer strptime$/;"	v
 tmpcron	kons.h	/^		string tmpcron; \/\/ fuer crontab$/;"	m	class:hcl
 tmtosql	DB.cpp	/^char* DB::tmtosql(tm *tmh,char* buf) $/;"	f	class:DB
 tmtosqlmZ	DB.cpp	/^char* DB::tmtosqlmZ(tm *tmh,char* buf) $/;"	f	class:DB
@@ -1141,7 +1143,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6073;"	d	file:
+uebersichtlich	kons.cpp	6117;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1216,7 +1218,8 @@ zp1	kons.h	/^ clock_t zp0, zp1, zp1alt;$/;"	m	class:perfcl
 zp1alt	kons.h	/^ clock_t zp0, zp1, zp1alt;$/;"	m	class:perfcl
 zptr	kons.h	/^    string *zptr=0; \/\/ Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)$/;"	m	class:optioncl
 zt	kons.h	/^		const time_t zt;$/;"	m	class:ztacl
-ztacl	kons.h	/^		explicit ztacl(time_t &pzt,const char* pfmt):zt(pzt),fmt(pfmt) {$/;"	f	class:ztacl
+ztacl	kons.h	/^		explicit ztacl(struct tm *tm,const char* pfmt="%d.%m.%Y %H.%M.%S"):zt(mktime(tm)),fmt(pfmt) { }$/;"	f	class:ztacl
+ztacl	kons.h	/^		explicit ztacl(time_t &pzt,const char* pfmt="%d.%m.%Y %H.%M.%S"):zt(pzt),fmt(pfmt) { }$/;"	f	class:ztacl
 ztacl	kons.h	/^class ztacl {$/;"	c
 zuloeschen	kons.h	/^  int zuloeschen=1;$/;"	m	class:find2cl
 zustr	kons.h	/^inline string zustr(int _Val) $/;"	f

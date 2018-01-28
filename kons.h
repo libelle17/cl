@@ -134,6 +134,7 @@ enum {
 #define caus cout // nur zum Debuggen
 #define exitt exit // fuer threads
 extern pthread_mutex_t getmutex, printf_mutex, timemutex;
+size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format="%d.%m.%Y %H.%M.%S");
 extern const string devtty;
 
 typedef unsigned long long ull;
@@ -455,8 +456,8 @@ class ztacl {
 		const time_t zt;
 		const char* fmt;
 	public:
-		explicit ztacl(time_t &pzt,const char* pfmt):zt(pzt),fmt(pfmt) {
-		}
+		explicit ztacl(time_t &pzt,const char* pfmt="%d.%m.%Y %H.%M.%S"):zt(pzt),fmt(pfmt) { }
+		explicit ztacl(struct tm *tm,const char* pfmt="%d.%m.%Y %H.%M.%S"):zt(mktime(tm)),fmt(pfmt) { }
 		std::ostream &operator()(std::ostream& out) const;
 }; // ztacl
 ostream &operator<<(ostream &out,ztacl ztaus);
@@ -606,7 +607,8 @@ class WPcl { // Wertepaarklasse
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
 		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
-//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
+		string holstr();
+		//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
     template <typename T> void setze(T *var) { wert=ltoan(*var); }
 //    template <typename T> void setze(T *var,string& bem) { wert=ltoan(*var); bemerk=bem;}

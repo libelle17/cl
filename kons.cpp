@@ -16,7 +16,20 @@ const char *const dir = "dir ";
 #elif linux
 const char *const dir = "ls -l ";
 #endif
-const char *const tmmoegl[]={"%c","%d.%m.%y %H:%M:%S","%d.%m.%y"}; // Moeglichkeiten fuer strptime
+const char *const tmmoegl[]={
+	"%d.%m.%y %H.%M.%S","%d.%m.%Y %H.%M.%S","%d.%m.%y %H:%M:%S","%d.%m.%Y %H:%M:%S",
+	"%d.%m.%y %H.%M","%d.%m.%Y %H.%M","%d.%m.%y %H:%M","%d.%m.%Y %H:%M",
+	"%d.%m.%y","%d.%m.%Y","%d.%m.%y","%d.%m.%Y",
+	"%m.%y","%m.%Y","%m/%y","%m/%Y",
+	"%y-%m-%d %H%M%S","%Y-%m-%d %H%M%S","%y-%m-%d %H%M","%Y-%m-%d %H%M",
+	"%y-%m-%d %H.%M.%S","%Y-%m-%d %H.%M.%S","%y-%m-%d %H.%M","%Y-%m-%d %H.%M",
+	"%y-%m-%d %H:%M:%S","%Y-%m-%d %H:%M:%S","%y-%m-%d %H:%M","%Y-%m-%d %H:%M",
+	"%y%m%d %H%M%S","%Y%m%d %H%M%S","%y%m%d %H%M","%Y%m%d %H%M",
+	"%Y%m%d%H%M%S",
+	"%y-%m-%d","%Y-%m-%d",
+	"%y","%Y",
+	"%c"
+	}; // Moeglichkeiten fuer strptime
 // zum Schutz statischer Speicherbereiche vor gleichzeitigem Zugriff durch mehrere Programmfäden
 pthread_mutex_t printf_mutex, getmutex, timemutex;
 
@@ -1933,8 +1946,11 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 					gtrim(&wert);
 					anfzweg(wert);
           size_t ii=sA->schl.size();
-          while(--ii) {
+					caus<<"auswert() "<<pname<<" vor while, wert: "<<wert<<endl;
+          while(ii--) {
+						caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
+							caus<<blau<<"setze!"<<schwarz<<endl;
 							sA->schl[ii].setzstr(wert.c_str(),ibemerk,/*woher=*/2);
 							++richtige;
 							ibemerk.clear();
@@ -1945,6 +1961,7 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 							 Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+sA->schl[ii].pname+rot+Txk[T_nicht_gefunden],obverb+1);
 						 */
 					} // while( ii-- ) 
+					caus<<"nach while"<<endl;
 				} // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
 			} // if (!zeile->empty()) 
 		} // for(size_t i=0;i<zn.size();i++) 
@@ -2203,8 +2220,9 @@ template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,siz
 template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)
 {
   for (size_t i = 0;i<schl.size();i++) {
+		caus<<"i: "<<i<<endl;
     if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
-    *f<<schl[i].pname<<" = \""<<schl[i].wert<<"\""<<endl;
+    *f<<schl[i].pname<<" = \""<<schl[i].holstr()<<"\""<<endl;
   } //   for (size_t i = 0;i<zahl;i++)
 } // void schAcl::aschreib(mdatei *f)
 
@@ -4817,19 +4835,15 @@ int find3cl::ausgeb()
 			printf("-------");
 		else
 			printf(" %7jd",(intmax_t) jt->sb.st_size);
-		pthread_mutex_lock(&timemutex);
 		struct tm *tp=localtime(&jt->sb.st_mtime);
-		char buf[80];
-		strftime(buf, sizeof buf,"%F %X",tp);
-		pthread_mutex_unlock(&timemutex);
+		string zeit;
+		thr_strftime(tp,&zeit,"%F %X");
 		//        printf(" %s %-40s %5d %s",buf, jt->pfad.c_str(), jt->ftw.base, jt->pfad.c_str()+jt->ftw.base);
-		printf(" %s %-40s",buf, jt->pfad.c_str());
+		printf(" %s %-40s",zeit.c_str(), jt->pfad.c_str());
 		if (jt->tflag==FTW_SL) {
-			pthread_mutex_lock(&timemutex);
 			tp=localtime(&jt->lst.st_mtime);
-			strftime(buf, sizeof buf,"%F %X",tp);
-			pthread_mutex_unlock(&timemutex);
-			printf(" %s %s %s",folge&Fol_Dat?"<-":"->",buf,jt->lnk.c_str());
+			thr_strftime(tp,&zeit,"%F %X");
+			printf(" %s %s %s",folge&Fol_Dat?"<-":"->",zeit.c_str(),jt->lnk.c_str());
 		}
 		printf("\n");
 	} //       for(set<elem3>::iterator jt=erg.begin();jt!=erg.end();jt++)
@@ -5264,28 +5278,75 @@ void optcl::reset()
 
 int WPcl::setzstr(const char* neuw,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
-	struct tm tmp={0},tmmax={0};
+	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
-	switch (wart) {
-		case wlong: 
-			if (pptr) *(long*)pptr=atol(neuw); 
-			gelesen=1; 
-			break;
-		case wbin: if (pptr) *(binaer*)pptr=(binaer)atoi(neuw); gelesen=1; break;
-		case wstr: if (pptr) *(string*)pptr=string(neuw); gelesen=1; break;
-		case wdat: 
-								 for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
-									 eakt=strptime(neuw, tmmoegl[im], &tmp);
-									 if (eakt>emax) { memcpy(&tmmax,&tmp,sizeof tmp); emax=eakt; }
-								 }
-								 if (emax) {
-									 if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
-								 }
-								 break;
-		default: break;
-	}
+	// caus<<"in setzstr(), ";
+	if (pptr) {
+		switch (wart) {
+			case wlong: 
+				*(long*)pptr=atol(neuw); 
+				// caus<<"mit wlong, neuw: "<<neuw<<", atol(neuw): "<<atol(neuw)<<", pptr: "<<*(long*)pptr<<endl;
+				break;
+			case wbin:
+				*(binaer*)pptr=(binaer)atoi(neuw); break;
+			case wstr: 
+				*(string*)pptr=string(neuw); break;
+			case wdat:  
+				// caus<<"neuw: '"<<neuw<<"' ";
+				for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
+					memcpy(&tmp,&neu,sizeof tmp);
+					eakt=strptime(neuw, tmmoegl[im], &tmp);
+					// if (eakt>emax) caus<<blau<<endl;
+					// caus<<ztacl(&tmp)<<", im: "<<im<<", tmmoegl[im]: "<<tmmoegl[im]<<", eakt: "<<(void*)eakt<<", emax: "<<(void*)emax<<endl<<schwarz;
+					if (eakt>emax) { memcpy(&tmmax,&tmp,sizeof tmp); emax=eakt; }
+				}
+				if (emax) {
+					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
+					if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+				}
+				break;
+			default: break;
+		} // 		switch (wart) 
+	} // 	if (pptr)
+	gelesen=1;
 	return gelesen;
 } // void WPcl::hole (struct tm *tmp)
+
+size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format/*="%d.%m.%Y %H.%M.%S"*/)
+{
+	size_t erg=0;
+	char buf[30];
+	pthread_mutex_lock(&timemutex);
+	erg=strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", timeptr);
+	*ziel=string(buf);
+	pthread_mutex_unlock(&timemutex);
+  return erg;
+} // size_t thr_strftime(const char* format,const stuct tm* timeptr)
+
+
+string WPcl::holstr()
+{
+	string rstr;
+ if (pptr) {
+	 stringstream stf;
+	 switch (wart) {
+		 case wlong:
+			 rstr=ltoan(*(long*)pptr);
+			 break;
+		 case wbin:
+			 rstr=ltoan(*(binaer*)pptr);
+			 break;
+		 case wstr:
+			 rstr=*(string*)pptr;
+			 break;
+		 case wdat:
+			 stf<<put_time((struct tm*)pptr,"%c");
+			 stf<<ztacl((struct tm*)pptr,"%c");
+			 thr_strftime((struct tm*)pptr,&rstr);
+	 }
+ }
+ return rstr;
+} // string WPcl::holstr()
 
 
 // weist einer Option einen c-String zu
@@ -5895,24 +5956,29 @@ void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/, str
 #else // immerwart
 	const int z=4;
 #endif // immerwart else
-	ulong ar,ta,ma; struct tm la;
-	if (!arp) arp=&ar;
-	if (!tap) tap=&ta;
-	if (!map) map=&ma;
-	if (!lap) lap=&la;
+//	ulong ar,ta,ma; struct tm la;
+//	if (!arp) arp=&ar;
+//	if (!tap) tap=&ta;
+//	if (!map) map=&ma;
+//	if (!lap) lap=&la;
+	caus<<"0 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	zcnfA<<WPcl("aufrufe",arp,wlong);
 	zcnfA<<WPcl("lDatum",lap,wdat);
 	zcnfA<<WPcl("tagesaufr",tap,wlong);
 	zcnfA<<WPcl("monatsaufr",map,wlong);
+	caus<<"1 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	confdcl zlzn;
 	zlzn.lies(azaehlerdt,obverb);
 	zlzn.auswert(&zcnfA);
-	char buf[30];
-	strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", lap);
-  cout<<blau<<"lDatum: "<<schwarz<<buf<<endl;
-	cout<<blau<<"tagesaufr: "<<schwarz<<*tap<<endl;
-	cout<<blau<<"monatsaufr: "<<schwarz<<*map<<endl;
-	cout<<blau<<"vor return"<<schwarz<<endl;
+	if (arp) caus<<blau<<"aufrufe: "<<schwarz<<*arp<<endl;
+	if (lap) {
+		string ldat;
+		thr_strftime(lap,&ldat);
+		caus<<blau<<"letztes Datum: "<<schwarz<<ldat<<endl;
+	}
+	if (tap) caus<<blau<<"tagesaufr: "<<schwarz<<*tap<<endl;
+	if (map) caus<<blau<<"monatsaufr: "<<schwarz<<*map<<endl;
+	caus<<blau<<"vor return"<<schwarz<<endl;
 	return;
 	zcnfA.init(z,"aufrufe","lDatum","tagesaufr","monatsaufr"
 #ifdef immerwart
@@ -5950,6 +6016,7 @@ void hcl::setzzaehler()
 	}
 	zcnfA[1].setze(&heute);
 	pthread_mutex_unlock(&timemutex);
+  memcpy(&laufrtag,&heute,sizeof laufrtag);
 	tagesaufr++;
 	zcnfA[2].setze(&tagesaufr);
 	monatsaufr++;

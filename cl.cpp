@@ -310,7 +310,8 @@ void hhcl::getcommandl0()
 	hcl::lieskonfein(DPROG);
 	hcl::verarbeitkonf();
 	optausg(gruen);
-	lieszaehlerein();
+	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
+	caus<<"Aufrufe: "<<aufrufe<<endl;
 	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 
@@ -594,7 +595,6 @@ int main(int argc,char** argv)
 	} else {
 //		hhi.lieskonfein(DPROG);
 	} // if (hhi.obhilfe==3)
-	hhi.lieszaehlerein(&hhi.aufrufe,&hhi.tagesaufr,&hhi.monatsaufr,&hhi.laufrtag);
 	caus<<"vor getcommandline"<<endl;
 	if (hhi.getcommandline()) 
 		exit(8); // Hilfe angezeigt
@@ -615,11 +615,13 @@ int main(int argc,char** argv)
 	} // 	if (!hhi.keineverarbeitung) //α
 
 	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
+	caus<<"5 zcnfA.zahl: "<<hhi.zcnfA.size()<<endl;
 	if (!hhi.keineverarbeitung) {
 		hhi.zeigueberschrift(); //ω
 		hhi.setzzaehler(); //α
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
+	return 0;
 
 	hhi.autokonfschreib();
 	hhi.update(DPROG);
