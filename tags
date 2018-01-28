@@ -3,7 +3,7 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	Development	//
+!_TAG_PROGRAM_VERSION	5.8	//
 Abfrage	DB.h	/^      int Abfrage(sT psql,const size_t aktc\/*=0*\/,int obverb=0,uchar asy=0,int oblog=0,string *idp=0,my_ulonglong *arowsp=0){$/;"	f	class:RS
 Abschn_auswert	kons.cpp	/^void confdat::Abschn_auswert(int obverb, const char tz)$/;"	f	class:confdat
 B_Alle	kons.h	123;"	d
@@ -425,18 +425,18 @@ XOR	kons.cpp	/^string XOR(const string& value, const string& key)$/;"	f
 ZDB	cl.cpp	/^uchar ZDB=0; \/\/ fuer Zusatz-Debugging (SQL): ZDB 1, sonst: 0$/;"	v
 _CRT_SECURE_NO_WARNINGS	DB.h	2;"	d
 _CRT_SECURE_NO_WARNINGS	kons.h	2;"	d
-_access	kons.cpp	32;"	d	file:
+_access	kons.cpp	45;"	d	file:
 _blau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_blau	kons.h	/^inline std::ostream& _blau(std::ostream &s){$/;"	f	class:std
+_blau	kons.h	/^inline std::ostream& _blau(std::ostream &s){$/;"	f
 _drot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_drot	kons.h	/^inline std::ostream& _drot(std::ostream &s){$/;"	f	class:std
+_drot	kons.h	/^inline std::ostream& _drot(std::ostream &s){$/;"	f
 _gelb	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_gelb	kons.h	/^inline std::ostream& _gelb(std::ostream &s){$/;"	f	class:std
+_gelb	kons.h	/^inline std::ostream& _gelb(std::ostream &s){$/;"	f
 _hgrau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _rot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_rot	kons.h	/^inline std::ostream& _rot(std::ostream &s){$/;"	f	class:std
+_rot	kons.h	/^inline std::ostream& _rot(std::ostream &s){$/;"	f
 _schwarz	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_schwarz	kons.h	/^inline std::ostream& _schwarz(std::ostream &s){$/;"	f	class:std
+_schwarz	kons.h	/^inline std::ostream& _schwarz(std::ostream &s){$/;"	f
 _tuerkis	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 abSchl	kons.h	/^   abSchl(string& vname, string& vwert):pname(vname),wert(vwert) {}$/;"	f	class:abSchl
 abSchl	kons.h	/^class abSchl {$/;"	c
@@ -482,7 +482,6 @@ bemerkung	kons.h	/^    string bemerkung;$/;"	m	class:optioncl
 bemerkung	kons.h	/^    string bemerkung;$/;"	m	struct:optcl
 benutzer	kons.h	/^		vector<string> benutzer; \/\/ Benutzer aus \/etc\/passwd, bearbeitet durch setzbenutzer(&user)$/;"	m	class:hcl
 betroffen	DB.h	/^		char **betroffen=0; \/\/ fuer Abfrage in postgres$/;"	m	class:RS
-binaer	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	g
 blau	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 blau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 blaus	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
@@ -543,7 +542,7 @@ dbp	DB.h	/^		const DB* dbp;$/;"	m	class:Tabelle
 dbp	DB.h	/^    const DB* dbp;$/;"	m	class:RS
 dbq	cl.h	/^	string dbq="faxe"; \/\/ Datenbank$/;"	m	class:hhcl
 dbsv	DB.h	/^    servc *dbsv=0;$/;"	m	class:DB
-deb	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+deb	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 defa	DB.h	/^    string defa;$/;"	m	class:Feld
 defmycharset	DB.cpp	/^const string DB::defmycharset="utf8";$/;"	m	class:DB	file:
 defmycharset	DB.h	/^		static const string defmycharset;$/;"	m	class:DB
@@ -555,7 +554,7 @@ defmyrowform	DB.cpp	/^const string DB::defmyrowform="DYNAMIC";$/;"	m	class:DB	fi
 defmyrowform	DB.h	/^		static const string defmyrowform;$/;"	m	class:DB
 defnachs	kons.cpp	/^const string& defnachs="\/archive\/master.tar.gz";$/;"	v
 defvors	kons.cpp	/^const string& defvors="https:\/\/github.com\/"+gitv+"\/";$/;"	v
-dent	kons.h	/^  struct dirent *dent;$/;"	m	class:find2cl	typeref:struct:find2cl::
+dent	kons.h	/^  struct dirent *dent;$/;"	m	class:find2cl	typeref:struct:find2cl::dirent
 deutsch	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	e	enum:Sprache
 dev	kons.h	/^ string dev; \/\/ Anhaengsel fuer die development-Versionen ("-dev" oder "-devel")$/;"	m	class:linst_cl
 devtty	kons.cpp	/^const string devtty=" >\/dev\/tty";$/;"	v
@@ -624,8 +623,8 @@ ersetzeprog	kons.cpp	/^const string linst_cl::ersetzeprog(const string& prog) co
 erweitern	DB.cpp	/^void DB::erweitern(const string& tabs, vector<instyp> einf,const size_t aktc,int obverb,uchar obsammeln, const unsigned long *maxl) const$/;"	f	class:DB
 exitp	DB.cpp	5;"	d	file:
 exitt	kons.h	135;"	d
-falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
-fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:uchar
+fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 fehler	DB.h	/^    string fehler;$/;"	m	class:RS
 fehler	kons.h	/^    int fehler=0; \/\/ Exit-Code der Exe-Datei$/;"	m	class:servc
 fehnr	DB.h	/^    unsigned int fehnr;$/;"	m	class:DB
@@ -675,7 +674,7 @@ groupdt	kons.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
 groupdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
 gruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 gruens	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f	class:std
+gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f
 hccd	kons.h	/^		confdcl hccd;$/;"	m	class:hcl
 hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
 hcl	kons.h	/^class hcl$/;"	c
@@ -797,10 +796,9 @@ lst	kons.h	/^    const struct stat lst={0};$/;"	m	class:elem3	typeref:struct:ele
 lstat	kons.h	60;"	d
 lsys	kons.cpp	/^class lsyscl lsys;$/;"	v	typeref:class:lsyscl
 lsyscl	kons.h	/^class lsyscl$/;"	c
-lsysen	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
 ltoa_	kons.cpp	/^char* ltoa_(long value, char* result, int base=10) $/;"	f
 ltoan	kons.cpp	/^string ltoan(long value, int base\/*=10*\/, uchar obtz\/*=0*\/, uchar minstel\/*=0*\/) $/;"	f
-ltrim	kons.h	/^inline std::string *ltrim(std::string *str) {$/;"	f	class:std
+ltrim	kons.h	/^inline std::string *ltrim(std::string *str) {$/;"	f
 m_color	kons.h	/^  WORD m_color;$/;"	m	struct:color
 mab	kons.h	/^    time_t mab,mbis;$/;"	m	class:find3cl
 mabp	kons.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
@@ -905,7 +903,7 @@ operator ()	kons.cpp	/^ostream &ztacl::operator()(std::ostream& out) const {$/;"
 operator <	kons.cpp	/^const bool elem2::operator<(const elem2& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem2
 operator <	kons.cpp	/^const bool elem3::operator<(const elem3& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem3
 operator <	kons.cpp	/^const bool wele::operator<(const wele& el) const {return (this->pfad<el.pfad);}$/;"	f	class:wele
-operator <<	kons.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f	class:std
+operator <<	kons.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f
 operator <<	kons.cpp	/^ostream &operator<<(ostream &out,ztacl ztaus) {$/;"	f
 operator <<	kons.h	/^    inline svec& operator<<(const std::string& str) {$/;"	f	class:svec
 operator <<	kons.h	/^    inline tsvec<T>& operator<<(const T& str) {$/;"	f	class:tsvec
@@ -932,9 +930,8 @@ p2	cl.h	/^	int p2;$/;"	m	class:hhcl
 p3	cl.h	/^	string p3;$/;"	m	class:hhcl
 p3cpf	kons.h	/^ string p3cpf; \/\/ Pfad zu python3-config$/;"	m	class:linst_cl
 pac	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
-par_t	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 passwd	DB.h	/^    string passwd; \/\/ kann in pruefrpw dem eingegebenen rootpw gleichgesetz werden, deshalb nicht const$/;"	m	class:DB
-passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::
+passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::passwd
 passwddt	kons.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
 passwddt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
 pconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
@@ -943,14 +940,14 @@ perfcl	kons.h	/^class perfcl$/;"	c
 pfad	kons.h	/^    const string pfad;$/;"	m	class:wele
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem2
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem3
-pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pfile	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pid	kons.h	/^ pid_t pid;$/;"	m	class:pidcl
 pidcl	kons.h	/^ pidcl(const pid_t pid,const string& name):pid(pid),name(name){}$/;"	f	class:pidcl
 pidcl	kons.h	/^class pidcl$/;"	c
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
-pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pmconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
 pname	kons.h	/^		string pname; \/\/ Name des Konfigurationsparameters$/;"	m	struct:optcl
 pname	kons.h	/^    const char *pname; \/\/ Name des Konfigurationsparameters$/;"	m	class:optioncl
@@ -981,9 +978,9 @@ pruefsamba	kons.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,cons
 prueftab	DB.cpp	/^int Tabelle::prueftab(const size_t aktc,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f	class:Tabelle
 prueftif	kons.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
 pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
-psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
-puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
-pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:par_t
+psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
+puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
+pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 pwk	cl.cpp	/^const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; \/\/ fuer Antlitzaenderung$/;"	v
 pzuweis	kons.cpp	/^int optcl::pzuweis(const char *nacstr, const uchar vgegenteil\/*=0*\/, const uchar vnichtspeichern\/*=0*\/)$/;"	f	class:optcl
 reduzierlibtiff	kons.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
@@ -1007,7 +1004,7 @@ rottxt	kons.h	/^    const string *rottxt=0; \/\/ ggf rot zu markierender Text zw
 rottxt	kons.h	/^    string *rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	struct:optcl
 row	DB.h	/^    MYSQL_ROW row;$/;"	m	class:RS
 rowformat	DB.h	/^    const string rowformat;$/;"	m	class:Tabelle
-rtrim	kons.h	/^inline std::string *rtrim(std::string *str) {$/;"	f	class:std
+rtrim	kons.h	/^inline std::string *rtrim(std::string *str) {$/;"	f
 rtrim	kons.h	/^inline void rtrim(char* str,size_t size) {$/;"	f
 rueckfragen	cl.cpp	/^void hhcl::rueckfragen()$/;"	f	class:hhcl
 rzf	kons.h	/^    uchar rzf=0; \/\/ rueckzufragen$/;"	m	class:hcl
@@ -1101,7 +1098,7 @@ suche	kons.cpp	/^const string& absch::suche(const string& sname)$/;"	f	class:abs
 sudc	kons.cpp	/^const string sudc=(cus.cuid?"sudo ":nix);$/;"	v
 sudoersdt	kons.cpp	/^			hcl::sudoersdt="\/etc\/sudoers";$/;"	m	class:hcl	file:
 sudoersdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
-sus	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+sus	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 svec	kons.h	/^class svec: public vector<std::string>$/;"	c
 svf0	kons.h	/^		int svf0=-1; \/\/ Einstellung nach erstem Ablauf von obsvfeh$/;"	m	class:servc
 svfeh	kons.h	/^    int svfeh=-1; \/\/ Ausgangseinstellung$/;"	m	class:servc
@@ -1121,7 +1118,7 @@ tflag	kons.h	/^    int tflag;$/;"	m	class:elem3
 thr_strftime	kons.cpp	/^size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format\/*="%d.%m.%Y %H.%M.%S"*\/)$/;"	f
 tiffmark	kons.cpp	/^const string tiffmark="\/usr\/local\/sclibtiff";$/;"	v
 timemutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-tmmoegl	kons.cpp	/^const char *const tmmoegl[]={"%c","%d.%m.%y %H.%M.%S","%d.%m.%Y %H.%M.%S","%d.%m.%Y %H:%M:%S","%d.%m.%Y","%F","%F %T" ,"%d.%m.%Y %H.%M","%d.%m.%Y %H:%M" }; \/\/ Moeglichkeiten fuer strptime$/;"	v
+tmmoegl	kons.cpp	/^const char *const tmmoegl[]={$/;"	v
 tmpcron	kons.h	/^		string tmpcron; \/\/ fuer crontab$/;"	m	class:hcl
 tmtosql	DB.cpp	/^char* DB::tmtosql(tm *tmh,char* buf) $/;"	f	class:DB
 tmtosqlmZ	DB.cpp	/^char* DB::tmtosqlmZ(tm *tmh,char* buf) $/;"	f	class:DB
@@ -1141,9 +1138,13 @@ typbit	kons.h	/^    int typbit;$/;"	m	class:find3cl
 typbitp	kons.cpp	/^int *find3cl::typbitp;$/;"	m	class:find3cl	file:
 typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
+uchar	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	g
+uchar	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
+uchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
+uchar	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6117;"	d	file:
+uebersichtlich	kons.cpp	6130;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1156,9 +1157,9 @@ urp	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instpr
 usedb	DB.cpp	/^int DB::usedb(const string& db,const size_t aktc\/*=0*\/)$/;"	f	class:DB
 user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
-usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
+usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1115;"	d	file:
+vagenau	kons.cpp	1128;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
@@ -1177,13 +1178,12 @@ vtz	kons.h	26;"	d
 vtzs	kons.h	24;"	d
 vtzs	kons.h	27;"	d
 vznp	kons.h	/^  set<string> *vznp=0; $/;"	m	class:find2cl
-wahr	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
+wahr	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:uchar
 wait	kons.cpp	/^inline void wait () $/;"	f
-war_t	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 wart	kons.h	/^		war_t wart;$/;"	m	class:WPcl
 wartaufpids	kons.cpp	/^int wartaufpids(pidvec *pidv,const ulong runden\/*=0*\/,const int obverb\/*=0*\/,const int oblog\/*=0*\/,const string& wo\/*=nix*\/)$/;"	f
-wbin	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
-wdat	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
+wbin	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
+wdat	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 weisezu	DB.cpp	/^void RS::weisezu(const DB* pdb) $/;"	f	class:RS
 weiss	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 weiszu	kons.cpp	/^void find2cl::weiszu()$/;"	f	class:find2cl
@@ -1195,9 +1195,9 @@ wert	kons.h	/^    string wert;$/;"	m	class:WPcl
 wert	kons.h	/^   string wert;$/;"	m	class:abSchl
 wi	kons.h	/^		const uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	struct:optcl
 wi	kons.h	/^		uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	class:optioncl
-wlong	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
+wlong	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 woher	kons.h	/^		uchar woher=0; \/\/ 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt$/;"	m	struct:optcl
-wstr	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
+wstr	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:uchar
 wurz	kons.h	/^    set<wele> wurz,fertige;$/;"	m	class:find3cl
 wurzp	kons.cpp	/^set<wele> *find3cl::wurzp;$/;"	m	class:find3cl	file:
 wurzp	kons.h	/^    static set<wele> *wurzp;$/;"	m	class:find3cl

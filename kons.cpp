@@ -146,6 +146,8 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
   {"' nicht gefunden, soll ich es erstellen (","' not found, shall I create it ("},
   // T_Fehlender_Parameter_string_zu
   {"Fehlender Parameter <string> zu -","Missing Parameter <string> after -"},
+	// T_Fehlender_Parameter_Datum_zu
+  {"Fehlender Parameter <datum> zu -","Missing Parameter <date> after -"},
   // T_oder
   {" oder --"," or --"},
   // T_Fehler_Parameter
@@ -507,6 +509,12 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	// T_Optionen_die_in_der_Konfigurationsdatei_gespeichert_werden,
 	{"Optionen z.Speich. i.Konfigur'datei (vorausg. '1'=doch nicht speichern, 'no'=Gegenteil, z.B. '-noocra','-1noocri'):",
 		"Options to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):"},
+	// T_autokonfschreib
+	{"autokonfschreib()","autoconfwrite()"},
+	// T_zu_schreiben
+	{"zu schreiben: ","must write: "},
+	// T_schreibe_Konfiguration
+	{"schreibe Konfiguration!","writing configuration!"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -2126,8 +2134,13 @@ WPcl::WPcl(const string& pname,const string& wert):pname(pname),wert(wert)
 	 initd(sarr,vzahl);
 	 } // void schAcl:init
  */
+
+template <> void schAcl<optcl>::init(size_t vzahl, ...)
+{
+} // void schAcl::init(size_t vzahl, ...)
+
 // wird benoetigt in: holsystemsprache(), lieszaehlerein()  
-template<class SCL> void schAcl<SCL>::init(size_t vzahl, ...)
+template <> void schAcl<WPcl>::init(size_t vzahl, ...)
 {
 	va_list list;
 	va_start(list,vzahl);
@@ -2142,8 +2155,9 @@ template<class SCL> void schAcl<SCL>::init(size_t vzahl, ...)
  va_end(list);
 } // void schAcl::init(size_t vzahl, ...)
 
+/*
 // das Setzen auch der Bemerkung wird bisher nicht benoetigt
-template<class SCL> int schAcl<SCL>::setze(const string& pname, const string& wert/*, const string& bem*/)
+template<class SCL> int schAcl<SCL>::setze(const string& pname, const string& wert*//*, const string& bem*//*)
 {
 	for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].pname==pname) {
@@ -2174,6 +2188,7 @@ void WPcl::hole (struct tm *tmp) {
 		////		strptime(wert.c_str(), "%d.%m.%y %T", tmp);
 	} // 	if (!wert.empty())
 } // void WPcl::hole (struct tm *tmp)
+*/
 
 // wenn die bisherige Bemerkung in einer Sprache mit der zu setzenden identisch, also nicht zwischenzeitlich manuell geaendert, 
 // dann in aktueller Sprache uebernehmen
@@ -2216,25 +2231,6 @@ template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,siz
   } //   for(size_t ind=0;ind<zahl;ind++)
 } // void schAcl::setzbemv(const string& pname,const string& bem)
 
-
-template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)
-{
-  for (size_t i = 0;i<schl.size();i++) {
-		caus<<"i: "<<i<<endl;
-    if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
-    *f<<schl[i].pname<<" = \""<<schl[i].holstr()<<"\""<<endl;
-  } //   for (size_t i = 0;i<zahl;i++)
-} // void schAcl::aschreib(mdatei *f)
-
-template<class SCL> int schAcl<SCL>::fschreib(const string& fname)
-{
-  mdatei f(fname,ios::out);
-  if (f.is_open()) {
-    aschreib(&f);
-    return 0;
-  } //   if (f.is_open())
-  return 1;
-} // int schAcl::fschreib(const string& fname)
 
 template<class SCL> schAcl<SCL>::~schAcl()
 {
@@ -3181,7 +3177,7 @@ void optcl::oausgeb()
 	cout<<",part:"<<blau<<art<<schwarz;
 	cout<<",obschreibp:"<<blau<<(obschreibp?(int)*obschreibp:0)<<schwarz;
 	cout<<",obno:"<<blau<<(int)obno<<schwarz;
-	cout<<",bemkg:"<<blau<<bemerkung<<schwarz;
+	cout<<",bemkg:"<<blau<<bemerk<<schwarz;
 	cout<<",woher:"<<blau<<(int)woher<<schwarz;
 	cout<<",gegent.:"<<blau<<(int)gegenteil<<schwarz;
 	cout<<",nichtspei.:"<<blau<<(int)nichtspeichern<<schwarz;
@@ -3368,25 +3364,50 @@ int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *h
 	return 0;
 } // pruefpar
 
-string& optioncl::machbemerkung(Sprache lg,binaer obfarbe)
+string& optioncl::machbemerk(Sprache lg,binaer obfarbe)
 {
 	static const string nix; // =""
-	bemerkung.clear();
+	bemerk.clear();
 	if (TxBp) {
 		if (Txi!=-1) {
 			if (TxBp->TCp[Txi][lg]) {
 				TCtp *hilf = reinterpret_cast<TCtp*>(TxBp->TCp);
-				bemerkung= (const char*)hilf[Txi][lg];
-				if (rottxt) bemerkung+=(obfarbe?blaus:nix)+*rottxt+(obfarbe?schwarz:nix);
-				if (Txi2!=-1) bemerkung+=(const char*)hilf[Txi2][lg]; 
-				////        if (zptr && !strstr(pname,"pwd")) bemerkung+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'"; // pname==0
-				if (zptr && bemerkung.find("assw")==string::npos) bemerkung+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'";
-				if (obno) bemerkung+=(obfarbe?violetts:nix)+Txk[T_oder_nicht]+(obfarbe?schwarz:nix);
+				bemerk= (const char*)hilf[Txi][lg];
+				if (rottxt) bemerk+=(obfarbe?blaus:nix)+*rottxt+(obfarbe?schwarz:nix);
+				if (Txi2!=-1) bemerk+=(const char*)hilf[Txi2][lg]; 
+				////        if (zptr && !strstr(pname,"pwd")) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'"; // pname==0
+				if (zptr && bemerk.find("assw")==string::npos) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'";
+				if (obno) bemerk+=(obfarbe?violetts:nix)+Txk[T_oder_nicht]+(obfarbe?schwarz:nix);
 			} // if (TxBp->TCp[Txi][lg])
 		} // if (Txi!=-1)
 	} // if (TxBp)
-	return bemerkung;
-} // string& optioncl::machbemerkung(Sprache lg,binaer obfarbe)
+	return bemerk;
+} // string& optioncl::machbemerk(Sprache lg,binaer obfarbe)
+
+string& WPcl::machbemerk(Sprache lg,binaer obfarbe=wahr) 
+{
+	return bemerk;
+}
+
+string& optcl::machbemerk(Sprache lg,binaer obfarbe)
+{
+	static const string nix; // =""
+	bemerk.clear();
+	if (TxBp) {
+		if (Txi!=-1) {
+			if (TxBp->TCp[Txi][lg]) {
+				TCtp *hilf = reinterpret_cast<TCtp*>(TxBp->TCp);
+				bemerk= (const char*)hilf[Txi][lg];
+				if (rottxt) bemerk+=(obfarbe?blaus:nix)+*rottxt+(obfarbe?schwarz:nix);
+				if (Txi2!=-1) bemerk+=(const char*)hilf[Txi2][lg]; 
+				////        if (zptr && !strstr(pname,"pwd")) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'"; // pname==0
+				if (zptr && bemerk.find("assw")==string::npos) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'";
+				if (obno) bemerk+=(obfarbe?violetts:nix)+Txk[T_oder_nicht]+(obfarbe?schwarz:nix);
+			} // if (TxBp->TCp[Txi][lg])
+		} // if (Txi!=-1)
+	} // if (TxBp)
+	return bemerk;
+} // string& optioncl::machbemerk(Sprache lg,binaer obfarbe)
 
 void optioncl::hilfezeile(Sprache lg)
 {
@@ -3395,7 +3416,7 @@ void optioncl::hilfezeile(Sprache lg)
 			if (TxBp->TCp[Txi][lg]) {
 				cout<<drot<<" -"<<(*TxBp)[kurzi]<<", --"<<(*TxBp)[langi];
 				if (zptr) {if (art==psons || art==pfile) cout<<" <string>"; else if (art==pverz) cout<<" <"<<Txk[T_pfad]<<">"; else cout<<" <zahl>";}
-				cout<<schwarz<<": "<< machbemerkung(lg)<<endl;
+				cout<<schwarz<<": "<< machbemerk(lg)<<endl;
 			} // if (TxBp->TCp[Txi][lg])
 		} // if (Txi!=-1)
 	} // if (TxBp)
@@ -4363,7 +4384,7 @@ template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)
 {
 	if (cpA && pname) {
 		svec bems;
-		for(int akts=0;akts<SprachZahl;akts++) bems<<machbemerkung((Sprache)akts,falsch);
+		for(int akts=0;akts<SprachZahl;akts++) bems<<machbemerk((Sprache)akts,falsch);
 		cpA->setzbemv(pname,&Txk,0,0,&bems);
 	} //   if (cpA && pname)
 } // void optioncl::setzebem(TxB *TxBp,schAcl *cpA,const char *pname)
@@ -5266,7 +5287,7 @@ void optcl::reset()
 {
 	woher=0;
 	gegenteil=0;
-	bemerkung.clear();
+	bemerk.clear();
   nichtspeichern=0;	
 	switch (art) {
 		case puchar: case pint: case plong:
@@ -5328,7 +5349,6 @@ string WPcl::holstr()
 {
 	string rstr;
  if (pptr) {
-	 stringstream stf;
 	 switch (wart) {
 		 case wlong:
 			 rstr=ltoan(*(long*)pptr);
@@ -5340,8 +5360,6 @@ string WPcl::holstr()
 			 rstr=*(string*)pptr;
 			 break;
 		 case wdat:
-			 stf<<put_time((struct tm*)pptr,"%c");
-			 stf<<ztacl((struct tm*)pptr,"%c");
 			 thr_strftime((struct tm*)pptr,&rstr);
 	 }
  }
@@ -5349,10 +5367,36 @@ string WPcl::holstr()
 } // string WPcl::holstr()
 
 
+string optcl::holstr()
+{
+	string rstr;
+	if (pptr) {
+		switch (art) {
+			case plong:
+				rstr=ltoan(*(long*)pptr);
+				break;
+			case pint:
+				rstr=ltoan(*(int*)pptr);
+				break;
+			case puchar:
+				rstr=ltoan(*(uchar*)pptr);
+				break;
+			case psons: case pverz: case pfile:
+				rstr=*(string*)pptr;
+				break;
+			case pdat:
+				thr_strftime((struct tm*)pptr,&rstr);
+		}
+	}
+	return rstr;
+}
+
 // weist einer Option einen c-String zu
 int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
 	int wiefalsch=0;
+	struct tm tmp={0},tmmax={0},neu={0};
+	char *emax=0,*eakt;
 	if (!woher) {
 		woher=vwoher;
 		struct stat entryarg={0};
@@ -5390,8 +5434,22 @@ int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vw
 					}
 				}
 				break;
+			 case pdat:
+				// caus<<"neuw: '"<<neuw<<"' ";
+				for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
+					memcpy(&tmp,&neu,sizeof tmp);
+					eakt=strptime(neuw, tmmoegl[im], &tmp);
+					// if (eakt>emax) caus<<blau<<endl;
+					// caus<<ztacl(&tmp)<<", im: "<<im<<", tmmoegl[im]: "<<tmmoegl[im]<<", eakt: "<<(void*)eakt<<", emax: "<<(void*)emax<<endl<<schwarz;
+					if (eakt>emax) { memcpy(&tmmax,&tmp,sizeof tmp); emax=eakt; }
+				}
+				if (emax) {
+					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
+					if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+				}
+				break;
 		} // switch (art) 
-		if (!wiefalsch) bemerkung=ibemerk;
+		if (!wiefalsch) bemerk=ibemerk;
 	} // 	if (!woher)
 	return wiefalsch;
 } // void optcl::setzstr(const string neuw)
@@ -5415,6 +5473,9 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 		if (wiefalsch) {
 			// wenn kein Zusatzparameter erkennbar, dann melden
 			switch (art) {
+				case pdat:
+					Log(drots+Txk[T_Fehlender_Parameter_Datum_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
+					break;
 				case psons:
 					Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
 					break;
@@ -5885,14 +5946,14 @@ void hcl::lieskonfein(const string& DPROG)
 		// und in der Konfigurationsdatei enthalten war 
 		if (agcnfA[lfd].gelesen) {
 			// dann langu auf die Sprache aus der Konfigurationsdatei setzen
-			agcnfA[lfd].hole(&langu); 
+//			agcnfA[lfd].hole(&langu); 
 			lgnzuw();
 		} else rzf=1; // Sprache aus der Commandline geht vor Konfiguration
 		// wenn die Sprache schon in der Kommandozeile festgelegt wurde
 	} else {
 		// ... und sich von der aus der Konfigurationsdatei unterscheidet ...
 		if (agcnfA[lfd].wert.compare(langu)) {
-			agcnfA[lfd].setze(&langu);
+			// agcnfA[lfd].setze(&langu);
 			// ... und der Aufruf nicht nur einmal geschehen sollte
 			if (oblgschreib)
 				obkschreib=1;
@@ -5987,10 +6048,12 @@ void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/, str
 			);
 
 	confdat zcd(azaehlerdt,&zcnfA,obstumm?0:obverb); // hier werden die Daten aus der Datei eingelesen
+	/*
 	if (arp) if (zcnfA[0].gelesen) zcnfA[0].hole(arp);
 	if (tap) if (zcnfA[2].gelesen) zcnfA[2].hole(tap);
 	if (map) if (zcnfA[3].gelesen) zcnfA[3].hole(map);
 	if (lap) if (zcnfA[1].gelesen) zcnfA[1].hole(lap);
+	*/
 #ifdef immerwart
 	if (obempfp) if (zcnfA[4].gelesen) zcnfA[4].hole(obempfp);
 	if (obgesap) if (zcnfA[5].gelesen) zcnfA[5].hole(obgesap);
@@ -6004,7 +6067,7 @@ void hcl::setzzaehler()
 {
 	aufrufe++;
 	//// <<"aufrufe: "<<aufrufe<<endl;
-	zcnfA[0].setze(&aufrufe);
+	// zcnfA[0].setze(&aufrufe);
 	time_t jetzt=time(0);
 	pthread_mutex_lock(&timemutex);
 	struct tm heute=*localtime(&jetzt);
@@ -6014,13 +6077,13 @@ void hcl::setzzaehler()
 	if (heute.tm_year!=laufrtag.tm_year || heute.tm_mon!=laufrtag.tm_mon) {
 		monatsaufr=0;
 	}
-	zcnfA[1].setze(&heute);
+	// zcnfA[1].setze(&heute);
 	pthread_mutex_unlock(&timemutex);
   memcpy(&laufrtag,&heute,sizeof laufrtag);
 	tagesaufr++;
-	zcnfA[2].setze(&tagesaufr);
+	// zcnfA[2].setze(&tagesaufr);
 	monatsaufr++;
-	zcnfA[3].setze(&monatsaufr);
+	// zcnfA[3].setze(&monatsaufr);
 #ifdef immerwart
 	zcnfA[4].setze(&nix);
 	zcnfA[5].setze(&nix);
@@ -6038,10 +6101,7 @@ void hcl::schreibzaehler(
 	if (obempfp)  zcnfA[4].setze(obempfp);
 	if (obgesap) zcnfA[5].setze(obgesap);
 #endif
-	mdatei f(azaehlerdt,ios::out,0);
-	if (f.is_open()) {
-		zcnfA.aschreib(&f);
-	} // 	if (f.is_open())
+	zcnfA.fschreib(azaehlerdt,ios::out,0);
 } // void hcl::schreibzaehler(const string* obgesap, const string* obsendCp, const string* obsendHp)
 
 // aufgerufen in pruefcron, pruefmodcron und anhalten
@@ -6386,3 +6446,44 @@ int confdcl::lies(const string& fname, int obverb)
 	return erg;
 } // lies(const string& fname, int obverb)
 
+
+// wird aufgerufen in: main
+void hcl::autokonfschreib()
+{
+	Log(violetts+Tx[T_autokonfschreib]+schwarz+", "+Tx[T_zu_schreiben]+((rzf||obkschreib)?Txk[T_ja]:Txk[T_nein]));
+	if (rzf||obkschreib) {
+		Log(gruens+Tx[T_schreibe_Konfiguration]+schwarz);
+	} // if (rzf||obkschreib)
+	opn.fschreib(akonfdt,ios::out,0);
+	return;
+	/*
+	schAcl<WPcl> *ggcnfAp[1]={&agcnfA};
+	multischlschreib(akonfdt, ggcnfAp, sizeof ggcnfAp/sizeof *ggcnfAp, mpfad);
+	chmod(akonfdt.c_str(),S_IRWXU);
+	*/
+} // void hhcl::autokonfschreib
+
+template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)
+{
+  for (size_t i = 0;i<schl.size();i++) {
+		if (!schl[i].pname.empty()) {
+//			schl[i].machbemerk(Txk.lgn);
+			if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
+			*f<<schl[i].pname<<" = \""<<schl[i].holstr()<<"\""<<endl;
+		}
+  } //   for (size_t i = 0;i<zahl;i++)
+} // void schAcl::aschreib(mdatei *f)
+
+template<class SCL> int schAcl<SCL>::fschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,uchar faclbak/*=1*/,
+		int obverb/*=0*/,int oblog/*=0*/)
+{
+  mdatei f(fname,modus);
+  if (f.is_open()) {
+    aschreib(&f);
+    return 0;
+  } //   if (f.is_open())
+  return 1;
+} // int schAcl::fschreib(const string& fname)
+
+template class schAcl<WPcl>;
+template class schAcl<optcl>;

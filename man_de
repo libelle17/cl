@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "28.01.18" "Version 0.10236" "Manual-Seite für ²DPROG²"
+.TH man 1 "28.01.18" "Version 0.10279" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -17,65 +17,205 @@
 .br
 \fBoptausg()\fR
 .br
-\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB136\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
+\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB137\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
 .br
 \fB  1\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB      ling\fR,langi:\fB      lingua\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB149\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB       /var/log\fR,Txi2:\fB153\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB152\fR,rottxt:\fB       /var/log\fR,Txi2:\fB154\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB158\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB152\fR,iwert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB159\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB153\fR,iwert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB                         \fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  7\fR pname:\fB        \fR,pptr:\fB                         \fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB156\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 75\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 76\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
+.br
+auswert() language vor while, wert: d
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: oblog
+.br
+sA->schl[ii].pname: logdname
+.br
+sA->schl[ii].pname: logvz
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: language
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() language vor while, wert: d
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: oblog
+.br
+sA->schl[ii].pname: logdname
+.br
+sA->schl[ii].pname: logvz
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: language
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() logvz vor while, wert: /var/log
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: oblog
+.br
+sA->schl[ii].pname: logdname
+.br
+sA->schl[ii].pname: logvz
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() logdname vor while, wert: cl.log
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: oblog
+.br
+sA->schl[ii].pname: logdname
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() oblog vor while, wert: 0
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: 
+.br
+sA->schl[ii].pname: oblog
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() lista vor while, wert: 0
+.br
+sA->schl[ii].pname: n
+.br
+sA->schl[ii].pname: lista
+.br
+\fBsetze!\fR
+.br
+nach while
+.br
+auswert() n vor while, wert: 79
+.br
+sA->schl[ii].pname: n
+.br
+\fBsetze!\fR
+.br
+nach while
 .br
 verarbeitkonf(), Zahl: 0
 .br
 \fBoptausg()\fR
 .br
-\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB136\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
+\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB137\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
 .br
 \fB  1\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB      ling\fR,langi:\fB      lingua\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB149\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB       /var/log\fR,Txi2:\fB153\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB152\fR,rottxt:\fB       /var/log\fR,Txi2:\fB154\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB158\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB152\fR,iwert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB159\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB153\fR,iwert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  7\fR pname:\fB        \fR,pptr:\fB           /root/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB156\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 78\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 75\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 79\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB       n\fR,pptr:\fB                       79\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 76\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
 1 zcnfA.zahl: 4
 .br
-auswert() aufrufe vor while, wert: 29
+auswert() aufrufe vor while, wert: 34
 .br
 sA->schl[ii].pname: monatsaufr
 .br
@@ -89,7 +229,7 @@ sA->schl[ii].pname: aufrufe
 .br
 nach while
 .br
-auswert() lDatum vor while, wert: 28.01.2018 16.10.06
+auswert() lDatum vor while, wert: 28.01.2018 19.57.33
 .br
 sA->schl[ii].pname: monatsaufr
 .br
@@ -101,7 +241,7 @@ sA->schl[ii].pname: lDatum
 .br
 nach while
 .br
-auswert() tagesaufr vor while, wert: 11
+auswert() tagesaufr vor while, wert: 16
 .br
 sA->schl[ii].pname: monatsaufr
 .br
@@ -111,7 +251,7 @@ sA->schl[ii].pname: tagesaufr
 .br
 nach while
 .br
-auswert() monatsaufr vor while, wert: 11
+auswert() monatsaufr vor while, wert: 16
 .br
 sA->schl[ii].pname: monatsaufr
 .br
@@ -119,21 +259,15 @@ sA->schl[ii].pname: monatsaufr
 .br
 nach while
 .br
-\fBaufrufe: \fR29
+\fBaufrufe: \fR34
 .br
-\fBletztes Datum: \fR28.01.2018 16.10.06
+\fBletztes Datum: \fR28.01.2018 19.57.33
 .br
-\fBtagesaufr: \fR11
+\fBtagesaufr: \fR16
 .br
-\fBmonatsaufr: \fR11
+\fBmonatsaufr: \fR16
 .br
 \fBvor return\fR
-.br
-Aufrufe: 29
-.br
-Ende getcommandl0
-.br
-vor getcommandline
 .br
 \fBParameter: \fBd\fB not identified!\fR
 .br

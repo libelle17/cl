@@ -199,7 +199,8 @@ enum Tkons_
   T_kein_Verzeichnis_nochmal,
   T_nicht_gefunden_soll_ich_es_erstellen,
   T_Fehlender_Parameter_string_zu,
-  T_oder,
+	T_Fehlender_Parameter_Datum_zu,
+	T_oder,
   T_Fehler_Parameter,
   T_ohne_gueltigen,
   T_mit_Datei_als,
@@ -378,6 +379,9 @@ enum Tkons_
 	T_Gebrauch,
 	T_Optionen_die_nicht_gespeichert_werden,
 	T_Optionen_die_in_der_Konfigurationsdatei_gespeichert_werden,
+	T_autokonfschreib,
+	T_zu_schreiben,
+	T_schreibe_Konfiguration,
 	T_konsMAX
 }; // Tkons_
 
@@ -610,10 +614,11 @@ class WPcl { // Wertepaarklasse
 		string holstr();
 		//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
-    template <typename T> void setze(T *var) { wert=ltoan(*var); }
+//    template <typename T> void setze(T *var) { wert=ltoan(*var); }
 //    template <typename T> void setze(T *var,string& bem) { wert=ltoan(*var); bemerk=bem;}
 		void hole (struct tm *tmp);
 		void reset();
+    string& machbemerk(Sprache lg,binaer obfarbe=wahr);
 }; // class WPcl
 template <> inline void WPcl::hole < char* > (char** var) {*var = (char*)wert.c_str(); }
 template <> inline void WPcl::hole < const char* > (const char** var) {*var = wert.c_str(); }
@@ -629,6 +634,7 @@ template <> inline void WPcl::hole < struct tm > (struct tm *tmp) {
 	}
 }
 */
+/*
 template <> inline void WPcl::setze < char* > (char** var) {wert=*var;  }
 template <> inline void WPcl::setze < const char* > (const char** var) {wert=*var; }
 template <> inline void WPcl::setze < string > (string *var) {wert=*var;}
@@ -638,6 +644,7 @@ template <> inline void WPcl::setze < struct tm > (struct tm *tmp) {
 	strftime(buf, sizeof(buf), "%d.%m.%y %T", tmp);
 	wert=buf;
 }
+*/
 /*
 template <> inline void WPcl::setze < char* > (char** var, string& bem) {wert=*var; if (!bem.empty()) bemerk=bem; }
 template <> inline void WPcl::setze < const char* > (const char** var, string& bem) {wert=*var; if (!bem.empty()) bemerk=bem;}
@@ -681,16 +688,17 @@ template <class SCL> class schAcl {
  void init(size_t vzahl, ...);
  void init(vector<SCL*> *sqlvp);
  // void initd(const char* const* sarr,size_t vzahl);
- void initv(vector<optcl*> optpv,vector<size_t> optsv);
- int setze(const string& pname, const string& wert/*, const string& bem=nix*/);
- const string& hole(const string& pname);
+// void initv(vector<optcl*> optpv,vector<size_t> optsv);
+// int setze(const string& pname, const string& wert/*, const string& bem=nix*/);
+// const string& hole(const string& pname);
  void setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
  void aschreib(mdatei *const f);
- int fschreib(const string& fname);
+ int fschreib(const string& fname,ios_base::openmode modus=ios_base::out,uchar faclbak=1,int obverb=0,int oblog=0);
  void gibaus(const int nr=0);
  void reset();
  ~schAcl();
 }; // class schAcl
+template <> void schAcl<WPcl>::init(size_t vzahl, ...);
 
 // soll dann confdat unnötig machen
 struct confdcl {
@@ -706,7 +714,7 @@ template<class SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
 {
 	cout<<"gibaus("<<nr<<")"<<endl;
   for(size_t i=0;i<schl.size();i++) {
-   cout<<"i: "<<gruen<<i<<schwarz<<" pname: "<<blau<<schl[i].pname<<schwarz<<Txk[T_Wert]<<blau<<schl[i].wert<<schwarz<<endl;
+   cout<<"i: "<<gruen<<i<<schwarz<<" pname: "<<blau<<schl[i].pname<<schwarz<<Txk[T_Wert]<<blau<<schl[i].holstr()<<schwarz<<endl;
   }
 } // void schAcl::ausgeb()
 
@@ -806,7 +814,7 @@ class confdat
 }; // class confdat
 
 // fuer Commandline-Optionen
-enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
+enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; // Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)
 
 #ifdef alt
 class optioncl
@@ -831,7 +839,7 @@ class optioncl
     uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
     const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
-    string bemerkung;
+    string bemerk;
 		uchar obcl=0; // ob die Option ueber die Kommandozeile gesetzt wurde
 		uchar obcf=0; // ob die Option schon einmal vorkam für die Konfigurationsdatei
   private:
@@ -861,7 +869,7 @@ template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar w
 /*9a*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,int *pptr,int wert) : 
                kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr((uchar*)pptr),wert(wert),art(psons) {}
     int pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe); // 1 = das war der Parameter, 0 = nicht
-    string& machbemerkung(Sprache lg,binaer obfarbe=wahr);
+    string& machbemerk(Sprache lg,binaer obfarbe=wahr);
     void hilfezeile(Sprache lg);
 }; // class optioncl
 #endif
@@ -888,7 +896,7 @@ struct optcl
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
 		// ermittelte Optionen:
     const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
-    string bemerkung;
+    string bemerk;
 		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
@@ -896,9 +904,11 @@ struct optcl
 				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
 		void setzwert();
 		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
+		string holstr();
 		void setzebem(schAcl<WPcl> *cpA,const char *pname);
 		void oausgeb();
 		int pzuweis(const char *nacstr, const uchar vgegenteil=0, const uchar vnichtspeichern=0);
+    string& machbemerk(Sprache lg,binaer obfarbe=wahr);
 		void reset();
 }; // struct optcl
 
@@ -1232,6 +1242,7 @@ class hcl
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg);
 	public:
+		void autokonfschreib(); 
 		void omapzuw(); // Optionen an omap zuweisen
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
@@ -1270,7 +1281,7 @@ class hcl
 		void reduzierlibtiff();
 		void setzbenutzer(string *user);
 }; // class hcl
-
+/*
 // sollte dann unnötig werden
 template<class SCL> void schAcl<SCL>::initv(vector<optcl*> optpv,vector<size_t> optsv)
 {
@@ -1299,4 +1310,4 @@ template<class SCL> void schAcl<SCL>::initv(vector<optcl*> optpv,vector<size_t> 
 		}
 	}
 } // void schAcl::initv(vector<optcl*> optpv,vector<size_t> optsv)
-
+*/

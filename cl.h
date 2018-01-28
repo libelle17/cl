@@ -41,6 +41,5 @@ class hhcl:public hcl
 	void lieskonfein(const string& dprog);
 	int getcommandline();
 	void rueckfragen(); //ω
-	void autokonfschreib(); //α
-	void zeigueberschrift();
+	void zeigueberschrift();//α
 }; // class hhcl //ω

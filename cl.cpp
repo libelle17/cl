@@ -8,12 +8,10 @@
 // für verschiedene Sprachen //α
 enum T_      
 {
-	T_zu_schreiben,
 	T_VorgbAllg,
 	T_VorgbSpeziell,
 	T_MusterVorgb,
 	T_rueckfragen,
-	T_autokonfschreib,
 	T_cm_k,
 	T_cronminuten_l,
 	T_Alle_wieviel_Minuten_soll,
@@ -38,7 +36,6 @@ enum T_
 	T_nicht_erkannt,
 	T_Logverzeichnis,
 	T_Logdateiname,
-	T_schreibe_Konfiguration,
 	T_info_k,
 	T_version_l,
 	T_vi_k,
@@ -92,8 +89,6 @@ enum T_
 }; // enum T_ //ω
 // für verschiedene Sprachen //α
 char const *DPROG_T[T_MAX+1][SprachZahl]={
-	// T_zu_schreiben
-	{"zu schreiben: ","must write: "},
 	// T_VorgbAllg
 	{"VorgbAllg()","generalprefs()"},
 	// T_VorgbSpeziell
@@ -102,8 +97,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"MusterVorgb()","sampleprefs"},
 	// T_rueckfragen
 	{"rueckfragen()","callbacks()"},
-	// T_autokonfschreib
-	{"autokonfschreib()","autoconfwrite()"},
 	// T_cm_k
 	{"cm","cm"},
 	// T_cronminuten_l
@@ -152,8 +145,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"Logverzeichnis","log directory"},
 	// T_Logdateiname
 	{"Logdateiname","log file name"},
-	// T_schreibe_Konfiguration
-	{"schreibe Konfiguration!","writing configuration!"},
 	// T_info_k
 	{"info","info"},
 	// T_version_l
@@ -311,8 +302,6 @@ void hhcl::getcommandl0()
 	hcl::verarbeitkonf();
 	optausg(gruen);
 	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
-	caus<<"Aufrufe: "<<aufrufe<<endl;
-	caus<<"Ende getcommandl0"<<endl;
 } // void hhcl::getcommandl0(int argc, char** argv) //α
 
 void hhcl::VorgbAllg()
@@ -337,6 +326,7 @@ void hhcl::MusterVorgb()
 void hhcl::lieskonfein(const string& dprog)
 {
 	hcl::lieskonfein(dprog);
+	/*
 	lfd++;
 	if (logvneu) agcnfA[lfd].setze(&logvz);
 	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&logvz); else rzf=1; lfd++;
@@ -350,6 +340,7 @@ void hhcl::lieskonfein(const string& dprog)
 	if (agcnfA[lfd].gelesen) mpwd=XOR(string(agcnfA[lfd].wert),pwk); else rzf=1; lfd++;
 	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&dbq); else rzf=1; lfd++;
 	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&tabelle); else rzf=1; lfd++; //ω
+	*/
 	setzlog(); //α
 	if (nrzf) rzf=0;
 } // void hhcl::lieskonfein
@@ -420,16 +411,16 @@ void hhcl::rueckfragen()
 		if (agcnfA[++lfd].wert.empty()||rzf) {
 			langu=Tippstrs(sprachstr.c_str()/*"Language/Sprache/Lingue/Lingua"*/,&sprachen,&langu);
 			lgnzuw();
-			agcnfA[lfd].setze(&langu);
+			//agcnfA[lfd].setze(&langu);
 		} // if (agcnfA
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			host=Tippstr(Tx[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
-			agcnfA[lfd].setze(&host);
+			//agcnfA[lfd].setze(&host);
 		} //     if (agcnfA[++lfd].wert.empty() || rzf)
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			const string Frage=Tx[T_Benutzer_fuer_MySQL_MariaDB];
 			muser=Tippstr(Frage.c_str(),&muser);
-			agcnfA[lfd].setze(&muser);
+			//agcnfA[lfd].setze(&muser);
 		} //     if (agcnfA[++lfd].wert.empty() || rzf)
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			string mpw2;
@@ -439,52 +430,40 @@ void hhcl::rueckfragen()
 				mpw2=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'"+" ("+Txk[T_erneute_Eingabe]+")",&mpw2);
 			} while (mpwd!=mpw2);
 			const string pwdstr=XOR(mpwd,pwk);
-			agcnfA[lfd].setze(&pwdstr);
+			//agcnfA[lfd].setze(&pwdstr);
 		} // 		if (agcnfA[++lfd].wert.empty() || rzf)
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			dbq=Tippstr(string(Tx[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
-			agcnfA[lfd].setze(&dbq);
+			//agcnfA[lfd].setze(&dbq);
 		} //     if (agcnfA[++lfd].wert.empty() || rzf)
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			tabelle=Tippstr(string(Tx[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
-			agcnfA[lfd].setze(&tabelle);
+			//agcnfA[lfd].setze(&tabelle);
 		} //     if (agcnfA[++lfd].wert.empty() || rzf) //ω
 		if (agcnfA[++lfd].wert.empty() || rzf) { //α
 			cronminut=Tippzahl(Tx[T_Alle_wieviel_Minuten_soll]+meinname+Tx[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
-			agcnfA[lfd].setze(&cronminut);
+			//agcnfA[lfd].setze(&cronminut);
 		}
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			autoupd=Tippob(Tx[T_Sollen_neue_Programmversionen_von]+meinname+Tx[T_automatisch_installiert_werden],autoupd?Txk[T_j_af]:"n");
-			agcnfA[lfd].setze(&autoupd);
+			//agcnfA[lfd].setze(&autoupd);
 		}
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			logvz=Tippverz(Tx[T_Logverzeichnis],&logvz);
-			agcnfA[lfd].setze(&logvz);
+			//agcnfA[lfd].setze(&logvz);
 		}
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			logdname=Tippstr(Tx[T_Logdateiname],&logdname);
-			agcnfA[lfd].setze(&logdname);
+			//agcnfA[lfd].setze(&logdname);
 		}
 		setzlog();
 		if (agcnfA[++lfd].wert.empty() || rzf) {
 			oblog=Tippzahl(Tx[T_Oblog],oblog);
-			agcnfA[lfd].setze(&oblog);
+			//agcnfA[lfd].setze(&oblog);
 		} // 	if (agcnfA[++lfd].wert.empty() || rzf)
 	} // if (rzf)
 } // void hhcl::rueckfragen()
 
-
-// wird aufgerufen in: main
-void hhcl::autokonfschreib()
-{
-	Log(violetts+Tx[T_autokonfschreib]+schwarz+", "+Tx[T_zu_schreiben]+((rzf||obkschreib)?Txk[T_ja]:Txk[T_nein]));
-	if (rzf||obkschreib) {
-		Log(gruens+Tx[T_schreibe_Konfiguration]+schwarz);
-	} // if (rzf||obkschreib)
-	schAcl<WPcl> *ggcnfAp[1]={&agcnfA};
-	multischlschreib(akonfdt, ggcnfAp, sizeof ggcnfAp/sizeof *ggcnfAp, mpfad);
-	chmod(akonfdt.c_str(),S_IRWXU);
-} // void hhcl::autokonfschreib
 
 // wird aufgerufen in: main
 void hhcl::zeigueberschrift()
@@ -553,6 +532,8 @@ int hhcl::pruefDB(const string& db)
 
 int main(int argc,char** argv)
 {
+	if (argc>1) {
+	}
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
 	/*
 	optcl opt[]={{"p1",&hhi.p1,psons},{"p3",&hhi.p3,psons},{"p2",&hhi.p2,pzahl}};
@@ -595,10 +576,8 @@ int main(int argc,char** argv)
 	} else {
 //		hhi.lieskonfein(DPROG);
 	} // if (hhi.obhilfe==3)
-	caus<<"vor getcommandline"<<endl;
 	if (hhi.getcommandline()) 
 		exit(8); // Hilfe angezeigt
-	caus<<"nach getcommandline"<<endl;
 	if (hhi.obvi) hhi.dovi(); 
 	if (hhi.obvs) exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
 	if (hhi.zeigvers) {
@@ -615,13 +594,11 @@ int main(int argc,char** argv)
 	} // 	if (!hhi.keineverarbeitung) //α
 
 	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
-	caus<<"5 zcnfA.zahl: "<<hhi.zcnfA.size()<<endl;
 	if (!hhi.keineverarbeitung) {
 		hhi.zeigueberschrift(); //ω
 		hhi.setzzaehler(); //α
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
-	return 0;
 
 	hhi.autokonfschreib();
 	hhi.update(DPROG);
@@ -629,3 +606,5 @@ int main(int argc,char** argv)
 	Log(violetts+Txk[T_Ende]+schwarz,hhi.obverb,hhi.oblog);
 	return 0;
 } // int main //ω
+// wird aufgerufen in: main
+
