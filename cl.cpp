@@ -242,7 +242,7 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	// T_listet_Zeilen_auf
 	{"listet Zeilen auf","lists lines"},
 	// T_listet_n_Zeilen_auf_anstatt
-	{"listet n Zeilen auf anstatt","lists n lines instead of"},
+	{"listet n Zeilen auf anstatt ","lists n lines instead of "},
 	{"",""} //α
 }; // char const *DPROG_T[T_MAX+1][SprachZahl]=
 

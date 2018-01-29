@@ -598,20 +598,24 @@ template <> inline void Schluessel::setze < const char* > (const char** var) { s
 template <> inline void Schluessel::setze < string > (string *var) { strncpy(val,var->c_str(),sizeof val-1);val[sizeof val-1]=0;}
 #endif // notcpp
 
+template <typename SCL> class schAcl;
+
 enum war_t:uchar {wlong,wbin,wstr,wdat}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
-class WPcl { // Wertepaarklasse
-  public:
+struct WPcl { // Wertepaarklasse
     string pname;
 		const void* pptr;
 		war_t wart;
     uchar gelesen=0;
     string wert;
     string bemerk;
+		uchar eingetragen;
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
 		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
+		uchar einzutragen(schAcl<WPcl> *schlp);
+		void weisomapzu(schAcl<WPcl> *schlp);
 		//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
 //    template <typename T> void setze(T *var) { wert=ltoan(*var); }
@@ -672,9 +676,9 @@ class tsvec: public vector<T>
     } // inline tsvec
 }; // template<class T> class tsvec: public vector<T>
 
-class optcl;
+struct optcl;
 
-template <class SCL> class schAcl {
+template <typename SCL> class schAcl {
  public:
 // WPcl *schl=0; 
  vector<SCL> schl; // Schlüsselklasse Schlüssel
@@ -687,7 +691,12 @@ template <class SCL> class schAcl {
  // void neu(size_t vzahl=0);
  void init(size_t vzahl, ...);
  void init(vector<SCL*> *sqlvp);
- // void initd(const char* const* sarr,size_t vzahl);
+		map<string,SCL*> omap; // map der Optionen
+		map<const char* const,SCL*> okmap; // map der Optionen, sortiert nach Tx[<kurzi>]
+		map<const char* const,SCL*> olmap; // map der Optionen, sortiert nach Tx[<langi>]
+		typename map<string,SCL*>::iterator omit; // Optionen-Iterator
+		void omapzuw(); // Optionen an omap zuweisen
+		// void initd(const char* const* sarr,size_t vzahl);
 // void initv(vector<optcl*> optpv,vector<size_t> optsv);
 // int setze(const string& pname, const string& wert/*, const string& bem=nix*/);
 // const string& hole(const string& pname);
@@ -695,10 +704,13 @@ template <class SCL> class schAcl {
  void aschreib(mdatei *const f);
  int fschreib(const string& fname,ios_base::openmode modus=ios_base::out,uchar faclbak=1,int obverb=0,int oblog=0);
  void gibaus(const int nr=0);
+ void eintrinit();
  void reset();
  ~schAcl();
 }; // class schAcl
 template <> void schAcl<WPcl>::init(size_t vzahl, ...);
+template <> void schAcl<WPcl>::eintrinit();
+template <> void schAcl<optcl>::eintrinit();
 
 // soll dann confdat unnötig machen
 struct confdcl {
@@ -709,15 +721,6 @@ struct confdcl {
 		int lies(const string& fname, int obverb);
     template <class SCL> void auswert(schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
 };
-
-template<class SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
-{
-	cout<<"gibaus("<<nr<<")"<<endl;
-  for(size_t i=0;i<schl.size();i++) {
-   cout<<"i: "<<gruen<<i<<schwarz<<" pname: "<<blau<<schl[i].pname<<schwarz<<Txk[T_Wert]<<blau<<schl[i].holstr()<<schwarz<<endl;
-  }
-} // void schAcl::ausgeb()
-
 
 class abSchl {
  public:
@@ -900,6 +903,9 @@ struct optcl
 		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
+		uchar eingetragen;
+		uchar einzutragen(schAcl<optcl> *schlp);
+		void weisomapzu(schAcl<optcl> *schlp);
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
 		void setzwert();
@@ -1231,10 +1237,12 @@ class hcl
 		linst_cl* linstp=0;
 		vector<string> benutzer; // Benutzer aus /etc/passwd, bearbeitet durch setzbenutzer(&user)
 		uchar obsotiff=0; // 1 = tiff wird von der source verwendet
+		/*
 		map<string,optcl*> omap; // map der Optionen
 		map<string,optcl*> okmap; // map der Optionen, sortiert nach Tx[<kurzi>]
 		map<string,optcl*> olmap; // map der Optionen, sortiert nach Tx[<langi>]
 		map<string,optcl*>::iterator omit; // Optionen-Iterator
+		*/
 	private:
 	protected:
     virtual void lgnzuw(); // in vorgaben, lieskonfein, getcommandl0, getcommandline, rueckfragen
@@ -1243,7 +1251,6 @@ class hcl
 		void vischluss(string& erg);
 	public:
 		void autokonfschreib(); 
-		void omapzuw(); // Optionen an omap zuweisen
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv);
