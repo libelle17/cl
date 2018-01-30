@@ -5535,8 +5535,8 @@ void hcl::gcl0()
 				if (omp) {
 					for(omit=omp->begin();omit!=omp->end();omit++) {
 						// omit ist also jetzt iterator für die relevante map auf die aktuelle Option
-						if (omit->first==acstr) {
-							ap->agef++;
+						if (!strcmp(omit->first,acstr)) {
+							ap->agef++; // Parameter gefunden
 							if (omit->second->pptr) {
 								// pzuweis liefert -1, wenn der nächste Parameter als Inhalt verwendet wurde, sonst wiefalsch
 								apn=ap; apn++;
@@ -5544,6 +5544,7 @@ void hcl::gcl0()
 								int wiefalsch=omit->second->pzuweis(nacstr,gegenteil,nichtspeichern);
 								if (wiefalsch==-1) { // String-Parameter erfolgreich zugewiesen
 									ap++;
+									ap->agef++; // Zusatzparameter gefunden
 									if (ap==argcmv.end()) break;
 								}
 								if (wiefalsch<=0) { // erfolgreich zugewiesen
@@ -5552,13 +5553,15 @@ void hcl::gcl0()
 									// bei Optionen ohne leerem Namen Gleichnamige gleichbehandeln
 									} else {
 										for(size_t iru=0;iru<opn.size();iru++) {
-											if (opn[iru].pname==omit->second->pname) opn[iru].woher=1;
+											if (opn[iru].pname==omit->second->pname) {
+												opn[iru].woher=1;
+												if (!nichtspeichern) if (omit->second->obschreibp) *omit->second->obschreibp=1;
+											}
 										}
 									} // 									if (omit->first.empty()) else
 								} else {
 									if (!obhilfe) obhilfe=1;
 								} // 								if (wiefalsch<=0) else
-								if (!nichtspeichern) if (omit->second->obschreibp) if (!omit->second->pname.empty()) *omit->second->obschreibp=1;
 							} // 								if (omit->second->pptr)
 							break; // Parameter schon gefunden, die anderen nicht mehr suchen
 						} // 							if (!omit->first.find(acstr))
@@ -6012,6 +6015,7 @@ void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/, str
 	caus<<"1 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	confdcl zlzn;
 	zlzn.lies(azaehlerdt,obverb);
+	caus<<"azaehlerdt: "<<blau<<azaehlerdt<<schwarz<<endl;
 	zlzn.auswert(&zcnfA);
 	if (arp) caus<<blau<<"aufrufe: "<<schwarz<<*arp<<endl;
 	if (lap) {
@@ -6449,8 +6453,8 @@ void hcl::autokonfschreib()
 	Log(violetts+Txk[T_autokonfschreib]+schwarz+", "+Txk[T_zu_schreiben]+((rzf||obkschreib)?Txk[T_ja]:Txk[T_nein]));
 	if (rzf||obkschreib) {
 		Log(gruens+Txk[T_schreibe_Konfiguration]+schwarz);
+		opn.fschreib(akonfdt,ios::out,0);
 	} // if (rzf||obkschreib)
-	opn.fschreib(akonfdt,ios::out,0);
 	return;
 	/*
 	schAcl<WPcl> *ggcnfAp[1]={&agcnfA};

@@ -279,8 +279,8 @@ void hhcl::spezopt()
 {
 	static string rottext=ltoan(listz);
 
-	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/0);
-	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*obschreibp*/0);
+	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/&obkschreib);
+	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*obschreibp*/&obkschreib);
 } // void hhcl::spezopt()
 
 // wird aufgerufen in: main
@@ -600,6 +600,7 @@ int main(int argc,char** argv)
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
 
+	caus<<"listz: "<<blau<<hhi.listz<<schwarz<<endl;
 	hhi.autokonfschreib();
 	hhi.update(DPROG);
 	hhi.schlussanzeige();
