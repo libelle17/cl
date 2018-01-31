@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "30.01.18" "Version 0.10298" "Manual-Seite für ²DPROG²"
+.TH man 1 "31.01.18" "Version 0.10304" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -33,17 +33,23 @@
 .br
 \fB  7\fR pname:\fB        \fR,pptr:\fB                         \fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB156\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         h\fR,langi:\fB        help\fR,wi:\fB255\fR,Txi:\fB216\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        lh\fR,langi:\fB    longhelp\fR,wi:\fB255\fR,Txi:\fB217\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB2\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 75\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 10\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         ?\fR,langi:\fB          ??\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 76\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 12\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 13\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 67\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 14\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 68\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
 .br
-auswert() language vor while, wert: d
+auswert() language vor while, wert: e
 .br
 auswert() logvz vor while, wert: /var/log
 .br
@@ -53,35 +59,41 @@ auswert() oblog vor while, wert: 0
 .br
 auswert() lista vor while, wert: 0
 .br
-auswert() n vor while, wert: 99
+auswert() n vor while, wert: 98
 .br
 verarbeitkonf(), Zahl: 0
 .br
 \fBoptausg()\fR
 .br
-\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB    language\fR,wi:\fB  1\fR,Txi:\fB137\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
+\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        sp\fR,langi:\fB     sprache\fR,wi:\fB  1\fR,Txi:\fB137\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
 .br
-\fB  1\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB      ling\fR,langi:\fB      lingua\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  1\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB      lang\fR,langi:\fB      lingue\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         w\fR,langi:\fB   wortreich\fR,wi:\fB  1\fR,Txi:\fB150\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# choses <path> as log directory, currently '/var/log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       lvz\fR,langi:\fB       logvz\fR,wi:\fB  0\fR,Txi:\fB151\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# choses <path> as log directory, currently '/var/log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB152\fR,rottxt:\fB       /var/log\fR,Txi2:\fB154\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# log file <string> (in path '/var/log') will be used instead of 'cl.log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        ld\fR,langi:\fB    logdname\fR,wi:\fB  0\fR,Txi:\fB152\fR,rottxt:\fB       /var/log\fR,Txi2:\fB154\fR,iwert:\fB0\fR,part:\fB0\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# log file <string> (in path '/var/log') will be used instead of 'cl.log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB159\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB153\fR,iwert:\fB1\fR,part:\fB4\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# put detailed logs in file '/var/log/cl.log' (otherwise shorter) or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       ldn\fR,langi:\fB logdateineu\fR,wi:\fB  0\fR,Txi:\fB155\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        cf\fR,langi:\fB    conffile\fR,wi:\fB  0\fR,Txi:\fB156\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        kd\fR,langi:\fB   konfdatei\fR,wi:\fB  0\fR,Txi:\fB156\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhelp\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         h\fR,langi:\fB       hilfe\fR,wi:\fB255\fR,Txi:\fB216\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        lh\fR,langi:\fB   langhilfe\fR,wi:\fB255\fR,Txi:\fB217\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB2\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 10\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 75\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists lines or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 10\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         ?\fR,langi:\fB          ??\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 11\fR pname:\fB       n\fR,pptr:\fB                       99\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 76\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists n lines instead of 30 or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 11\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhilfe\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 12\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 13\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 67\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists lines or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 14\fR pname:\fB       n\fR,pptr:\fB                       98\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 68\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists n lines instead of 30 or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
@@ -89,22 +101,46 @@ verarbeitkonf(), Zahl: 0
 .br
 azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
 .br
-auswert() aufrufe vor while, wert: 63
+auswert() aufrufe vor while, wert: 76
 .br
-auswert() lDatum vor while, wert: 30.01.2018 00.54.10
+auswert() lDatum vor while, wert: 31.01.2018 00.22.47
 .br
-auswert() tagesaufr vor while, wert: 8
+auswert() tagesaufr vor while, wert: 7
 .br
-auswert() monatsaufr vor while, wert: 45
+auswert() monatsaufr vor while, wert: 58
 .br
-\fBaufrufe: \fR63
+\fBaufrufe: \fR76
 .br
-\fBletztes Datum: \fR30.01.2018 00.54.10
+\fBletztes Datum: \fR31.01.2018 00.22.47
 .br
-\fBtagesaufr: \fR8
+\fBtagesaufr: \fR7
 .br
-\fBmonatsaufr: \fR45
+\fBmonatsaufr: \fR58
 .br
 \fBvor return\fR
 .br
-\fBOptions which are not saved: \fR
+\fBOptionen, die nicht gespeichert werden: \fR
+.br
+\fB -sp, --sprache <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBd\fR'\fB oder nicht\fR
+.br
+\fB -w, --wortreich <zahl>\fR: Bildschirmausgabe gespraechiger
+.br
+\fB -ld, --logdname <string>\fR: logdatei <string> (im Pfad '\fB/var/log\fR') wird verwendet anstatt '\fBcl.log\fR'\fB oder nicht\fR
+.br
+\fB -ldn, --logdateineu <zahl>\fR: logdatei vorher loeschen
+.br
+\fB -kd, --konfdatei <string>\fR: verwendet Konfigurationsdatei <string> anstatt '\fB/home/schade/.cl.conf\fR'
+.br
+\fB -h, --hilfe <zahl>\fR: Erklaerung haeufiger Optionen
+.br
+\fB -lh, --langhilfe <zahl>\fR: Erklaerung aller Optionen
+.br
+\fBOptionen z.Speich. i.Konfigur'datei (vorausg. '1'=doch nicht speichern, 'no'=Gegenteil, z.B. '-noocra','-1noocri'):\fR
+.br
+\fB -lvz, --logvz <pfad>\fR: waehlt als Logverzeichnis <pfad>, derzeit '\fB/var/log\fR'\fB oder nicht\fR
+.br
+\fB -l, --log <zahl>\fR: protokolliert ausfuehrlich in Datei '\fB/var/log/cl.log\fR' (sonst knapper)\fB oder nicht\fR
+.br
+\fB -lista, --lista <zahl>\fR: listet Zeilen auf\fB oder nicht\fR
+.br
+\fB -n, --number <zahl>\fR: listet n Zeilen auf anstatt \fB30\fR\fB oder nicht\fR

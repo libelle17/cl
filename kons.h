@@ -382,6 +382,14 @@ enum Tkons_
 	T_autokonfschreib,
 	T_zu_schreiben,
 	T_schreibe_Konfiguration,
+	T_h_k,
+	T_lh_k,
+	T_hilfe_l,
+	T_lhilfe_l,
+	T_fgz_k,
+	T_fgz_l,
+	T_Erklaerung_haeufiger_Optionen,
+	T_Erklaerung_aller_Optionen,
 	T_konsMAX
 }; // Tkons_
 
@@ -612,7 +620,7 @@ struct WPcl { // Wertepaarklasse
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
-		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *geaendert,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
 		uchar einzutragen(schAcl<WPcl> *schlp);
 		void weisomapzu(schAcl<WPcl> *schlp);
@@ -909,12 +917,13 @@ struct optcl
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
 		void setzwert();
-		int setzstr(const char* neuw,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *geaendert,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
 		void setzebem(schAcl<WPcl> *cpA,const char *pname);
 		void oausgeb();
 		int pzuweis(const char *nacstr, const uchar vgegenteil=0, const uchar vnichtspeichern=0);
     string& machbemerk(Sprache lg,binaer obfarbe=wahr);
+    void hilfezeile(Sprache lg);
 		void reset();
 }; // struct optcl
 

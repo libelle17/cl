@@ -40,16 +40,8 @@ enum T_
 	T_version_l,
 	T_vi_k,
 	T_vi_l,
-	T_h_k,
-	T_lh_k,
-	T_hilfe_l,
-	T_lhilfe_l,
-	T_fgz_k,
-	T_fgz_l,
 	T_Zeigt_die_Programmversion_an,
 	T_Konfigurations_u_Logdatei_bearbeiten_sehen,
-	T_Erklaerung_haeufiger_Optionen,
-	T_Erklaerung_aller_Optionen,
 	Verbindung_zur_Datenbank_nicht_herstellbar,
 	T_Breche_ab,
 	T_pruefDB,
@@ -153,26 +145,10 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"vi","vi"},
 	// T_vi_l
 	{"vi","vi"},
-	// T_h_k
-	{"h","h"},
-	// T_lh_k
-	{"lh","lh"},
-	// T_hilfe_l
-	{"hilfe","help"},
-	// T_lhilfe_l
-	{"langhilfe","longhelp"},
-	// T_fgz_k
-	{"?","?"},
-	// T_fgz_l,
-	{"??","??"},
 	// T_Zeigt_die_Programmversion_an
 	{"Zeigt die Programmversion an","shows the program version"},
 	// T_Konfigurations_u_Logdatei_bearbeiten_sehen
 	{"Konfigurations- u.Logdatei bearbeiten/sehen (beenden mit ':qa')","edit/view configuration and log file (finish with ':qa')"},
-	// 	T_Erklaerung_haeufiger_Optionen
-	{"Erklärung häufiger Optionen","Explanation of frequent options"},
-	// T_Erklaerung_aller_Optionen
-	{"Erklärung aller Optionen","Explanation of all options"}, 
 	// Verbindung_zur_Datenbank_nicht_herstellbar
 	{"Verbindung zur Datenbank nicht herstellbar, fehnr: ","Connection to the database could not be established, errnr: "},
 	// T_Breche_ab
@@ -299,6 +275,7 @@ void hhcl::getcommandl0()
 	gcl0(); //ω
 //  agcnfA.initv(optpv,optsv);
 	hcl::lieskonfein(DPROG);
+	hcl::lgnzuw();
 	hcl::verarbeitkonf();
 	optausg(gruen);
 	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
@@ -600,7 +577,6 @@ int main(int argc,char** argv)
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
 
-	caus<<"listz: "<<blau<<hhi.listz<<schwarz<<endl;
 	hhi.autokonfschreib();
 	hhi.update(DPROG);
 	hhi.schlussanzeige();

@@ -30,7 +30,7 @@ const char *const tmmoegl[]={
 	"%y","%Y",
 	"%c"
 	}; // Moeglichkeiten fuer strptime
-// zum Schutz statischer Speicherbereiche vor gleichzeitigem Zugriff durch mehrere Programmfäden
+// zum Schutz statischer Speicherbereiche vor gleichzeitigem Zugriff durch mehrere Programmfaeden
 pthread_mutex_t printf_mutex, getmutex, timemutex;
 
 #ifdef linux
@@ -43,7 +43,7 @@ const char *const schwarz="\e[0m", *const dgrau="\e[1;30m", *const drot="\e[0;31
 const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;
 //// char logdatei[PATH_MAX+1]="/DATA/down/log_termine.txt";
 #define _access access
-#include <sys/time.h>  // für gettimeofday()
+#include <sys/time.h>  // fuer gettimeofday()
 #elif defined _WIN32 // linux
 const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";
 ////ffen: bei den Farben muss unterschieden werden zwischen cout (-> _drot) und 
@@ -292,7 +292,7 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	// T_bei
 	{" bei: "," at: "},
 	// T_Konnte_regulaeren_Ausdruck_nicht_kompilieren
-	{"Konnte regulären Ausdruck nicht kompilieren: ","Could not compile regular expression: "},
+	{"Konnte regulaeren Ausdruck nicht kompilieren: ","Could not compile regular expression: "},
 	// T_doinst
 	{"doinst()","doinst()"},
 	// T_Ins_Deinstallationsprogramm_wird_eingetragen
@@ -515,6 +515,22 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"zu schreiben: ","must write: "},
 	// T_schreibe_Konfiguration
 	{"schreibe Konfiguration!","writing configuration!"},
+	// T_h_k
+	{"h","h"},
+	// T_lh_k
+	{"lh","lh"},
+	// T_hilfe_l
+	{"hilfe","help"},
+	// T_lhilfe_l
+	{"langhilfe","longhelp"},
+	// T_fgz_k
+	{"?","?"},
+	// T_fgz_l,
+	{"??","??"},
+	// 	T_Erklaerung_haeufiger_Optionen
+	{"Erklaerung haeufiger Optionen","Explanation of frequent options"},
+	// T_Erklaerung_aller_Optionen
+	{"Erklaerung aller Optionen","Explanation of all options"}, 
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -1003,8 +1019,8 @@ int kuerzelogdatei(const char* logdatei,int obverb)
 #endif // kfalsch
 	//// zutun: nicht erst in Vektor einlesen, sondern gleich in die tmp-Datei schreiben 10.6.12
 
-	////	vector<string> Zeilen;   //Der Vektor Zeilen enthält String-Elemente
-	char Zeile[256]; //Die maximale Zeilenlänge beträgt 255 Zeichen, weil ein String mit einer Null endet
+	////	vector<string> Zeilen;   //Der Vektor Zeilen enthaelt String-Elemente
+	char Zeile[256]; //Die maximale Zeilenlaenge betraegt 255 Zeichen, weil ein String mit einer Null endet
 	if (obverb>1) {
 		cout<<"obverb: "<<(int)obverb<<Txk[T_kuerze_logdatei]<<drot<<logdatei<<schwarz<<endl;
 	}
@@ -1034,7 +1050,7 @@ int kuerzelogdatei(const char* logdatei,int obverb)
 		return 1;
 	}
 	while (logf.getline (Zeile, sizeof(Zeile))) {
-		////		Zeilen.push_back(Zeile); //hängt einfach den Inhalt der Zeile als Vektorelement an das Ende des Vektors
+		////		Zeilen.push_back(Zeile); //haengt einfach den Inhalt der Zeile als Vektorelement an das Ende des Vektors
 		if (!abhier) {
 			tm *atm = new tm; // int aktz;
 			////	for(aktz=Zeilen.size()-1;aktz>=0;aktz--) KLA
@@ -1076,7 +1092,7 @@ int kuerzelogdatei(const char* logdatei,int obverb)
 				////              <<"Datum: "<<tbuf<<endl;
 				time_t jetzt=time(0);
 				long sekunden=(long)(jetzt-gesz);
-				if (sekunden<1209600) {// jünger als zwei Wochen => behalten
+				if (sekunden<1209600) {// juenger als zwei Wochen => behalten
 					abhier=1;
 				}
 				////	  <<jetzt<<"- "<<gesz<<"="<<sekunden<<endl;
@@ -1238,7 +1254,7 @@ int Log(const string& text, const short screen/*=1*/, const short file/*=1*/, co
 			} // if (!logdt || !*logdt) _gKLA_ _gKLZ_ else _gKLA_
 			if (oberr) {
 				////      string hstrerror=strerror(errno); // da errno trotz richtiger Fallunterscheidung bei isatty(fileno(stdout)) gesetzt wird
-				// wenn cerr woanders hingeht als cout oder die Meldung gar nicht an screen gerichtet ist, hier ohne Berücks.v.screen==-1
+				// wenn cerr woanders hingeht als cout oder die Meldung gar nicht an screen gerichtet ist, hier ohne Beruecks.v.screen==-1
 				if (isatty(fileno(stdout))!=isatty(fileno(stderr)) || !screen) {
 					cerr<<text<<endl; //// <<": "<<hstrerror<<endl;
 				}
@@ -1257,12 +1273,12 @@ inline void wait ()
 {
 	pthread_mutex_lock(&getmutex);
 	cout<<Txk[T_Bitte_mit]<<_drot<<"return"<<_schwarz<<Txk[T_beenden];
-	// Löscht etwaige Fehlerzustände, die das Einlesen verhindern könnten
+	// Loescht etwaige Fehlerzustaende, die das Einlesen verhindern koennten
 	cin.clear();
 	// (= ignoriert alle Zeichen die derzeit im Puffer sind)
 	cin.ignore(cin.rdbuf()->in_avail());
-	// Füge alle eingelesenen Zeichen in den Puffer bis ein Enter gedrückt wird
-	// cin.get() liefert dann das erste Zeichen aus dem Puffer zurück, welches wir aber ignorieren (interessiert uns ja nicht)
+	// Fuege alle eingelesenen Zeichen in den Puffer bis ein Enter gedrueckt wird
+	// cin.get() liefert dann das erste Zeichen aus dem Puffer zurueck, welches wir aber ignorieren (interessiert uns ja nicht)
 	cin.get();
 	pthread_mutex_unlock(&getmutex);
 }  // inline void wait () 
@@ -1547,7 +1563,7 @@ void aufiSplit(vector<string> *tokens, const string& text, const string& sep,boo
 	} // 	while (1)
 } // void aufiSplit(vector<string> *tokens, const string& text, const string sep,bool nichtmehrfach/*=1*/,int obverb/*=0*/,int oblog/*=0*/) 
 
-// suche in einem String von hinten ohne Groß- und Klein-Unterscheidung
+// suche in einem String von hinten ohne Gross- und Klein-Unterscheidung
 size_t irfind(const string& wo, const string& was)
 {
 	string uwo, uwas;
@@ -1721,7 +1737,7 @@ linst_cl::linst_cl(int obverb,int oblog)
 		} else if (obprogda("apt-get",obverb-1,oblog)) {
 			// Repositories: Frage nach cdrom ausschalten
 			// genauso in: configure
-			// wenn cdrom-Zeile vorkommt, vor ftp.-debian-Zeile steht und www.debian.org erreichbar ist, dann alle cdrom-Zeilen hinten anhängen
+			// wenn cdrom-Zeile vorkommt, vor ftp.-debian-Zeile steht und www.debian.org erreichbar ist, dann alle cdrom-Zeilen hinten anhaengen
 			// gleichlautend in configure: einricht()
 			systemrueck("S=/etc/apt/sources.list;F='^[^#]*cdrom:';grep -qm1 $F $S && "
 			    "test 0$(sed -n '/^[^#]*ftp.*debian/{=;q}' $S) -gt 0$(sed -n '/'$F'/{=;q}' $S) && "
@@ -1959,7 +1975,8 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 //						caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
 //							caus<<blau<<"setze!"<<schwarz<<endl;
-							sA->schl[ii].setzstr(wert.c_str(),ibemerk,/*woher=*/2);
+							uchar geaendert=0;
+							sA->schl[ii].setzstr(wert.c_str(),&geaendert,ibemerk,/*woher=*/2);
 							++richtige;
 							ibemerk.clear();
 							break;
@@ -2327,7 +2344,7 @@ std::string dir_name(const std::string& path)
 // bei rueck==0 liefert es das Ergebnis der system(..)-Funktion zurueck
 // obverb: 1 = Befehl anzeigen, 2 = auch Rueckgabezeilen anzeigen
 // obergebnisanzeig: 1=falls Fehler und obverb>1, >1=falls Fehler
-// cmd soll kein "sudo " am Anfang enthalten, falls nötig soll obsudc gesetzt werden. Innenliegende sudo-Befehle dürfen für den Cron-Aufruf 
+// cmd soll kein "sudo " am Anfang enthalten, falls noetig soll obsudc gesetzt werden. Innenliegende sudo-Befehle duerfen fuer den Cron-Aufruf 
 //  nur den Pfad /usr/bin:/bin (fedora und ubuntu) bzw. /usr/bin:/usr/sbin:/sbin:/bin:/usr/lib/news/bin:/root/bin (opensuse) erwarten
 int systemrueck(const string& cmd, char obverb/*=0*/, int oblog/*=0*/, vector<string> *rueck/*=0*/, const uchar obsudc/*=0*/,
     const int verbergen/*=0*/, int obergebnisanzeig/*wahr*/, const string& ueberschr/*=nix*/,vector<errmsgcl> *errm/*=0*/,uchar obincron/*=0*/,
@@ -2480,7 +2497,7 @@ int systemrueck(const string& cmd, char obverb/*=0*/, int oblog/*=0*/, vector<st
 							ergebnis=gruens+Txk[T_nicht_gefunden];
 						} else if (cmd.substr(0,9)=="modprobe ") {
 						  ergebnis=gruens+Txk[T_nicht_einfuegbar];
-							// das Ende einer awk-Berechnung reeller Zahlen und Pruefung auf Negativität:
+							// das Ende einer awk-Berechnung reeller Zahlen und Pruefung auf Negativitaet:
 						} else if (cmd.find("|grep -q ^-")!=string::npos) {
 						  ergebnis=blaus+ltoan(erg);
 						} else {
@@ -2827,7 +2844,7 @@ int pruefverz(const string& verz,int obverb/*=0*/,int oblog/*=0*/, uchar obmitfa
 		gid_t gid;
 		if(!besitzer.empty()){
 			untersuser(besitzer,&uid,&gid);
-			altmod=umask(0); // => neue Dateien ohne Berechtigungseinschränkung
+			altmod=umask(0); // => neue Dateien ohne Berechtigungseinschraenkung
 		} // 	if(!besitzer.empty())
 		string aktv=verz;
 		svec stack;
@@ -2843,7 +2860,7 @@ int pruefverz(const string& verz,int obverb/*=0*/,int oblog/*=0*/, uchar obmitfa
 					fehlt=0;
 				} else {
 					if (obmachen) {
-						// falls Datei mit Namen eines benötigten Verzeichnisses und obmachen, dann löschen
+						// falls Datei mit Namen eines benoetigten Verzeichnisses und obmachen, dann loeschen
 						tuloeschen(stack[i],nix,obverb,oblog);
 					} // 					if (obmachen)
 				} // 				if(S_ISDIR(sverz.st_mode)) else
@@ -2877,7 +2894,7 @@ int pruefverz(const string& verz,int obverb/*=0*/,int oblog/*=0*/, uchar obmitfa
 					if (obmitfacl) {
 						setfaclggf(stack[i],obverb>1?obverb-1:0,oblog, /*obunter=*/wahr, /*mod=*/i?1:7, /*obimmer=*/1,/*faclbak=*/1,/*user=*/aktben);
 					} else {
-						// dann Rechte in der notwendigen Spezifität erweitern
+						// dann Rechte in der notwendigen Spezifitaet erweitern
 						// 0=Berechtigung vorhanden, 1= benutzer=Besitzer, 2= benutzer gehoert zur Besitzergruppe, 3= nichts davon
 						const string altmod=ltoan(sverz.st_mode,8);
 						switch (prueferg) {
@@ -3377,6 +3394,18 @@ void optioncl::hilfezeile(Sprache lg)
 	} // if (TxBp)
 } // hilfezeile
 #endif
+void optcl::hilfezeile(Sprache lg)
+{
+	if (TxBp) {
+		if (Txi!=-1) {
+			if (TxBp->TCp[Txi][lg]) {
+				cout<<drot<<" -"<<(*TxBp)[kurzi]<<", --"<<(*TxBp)[langi];
+				if (pptr) {if (art==psons || art==pfile) cout<<" <string>"; else if (art==pverz) cout<<" <"<<Txk[T_pfad]<<">"; else cout<<" <zahl>";}
+				cout<<schwarz<<": "<< machbemerk(lg)<<endl;
+			} // if (TxBp->TCp[Txi][lg])
+		} // if (Txi!=-1)
+	} // if (TxBp)
+} // hilfezeile
 
 /*//
 	linsten linstcl::checkinst(int obverb, int oblog) 
@@ -3555,7 +3584,7 @@ void linst_cl::ziehraus(svec srueck, string *ustringp)
 				} // 						if (obanf==2)
 			} // 					for(unsigned i=0;i<srueck.size();++i)
 			/*//
-			// im der letzten eingerückten Block der Bildschirmausgabe stehen die tatsächlich installierten Programme
+			// im der letzten eingerueckten Block der Bildschirmausgabe stehen die tatsaechlich installierten Programme
 			for(unsigned i=srueck.size();i;) KLA
 			--i;
 			if (srueck[i][0]==' ')KLA if (!obanf) obanf++;KLZ else if (obanf==1) obanf++;
@@ -3641,7 +3670,7 @@ int linst_cl::doinst(const string& prog,int obverb/*=0*/,int oblog/*=0*/,const s
 			string zudeinst;
 			if (!(systemrueck("cat /DATA/down/inst_vim_orig",2,0,&srueck))) {
 			string ustring; uchar obanf=0;
-			// im der letzten eingerückten Block der Bildschirmausgabe stehen die tatsächlich installierten Programme
+			// im der letzten eingerueckten Block der Bildschirmausgabe stehen die tatsaechlich installierten Programme
 			// s. ausricht in configure
 			for(unsigned i=srueck.size();i;) {
 			--i;
@@ -3920,7 +3949,7 @@ int servc::machfit(int obverb/*=0*/,int oblog/*=0*/, binaer nureinmal/*=falsch*/
 	for(int iru=0;iru<2;iru++) {
 		//// <<violett<<"machfit "<<blau<<sname<<violett<<", iru: "<<gruen<<iru<<schwarz<<endl;
 		obsvfeh(obverb,oblog);
-		// wenn restart nicht gebraucht wird oder nichts bringt, also alles außer activating und nicht gestartet ...
+		// wenn restart nicht gebraucht wird oder nichts bringt, also alles ausser activating und nicht gestartet ...
 		if (!svfeh||svfeh==1||svfeh==3||svfeh==4||svfeh==5||svfeh==6) {
 			break;
 		} else {
@@ -3970,7 +3999,7 @@ uchar servc::spruef(const string& sbez, uchar obfork, const string& parent, cons
 			} // 			if (!svfeh)
 			////          <<dblau<<"svfeh else: "<<schwarz<<sname<<endl;
 			////  if (systemrueck("systemctl list-units faxq.service --no-legend | grep 'active running'",obverb-1,oblog)) KLA
-			//// string systemd="/usr/lib/systemd/system/"+sname+".service"; // außerhalb Opensuse: /lib/systemd/system/ ...
+			//// string systemd="/usr/lib/systemd/system/"+sname+".service"; // ausserhalb Opensuse: /lib/systemd/system/ ...
 			Log(blaus+systemd+Txk[T_nicht_gefunden_versuche_ihn_einzurichten]+schwarz,1,0);
 			mdatei syst(systemd,ios::out);
 			if (syst.is_open()) {
@@ -4596,7 +4625,7 @@ void find2cl::init(const string& mutter, const string& name, regex_t *reg, const
 
 				if (folge & Fol_Mus) aktel=letztel; else aktel=(elem2*)this;
 				if ((!ab||aktel->dst.st_mtime>=ab)&&(!bis||aktel->dst.st_mtime<=bis))
-					//        cout<<"Prüfe Muster: "<<blau<<aktel->pfad<<schwarz<<endl;
+					//        cout<<"Pruefe Muster: "<<blau<<aktel->pfad<<schwarz<<endl;
 					if (!nurexec || (aktel->dst.st_mode & S_IXUSR || aktel->dst.st_mode & S_IXGRP || aktel->dst.st_mode & S_IXOTH))
 						if (!regexec(reg, aktel->pfad.c_str(), 0, 0, 0)) {
 							if (folge & Fol_Dat) aktel=letztel; else aktel=(elem2*)this;
@@ -4914,11 +4943,11 @@ void findfile(svec *qrueckp,uchar findv,int obverb/*=0*/,int oblog/*=0*/,uchar a
 } // void findfile(svec *qrueckp,uchar findv,int obverb/*=0*/,int oblog/*=0*/,uchar anteil/*=0* ...
 #endif // #if defined(altfind) && defined(neufind)
 
-// 1= Dateien unterschiedlich, 0 = gleich; obzeit => vergleiche auch die letzte Änderungszeit
+// 1= Dateien unterschiedlich, 0 = gleich; obzeit => vergleiche auch die letzte Aenderungszeit
 int dateivgl(const string& d1, const string& d2,uchar obzeit/*=0*/)
 {
 	int erg=0;
-	// wenn ein Unterschied am Anfang der Dateien war oder die Größe < 300 kB lag, war boost schneller; 'cmp' war nie schneller als 'diff'.
+	// wenn ein Unterschied am Anfang der Dateien war oder die Groesse < 300 kB lag, war boost schneller; 'cmp' war nie schneller als 'diff'.
 	////	perfcl prf("vgl");
 	struct stat st1={0},st2={0};
 	int lst1=lstat(d1.c_str(),&st1),
@@ -4961,7 +4990,7 @@ const double& versnr=
 const string& gitv=
 #include "gitvdt"
 ;
-// Pfad für Aufruf aus crontab
+// Pfad fuer Aufruf aus crontab
 // Datei wird erstellt in configure
 const string& spath=
 #include "spath"
@@ -5244,29 +5273,47 @@ void optcl::reset()
 	gegenteil=0;
 	bemerk.clear();
   nichtspeichern=0;	
+	uchar geaendert=0;
 	switch (art) {
 		case puchar: case pint: case plong:
-			setzstr("0","",0); break;
-		default: setzstr("","",0);
+			setzstr("0",&geaendert,"",0); break;
+		default: setzstr("",&geaendert,"",0);
 	}
 } // void optcl::reset()
 
 
-int WPcl::setzstr(const char* neuw,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
+int WPcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
 	// caus<<"in setzstr(), ";
+	long neul;
+	binaer neub;
+	string neus;
 	if (pptr) {
 		switch (wart) {
 			case wlong: 
-				*(long*)pptr=atol(neuw); 
-				// caus<<"mit wlong, neuw: "<<neuw<<", atol(neuw): "<<atol(neuw)<<", pptr: "<<*(long*)pptr<<endl;
+				neul=atol(neuw);
+				if (*(long*)pptr!=neul) {
+					if (geaendert) *geaendert=1;
+					*(long*)pptr=neul; 
+				}
 				break;
+				// caus<<"mit wlong, neuw: "<<neuw<<", atol(neuw): "<<atol(neuw)<<", pptr: "<<*(long*)pptr<<endl;
 			case wbin:
-				*(binaer*)pptr=(binaer)atoi(neuw); break;
+				neub=(binaer)atoi(neuw);
+				if (*(binaer*)pptr!=neub) {
+					if (geaendert) *geaendert=1;
+					*(binaer*)pptr=neub; 
+				}
+				break;
 			case wstr: 
-				*(string*)pptr=string(neuw); break;
+				neus=string(neuw);
+				if (*(string*)pptr!=neus) {
+					if (geaendert) *geaendert=1;
+					*(string*)pptr=neus; 
+				}
+				break;
 			case wdat:  
 				// caus<<"neuw: '"<<neuw<<"' ";
 				for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
@@ -5278,7 +5325,10 @@ int WPcl::setzstr(const char* neuw,const string& bemerk/*=nix*/,const uchar vwoh
 				}
 				if (emax) {
 					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
-					if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+					if (!memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
+						if (geaendert) *geaendert=1;
+						memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+					}
 				}
 				break;
 			default: break;
@@ -5372,19 +5422,25 @@ string& optcl::machbemerk(Sprache lg,binaer obfarbe/*=wahr*/)
 } // string& optioncl::machbemerk(Sprache lg,binaer obfarbe)
 
 // weist einer Option einen c-String zu
-int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
+int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
 	int wiefalsch=0;
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
-	if (!woher) {
+	if (pptr && !woher) {
 		woher=vwoher;
 		struct stat entryarg={0};
+		uchar neuu;
+		int neui;
+		long neul;
 		switch (art) {
 			// und das ein "sonstiger Parameter" ist, ...
 			case psons:
 				// ... dann zuweisen
-				*(string*)pptr=neuw;
+				if (*(string*)pptr!=neuw) {
+					if (geaendert) *geaendert=1;
+					*(string*)pptr=neuw;
+				}
 				break;
 				// wenn es ein Verzeichnis oder eine Datei sein soll ...
 			case pverz:
@@ -5395,7 +5451,10 @@ int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vw
 				else if ((art==pverz)^(S_ISDIR(entryarg.st_mode))) wiefalsch=2; // Datei fuer Verzeichnis o.u.
 				// ... dann zuweisen
 				else {
-					*(string*)pptr=neuw;
+					if (*(string*)pptr!=neuw) {
+						if (geaendert) *geaendert=1;
+						*(string*)pptr=neuw;
+					}
 				}
 				break;
 				// oder wenn es eine Zahl sein soll ...
@@ -5406,11 +5465,26 @@ int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vw
 				else {
 					switch (art) {
 						case puchar:
-							*(uchar*)pptr=atol(neuw); break;
+							neuu=atol(neuw);
+							if (*(uchar*)pptr!=neuu) {
+								if (geaendert) *geaendert=1;
+								*(uchar*)pptr=neuu; 
+							}
+							break;
 						case pint:
-							*(int*)pptr=atol(neuw); break;
+							neui=atol(neuw);
+							if (*(int*)pptr!=neui) {
+								if (geaendert) *geaendert=1;
+								*(int*)pptr=neui;
+							}
+							break;
 						default: /* case plong: */
-							*(long*)pptr=atol(neuw);
+							neul=atol(neuw);
+							if (*(long*)pptr!=neul) {
+								if (geaendert) *geaendert=1;
+								*(long*)pptr=neul;
+							}
+							break;
 					}
 				}
 				break;
@@ -5425,7 +5499,10 @@ int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vw
 				}
 				if (emax) {
 					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
-					if (pptr) memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+					if (!memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
+						if (geaendert) *geaendert=1;
+						memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+					}
 				}
 				break;
 		} // switch (art) 
@@ -5434,19 +5511,20 @@ int optcl::setzstr(const char* neuw,const string& ibemerk/*=nix*/,const uchar vw
 	return wiefalsch;
 } // void optcl::setzstr(const string neuw)
 
-// Rückgabe: -1: String-Parameter erfolgreich zugewiesen, 0: Zahl erfolgreich zugewiesen
+// Rueckgabe: -1: String-Parameter erfolgreich zugewiesen, 0: Zahl erfolgreich zugewiesen
 int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar vnichtspeichern/*=0*/)
 {
 	int wiefalsch=0;
 	gegenteil=vgegenteil;
 	nichtspeichern=vnichtspeichern;
+	uchar geaendert=0;
   if (iwert) {
 		setzwert();
 	} else {
 		// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
 		// er also nicht mit '-' anfaengt ...
 		if (*nacstr && *nacstr!='-') {
-			wiefalsch=setzstr(nacstr);
+			wiefalsch=setzstr(nacstr,&geaendert);
 		} else {
 			wiefalsch=3; // kein geeigneter Parameter gefunden
 		}
@@ -5493,6 +5571,9 @@ void hcl::gcl0()
 	/*3b*/opn<<optcl(/*pname*/"oblog",/*pptr*/&oblog,/*art*/pint,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1,/*obschreibp*/&obkschreib);
 	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&logdateineu,/*art*/puchar,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/0);
 	/*2*/opn<<optcl(/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0,/*obschreibp*/0);
+	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_h_k,T_hilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_haeufiger_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/0);
+	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_lh_k,T_lhilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_aller_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/2,/*obschreibp*/0);
+	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_fgz_k,T_fgz_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/0);
 	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3,/*obschreibp*/0);
 	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4,/*obschreibp*/0);
 
@@ -5534,11 +5615,11 @@ void hcl::gcl0()
 				else if (kurzp) omp=&opn.okmap;
 				if (omp) {
 					for(omit=omp->begin();omit!=omp->end();omit++) {
-						// omit ist also jetzt iterator für die relevante map auf die aktuelle Option
+						// omit ist also jetzt iterator fuer die relevante map auf die aktuelle Option
 						if (!strcmp(omit->first,acstr)) {
 							ap->agef++; // Parameter gefunden
 							if (omit->second->pptr) {
-								// pzuweis liefert -1, wenn der nächste Parameter als Inhalt verwendet wurde, sonst wiefalsch
+								// pzuweis liefert -1, wenn der naechste Parameter als Inhalt verwendet wurde, sonst wiefalsch
 								apn=ap; apn++;
 								const char *nacstr=apn==argcmv.end()?"":apn->argcs;
 								int wiefalsch=omit->second->pzuweis(nacstr,gegenteil,nichtspeichern);
@@ -5598,7 +5679,7 @@ void hcl::gcl0()
 				opts.push_back(/*2*/optioncl(T_kd_k,T_konfdatei_l, &Txk, T_verwendet_Konfigurationsdatei_string_anstatt,/*wi=*/0,&akonfdt,pfile));
 				// Hilfe zur Aktualisierung der manpages
 				opts.push_back(/*4*/optioncl(T_sh,T_standardhilfe, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/3));
-				// Auruf zur Prüfung der library-Fehlerung "no version information" (falls lib-Datei nachträglich geändert wurde)
+				// Auruf zur Pruefung der library-Fehlerung "no version information" (falls lib-Datei nachtraeglich geaendert wurde)
 				opts.push_back(/*4*/optioncl(T_libtest,T_libtest, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/4));
 				break;
 		} //     switch (iru)
@@ -5810,7 +5891,7 @@ void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const 
 			} // for(unsigned k=0;k<sizeof vzn/sizeof *vzn;k++) 
 			if (!suchstr.empty()) {
 				if (suchstr.length()>1) suchstr.resize(suchstr.size()-2); // das letzte \\| abschneiden
-				// Abschnitt wieder löschen
+				// Abschnitt wieder loeschen
 				anfgg(unindt,sudc+"sed -i.vor"+DPROG+" '/^[ \\t]/{H;$!d;};x;/"+suchstr+"/d;1d' "+smbdt,"smb.conf: ["+suchstr+"]",obverb,oblog);
 			} // 			if (!suchstr.empty())
 		} // if (sapp.is_open()) 
@@ -5910,7 +5991,7 @@ void hcl::lieskonfein(const string& DPROG)
 //	if (akonfdt.empty()) akonfdt=aktprogverz()+".conf";
 	if (akonfdt.empty()) {
 		svec rue;
-		// aus Datenschutzgründen sollte das Home-Verzeichnis zuverlässig ermittelt werden
+		// aus Datenschutzgruenden sollte das Home-Verzeichnis zuverlaessig ermittelt werden
 		systemrueck("getent passwd $(logname)|cut -d: -f6",0,0,&rue);
 		if (rue.size()) {
 			akonfdt=rue[0]+vtz+"."+DPROG+".conf";
@@ -5968,17 +6049,15 @@ int hcl::zeighilfe(const stringstream *const erkl)
 			cout<<erkl->str()<<endl;
 		}
 		cout<<blau<<Txk[T_Optionen_die_nicht_gespeichert_werden]<<schwarz<<endl;
-#ifdef alt
-		for(size_t j=0;j<opts.size();j++) {
-			if (!opts[j].obschreibp && (obhilfe>1 || opts[j].wi))
-				opts[j].hilfezeile(Txk.lgn);
-		} //     for(size_t j=0;j<opts.size();j++)
+		for(size_t j=0;j<opn.size();j++) {
+			if (!opn[j].obschreibp && (obhilfe>1 || opn[j].wi))
+				opn[j].hilfezeile(Txk.lgn);
+		} //     for(size_t j=0;j<opn.size();j++)
 		cout<<blau<<Txk[T_Optionen_die_in_der_Konfigurationsdatei_gespeichert_werden]<<schwarz<<endl;
-		for(size_t j=0;j<opts.size();j++) {
-			if (opts[j].obschreibp && (obhilfe>1 || opts[j].wi))
-				opts[j].hilfezeile(Txk.lgn);
-		} //     for(size_t j=0;j<opts.size();j++)
-#endif
+		for(size_t j=0;j<opn.size();j++) {
+			if (opn[j].obschreibp && (obhilfe>1 || opn[j].wi))
+				opn[j].hilfezeile(Txk.lgn);
+		} //     for(size_t j=0;j<opn.size();j++)
 		} // if (obhilfe==4) else
 		return 1;
 	} // if (obhilfe)
@@ -6270,7 +6349,7 @@ void hcl::update(const string& DPROG)
 ////		perfcl perf("main");
 		if (systemrueck("wget https://raw.githubusercontent.com/"+gitv+"/"+DPROG+"/master/versdt -qO"+instvz+"/versdtakt&&"
 					/*//				"[ $(echo $(cat "+instvz+"/versdtakt)'>'$(cat "+instvz+"/versdt)|bc -l) -eq 0 ]",2,oblog))*/
-			// Berechnung mit |bc -l schlecht, da z.B. auf Ubuntu bc nicht unbedingt standardmäßig installiert
+			// Berechnung mit |bc -l schlecht, da z.B. auf Ubuntu bc nicht unbedingt standardmaessig installiert
 			"awk \"BEGIN{print $(cat "+instvz+"/versdt)-$(cat "+instvz+"/versdtakt)}\"|grep -q ^-",obverb,oblog,/*rueck=*/0,/*obsudc=*/0)) {
 
 				::Log(violetts+DPROG+blau+Txk[T_muss_nicht_aktualisiert_werden]+schwarz,1,oblog);
@@ -6289,7 +6368,7 @@ void hcl::update(const string& DPROG)
 		svec srueck;
 		systemrueck(mpfad+" -libtest 2>&1",obverb,oblog,&srueck);
 		if (srueck.size()) {
-			// wenn durch Systemupdate z.B. neue libtiff-Version eingespielt, dann wg.d.Fehlermeldung das aktuelle Programm nochmal dafür kompilieren
+			// wenn durch Systemupdate z.B. neue libtiff-Version eingespielt, dann wg.d.Fehlermeldung das aktuelle Programm nochmal dafuer kompilieren
 			if (srueck[0].find("no version information")!=string::npos) {
 				// falls mehrere libtiff installiert sind, die eigene bevorzugen
 					 if (srueck[0].find("libtiff")!=string::npos) {
@@ -6355,7 +6434,7 @@ void hcl::setzbenutzer(string *user)
 
 void optcl::weisomapzu(schAcl<optcl> *schlp)
 {
-		// interne Berechnungen durchführen
+		// interne Berechnungen durchfuehren
 		// Bemerkung erst beim Schreiben setzen
 		// Indices (maps) belegen
 		schlp->omap[pname]=this;
@@ -6451,6 +6530,7 @@ int confdcl::lies(const string& fname, int obverb)
 void hcl::autokonfschreib()
 {
 	Log(violetts+Txk[T_autokonfschreib]+schwarz+", "+Txk[T_zu_schreiben]+((rzf||obkschreib)?Txk[T_ja]:Txk[T_nein]));
+	caus<<rot<<"obkschreib: "<<violett<<(int)obkschreib<<schwarz<<endl;
 	if (rzf||obkschreib) {
 		Log(gruens+Txk[T_schreibe_Konfiguration]+schwarz);
 		opn.fschreib(akonfdt,ios::out,0);
