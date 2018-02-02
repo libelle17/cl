@@ -193,7 +193,7 @@ T_VorgbAllg	cl.cpp	/^	T_VorgbAllg,$/;"	e	enum:T_	file:
 T_VorgbSpeziell	cl.cpp	/^	T_VorgbSpeziell,$/;"	e	enum:T_	file:
 T_Weder_zypper_noch_apt_get_noch_dnf_noch_yum_als_Installationspgrogramm_gefunden	kons.h	/^  T_Weder_zypper_noch_apt_get_noch_dnf_noch_yum_als_Installationspgrogramm_gefunden,$/;"	e	enum:Tkons_
 T_Welches_Passwort_soll_der_Benutzer_postgres_haben	DB.h	/^	T_Welches_Passwort_soll_der_Benutzer_postgres_haben,$/;"	e	enum:Txdb_
-T_Wert	kons.h	/^  T_Wert,$/;"	e	enum:Tkons_
+T_Wert	kons.h	/^	T_Wert,$/;"	e	enum:Tkons_
 T_Zeigt_die_Programmversion_an	cl.cpp	/^	T_Zeigt_die_Programmversion_an,$/;"	e	enum:T_	file:
 T_Zeilen	kons.h	/^  T_Zeilen,$/;"	e	enum:Tkons_
 T_Zeit_Doppelpunkt	kons.h	/^	T_Zeit_Doppelpunkt,$/;"	e	enum:Tkons_
@@ -274,6 +274,7 @@ T_laeuft_jetzt	kons.h	/^	T_laeuft_jetzt,$/;"	e	enum:Tkons_
 T_laeuft_schon_einmal_Breche_ab	kons.h	/^  T_laeuft_schon_einmal_Breche_ab,$/;"	e	enum:Tkons_
 T_lang_k	kons.h	/^	T_lang_k,$/;"	e	enum:Tkons_
 T_language_l	kons.h	/^	T_language_l,$/;"	e	enum:Tkons_
+T_laueft_schon_einmal_aber	kons.h	/^	T_laueft_schon_einmal_aber,$/;"	e	enum:Tkons_
 T_ld_k	kons.h	/^	T_ld_k,$/;"	e	enum:Tkons_
 T_ldn_k	kons.h	/^	T_ldn_k,$/;"	e	enum:Tkons_
 T_lg_k	kons.h	/^	T_lg_k,$/;"	e	enum:Tkons_
@@ -383,6 +384,7 @@ T_warte	kons.h	/^	T_warte,$/;"	e	enum:Tkons_
 T_wird	kons.h	/^	T_wird,$/;"	e	enum:Tkons_
 T_wird_aktualisiert_bitte_ggf_neu_starten	kons.h	/^	T_wird_aktualisiert_bitte_ggf_neu_starten,$/;"	e	enum:Tkons_
 T_wird_benoetigt_fuer_Befehl	DB.h	/^	T_wird_benoetigt_fuer_Befehl,$/;"	e	enum:Txdb_
+T_wird_deshalb_abgebrochen	kons.h	/^	T_wird_deshalb_abgebrochen,$/;"	e	enum:Tkons_
 T_wird_verwendet_anstatt	kons.h	/^	T_wird_verwendet_anstatt,$/;"	e	enum:Tkons_
 T_zeigvers	cl.cpp	/^	T_zeigvers,$/;"	e	enum:T_	file:
 T_zu	kons.h	/^	T_zu,$/;"	e	enum:Tkons_
@@ -871,7 +873,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	984;"	d
+obfstream	kons.h	986;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
@@ -1145,7 +1147,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6273;"	d	file:
+uebersichtlich	kons.cpp	6286;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1160,7 +1162,7 @@ user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1152;"	d	file:
+vagenau	kons.cpp	1156;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
