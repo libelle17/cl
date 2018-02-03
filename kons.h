@@ -611,6 +611,7 @@ template <> inline void Schluessel::setze < string > (string *var) { strncpy(val
 template <typename SCL> class schAcl;
 
 enum war_t:uchar {wlong,wbin,wstr,wdat}; // Parameterart: Sonstiges, Verzeichnis, Zahl, binär
+// fuer Wertepaare, die nur aus Datei gezogen werden und nicht zusaetzlich ueber die Befehlszeile eingegeben werden koennen
 struct WPcl { // Wertepaarklasse
     string pname;
 		const void* pptr;
@@ -618,11 +619,11 @@ struct WPcl { // Wertepaarklasse
     uchar gelesen=0;
     string wert;
     string bemerk;
-		uchar eingetragen;
+		uchar eingetragen; // Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
-		int setzstr(const char* neuw,uchar *geaendert,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *obzuschreib=0,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
 		uchar einzutragen(schAcl<WPcl> *schlp);
 		void weisomapzu(schAcl<WPcl> *schlp);
@@ -726,6 +727,7 @@ template <> void schAcl<optcl>::eintrinit();
 struct confdcl {
 		svec zn;
 		uchar obgelesen;
+		uchar obzuschreib;
     size_t richtige;
 		confdcl();
 		int lies(const string& fname, int obverb);
@@ -888,6 +890,7 @@ template<class SCL> /*4*/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar w
 #endif
 
 // neue Klasse für map
+// fuer Wertepaare, die aus Datei gezogen werden und zusaetzlich ueber die Befehlszeile eingegeben werden koennen
 struct optcl
 {
 		string pname; // Name des Konfigurationsparameters
@@ -913,13 +916,13 @@ struct optcl
 		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
-		uchar eingetragen;
+		uchar eingetragen; // Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei
 		uchar einzutragen(schAcl<optcl> *schlp);
 		void weisomapzu(schAcl<optcl> *schlp);
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
 		void setzwert();
-		int setzstr(const char* neuw,uchar *geaendert,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *obzuschreib=0,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
 		void setzebem(schAcl<WPcl> *cpA,const char *pname);
 		void oausgeb();
@@ -1266,6 +1269,7 @@ class hcl
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv);
 		~hcl();
+		void progpar(const char* DPROG);
 		int Log(const string& text,const bool oberr=0,const short klobverb=0) const;
     int pruefinstv();
     void lieskonfein(const string& DPROG);

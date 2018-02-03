@@ -259,32 +259,11 @@ void hhcl::spezopt()
 	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*obschreibp*/&obkschreib);
 } // void hhcl::spezopt()
 
-// wird aufgerufen in: main
-void hhcl::getcommandl0()
-{
-	if (obverb) {
-		cout<<violett<<"getcommandl0()"<<schwarz<<endl;
-		obverb=0;
-	}
-	// Reihenfolge muss koordiniert werden mit lieskonfein und rueckfragen
-	/*
-	const char* const sarr[]={"language","logvz","logdname","oblog","cronminut","autoupd","host","muser","mpwd","datenbank","tabelle" //ω
-	}; //α
-	*/
-//	agcnfA.initd(sarr,sizeof sarr/sizeof *sarr);
-	gcl0(); //ω
-//  agcnfA.initv(optpv,optsv);
-	hcl::lieskonfein(DPROG);
-	hcl::lgnzuw();
-	hcl::verarbeitkonf();
-	optausg(gruen);
-	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
-} // void hhcl::getcommandl0(int argc, char** argv) //α
 
 void hhcl::VorgbAllg()
 {
 	Log(violetts+Tx[T_VorgbAllg]+schwarz);
-	cronminut="2";
+	cronminut="0";
 	autoupd=1;
 } // void hhcl::VorgbAllg
 
@@ -547,7 +526,7 @@ int main(int argc,char** argv)
 	 */
 	hhi.VorgbAllg();
 	hhi.VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
-	hhi.getcommandl0(); // anfangs entscheidende Kommandozeilenparameter abfragen
+	hhi.progpar(DPROG); // Programmparameter aus Befehlszeile und Konfigurationsdatei festlegen
 	if (hhi.obhilfe==3) { // Standardausgabe gewaehrleisten
 		hhi.MusterVorgb();
 	} else {
@@ -565,19 +544,24 @@ int main(int argc,char** argv)
 	if (!hhi.keineverarbeitung) {
 		hhi.rueckfragen();
 		hhi.pruefggfmehrfach();
+		caus<<"nach pruefggfmehrfach"<<endl;
 		if (hhi.logdateineu) tuloeschen(logdt,"",hhi.obverb,hhi.oblog);
+		caus<<"nach tuloeschen"<<endl;
 		hhi.Log(Tx[T_Logpfad]+drots+hhi.loggespfad+schwarz+Tx[T_oblog]+drot+ltoan((int)hhi.oblog)+schwarz+")");
 //		if (hhi.initDB()) return 10; //ω
 	} // 	if (!hhi.keineverarbeitung) //α
 
 	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
+		caus<<"nach pruefcron"<<endl;
 	if (!hhi.keineverarbeitung) {
 		hhi.zeigueberschrift(); //ω
 		hhi.setzzaehler(); //α
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
+		caus<<"nach keineverarbeitung"<<endl;
 
 	hhi.autokonfschreib();
+		caus<<"nach autokonfschreib"<<endl;
 	hhi.update(DPROG);
 	hhi.schlussanzeige();
 	Log(violetts+Txk[T_Ende]+schwarz,hhi.obverb,hhi.oblog);

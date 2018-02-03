@@ -33,7 +33,11 @@
 .br
 Ende gcl0
 .br
+akonfdt: \fB/home/schade/.cl.conf\fR
+.br
 auswert() language vor while, wert: e
+.br
+woher: 1, pptr: d, neuw: e
 .br
 auswert() logvz vor while, wert: /var/log
 .br
@@ -41,9 +45,11 @@ auswert() logdname vor while, wert: cl.log
 .br
 auswert() oblog vor while, wert: 0
 .br
-auswert() lista vor while, wert: 0
+auswert() lista vor while, wert: 1
 .br
-auswert() n vor while, wert: 98
+auswert() n vor while, wert: 97
+.br
+\fBobzuschreib: \fB1\fR
 .br
 verarbeitkonf(), Zahl: 0
 .br
@@ -75,9 +81,9 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 12\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 13\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 67\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists lines or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 13\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 67\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists lines or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 14\fR pname:\fB       n\fR,pptr:\fB                       98\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 68\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists n lines instead of 30 or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 14\fR pname:\fB       n\fR,pptr:\fB                       97\fR,kurzi:\fB         n\fR,langi:\fB        zahl\fR,wi:\fB  1\fR,Txi:\fB 68\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obschreibp:\fB0\fR,obno:\fB1\fR,bemkg:\fB# lists n lines instead of 30 or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
@@ -85,15 +91,17 @@ verarbeitkonf(), Zahl: 0
 .br
 azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
 .br
-auswert() aufrufe vor while, wert: 102
+auswert() aufrufe vor while, wert: 118
 .br
-auswert() lDatum vor while, wert: 02.02.2018 01.05.56
+auswert() lDatum vor while, wert: 03.02.2018 23.35.30
 .br
 auswert() tagesaufr vor while, wert: 1
 .br
 auswert() monatsaufr vor while, wert: 1
 .br
-\fBaufrufe: \fR102
+\fBobzuschreib: \fB0\fR
+.br
+\fBaufrufe: \fR118
 .br
 \fBletztes Datum: \fR00.01.1900 00.00.00
 .br
@@ -127,4 +135,4 @@ auswert() monatsaufr vor while, wert: 1
 .br
 \fB -lista, --lista <zahl>\fR: listet Zeilen auf\fB oder nicht\fR
 .br
-\fB -n, --number <zahl>\fR: listet n Zeilen auf anstatt \fB30\fR\fB oder nicht\fR
+\fB -n, --zahl <zahl>\fR: listet n Zeilen auf anstatt \fB30\fR\fB oder nicht\fR

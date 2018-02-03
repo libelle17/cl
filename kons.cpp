@@ -1939,7 +1939,6 @@ template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const ch
 } // void sAdat::auswert(WPcl *sA, size_t csize, int obverb, char tz)
 
 
-// aufgerufen in: confdat::confdat(const string& fname, schAcl *sA, int obverb, char tz):name(fname)
 template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
 {
   richtige=0;
@@ -1948,7 +1947,8 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 	}
   if (obgelesen) {
     string ibemerk;
-    for(size_t i=0;i<zn.size();i++) {
+		obzuschreib=0;
+		for(size_t i=0;i<zn.size();i++) {
       string *zeile=&zn[i];
       size_t pos=zeile->find('#');
       if (pos!=string::npos) {
@@ -1975,12 +1975,11 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 					anfzweg(wert);
           size_t ii=sA->schl.size();
 					caus<<"auswert() "<<pname<<" vor while, wert: "<<wert<<endl;
-          while(ii--) {
+					while(ii--) {
 //						caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
 //							caus<<blau<<"setze!"<<schwarz<<endl;
-							uchar geaendert=0;
-							sA->schl[ii].setzstr(wert.c_str(),&geaendert,ibemerk,/*woher=*/2);
+							sA->schl[ii].setzstr(wert.c_str(),&obzuschreib,ibemerk,/*woher=*/2);
 							++richtige;
 							ibemerk.clear();
 							break;
@@ -1994,6 +1993,7 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 				} // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
 			} // if (!zeile->empty()) 
 		} // for(size_t i=0;i<zn.size();i++) 
+		caus<<violett<<"obzuschreib: "<<rot<<(int)obzuschreib<<schwarz<<endl;
 	} // if (obgelesen) 
 	/*//	
   if (pname.find("config.tty")!=string::npos) KLA
@@ -2002,7 +2002,7 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
     KLZ
   KLZ
 */
-} // void sAdat::auswert(WPcl *sA, size_t csize, int obverb, char tz)
+} // void sAdat::auswert
 
 
 /*//
@@ -2546,7 +2546,9 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 	const long smax=3600; // maximal tolerierte Sekundenzahl, bevor statt dem eigenen Prozess der andere abgebrochen wird
 	svec rueck;
 	const string iwen=wen.empty()?base_name(meinpfad()):wen;
+	caus<<"vor systemrueck"<<endl;
 	systemrueck("ps -eo comm,cputime,pid|grep -P '^"+iwen+"([[:space:]]|\\z)'",!obstumm,0,&rueck,/*obsudc=*/0);
+	caus<<"nach systemrueck"<<endl;
 	for(int aru=0;aru<3;aru++) {
 		if (rueck.size()==1) // ich
 			break;
@@ -2565,7 +2567,9 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 					if (sek>smax) {    // wenn es mindestens eine Stunde laeuft
 						cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laueft_schon_einmal_aber]<<" "<<rot<<sek<<schwarz<<" s (> "<<blau<<smax<<schwarz<<" s), "<<Txk[T_wird_deshalb_abgebrochen]<<endl;
 						if (!systemrueck(string("kill ")+(aru?"-9 ":"")+pvec[2]+" 2>/dev/null",!obstumm,0,0,/*obsudc=*/1)) {
+	caus<<"vor erase"<<endl;
 							rueck.erase(rueck.begin()+iru);
+	caus<<"nach erase"<<endl;
 							continue;
 						}
 					} // 				if (sek>15)
@@ -2578,6 +2582,7 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 			cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laeuft_schon_einmal_Breche_ab]<<endl;
 			exit(98);
 		} // if (aru<2) else
+	caus<<"nach pruefmehrfach"<<endl;
 	} // 	for(int aru=0;aru<3;aru++) 
 	/*//
 		for(size_t j=0;j<rueck.size();j++) KLA
@@ -5078,6 +5083,22 @@ hcl::~hcl()
 	linstp=0;
 }
 
+// Programmparameter:
+void hcl::progpar(const char* DPROG)
+{
+	if (obverb) {
+		cout<<violett<<"progpar()"<<schwarz<<endl;
+		obverb=0;
+	}
+	gcl0(); //¿
+	lieskonfein(DPROG);
+	setzlog();
+	lgnzuw();
+	verarbeitkonf();
+	optausg(gruen);
+	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
+}
+
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
 int hcl::pruefinstv()
 {
@@ -5286,7 +5307,7 @@ void hcl::zeigkonf()
 } // void hcl::zeigkonf()
 // augerufen in: anhalten(), zeigkonf()
 
-// weis einer Option eine Zahl zu
+// weist einer Option eine Zahl zu
 void optcl::setzwert()
 {
  long zahl=gegenteil?!iwert:iwert;
@@ -5298,22 +5319,7 @@ void optcl::setzwert()
  }
 } // void optcl::setzwert()
 
-void optcl::reset()
-{
-	woher=0;
-	gegenteil=0;
-	bemerk.clear();
-  nichtspeichern=0;	
-	uchar geaendert=0;
-	switch (art) {
-		case puchar: case pint: case plong:
-			setzstr("0",&geaendert,"",0); break;
-		default: setzstr("",&geaendert,"",0);
-	}
-} // void optcl::reset()
-
-
-int WPcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
+int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
@@ -5326,7 +5332,6 @@ int WPcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& bemerk/*
 			case wlong: 
 				neul=atol(neuw);
 				if (*(long*)pptr!=neul) {
-					if (geaendert) *geaendert=1;
 					*(long*)pptr=neul; 
 				}
 				break;
@@ -5334,14 +5339,12 @@ int WPcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& bemerk/*
 			case wbin:
 				neub=(binaer)atoi(neuw);
 				if (*(binaer*)pptr!=neub) {
-					if (geaendert) *geaendert=1;
 					*(binaer*)pptr=neub; 
 				}
 				break;
 			case wstr: 
 				neus=string(neuw);
 				if (*(string*)pptr!=neus) {
-					if (geaendert) *geaendert=1;
 					*(string*)pptr=neus; 
 				}
 				break;
@@ -5357,7 +5360,6 @@ int WPcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& bemerk/*
 				if (emax) {
 					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
 					if (!memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
-						if (geaendert) *geaendert=1;
 						memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
 					}
 				}
@@ -5452,14 +5454,27 @@ string& optcl::machbemerk(Sprache lg,binaer obfarbe/*=wahr*/)
 	return bemerk;
 } // string& optioncl::machbemerk(Sprache lg,binaer obfarbe)
 
+void optcl::reset()
+{
+	woher=0;
+	gegenteil=0;
+	bemerk.clear();
+  nichtspeichern=0;	
+	switch (art) {
+		case puchar: case pint: case plong:
+			setzstr("0",0,"",0); break;
+		default: setzstr("",0,"",0);
+	}
+} // void optcl::reset()
+
+
 // weist einer Option einen c-String zu
-int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
+int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
 {
 	int wiefalsch=0;
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
-	if (pptr && !woher) {
-		woher=vwoher;
+	if (pptr) {
 		struct stat entryarg={0};
 		uchar neuu;
 		int neui;
@@ -5469,8 +5484,14 @@ int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk
 			case psons:
 				// ... dann zuweisen
 				if (*(string*)pptr!=neuw) {
-					if (geaendert) *geaendert=1;
-					*(string*)pptr=neuw;
+					if (woher) {
+						if (obzuschreib) if (!*obzuschreib) { 
+							*obzuschreib=1; 
+							caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", neuw: "<<neuw<<endl; 
+						}
+					} else {
+						*(string*)pptr=neuw;
+					}
 				}
 				break;
 				// wenn es ein Verzeichnis oder eine Datei sein soll ...
@@ -5483,8 +5504,14 @@ int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk
 				// ... dann zuweisen
 				else {
 					if (*(string*)pptr!=neuw) {
-						if (geaendert) *geaendert=1;
-						*(string*)pptr=neuw;
+						if (woher) {
+							if (obzuschreib) if (!*obzuschreib) { 
+								*obzuschreib=1; 
+								caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", neuw: "<<neuw<<endl; 
+							}
+						} else {
+							*(string*)pptr=neuw;
+						}
 					}
 				}
 				break;
@@ -5498,22 +5525,40 @@ int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk
 						case puchar:
 							neuu=atol(neuw);
 							if (*(uchar*)pptr!=neuu) {
-								if (geaendert) *geaendert=1;
-								*(uchar*)pptr=neuu; 
+								if (woher) {
+									if (obzuschreib) if (!*obzuschreib) { 
+										*obzuschreib=1; 
+										caus<<"woher: "<<(int)woher<<", pptr: "<<(int)*(uchar*)pptr<<", neuw: "<<neuw<<endl;
+									}
+								} else {
+									*(uchar*)pptr=neuu; 
+								}
 							}
 							break;
 						case pint:
 							neui=atol(neuw);
 							if (*(int*)pptr!=neui) {
-								if (geaendert) *geaendert=1;
-								*(int*)pptr=neui;
+								if (woher) {
+									if (obzuschreib) if (!*obzuschreib) { 
+										*obzuschreib=1; 
+										caus<<"woher: "<<(int)woher<<", pptr: "<<*(int*)pptr<<", neuw: "<<neuw<<endl; 
+									}
+								} else {
+									*(int*)pptr=neui;
+								}
 							}
 							break;
 						default: /* case plong: */
 							neul=atol(neuw);
 							if (*(long*)pptr!=neul) {
-								if (geaendert) *geaendert=1;
-								*(long*)pptr=neul;
+								if (woher) {
+									if (obzuschreib) if (!*obzuschreib) { 
+										*obzuschreib=1; 
+										caus<<"woher: "<<(int)woher<<", pptr: "<<*(long*)pptr<<", neuw: "<<neuw<<endl; 
+									}
+								} else {
+									*(long*)pptr=neul;
+								}
 							}
 							break;
 					}
@@ -5531,16 +5576,25 @@ int optcl::setzstr(const char* neuw,uchar *geaendert/*=0*/,const string& ibemerk
 				if (emax) {
 					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
 					if (!memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
-						if (geaendert) *geaendert=1;
-						memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+						if (woher) {
+							if (obzuschreib) if (!*obzuschreib) { 
+								*obzuschreib=1; 
+								caus<<"woher: "<<(int)woher<<", pptr: "<<", tmmax: "<<endl; 
+							}
+						} else {
+							memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
+						}
 					}
 				}
 				break;
 		} // switch (art) 
-		if (!wiefalsch) bemerk=ibemerk;
+		if (!woher && !wiefalsch) {
+			woher=vwoher;
+			bemerk=ibemerk;
+		}
 	} // 	if (!woher)
 	return wiefalsch;
-} // void optcl::setzstr(const string neuw)
+} // void optcl::setzstr
 
 // Rueckgabe: -1: String-Parameter erfolgreich zugewiesen, 0: Zahl erfolgreich zugewiesen
 int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar vnichtspeichern/*=0*/)
@@ -5548,14 +5602,13 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 	int wiefalsch=0;
 	gegenteil=vgegenteil;
 	nichtspeichern=vnichtspeichern;
-	uchar geaendert=0;
   if (iwert) {
 		setzwert();
 	} else {
 		// <<rot<<"nacstr: "<<nacstr<<schwarz<<endl;
 		// er also nicht mit '-' anfaengt ...
 		if (*nacstr && *nacstr!='-') {
-			wiefalsch=setzstr(nacstr,&geaendert);
+			wiefalsch=setzstr(nacstr);
 		} else {
 			wiefalsch=3; // kein geeigneter Parameter gefunden
 		}
@@ -6035,27 +6088,9 @@ void hcl::lieskonfein(const string& DPROG)
 	lfd=0;
 // afcd.cinit(akonfdt,&agcnfA,obverb,'=',/*mitclear=*/0); // hier werden die Daten aus der Datei eingelesen
 	hccd.lies(akonfdt,obverb);
+	caus<<"akonfdt: "<<blau<<akonfdt<<schwarz<<endl;
 	hccd.auswert(&opn,obverb,'=',0);
-	return;
-
-	// wenn die Sprache noch nicht in der Kommandozeile zugewiesen wurde
-	if (langu.empty()) {
-		// und in der Konfigurationsdatei enthalten war 
-		if (agcnfA[lfd].gelesen) {
-			// dann langu auf die Sprache aus der Konfigurationsdatei setzen
-//			agcnfA[lfd].hole(&langu); 
-			lgnzuw();
-		} else rzf=1; // Sprache aus der Commandline geht vor Konfiguration
-		// wenn die Sprache schon in der Kommandozeile festgelegt wurde
-	} else {
-		// ... und sich von der aus der Konfigurationsdatei unterscheidet ...
-		if (agcnfA[lfd].wert.compare(langu)) {
-			// agcnfA[lfd].setze(&langu);
-			// ... und der Aufruf nicht nur einmal geschehen sollte
-			if (oblgschreib)
-				obkschreib=1;
-		} // if (agcnfA[lfd].wert.compare(langu)) 
-	} //     if (langu.empty())  else
+	lgnzuw();
 } // void hcl::lieskonfein()
 
 // wird aufgerufen von der von hcl abgeleiteten Klasse, dort lieskonfein()
