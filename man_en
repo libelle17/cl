@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "04.02.18" "Version 0.10324" "\fB²DPROG²\fR man page"
+.TH man 1 "04.02.18" "Version 0.10326" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -47,7 +47,7 @@
 .br
 \fB 14\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vi\fR,langi:\fB          vi\fR,wi:\fB  0\fR,Txi:\fB226\fR,rottxt:\fB               \fR,Txi2:\fB227\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
@@ -57,21 +57,9 @@ Ende gcl0
 .br
 akonfdt: \fB/home/schade/.cl.conf\fR
 .br
-auswert() language vor while, wert: e
+woher: 1, pptr: e, neuw: d
 .br
-auswert() logvz vor while, wert: /var/log
-.br
-auswert() logdname vor while, wert: cl.log
-.br
-auswert() oblog vor while, wert: 0
-.br
-auswert() cronminut vor while, wert: 4
-.br
-auswert() lista vor while, wert: 1
-.br
-auswert() n vor while, wert: 97
-.br
-\fBobzuschreib: \fB0\fR
+\fBobzuschreib: \fB1\fR
 .br
 verarbeitkonf(), Zahl: 0
 .br
@@ -83,11 +71,11 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         v\fR,langi:\fB     verbose\fR,wi:\fB  1\fR,Txi:\fB152\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB153\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obno:\fB1\fR,bemkg:\fB# choses <path> as log directory, currently '/var/log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       ldr\fR,langi:\fB      logdir\fR,wi:\fB  0\fR,Txi:\fB153\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obno:\fB1\fR,bemkg:\fB# waehlt als Logverzeichnis <pfad>, derzeit '/var/log' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB       /var/log\fR,Txi2:\fB156\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# log file <string> (in path '/var/log') will be used instead of 'cl.log' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        lf\fR,langi:\fB logfilename\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB       /var/log\fR,Txi2:\fB156\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# logdatei <string> (im Pfad '/var/log') wird verwendet anstatt 'cl.log' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB161\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB155\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB# put detailed logs in file '/var/log/cl.log' (otherwise shorter) or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB161\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB155\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB# protokolliert ausfuehrlich in Datei '/var/log/cl.log' (sonst knapper) oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       lfn\fR,langi:\fB  logfilenew\fR,wi:\fB  0\fR,Txi:\fB157\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
@@ -103,15 +91,15 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 12\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 13\fR pname:\fBcronminut\fR,pptr:\fB                        4\fR,kurzi:\fB        cm\fR,langi:\fB cronminutes\fR,wi:\fB  1\fR,Txi:\fB222\fR,rottxt:\fB             cl\fR,Txi2:\fB223\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# every how many minutes shall cl be called in crontab (0=not at all), instead of  '4' or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 13\fR pname:\fBcronminut\fR,pptr:\fB                        4\fR,kurzi:\fB        cm\fR,langi:\fB cronminutes\fR,wi:\fB  1\fR,Txi:\fB222\fR,rottxt:\fB             cl\fR,Txi2:\fB223\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# alle wieviel Minuten soll cl ueber crontab aufgerufen werden (0=gar nicht), anstatt  '4' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB 14\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vi\fR,langi:\fB          vi\fR,wi:\fB  0\fR,Txi:\fB226\fR,rottxt:\fB/home/schade/.cl.conf\fR,Txi2:\fB227\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB# lists lines or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB# listet Zeilen auf oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       97\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB# lists n lines instead of 30 or not\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB       n\fR,pptr:\fB                       97\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB# listet n Zeilen auf anstatt 30 oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
@@ -119,23 +107,15 @@ verarbeitkonf(), Zahl: 0
 .br
 azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
 .br
-auswert() aufrufe vor while, wert: 137
-.br
-auswert() lDatum vor while, wert: 04.02.2018 11.31.02
-.br
-auswert() tagesaufr vor while, wert: 1
-.br
-auswert() monatsaufr vor while, wert: 1
-.br
 \fBobzuschreib: \fB13\fR
 .br
-\fBaufrufe: \fR137
+\fBaufrufe: \fR148
 .br
-\fBletztes Datum: \fR00.01.1900 00.00.00
+\fBletztes Datum: \fR04.02.2018 12.43.03
 .br
-\fBtagesaufr: \fR1
+\fBtagesaufr: \fR2
 .br
-\fBmonatsaufr: \fR1
+\fBmonatsaufr: \fR2
 .br
 \fBvor return\fR
 .br
@@ -153,7 +133,7 @@ auswert() monatsaufr vor while, wert: 1
 .br
 \fB -vi, --vi <zahl>\fR: edit/view configuration file \fB/home/schade/.cl.conf\fR, log file etc. (finish with ':qa')\fB or not\fR
 .br
-\fB -vs, --vs <zahl>\fR: edit source files (finish with ':qa')\fB or not\fR
+\fB -vs, --vs <zahl>\fR: edit/view source files in \fB/root/cl\fR(finish with ':qa')\fB or not\fR
 .br
 \fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
 .br

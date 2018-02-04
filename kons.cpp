@@ -555,8 +555,10 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"vs","vs"},
 	// T_vs_l
 	{"vs","vs"},
-	// T_Quelldateien_bearbeiten
-	{"Quelldateien bearbeiten (beenden mit ':qa')","edit source files (finish with ':qa')"},
+	// T_Quelldateien_in
+	{"Quelldateien in ","edit/view source files in "},
+	// T_bearbeiten_sehen
+	{" bearbeiten/sehen (beenden mit ':qa')","(finish with ':qa')"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -1995,11 +1997,11 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 					gtrim(&wert);
 					anfzweg(wert);
           size_t ii=sA->schl.size();
-					caus<<"auswert() "<<pname<<" vor while, wert: "<<wert<<endl;
+					// caus<<"auswert() "<<pname<<" vor while, wert: "<<wert<<endl;
 					while(ii--) {
-//						caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
-//							caus<<blau<<"setze!"<<schwarz<<endl;
+							// caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
+							// caus<<blau<<"setze!"<<schwarz<<endl;
 							sA->schl[ii].setzstr(wert.c_str(),&obzuschreib,ibemerk,/*woher=*/2);
 							++richtige;
 							ibemerk.clear();
@@ -2603,7 +2605,6 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 			cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laeuft_schon_einmal_Breche_ab]<<endl;
 			exit(98);
 		} // if (aru<2) else
-	caus<<"nach pruefmehrfach"<<endl;
 	} // 	for(int aru=0;aru<3;aru++) 
 	/*//
 		for(size_t j=0;j<rueck.size();j++) KLA
@@ -5116,7 +5117,7 @@ void hcl::progpar(const char* DPROG)
 	lgnzuw();
 	verarbeitkonf();
 	optausg(gruen);
-	lieszaehlerein(&aufrufe,&tagesaufr,&monatsaufr,&laufrtag);
+	lieszaehlerein();
 }
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
@@ -5369,7 +5370,7 @@ int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& bemerk
 				}
 				break;
 			case wdat:  
-				// caus<<"neuw: '"<<neuw<<"' ";
+				 // caus<<"Datum neuw: '"<<neuw<<"' ";
 				for(unsigned im=0;im<sizeof tmmoegl/sizeof *tmmoegl;im++) {
 					memcpy(&tmp,&neu,sizeof tmp);
 					eakt=strptime(neuw, tmmoegl[im], &tmp);
@@ -5379,7 +5380,7 @@ int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& bemerk
 				}
 				if (emax) {
 					// caus<<blau<<"Sieger: "<<ztacl(&tmmax)<<schwarz<<endl;
-					if (!memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
+					if (memcmp((struct tm*)pptr,&tmmax,sizeof tmmax)) {
 						memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
 					}
 				}
@@ -5660,7 +5661,7 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 } // int optcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, const uchar nichtspeichern/*=0*/)
 
 optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
-		const uchar wi, const long Txi2, string* rottxt, const int iwert):
+		const uchar wi, const long Txi2, const string* const rottxt, const int iwert):
 	pname(pname),pptr(pptr),art(art),kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),Txi2(Txi2),rottxt(rottxt),iwert(iwert),
 	obno(1)
 {}
@@ -5682,7 +5683,7 @@ void hcl::gcl0()
 	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4);
 	/*4*/opn<<optcl(/*pname*/"cronminut",/*pptr*/&cronminut,/*art*/psons,T_cm_k,T_cronminuten_l,/*TxBp*/&Txk,/*Txi*/T_Alle_wieviel_Minuten_soll,/*wi*/1,/*Txi2*/T_aufgerufen_werden_0_ist_gar_nicht,/*rottxt*/&meinname,/*wert*/0);
 	opn<<optcl(/*pname*/"",/*pptr*/&obvi,/*art*/puchar,T_vi_k,T_vi_l,/*TxBp*/&Txk,/*Txi*/T_Konfigurationsdatei,/*wi*/0,/*Txi2*/T_Logdatei_usw_bearbeiten_sehen,/*rottxt*/&akonfdt,/*wert*/1);
-	opn<<optcl(/*pname*/"",/*pptr*/&obvs,/*art*/puchar,T_vs_k,T_vs_l,/*TxBp*/&Txk,/*Txi*/T_Quelldateien_bearbeiten,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&obvs,/*art*/puchar,T_vs_k,T_vs_l,/*TxBp*/&Txk,/*Txi*/T_Quelldateien_in,/*wi*/0,/*Txi2*/T_bearbeiten_sehen,/*rottxt*/&instvz,/*wert*/1);
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	spezopt();
@@ -6157,61 +6158,29 @@ WPcl::WPcl(const string& pname,const void* pptr,war_t wart):pname(pname),pptr(pp
 }
 
 //wird aufgerufen in main
-void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/, struct tm *lap/*=0*/,
-#ifdef immerwart
-		string *obempfp/*=0*/,string *obgesap/*=0*/,
-#endif // immerwart
-		const uchar obstumm/*=0*/)
+void hcl::lieszaehlerein()
 {
 	azaehlerdt=aktprogverz()+".zaehl";
-#ifdef immerwart
-	const int z=6;
-#else // immerwart
-	const int z=4;
-#endif // immerwart else
-//	ulong ar,ta,ma; struct tm la;
-//	if (!arp) arp=&ar;
-//	if (!tap) tap=&ta;
-//	if (!map) map=&ma;
-//	if (!lap) lap=&la;
 	caus<<"0 zcnfA.zahl: "<<zcnfA.size()<<endl;
-	zcnfA<<WPcl("aufrufe",arp,wlong);
-	zcnfA<<WPcl("lDatum",lap,wdat);
-	zcnfA<<WPcl("tagesaufr",tap,wlong);
-	zcnfA<<WPcl("monatsaufr",map,wlong);
+	zcnfA<<WPcl("aufrufe",&aufrufe,wlong);
+	zcnfA<<WPcl("lDatum",&laufrtag,wdat);
+	zcnfA<<WPcl("tagesaufr",&tagesaufr,wlong);
+	zcnfA<<WPcl("monatsaufr",&monatsaufr,wlong);
 	caus<<"1 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	confdcl zlzn;
 	zlzn.lies(azaehlerdt,obverb);
 	caus<<"azaehlerdt: "<<blau<<azaehlerdt<<schwarz<<endl;
 	zlzn.auswert(&zcnfA);
-	if (arp) caus<<blau<<"aufrufe: "<<schwarz<<*arp<<endl;
-	if (lap) {
+	if (&aufrufe) caus<<blau<<"aufrufe: "<<schwarz<<aufrufe<<endl;
+	if (&laufrtag) {
 		string ldat;
-		thr_strftime(lap,&ldat);
+		thr_strftime(&laufrtag,&ldat);
 		caus<<blau<<"letztes Datum: "<<schwarz<<ldat<<endl;
 	}
-	if (tap) caus<<blau<<"tagesaufr: "<<schwarz<<*tap<<endl;
-	if (map) caus<<blau<<"monatsaufr: "<<schwarz<<*map<<endl;
+	if (&tagesaufr) caus<<blau<<"tagesaufr: "<<schwarz<<tagesaufr<<endl;
+	if (&monatsaufr) caus<<blau<<"monatsaufr: "<<schwarz<<monatsaufr<<endl;
 	caus<<blau<<"vor return"<<schwarz<<endl;
-	return;
-	zcnfA.init(z,"aufrufe","lDatum","tagesaufr","monatsaufr"
-#ifdef immerwart
-			,"empfangen","gesandt"
-#endif // immerwart
-			);
-
-	confdat zcd(azaehlerdt,&zcnfA,obstumm?0:obverb); // hier werden die Daten aus der Datei eingelesen
-	/*
-	if (arp) if (zcnfA[0].gelesen) zcnfA[0].hole(arp);
-	if (tap) if (zcnfA[2].gelesen) zcnfA[2].hole(tap);
-	if (map) if (zcnfA[3].gelesen) zcnfA[3].hole(map);
-	if (lap) if (zcnfA[1].gelesen) zcnfA[1].hole(lap);
-	*/
-#ifdef immerwart
-	if (obempfp) if (zcnfA[4].gelesen) zcnfA[4].hole(obempfp);
-	if (obgesap) if (zcnfA[5].gelesen) zcnfA[5].hole(obgesap);
-#endif // immerwart
-} // void hcl::lieszaehlerein(ulong *arp/*=0*/,ulong *tap/*=0*/,ulong *map/*=0*/,ulong *lap/*=0*/)
+} // void hcl::lieszaehlerein
 
 
 
@@ -6237,23 +6206,12 @@ void hcl::setzzaehler()
 	// zcnfA[2].setze(&tagesaufr);
 	monatsaufr++;
 	// zcnfA[3].setze(&monatsaufr);
-#ifdef immerwart
-	zcnfA[4].setze(&nix);
-	zcnfA[5].setze(&nix);
-#endif // immerwart
 } // void hcl::setzzaehler()
 
 // wird aufgerufen in main vom hclthread
 void hcl::schreibzaehler(
-#ifdef immerwart
-		const string* obempfp/*=0*/, const string* obgesap/*=0*/
-#endif
 		)
 {
-#ifdef immerwart
-	if (obempfp)  zcnfA[4].setze(obempfp);
-	if (obgesap) zcnfA[5].setze(obgesap);
-#endif
 	zcnfA.fschreib(azaehlerdt,ios::out,0);
 } // void hcl::schreibzaehler(const string* obgesap, const string* obsendCp, const string* obsendHp)
 
