@@ -12,9 +12,6 @@ enum T_
 	T_VorgbSpeziell,
 	T_MusterVorgb,
 	T_rueckfragen,
-	T_cm_k,
-	T_cronminuten_l,
-	T_Alle_wieviel_Minuten_soll,
 	T_autoupd_k,
 	T_autoupd_l,
 	T_Programm_automatisch_aktualisieren,
@@ -38,10 +35,7 @@ enum T_
 	T_Logdateiname,
 	T_info_k,
 	T_version_l,
-	T_vi_k,
-	T_vi_l,
 	T_Zeigt_die_Programmversion_an,
-	T_Konfigurations_u_Logdatei_bearbeiten_sehen,
 	Verbindung_zur_Datenbank_nicht_herstellbar,
 	T_Breche_ab,
 	T_pruefDB,
@@ -68,7 +62,6 @@ enum T_
 	T_Tabellenname_in,
 	T_Fehler_beim_Pruefen_von,
 	T_keine_Rueckfragen_zB_aus_Cron,
-	T_aufgerufen_werden_0_ist_gar_nicht,
 	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,
 	T_Fuege_ein, //ω
 	T_lista_k,
@@ -89,12 +82,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"MusterVorgb()","sampleprefs"},
 	// T_rueckfragen
 	{"rueckfragen()","callbacks()"},
-	// T_cm_k
-	{"cm","cm"},
-	// T_cronminuten_l
-	{"cronminuten","cronminutes"},
-	// T_Alle_wieviel_Minuten_soll
-	{"alle wieviel Minuten soll ","every how many minutes shall "},
 	// 	T_autoupd_k,
 	{"autoakt","autoupd"},
 	// 	T_autoupd_l,
@@ -141,14 +128,8 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"info","info"},
 	// T_version_l
 	{"version","version"},
-	// T_vi_k
-	{"vi","vi"},
-	// T_vi_l
-	{"vi","vi"},
 	// T_Zeigt_die_Programmversion_an
 	{"Zeigt die Programmversion an","shows the program version"},
-	// T_Konfigurations_u_Logdatei_bearbeiten_sehen
-	{"Konfigurations- u.Logdatei bearbeiten/sehen (beenden mit ':qa')","edit/view configuration and log file (finish with ':qa')"},
 	// Verbindung_zur_Datenbank_nicht_herstellbar
 	{"Verbindung zur Datenbank nicht herstellbar, fehnr: ","Connection to the database could not be established, errnr: "},
 	// T_Breche_ab
@@ -201,8 +182,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"Fehler beim Pruefen von: ","Error while examining: "},
 	// T_keine_Rueckfragen_zB_aus_Cron
 	{"keine Rueckfragen, z.B. für Aufruf aus cron","no questions, e.g. for a call of " DPROG " within cron"},
-	// T_aufgerufen_werden_0_ist_gar_nicht]
-	{" ueber crontab aufgerufen werden (0=gar nicht), anstatt ", " be called in crontab (0=not at all), instead of "},
 	// T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte
 	{"alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)","all parameters will be prompted (some of them not shown here)"},
 	// T_Fuege_ein
@@ -255,8 +234,8 @@ void hhcl::spezopt()
 {
 	static string rottext=ltoan(listz);
 
-	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1,/*obschreibp*/&obkschreib);
-	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0,/*obschreibp*/&obkschreib);
+	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0);
 } // void hhcl::spezopt()
 
 
@@ -431,7 +410,7 @@ void hhcl::zeigueberschrift()
 				+(vorcm!=cronminut&&!(vorcm.empty()&&cronminut=="0")?((vorcm.empty()?Txk[T_gar_nicht]:vorcm)+" -> "):"")
 				+(cronminut=="0"?Tx[T_kein_Aufruf]+schwarzs:cronminut+schwarz+(cronminut=="1"?Tx[T_Minute]:Txk[T_Minuten])):
 				"")
-			,1,1);
+			,1,oblog);
 } // void hhcl::zeigueberschrift
 
 void hhcl::pruefggfmehrfach()
@@ -552,18 +531,23 @@ int main(int argc,char** argv)
 	} // 	if (!hhi.keineverarbeitung) //α
 
 	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
-		caus<<"nach pruefcron"<<endl;
+	caus<<"nach pruefcron"<<endl;
 	if (!hhi.keineverarbeitung) {
 		hhi.zeigueberschrift(); //ω
+	caus<<"nach zeigueberschrift"<<endl;
 		hhi.setzzaehler(); //α
+	caus<<"nach setzzaehler"<<endl;
 		hhi.schreibzaehler();
+	caus<<"nach schreibzaehler"<<endl;
 	} //  if (!hhi.keineverarbeitung)
-		caus<<"nach keineverarbeitung"<<endl;
+	caus<<"nach keineverarbeitung"<<endl;
 
 	hhi.autokonfschreib();
-		caus<<"nach autokonfschreib"<<endl;
+	caus<<"nach autokonfschreib"<<endl;
 	hhi.update(DPROG);
+	caus<<"nach update"<<endl;
 	hhi.schlussanzeige();
+	caus<<"nach schlussanzeige"<<endl;
 	Log(violetts+Txk[T_Ende]+schwarz,hhi.obverb,hhi.oblog);
 	return 0;
 } // int main //ω

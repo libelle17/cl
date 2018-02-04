@@ -4,8 +4,6 @@ class hhcl:public hcl
 {
  private:
  public:
-  uchar obvi=0; // ob Konfigurationsdatei editiert werden soll
-	uchar obvs=0;   // ob Quelldateien bearbeitet werden sollen
 	string host="localhost";  // fuer MySQL/MariaDB
 	string dbq="faxe"; // Datenbank
 	string tabelle  //ω

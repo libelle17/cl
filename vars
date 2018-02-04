@@ -25,5 +25,5 @@ REPOS::=sudo zypper lr|grep 'g++\|devel_gcc'\>/dev/null 2>&1||sudo zypper ar htt
 UREPO::=sudo zypper lr|grep \"g++\\|devel_gcc\"\>/dev/null 2>&1 && sudo zypper rr devel_gcc;
 COMP::=gcc gcc-c++ $(CCInst)
 GITV::=libelle17
-DTN::=cl.cpp cl.h DB.cpp DB.h kons1.cpp kons2.cpp kons.cpp kons.h  man_?? Makefile configure install.sh viall .exrc uninstallinv inst.log
+DTN::=cl.cpp cl.h DB.cpp DB.h kons.cpp kons.h  man_?? Makefile configure install.sh viall .exrc uninstallinv inst.log
 DPROG::=cl

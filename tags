@@ -6,8 +6,6 @@
 !_TAG_PROGRAM_VERSION	Development	//
 Abfrage	DB.h	/^      int Abfrage(sT psql,const size_t aktc\/*=0*\/,int obverb=0,uchar asy=0,int oblog=0,string *idp=0,my_ulonglong *arowsp=0){$/;"	f	class:RS
 Abschn_auswert	kons.cpp	/^void confdat::Abschn_auswert(int obverb, const char tz)$/;"	f	class:confdat
-Abschn_auswert	kons1.cpp	/^void confdat::Abschn_auswert(int obverb, const char tz)$/;"	f	class:confdat
-Abschn_auswert	kons2.cpp	/^void confdat::Abschn_auswert(int obverb, const char tz)$/;"	f	class:confdat
 B_Alle	kons.h	123;"	d
 B_Block	kons.h	119;"	d
 B_Chdev	kons.h	118;"	d
@@ -41,12 +39,6 @@ LetzteID	DB.cpp	/^void DB::LetzteID(string *erg,const size_t aktc) $/;"	f	class:
 Log	kons.cpp	/^int Log(const short screen,const short file, const bool oberr,const short klobverb, const char *format, ...)$/;"	f
 Log	kons.cpp	/^int Log(const string& text, const short screen\/*=1*\/, const short file\/*=1*\/, const bool oberr\/*=0*\/, const short klobverb\/*=0*\/)$/;"	f
 Log	kons.cpp	/^int hcl::Log(const string& text,const bool oberr\/*=0*\/,const short klobverb\/*=0*\/) const$/;"	f	class:hcl
-Log	kons1.cpp	/^int Log(const short screen,const short file, const bool oberr,const short klobverb, const char *format, ...)$/;"	f
-Log	kons1.cpp	/^int Log(const string& text, const short screen\/*=1*\/, const short file\/*=1*\/, const bool oberr\/*=0*\/, const short klobverb\/*=0*\/)$/;"	f
-Log	kons1.cpp	/^int hcl::Log(const string& text,const bool oberr\/*=0*\/,const short klobverb\/*=0*\/) const$/;"	f	class:hcl
-Log	kons2.cpp	/^int Log(const short screen,const short file, const bool oberr,const short klobverb, const char *format, ...)$/;"	f
-Log	kons2.cpp	/^int Log(const string& text, const short screen\/*=1*\/, const short file\/*=1*\/, const bool oberr\/*=0*\/, const short klobverb\/*=0*\/)$/;"	f
-Log	kons2.cpp	/^int hcl::Log(const string& text,const bool oberr\/*=0*\/,const short klobverb\/*=0*\/) const$/;"	f	class:hcl
 MusterVorgb	cl.cpp	/^void hhcl::MusterVorgb()$/;"	f	class:hhcl
 My	cl.h	/^	DB* My=0;$/;"	m	class:hhcl
 MySQL	DB.h	/^enum DBSTyp {MySQL, Postgres};$/;"	e	enum:DBSTyp
@@ -62,8 +54,6 @@ RS	DB.cpp	/^RS::RS(const DB* pdb,stringstream psqls,const size_t aktc,int obverb
 RS	DB.h	/^class RS $/;"	c
 Schluessel	kons.h	/^class Schluessel {$/;"	c
 Schschreib	kons.cpp	/^int Schschreib(const char *fname, Schluessel *conf, size_t csize)$/;"	f
-Schschreib	kons1.cpp	/^int Schschreib(const char *fname, Schluessel *conf, size_t csize)$/;"	f
-Schschreib	kons2.cpp	/^int Schschreib(const char *fname, Schluessel *conf, size_t csize)$/;"	f
 SprachZahl	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	e	enum:Sprache
 Sprache	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	g
 TCp	kons.h	/^  const char * const * const * const *TCp;$/;"	m	class:TxB
@@ -405,38 +395,16 @@ Tabelle	DB.cpp	/^Tabelle::Tabelle(const DB* dbp,const std::string& tbname, Feld 
 Tabelle	DB.cpp	/^Tabelle::Tabelle(const DB* dbp,const string& tbname,const size_t aktc,int obverb,int oblog): dbp(dbp),tbname(tbname)$/;"	f	class:Tabelle
 Tabelle	DB.h	/^class Tabelle $/;"	c
 Tippbuchst	kons.cpp	/^char Tippbuchst(const string& frage, const string& moegl,const char *berkl[], const char* erlaubt, const char *vorgabe) $/;"	f
-Tippbuchst	kons1.cpp	/^char Tippbuchst(const string& frage, const string& moegl,const char *berkl[], const char* erlaubt, const char *vorgabe) $/;"	f
-Tippbuchst	kons2.cpp	/^char Tippbuchst(const string& frage, const string& moegl,const char *berkl[], const char* erlaubt, const char *vorgabe) $/;"	f
 Tippob	kons.cpp	/^uchar Tippob(const string& frage,const char *vorgabe) $/;"	f
-Tippob	kons1.cpp	/^uchar Tippob(const string& frage,const char *vorgabe) $/;"	f
-Tippob	kons2.cpp	/^uchar Tippob(const string& frage,const char *vorgabe) $/;"	f
 Tippstr	kons.cpp	/^string Tippstr(const char *frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
 Tippstr	kons.cpp	/^string Tippstr(const string& frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
-Tippstr	kons1.cpp	/^string Tippstr(const char *frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
-Tippstr	kons1.cpp	/^string Tippstr(const string& frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
-Tippstr	kons2.cpp	/^string Tippstr(const char *frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
-Tippstr	kons2.cpp	/^string Tippstr(const string& frage, const string *vorgabe,const uchar obnichtleer\/*=1*\/) $/;"	f
 Tippstrs	kons.cpp	/^string Tippstrs(const char *frage, char* moegl[], char *vorgabe\/*=0*\/)$/;"	f
 Tippstrs	kons.cpp	/^string Tippstrs(const char *frage, vector<string> *moegl, string *vorgabe\/*=0*\/)$/;"	f
-Tippstrs	kons1.cpp	/^string Tippstrs(const char *frage, char* moegl[], char *vorgabe\/*=0*\/)$/;"	f
-Tippstrs	kons1.cpp	/^string Tippstrs(const char *frage, vector<string> *moegl, string *vorgabe\/*=0*\/)$/;"	f
-Tippstrs	kons2.cpp	/^string Tippstrs(const char *frage, char* moegl[], char *vorgabe\/*=0*\/)$/;"	f
-Tippstrs	kons2.cpp	/^string Tippstrs(const char *frage, vector<string> *moegl, string *vorgabe\/*=0*\/)$/;"	f
 Tippverz	kons.cpp	/^string Tippverz(const char *frage,const string *vorgabe) $/;"	f
-Tippverz	kons1.cpp	/^string Tippverz(const char *frage,const string *vorgabe) $/;"	f
-Tippverz	kons2.cpp	/^string Tippverz(const char *frage,const string *vorgabe) $/;"	f
 Tippzahl	kons.cpp	/^long Tippzahl(const string& frage,const long& vorgabe)$/;"	f
 Tippzahl	kons.cpp	/^string Tippzahl(const char *frage, const char *vorgabe) $/;"	f
 Tippzahl	kons.cpp	/^string Tippzahl(const char *frage, const string *vorgabe) $/;"	f
 Tippzahl	kons.cpp	/^string Tippzahl(const string& frage, const string *vorgabe)$/;"	f
-Tippzahl	kons1.cpp	/^long Tippzahl(const string& frage,const long& vorgabe)$/;"	f
-Tippzahl	kons1.cpp	/^string Tippzahl(const char *frage, const char *vorgabe) $/;"	f
-Tippzahl	kons1.cpp	/^string Tippzahl(const char *frage, const string *vorgabe) $/;"	f
-Tippzahl	kons1.cpp	/^string Tippzahl(const string& frage, const string *vorgabe)$/;"	f
-Tippzahl	kons2.cpp	/^long Tippzahl(const string& frage,const long& vorgabe)$/;"	f
-Tippzahl	kons2.cpp	/^string Tippzahl(const char *frage, const char *vorgabe) $/;"	f
-Tippzahl	kons2.cpp	/^string Tippzahl(const char *frage, const string *vorgabe) $/;"	f
-Tippzahl	kons2.cpp	/^string Tippzahl(const string& frage, const string *vorgabe)$/;"	f
 Tkons_	kons.h	/^enum Tkons_ $/;"	g
 TxB	kons.h	/^	TxB(const char* const* const* const *TCp):TCp(TCp){}$/;"	f	class:TxB
 TxB	kons.h	/^class TxB \/\/ Text-Basisklasse$/;"	c
@@ -450,55 +418,29 @@ Txi2	kons.h	/^    long Txi2=-1;$/;"	m	class:optioncl
 VOMHAUPTCODE	cl.cpp	6;"	d	file:
 Verbindung_zur_Datenbank_nicht_herstellbar	cl.cpp	/^	Verbindung_zur_Datenbank_nicht_herstellbar,$/;"	e	enum:T_	file:
 VerzeichnisGibts	kons.cpp	/^uchar VerzeichnisGibts(const char* vname)$/;"	f
-VerzeichnisGibts	kons1.cpp	/^uchar VerzeichnisGibts(const char* vname)$/;"	f
-VerzeichnisGibts	kons2.cpp	/^uchar VerzeichnisGibts(const char* vname)$/;"	f
 VorgbAllg	cl.cpp	/^void hhcl::VorgbAllg()$/;"	f	class:hhcl
 VorgbSpeziell	cl.cpp	/^void hhcl::VorgbSpeziell()$/;"	f	class:hhcl
 WPcl	kons.cpp	/^WPcl::WPcl(const string& pname):pname(pname)$/;"	f	class:WPcl
 WPcl	kons.cpp	/^WPcl::WPcl(const string& pname,const string& wert):pname(pname),wert(wert)$/;"	f	class:WPcl
 WPcl	kons.cpp	/^WPcl::WPcl(const string& pname,const void* pptr,war_t wart):pname(pname),pptr(pptr),wart(wart)$/;"	f	class:WPcl
 WPcl	kons.h	/^struct WPcl { \/\/ Wertepaarklasse$/;"	s
-WPcl	kons1.cpp	/^WPcl::WPcl(const string& pname):pname(pname)$/;"	f	class:WPcl
-WPcl	kons1.cpp	/^WPcl::WPcl(const string& pname,const string& wert):pname(pname),wert(wert)$/;"	f	class:WPcl
-WPcl	kons1.cpp	/^WPcl::WPcl(const string& pname,const void* pptr,war_t wart):pname(pname),pptr(pptr),wart(wart)$/;"	f	class:WPcl
-WPcl	kons2.cpp	/^WPcl::WPcl(const string& pname):pname(pname)$/;"	f	class:WPcl
-WPcl	kons2.cpp	/^WPcl::WPcl(const string& pname,const string& wert):pname(pname),wert(wert)$/;"	f	class:WPcl
-WPcl	kons2.cpp	/^WPcl::WPcl(const string& pname,const void* pptr,war_t wart):pname(pname),pptr(pptr),wart(wart)$/;"	f	class:WPcl
 XOR	kons.cpp	/^string XOR(const string& value, const string& key)$/;"	f
-XOR	kons1.cpp	/^string XOR(const string& value, const string& key)$/;"	f
-XOR	kons2.cpp	/^string XOR(const string& value, const string& key)$/;"	f
 ZDB	cl.cpp	/^uchar ZDB=0; \/\/ fuer Zusatz-Debugging (SQL): ZDB 1, sonst: 0$/;"	v
 _CRT_SECURE_NO_WARNINGS	DB.h	2;"	d
 _CRT_SECURE_NO_WARNINGS	kons.h	2;"	d
 _access	kons.cpp	45;"	d	file:
-_access	kons1.cpp	45;"	d	file:
-_access	kons2.cpp	45;"	d	file:
 _blau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _blau	kons.h	/^inline std::ostream& _blau(std::ostream &s){$/;"	f	class:std
-_blau	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_blau	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _drot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _drot	kons.h	/^inline std::ostream& _drot(std::ostream &s){$/;"	f	class:std
-_drot	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_drot	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _gelb	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _gelb	kons.h	/^inline std::ostream& _gelb(std::ostream &s){$/;"	f	class:std
-_gelb	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_gelb	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _hgrau	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_hgrau	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_hgrau	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _rot	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _rot	kons.h	/^inline std::ostream& _rot(std::ostream &s){$/;"	f	class:std
-_rot	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_rot	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _schwarz	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _schwarz	kons.h	/^inline std::ostream& _schwarz(std::ostream &s){$/;"	f	class:std
-_schwarz	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_schwarz	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 _tuerkis	kons.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_tuerkis	kons1.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
-_tuerkis	kons2.cpp	/^const char *_drot=drot, *_rot=rot, *_schwarz=schwarz, *_blau=blau, *_gelb=gelb, *_tuerkis=tuerkis, *_hgrau=hgrau;$/;"	v
 abSchl	kons.h	/^   abSchl(string& vname, string& vwert):pname(vname),wert(vwert) {}$/;"	f	class:abSchl
 abSchl	kons.h	/^class abSchl {$/;"	c
 absch	kons.h	/^class absch$/;"	c
@@ -508,74 +450,36 @@ agcnfA	kons.h	/^    schAcl<WPcl> agcnfA; \/\/ Gesamtkonfiguration$/;"	m	class:hc
 agef	kons.h	/^ uchar agef=0; \/\/ dieser wurde gefunden$/;"	m	class:argcl
 akonfdt	kons.h	/^    string akonfdt; \/\/ name der Konfigurationsdatei$/;"	m	class:hcl
 aktprogverz	kons.cpp	/^string aktprogverz()$/;"	f
-aktprogverz	kons1.cpp	/^string aktprogverz()$/;"	f
-aktprogverz	kons2.cpp	/^string aktprogverz()$/;"	f
 altfind	kons.h	108;"	d
 aname	kons.h	/^ string aname;$/;"	m	class:absch
 anfgg	kons.cpp	/^void anfgg(const string& datei, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-anfgg	kons1.cpp	/^void anfgg(const string& datei, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-anfgg	kons2.cpp	/^void anfgg(const string& datei, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
 anfgw	kons.cpp	/^void anfgw(const string& datei, const string& udpr, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-anfgw	kons1.cpp	/^void anfgw(const string& datei, const string& udpr, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-anfgw	kons2.cpp	/^void anfgw(const string& datei, const string& udpr, const string& inhalt, const string& comment, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
 anfzweg	kons.cpp	/^string* anfzweg(string& quel) {$/;"	f
-anfzweg	kons1.cpp	/^string* anfzweg(string& quel) {$/;"	f
-anfzweg	kons2.cpp	/^string* anfzweg(string& quel) {$/;"	f
 apt	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 argcl	kons.cpp	/^argcl::argcl(const int i,const char *const *const argv):argcs(argv[i])$/;"	f	class:argcl
 argcl	kons.h	/^class argcl$/;"	c
-argcl	kons1.cpp	/^argcl::argcl(const int i,const char *const *const argv):argcs(argv[i])$/;"	f	class:argcl
-argcl	kons2.cpp	/^argcl::argcl(const int i,const char *const *const argv):argcs(argv[i])$/;"	f	class:argcl
 argcmv	kons.h	/^		vector<argcl> argcmv; \/\/ class member vector$/;"	m	class:hcl
 argcs	kons.h	/^ const char *argcs;  \/\/ Zeiger auf einen Commandline-Parameter$/;"	m	class:argcl
 art	kons.h	/^    const par_t art; \/\/ Parameterart$/;"	m	class:optioncl
 art	kons.h	/^    par_t art=psons; \/\/ Parameterart$/;"	m	struct:optcl
 aschreib	kons.cpp	/^template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)$/;"	f	class:schAcl
-aschreib	kons1.cpp	/^template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)$/;"	f	class:schAcl
-aschreib	kons2.cpp	/^template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)$/;"	f	class:schAcl
 attrangleich	kons.cpp	/^int attrangleich(const string& zu, const string& gemaess,const string* const zeitvondtp\/*=0*\/, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-attrangleich	kons1.cpp	/^int attrangleich(const string& zu, const string& gemaess,const string* const zeitvondtp\/*=0*\/, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
-attrangleich	kons2.cpp	/^int attrangleich(const string& zu, const string& gemaess,const string* const zeitvondtp\/*=0*\/, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f
 aufSplit	kons.cpp	/^void aufSplit(vector<string> *tokens, const char* const text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
 aufSplit	kons.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
 aufSplit	kons.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char* const sep, bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons1.cpp	/^void aufSplit(vector<string> *tokens, const char* const text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons1.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons1.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char* const sep, bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons2.cpp	/^void aufSplit(vector<string> *tokens, const char* const text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons2.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char sep\/*=' '*\/,bool auchleer\/*=1*\/)$/;"	f
-aufSplit	kons2.cpp	/^void aufSplit(vector<string> *tokens, const string& text, const char* const sep, bool auchleer\/*=1*\/)$/;"	f
 aufiSplit	kons.cpp	/^void aufiSplit(vector<string> *tokens, const string& text, const string& sep,bool nichtmehrfach\/*=1*\/,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f
-aufiSplit	kons1.cpp	/^void aufiSplit(vector<string> *tokens, const string& text, const string& sep,bool nichtmehrfach\/*=1*\/,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f
-aufiSplit	kons2.cpp	/^void aufiSplit(vector<string> *tokens, const string& text, const string& sep,bool nichtmehrfach\/*=1*\/,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f
 aufrufe	kons.h	/^		ulong aufrufe=0; \/\/ Zahl der bisherigen Programmaufrufe$/;"	m	class:hcl
 ausgab1000	kons.cpp	/^void perfcl::ausgab1000(const string& stelle)$/;"	f	class:perfcl
-ausgab1000	kons1.cpp	/^void perfcl::ausgab1000(const string& stelle)$/;"	f	class:perfcl
-ausgab1000	kons2.cpp	/^void perfcl::ausgab1000(const string& stelle)$/;"	f	class:perfcl
 ausgeb	kons.cpp	/^int find3cl::ausgeb()$/;"	f	class:find3cl
 ausgeb	kons.cpp	/^void find2cl::ausgeb()$/;"	f	class:find2cl
 ausgeb	kons.cpp	/^void perfcl::ausgeb(const string& stelle,uchar obdauer)$/;"	f	class:perfcl
-ausgeb	kons1.cpp	/^int find3cl::ausgeb()$/;"	f	class:find3cl
-ausgeb	kons1.cpp	/^void find2cl::ausgeb()$/;"	f	class:find2cl
-ausgeb	kons1.cpp	/^void perfcl::ausgeb(const string& stelle,uchar obdauer)$/;"	f	class:perfcl
-ausgeb	kons2.cpp	/^int find3cl::ausgeb()$/;"	f	class:find3cl
-ausgeb	kons2.cpp	/^void find2cl::ausgeb()$/;"	f	class:find2cl
-ausgeb	kons2.cpp	/^void perfcl::ausgeb(const string& stelle,uchar obdauer)$/;"	f	class:perfcl
 auswert	kons.cpp	/^template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
 auswert	kons.cpp	/^template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdcl
-auswert	kons1.cpp	/^template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
-auswert	kons1.cpp	/^template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdcl
-auswert	kons2.cpp	/^template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
-auswert	kons2.cpp	/^template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear\/*=1*\/)$/;"	f	class:confdcl
 autokonfschreib	kons.cpp	/^void hcl::autokonfschreib()$/;"	f	class:hcl
-autokonfschreib	kons1.cpp	/^void hcl::autokonfschreib()$/;"	f	class:hcl
-autokonfschreib	kons2.cpp	/^void hcl::autokonfschreib()$/;"	f	class:hcl
 autoupd	kons.h	/^		uchar autoupd;  \/\/ 1=Programm automatisch updadaten$/;"	m	class:hcl
 av	kons.h	/^ vector<abSchl> av;$/;"	m	class:absch
 azaehlerdt	kons.h	/^		string azaehlerdt; \/\/ akonfdt+".zaehl"$/;"	m	class:hcl
 base_name	kons.cpp	/^std::string base_name(const std::string& path)$/;"	f
-base_name	kons1.cpp	/^std::string base_name(const std::string& path)$/;"	f
-base_name	kons2.cpp	/^std::string base_name(const std::string& path)$/;"	f
 bemerk	kons.h	/^    string bemerk;$/;"	m	class:optioncl
 bemerk	kons.h	/^    string bemerk;$/;"	m	struct:WPcl
 bemerk	kons.h	/^    string bemerk;$/;"	m	struct:optcl
@@ -584,49 +488,27 @@ betroffen	DB.h	/^		char **betroffen=0; \/\/ fuer Abfrage in postgres$/;"	m	class
 binaer	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	g
 blau	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 blau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-blau	kons1.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-blau	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-blau	kons2.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-blau	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 blaus	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-blaus	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-blaus	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 braun	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-braun	kons1.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-braun	kons2.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 caseersetze	kons.cpp	/^string caseersetze(const string& u, const char* const alt, const char* const neu) $/;"	f
-caseersetze	kons1.cpp	/^string caseersetze(const string& u, const char* const alt, const char* const neu) $/;"	f
-caseersetze	kons2.cpp	/^string caseersetze(const string& u, const char* const alt, const char* const neu) $/;"	f
 caup	DB.cpp	4;"	d	file:
 caus	DB.cpp	3;"	d	file:
 caus	kons.cpp	11;"	d	file:
 caus	kons.h	134;"	d
-caus	kons1.cpp	11;"	d	file:
-caus	kons2.cpp	11;"	d	file:
 cgid	kons.h	/^ gid_t cgid;$/;"	m	class:cuscl
 charersetze	kons.cpp	/^char* charersetze(char *u, const char alt, const char neu) $/;"	f
-charersetze	kons1.cpp	/^char* charersetze(char *u, const char alt, const char neu) $/;"	f
-charersetze	kons2.cpp	/^char* charersetze(char *u, const char alt, const char neu) $/;"	f
 charset	DB.h	/^		const string charset;$/;"	m	class:DB
 charset	DB.h	/^    const string charset;$/;"	m	class:Tabelle
 chersetze	kons.cpp	/^void chersetze(string str, string *wsRet, const string& from, const char to) $/;"	f
-chersetze	kons1.cpp	/^void chersetze(string str, string *wsRet, const string& from, const char to) $/;"	f
-chersetze	kons2.cpp	/^void chersetze(string str, string *wsRet, const string& from, const char to) $/;"	f
 cinit	kons.cpp	/^template<class SCL> void confdat::cinit(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
-cinit	kons1.cpp	/^template<class SCL> void confdat::cinit(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
-cinit	kons2.cpp	/^template<class SCL> void confdat::cinit(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
 cjj	DB.cpp	/^const char *cjj(const char * const* const* cerg, const int nr)$/;"	f
 cl	kons.h	/^		string cl; \/\/ comandline$/;"	m	class:hcl
 clear	DB.cpp	/^void RS::clear()$/;"	f	class:RS
 clear	kons.cpp	/^void absch::clear()$/;"	f	class:absch
-clear	kons1.cpp	/^void absch::clear()$/;"	f	class:absch
-clear	kons2.cpp	/^void absch::clear()$/;"	f	class:absch
 cmd	DB.h	/^    string cmd;$/;"	m	class:DB
 cmd	kons.h	/^    string cmd; \/\/ string fuer command fuer Betriebssystembefehle$/;"	m	class:hcl
 cmeingegeben	kons.h	/^		uchar cmeingegeben=0; \/\/ cron-Minuten eingegeben$/;"	m	class:hcl
 cmpmem	kons.cpp	/^long cmpmem( char* feld, const char* search, int len_feld) \/\/\/\/ , int len_search$/;"	f
-cmpmem	kons1.cpp	/^long cmpmem( char* feld, const char* search, int len_feld) \/\/\/\/ , int len_search$/;"	f
-cmpmem	kons2.cpp	/^long cmpmem( char* feld, const char* search, int len_feld) \/\/\/\/ , int len_search$/;"	f
 collate	DB.h	/^		const string collate;$/;"	m	class:DB
 collate	DB.h	/^    const string collate;$/;"	m	class:Tabelle
 color	kons.h	/^  color(WORD attribute):m_color(attribute){};$/;"	f	struct:color
@@ -638,48 +520,26 @@ confdat	kons.cpp	/^confdat::confdat()$/;"	f	class:confdat
 confdat	kons.cpp	/^confdat::confdat(const string& fname,int obverb):pname(fname)$/;"	f	class:confdat
 confdat	kons.cpp	/^template<class SCL> confdat::confdat(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
 confdat	kons.h	/^class confdat$/;"	c
-confdat	kons1.cpp	/^confdat::confdat()$/;"	f	class:confdat
-confdat	kons1.cpp	/^confdat::confdat(const string& fname,int obverb):pname(fname)$/;"	f	class:confdat
-confdat	kons1.cpp	/^template<class SCL> confdat::confdat(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
-confdat	kons2.cpp	/^confdat::confdat()$/;"	f	class:confdat
-confdat	kons2.cpp	/^confdat::confdat(const string& fname,int obverb):pname(fname)$/;"	f	class:confdat
-confdat	kons2.cpp	/^template<class SCL> confdat::confdat(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
 confdcl	kons.cpp	/^confdcl::confdcl():obgelesen(0)$/;"	f	class:confdcl
 confdcl	kons.h	/^struct confdcl {$/;"	s
-confdcl	kons1.cpp	/^confdcl::confdcl():obgelesen(0)$/;"	f	class:confdcl
-confdcl	kons2.cpp	/^confdcl::confdcl():obgelesen(0)$/;"	f	class:confdcl
 conn	DB.h	/^    MYSQL **conn;$/;"	m	class:DB
 conz	DB.h	/^		size_t conz; \/\/ Zahl der Verbindungen (s.o., conn)$/;"	m	class:DB
 cpA	kons.h	/^    schAcl<WPcl> *cpA=0; \/\/ Konfigurationsarray, das ggf. geschrieben werden muss$/;"	m	class:optioncl
 cppschreib	kons.cpp	/^int cppschreib(const string& fname, WPcl *conf, size_t csize)$/;"	f
-cppschreib	kons1.cpp	/^int cppschreib(const string& fname, WPcl *conf, size_t csize)$/;"	f
-cppschreib	kons2.cpp	/^int cppschreib(const string& fname, WPcl *conf, size_t csize)$/;"	f
 crongeprueft	kons.h	/^		uchar crongeprueft=0;$/;"	m	class:hcl
 cronminut	kons.h	/^    string cronminut; \/\/ Minuten fuer crontab; 0 = kein Crontab-Eintrag$/;"	m	class:hcl
 cronzuplanen	kons.h	/^		uchar cronzuplanen;$/;"	m	class:hcl
 cuid	kons.h	/^ uid_t cuid;$/;"	m	class:cuscl
 cus	kons.cpp	/^cuscl cus;$/;"	v
-cus	kons1.cpp	/^cuscl cus;$/;"	v
-cus	kons2.cpp	/^cuscl cus;$/;"	v
 cuscl	kons.cpp	/^cuscl::cuscl()$/;"	f	class:cuscl
 cuscl	kons.h	/^class cuscl$/;"	c
-cuscl	kons1.cpp	/^cuscl::cuscl()$/;"	f	class:cuscl
-cuscl	kons2.cpp	/^cuscl::cuscl()$/;"	f	class:cuscl
 cusstr	kons.h	/^ string cusstr;$/;"	m	class:cuscl
 daemon_reload	kons.cpp	/^void servc::daemon_reload(int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:servc
-daemon_reload	kons1.cpp	/^void servc::daemon_reload(int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:servc
-daemon_reload	kons2.cpp	/^void servc::daemon_reload(int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:servc
 datadir	DB.h	/^    string datadir;$/;"	m	class:DB
 dateivgl	kons.cpp	/^int dateivgl(const string& d1, const string& d2,uchar obzeit\/*=0*\/)$/;"	f
-dateivgl	kons1.cpp	/^int dateivgl(const string& d1, const string& d2,uchar obzeit\/*=0*\/)$/;"	f
-dateivgl	kons2.cpp	/^int dateivgl(const string& d1, const string& d2,uchar obzeit\/*=0*\/)$/;"	f
 db_systemctl_name	DB.h	/^    string db_systemctl_name; \/\/ mysql, mariadb je nach System$/;"	m	class:DB
 dblau	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-dblau	kons1.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-dblau	kons2.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 dblaus	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-dblaus	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-dblaus	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 dbname	DB.h	/^		const string dbname;$/;"	m	class:Tabelle
 dbname	DB.h	/^    const string dbname;$/;"	m	class:DB
 dbp	DB.h	/^		const DB* dbp;$/;"	m	class:Tabelle
@@ -697,30 +557,16 @@ defmyengine	DB.h	/^		static const string defmyengine;$/;"	m	class:DB
 defmyrowform	DB.cpp	/^const string DB::defmyrowform="DYNAMIC";$/;"	m	class:DB	file:
 defmyrowform	DB.h	/^		static const string defmyrowform;$/;"	m	class:DB
 defnachs	kons.cpp	/^const string& defnachs="\/archive\/master.tar.gz";$/;"	v
-defnachs	kons1.cpp	/^const string& defnachs="\/archive\/master.tar.gz";$/;"	v
-defnachs	kons2.cpp	/^const string& defnachs="\/archive\/master.tar.gz";$/;"	v
 defvors	kons.cpp	/^const string& defvors="https:\/\/github.com\/"+gitv+"\/";$/;"	v
-defvors	kons1.cpp	/^const string& defvors="https:\/\/github.com\/"+gitv+"\/";$/;"	v
-defvors	kons2.cpp	/^const string& defvors="https:\/\/github.com\/"+gitv+"\/";$/;"	v
 dent	kons.h	/^  struct dirent *dent;$/;"	m	class:find2cl	typeref:struct:find2cl::
 deutsch	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	e	enum:Sprache
 dev	kons.h	/^ string dev; \/\/ Anhaengsel fuer die development-Versionen ("-dev" oder "-devel")$/;"	m	class:linst_cl
 devtty	kons.cpp	/^const string devtty=" >\/dev\/tty";$/;"	v
-devtty	kons1.cpp	/^const string devtty=" >\/dev\/tty";$/;"	v
-devtty	kons2.cpp	/^const string devtty=" >\/dev\/tty";$/;"	v
 dgrau	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-dgrau	kons1.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-dgrau	kons2.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 dir	kons.cpp	/^const char *const dir = "dir ";$/;"	v
 dir	kons.cpp	/^const char *const dir = "ls -l ";$/;"	v
 dir	kons.h	/^  DIR *dir;$/;"	m	class:find2cl
-dir	kons1.cpp	/^const char *const dir = "dir ";$/;"	v
-dir	kons1.cpp	/^const char *const dir = "ls -l ";$/;"	v
-dir	kons2.cpp	/^const char *const dir = "dir ";$/;"	v
-dir	kons2.cpp	/^const char *const dir = "ls -l ";$/;"	v
 dir_name	kons.cpp	/^std::string dir_name(const std::string& path)$/;"	f
-dir_name	kons1.cpp	/^std::string dir_name(const std::string& path)$/;"	f
-dir_name	kons2.cpp	/^std::string dir_name(const std::string& path)$/;"	f
 dnb	DB.h	/^    char dnb; \/\/ delimiter name begin$/;"	m	class:DB
 dnb	DB.h	/^inline char dnb(DBSTyp DBS) $/;"	f
 dne	DB.h	/^    char dne; \/\/ delimiter name end$/;"	m	class:DB
@@ -728,35 +574,15 @@ dne	DB.h	/^inline char dne(DBSTyp DBS) $/;"	f
 dnf	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 doAbfrage	DB.cpp	/^int RS::doAbfrage(const size_t aktc\/*=0*\/,int obverb\/*=0*\/,uchar asy\/*=0*\/,int oblog\/*=0*\/,string *idp\/*=0*\/,my_ulonglong *arowsp\/*=0*\/)$/;"	f	class:RS
 doanfg	kons.cpp	/^void doanfg(const string& datei, const string& inhalt, const string& comment)$/;"	f
-doanfg	kons1.cpp	/^void doanfg(const string& datei, const string& inhalt, const string& comment)$/;"	f
-doanfg	kons2.cpp	/^void doanfg(const string& datei, const string& inhalt, const string& comment)$/;"	f
 dodovi	kons.cpp	/^void hcl::dodovi(const svec d1,const svec d2)$/;"	f	class:hcl
-dodovi	kons1.cpp	/^void hcl::dodovi(const svec d1,const svec d2)$/;"	f	class:hcl
-dodovi	kons2.cpp	/^void hcl::dodovi(const svec d1,const svec d2)$/;"	f	class:hcl
 dofind	kons.cpp	/^int find3cl::dofind()$/;"	f	class:find3cl
-dofind	kons1.cpp	/^int find3cl::dofind()$/;"	f	class:find3cl
-dofind	kons2.cpp	/^int find3cl::dofind()$/;"	f	class:find3cl
 doggfinst	kons.cpp	/^int linst_cl::doggfinst(const string& prog,int obverb,int oblog,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
-doggfinst	kons1.cpp	/^int linst_cl::doggfinst(const string& prog,int obverb,int oblog,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
-doggfinst	kons2.cpp	/^int linst_cl::doggfinst(const string& prog,int obverb,int oblog,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
 doinst	kons.cpp	/^int linst_cl::doinst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,const string& fallsnichtda\/*=nix*\/,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
-doinst	kons1.cpp	/^int linst_cl::doinst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,const string& fallsnichtda\/*=nix*\/,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
-doinst	kons2.cpp	/^int linst_cl::doinst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,const string& fallsnichtda\/*=nix*\/,uchar ohneabh\/*=0*\/)$/;"	f	class:linst_cl
 douninst	kons.cpp	/^int linst_cl::douninst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar obyes\/*=1*\/) $/;"	f	class:linst_cl
-douninst	kons1.cpp	/^int linst_cl::douninst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar obyes\/*=1*\/) $/;"	f	class:linst_cl
-douninst	kons2.cpp	/^int linst_cl::douninst(const string& prog,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar obyes\/*=1*\/) $/;"	f	class:linst_cl
 dovi	kons.cpp	/^void hcl::dovi()$/;"	f	class:hcl
-dovi	kons1.cpp	/^void hcl::dovi()$/;"	f	class:hcl
-dovi	kons2.cpp	/^void hcl::dovi()$/;"	f	class:hcl
 drot	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 drot	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-drot	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-drot	kons1.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-drot	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-drot	kons2.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 drots	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-drots	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-drots	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 druckeein	DB.cpp	/^void sqlft::druckeein(DBSTyp eDBS, tm* const zt) $/;"	f	class:sqlft
 dst	kons.h	/^    struct stat dst={0};$/;"	m	class:elem2	typeref:struct:elem2::stat
 dvb	DB.h	/^    char dvb; \/\/ delimiter value begin$/;"	m	class:DB
@@ -765,38 +591,22 @@ dve	DB.h	/^    char dve; \/\/ delimiter value end$/;"	m	class:DB
 dve	DB.h	/^inline char dve(DBSTyp DBS) $/;"	f
 edit	kons.cpp	/^const string hcl::edit="$(which vim 2>\/dev\/null || which vi) ";$/;"	m	class:hcl	file:
 edit	kons.h	/^		static const string edit;$/;"	m	class:hcl
-edit	kons1.cpp	/^const string hcl::edit="$(which vim 2>\/dev\/null || which vi) ";$/;"	m	class:hcl	file:
-edit	kons2.cpp	/^const string hcl::edit="$(which vim 2>\/dev\/null || which vi) ";$/;"	m	class:hcl	file:
 eingefuegt	kons.h	/^  int eingefuegt, verzneu;$/;"	m	class:find2cl
 eingetragen	kons.h	/^		uchar eingetragen; \/\/ Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei$/;"	m	struct:WPcl
 eingetragen	kons.h	/^		uchar eingetragen; \/\/ Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei$/;"	m	struct:optcl
 eins	kons.cpp	/^const string eins="1";$/;"	v
-eins	kons1.cpp	/^const string eins="1";$/;"	v
-eins	kons2.cpp	/^const string eins="1";$/;"	v
 eintrinit	kons.cpp	/^template <> void schAcl<WPcl>::eintrinit()$/;"	f	class:schAcl
 eintrinit	kons.cpp	/^template <> void schAcl<optcl>::eintrinit()$/;"	f	class:schAcl
-eintrinit	kons1.cpp	/^template <> void schAcl<WPcl>::eintrinit()$/;"	f	class:schAcl
-eintrinit	kons1.cpp	/^template <> void schAcl<optcl>::eintrinit()$/;"	f	class:schAcl
-eintrinit	kons2.cpp	/^template <> void schAcl<WPcl>::eintrinit()$/;"	f	class:schAcl
-eintrinit	kons2.cpp	/^template <> void schAcl<optcl>::eintrinit()$/;"	f	class:schAcl
 einzutragen	kons.cpp	/^uchar WPcl::einzutragen(schAcl<WPcl> *schlp)$/;"	f	class:WPcl
 einzutragen	kons.cpp	/^uchar optcl::einzutragen(schAcl<optcl> *schlp)$/;"	f	class:optcl
-einzutragen	kons1.cpp	/^uchar WPcl::einzutragen(schAcl<WPcl> *schlp)$/;"	f	class:WPcl
-einzutragen	kons1.cpp	/^uchar optcl::einzutragen(schAcl<optcl> *schlp)$/;"	f	class:optcl
-einzutragen	kons2.cpp	/^uchar WPcl::einzutragen(schAcl<WPcl> *schlp)$/;"	f	class:WPcl
-einzutragen	kons2.cpp	/^uchar optcl::einzutragen(schAcl<optcl> *schlp)$/;"	f	class:optcl
 el2set	kons.h	/^typedef map<elem2,ull> el2set;$/;"	t
 el2set	kons.h	/^typedef set<elem2> el2set;$/;"	t
 elem2	kons.cpp	/^elem2::elem2(const string& mutter,const string& name) $/;"	f	class:elem2
 elem2	kons.h	/^    elem2(){};$/;"	f	class:elem2
 elem2	kons.h	/^class elem2$/;"	c
-elem2	kons1.cpp	/^elem2::elem2(const string& mutter,const string& name) $/;"	f	class:elem2
-elem2	kons2.cpp	/^elem2::elem2(const string& mutter,const string& name) $/;"	f	class:elem2
 elem3	kons.h	/^    elem3(string pfad, const struct stat *sbp, int& tflag, const struct FTW *ftwp, string lnk,const struct stat& lst):$/;"	f	class:elem3
 elem3	kons.h	/^class elem3$/;"	c
 enableggf	kons.cpp	/^int servc::enableggf(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-enableggf	kons1.cpp	/^int servc::enableggf(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-enableggf	kons2.cpp	/^int servc::enableggf(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 ename	kons.h	/^    string sname,ename; \/\/ Dienstname, Exename$/;"	m	class:servc
 engine	DB.h	/^    const string engine;$/;"	m	class:Tabelle
 englisch	kons.h	/^enum Sprache {deutsch,englisch,SprachZahl};$/;"	e	enum:Sprache
@@ -805,43 +615,21 @@ erg	kons.h	/^    set<elem3> erg;$/;"	m	class:find3cl
 ergp	kons.cpp	/^set<elem3> *find3cl::ergp;$/;"	m	class:find3cl	file:
 ergp	kons.h	/^    static set<elem3> *ergp;$/;"	m	class:find3cl
 ergp	kons.h	/^  el2set *ergp=0;$/;"	m	class:find2cl
-ergp	kons1.cpp	/^set<elem3> *find3cl::ergp;$/;"	m	class:find3cl	file:
-ergp	kons2.cpp	/^set<elem3> *find3cl::ergp;$/;"	m	class:find3cl	file:
 errmsgcl	kons.h	/^ errmsgcl(int errnr,const string& msg):errnr(errnr),msg(msg){}$/;"	f	class:errmsgcl
 errmsgcl	kons.h	/^class errmsgcl$/;"	c
 errnr	kons.h	/^ int errnr;$/;"	m	class:errmsgcl
 ers	kons.cpp	/^char ers(const char roh)$/;"	f
-ers	kons1.cpp	/^char ers(const char roh)$/;"	f
-ers	kons2.cpp	/^char ers(const char roh)$/;"	f
 ersetzAlle	kons.cpp	/^void ersetzAlle(string *quelle, const char* const alt, const char* const neu) $/;"	f
 ersetzAlle	kons.cpp	/^void ersetzAlle(string *quelle, const string& alt, const string& neu) $/;"	f
 ersetzAlle	kons.cpp	/^void ersetzAlle(string& quelle, const string& alt, const string& neu) $/;"	f
-ersetzAlle	kons1.cpp	/^void ersetzAlle(string *quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAlle	kons1.cpp	/^void ersetzAlle(string *quelle, const string& alt, const string& neu) $/;"	f
-ersetzAlle	kons1.cpp	/^void ersetzAlle(string& quelle, const string& alt, const string& neu) $/;"	f
-ersetzAlle	kons2.cpp	/^void ersetzAlle(string *quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAlle	kons2.cpp	/^void ersetzAlle(string *quelle, const string& alt, const string& neu) $/;"	f
-ersetzAlle	kons2.cpp	/^void ersetzAlle(string& quelle, const string& alt, const string& neu) $/;"	f
 ersetzAllezu	kons.cpp	/^string ersetzAllezu(const char *const quelle, const char* const alt, const char* const neu) $/;"	f
 ersetzAllezu	kons.cpp	/^string ersetzAllezu(const string& quelle, const string& alt, const string& neu) $/;"	f
 ersetzAllezu	kons.cpp	/^string ersetzAllezu(string *quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAllezu	kons1.cpp	/^string ersetzAllezu(const char *const quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAllezu	kons1.cpp	/^string ersetzAllezu(const string& quelle, const string& alt, const string& neu) $/;"	f
-ersetzAllezu	kons1.cpp	/^string ersetzAllezu(string *quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAllezu	kons2.cpp	/^string ersetzAllezu(const char *const quelle, const char* const alt, const char* const neu) $/;"	f
-ersetzAllezu	kons2.cpp	/^string ersetzAllezu(const string& quelle, const string& alt, const string& neu) $/;"	f
-ersetzAllezu	kons2.cpp	/^string ersetzAllezu(string *quelle, const char* const alt, const char* const neu) $/;"	f
 ersetze	DB.cpp	/^inline string instyp::ersetze(const char *u, const char* alt, const char* neu) $/;"	f	class:instyp
 ersetze	DB.cpp	/^string *sqlft::ersetze(const char* alt, const char* neu) $/;"	f	class:sqlft
 ersetze	kons.cpp	/^string ersetze(const char *const u, const char *const alt, const char *const neu) $/;"	f
-ersetze	kons1.cpp	/^string ersetze(const char *const u, const char *const alt, const char *const neu) $/;"	f
-ersetze	kons2.cpp	/^string ersetze(const char *const u, const char *const alt, const char *const neu) $/;"	f
 ersetzefuerdatei	kons.cpp	/^string ersetzefuerdatei(const string& u) $/;"	f
-ersetzefuerdatei	kons1.cpp	/^string ersetzefuerdatei(const string& u) $/;"	f
-ersetzefuerdatei	kons2.cpp	/^string ersetzefuerdatei(const string& u) $/;"	f
 ersetzeprog	kons.cpp	/^const string linst_cl::ersetzeprog(const string& prog) const$/;"	f	class:linst_cl
-ersetzeprog	kons1.cpp	/^const string linst_cl::ersetzeprog(const string& prog) const$/;"	f	class:linst_cl
-ersetzeprog	kons2.cpp	/^const string linst_cl::ersetzeprog(const string& prog) const$/;"	f	class:linst_cl
 erweitern	DB.cpp	/^void DB::erweitern(const string& tabs, vector<instyp> einf,const size_t aktc,int obverb,uchar obsammeln, const unsigned long *maxl) const$/;"	f	class:DB
 exitp	DB.cpp	5;"	d	file:
 exitt	kons.h	135;"	d
@@ -860,114 +648,52 @@ fertige	kons.h	/^    set<wele> wurz,fertige;$/;"	m	class:find3cl
 fileno	kons.h	48;"	d
 find2cl	kons.cpp	/^find2cl::find2cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/,find2cl *stamm\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find2cl
 find2cl	kons.h	/^class find2cl: elem2$/;"	c
-find2cl	kons1.cpp	/^find2cl::find2cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/,find2cl *stamm\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find2cl
-find2cl	kons2.cpp	/^find2cl::find2cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/,find2cl *stamm\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find2cl
 find3cl	kons.cpp	/^find3cl::find3cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find3cl
 find3cl	kons.h	/^class find3cl$/;"	c
-find3cl	kons1.cpp	/^find3cl::find3cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find3cl
-find3cl	kons2.cpp	/^find3cl::find3cl(int _obverb\/*=0*\/,int _oblog\/*=0*\/):obverb(_obverb),oblog(_oblog)$/;"	f	class:find3cl
 finde	kons.cpp	/^int find2cl::finde(svec *wovp,const string& muster\/*=nix*\/,const long tiefe\/*=-1*\/,int typbit\/*=B_Alle*\/,int folge\/*=Fol_Dat*\/,$/;"	f	class:find2cl
 finde	kons.cpp	/^int find3cl::finde(svec *wovp,const string& muster\/*=nix*\/,long tiefe\/*=-1*\/,$/;"	f	class:find3cl
-finde	kons1.cpp	/^int find2cl::finde(svec *wovp,const string& muster\/*=nix*\/,const long tiefe\/*=-1*\/,int typbit\/*=B_Alle*\/,int folge\/*=Fol_Dat*\/,$/;"	f	class:find2cl
-finde	kons1.cpp	/^int find3cl::finde(svec *wovp,const string& muster\/*=nix*\/,long tiefe\/*=-1*\/,$/;"	f	class:find3cl
-finde	kons2.cpp	/^int find2cl::finde(svec *wovp,const string& muster\/*=nix*\/,const long tiefe\/*=-1*\/,int typbit\/*=B_Alle*\/,int folge\/*=Fol_Dat*\/,$/;"	f	class:find2cl
-finde	kons2.cpp	/^int find3cl::finde(svec *wovp,const string& muster\/*=nix*\/,long tiefe\/*=-1*\/,$/;"	f	class:find3cl
 findfile	kons.cpp	/^void findfile(svec *qrueckp,uchar findv,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar anteil\/*=0*\/,$/;"	f
-findfile	kons1.cpp	/^void findfile(svec *qrueckp,uchar findv,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar anteil\/*=0*\/,$/;"	f
-findfile	kons2.cpp	/^void findfile(svec *qrueckp,uchar findv,int obverb\/*=0*\/,int oblog\/*=0*\/,uchar anteil\/*=0*\/,$/;"	f
 findv	kons.cpp	/^uchar findv=3; \/\/ find-Version 1=system, 2=intern mit readdir, 3=intern mit nftw$/;"	v
-findv	kons1.cpp	/^uchar findv=3; \/\/ find-Version 1=system, 2=intern mit readdir, 3=intern mit nftw$/;"	v
-findv	kons2.cpp	/^uchar findv=3; \/\/ find-Version 1=system, 2=intern mit readdir, 3=intern mit nftw$/;"	v
 flags	kons.h	/^    int flags = 0;$/;"	m	class:find3cl
 fmt	kons.h	/^		const char* fmt;$/;"	m	class:ztacl
 fnr	DB.h	/^    unsigned int fnr;$/;"	m	class:RS
 folge	kons.h	/^    int folge=0;$/;"	m	class:find3cl
 folgep	kons.cpp	/^int *find3cl::folgep;$/;"	m	class:find3cl	file:
 folgep	kons.h	/^    static int *folgep;$/;"	m	class:find3cl
-folgep	kons1.cpp	/^int *find3cl::folgep;$/;"	m	class:find3cl	file:
-folgep	kons2.cpp	/^int *find3cl::folgep;$/;"	m	class:find3cl	file:
 fschreib	kons.cpp	/^template<class SCL> int schAcl<SCL>::fschreib(const string& fname,ios_base::openmode modus\/*=ios_base::out*\/,uchar faclbak\/*=1*\/,$/;"	f	class:schAcl
-fschreib	kons1.cpp	/^template<class SCL> int schAcl<SCL>::fschreib(const string& fname,ios_base::openmode modus\/*=ios_base::out*\/,uchar faclbak\/*=1*\/,$/;"	f	class:schAcl
-fschreib	kons2.cpp	/^template<class SCL> int schAcl<SCL>::fschreib(const string& fname,ios_base::openmode modus\/*=ios_base::out*\/,uchar faclbak\/*=1*\/,$/;"	f	class:schAcl
 ftw	kons.h	/^    const struct FTW ftw={0};$/;"	m	class:elem3	typeref:struct:elem3::FTW
 fuersamba	kons.cpp	/^void fuersamba(string& roh)$/;"	f
-fuersamba	kons1.cpp	/^void fuersamba(string& roh)$/;"	f
-fuersamba	kons2.cpp	/^void fuersamba(string& roh)$/;"	f
 gcl0	kons.cpp	/^void hcl::gcl0()$/;"	f	class:hcl
-gcl0	kons1.cpp	/^void hcl::gcl0()$/;"	f	class:hcl
-gcl0	kons2.cpp	/^void hcl::gcl0()$/;"	f	class:hcl
 gegenteil	kons.h	/^		uchar gegenteil=0;$/;"	m	struct:optcl
 gelb	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 gelb	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-gelb	kons1.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-gelb	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-gelb	kons2.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-gelb	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 gelbs	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gelbs	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gelbs	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 gelesen	kons.h	/^    uchar gelesen=0;$/;"	m	struct:WPcl
 gen	kons.cpp	/^const boost::locale::generator gen;$/;"	v
-gen	kons1.cpp	/^const boost::locale::generator gen;$/;"	v
-gen	kons2.cpp	/^const boost::locale::generator gen;$/;"	v
 getcols	kons.cpp	/^int getcols() $/;"	f
-getcols	kons1.cpp	/^int getcols() $/;"	f
-getcols	kons2.cpp	/^int getcols() $/;"	f
 getcommandline	cl.cpp	/^int hhcl::getcommandline()$/;"	f	class:hhcl
 gethome	kons.cpp	/^string gethome()$/;"	f
-gethome	kons1.cpp	/^string gethome()$/;"	f
-gethome	kons2.cpp	/^string gethome()$/;"	f
 getlib64	kons.cpp	/^string& lsyscl::getlib64(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-getlib64	kons1.cpp	/^string& lsyscl::getlib64(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-getlib64	kons2.cpp	/^string& lsyscl::getlib64(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
 getmutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-getmutex	kons1.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-getmutex	kons2.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
 getstammext	kons.cpp	/^void getstammext(const string *const ganz, string *stamm, string *exten) $/;"	f
-getstammext	kons1.cpp	/^void getstammext(const string *const ganz, string *stamm, string *exten) $/;"	f
-getstammext	kons2.cpp	/^void getstammext(const string *const ganz, string *stamm, string *exten) $/;"	f
 getsys	kons.cpp	/^lsysen lsyscl::getsys(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-getsys	kons1.cpp	/^lsysen lsyscl::getsys(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
-getsys	kons2.cpp	/^lsysen lsyscl::getsys(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:lsyscl
 gibaus	kons.cpp	/^template<class SCL> void schAcl<SCL>::gibaus(const int nr\/*=0*\/)$/;"	f	class:schAcl
-gibaus	kons1.cpp	/^template<class SCL> void schAcl<SCL>::gibaus(const int nr\/*=0*\/)$/;"	f	class:schAcl
-gibaus	kons2.cpp	/^template<class SCL> void schAcl<SCL>::gibaus(const int nr\/*=0*\/)$/;"	f	class:schAcl
 gitv	kons.cpp	/^const string& gitv=$/;"	v
-gitv	kons1.cpp	/^const string& gitv=$/;"	v
-gitv	kons2.cpp	/^const string& gitv=$/;"	v
 groupdt	kons.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
 groupdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
-groupdt	kons1.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
-groupdt	kons2.cpp	/^			hcl::groupdt="\/etc\/group",$/;"	m	class:hcl	file:
 gruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-gruen	kons1.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-gruen	kons2.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 gruens	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gruens	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-gruens	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f	class:std
 hccd	kons.h	/^		confdcl hccd;$/;"	m	class:hcl
 hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
 hcl	kons.h	/^class hcl$/;"	c
-hcl	kons1.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
-hcl	kons2.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
 hgrau	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 hgrau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-hgrau	kons1.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-hgrau	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-hgrau	kons2.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-hgrau	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 hgruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-hgruen	kons1.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-hgruen	kons2.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
 hhcl	cl.cpp	/^hhcl::hhcl(const int argc, const char *const *const argv):hcl(argc,argv)$/;"	f	class:hhcl
 hhcl	cl.h	/^class hhcl:public hcl$/;"	c
 hilfezeile	kons.cpp	/^void optcl::hilfezeile(Sprache lg)$/;"	f	class:optcl
 hilfezeile	kons.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
-hilfezeile	kons1.cpp	/^void optcl::hilfezeile(Sprache lg)$/;"	f	class:optcl
-hilfezeile	kons1.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
-hilfezeile	kons2.cpp	/^void optcl::hilfezeile(Sprache lg)$/;"	f	class:optcl
-hilfezeile	kons2.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
 holdbaussql	DB.cpp	/^svec holdbaussql(string sql) $/;"	f
 hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(val); }$/;"	f	class:Schluessel
 hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }$/;"	f	struct:WPcl
@@ -981,24 +707,12 @@ hole	kons.h	/^template <> inline void WPcl::hole < const char* > (const char** v
 hole	kons.h	/^template <> inline void WPcl::hole < string > (string *var) {*var = wert; }$/;"	f	class:WPcl
 holstr	kons.cpp	/^string WPcl::holstr()$/;"	f	class:WPcl
 holstr	kons.cpp	/^string optcl::holstr()$/;"	f	class:optcl
-holstr	kons1.cpp	/^string WPcl::holstr()$/;"	f	class:WPcl
-holstr	kons1.cpp	/^string optcl::holstr()$/;"	f	class:optcl
-holstr	kons2.cpp	/^string WPcl::holstr()$/;"	f	class:WPcl
-holstr	kons2.cpp	/^string optcl::holstr()$/;"	f	class:optcl
 holsystemsprache	kons.cpp	/^string holsystemsprache(int obverb\/*=0*\/)$/;"	f
-holsystemsprache	kons1.cpp	/^string holsystemsprache(int obverb\/*=0*\/)$/;"	f
-holsystemsprache	kons2.cpp	/^string holsystemsprache(int obverb\/*=0*\/)$/;"	f
 holvomnetz	kons.cpp	/^int hcl::holvomnetz(const string& datei,const string& vors\/*=defvors*\/,const string& nachs\/*=defnachs*\/)$/;"	f	class:hcl
-holvomnetz	kons1.cpp	/^int hcl::holvomnetz(const string& datei,const string& vors\/*=defvors*\/,const string& nachs\/*=defnachs*\/)$/;"	f	class:hcl
-holvomnetz	kons2.cpp	/^int hcl::holvomnetz(const string& datei,const string& vors\/*=defvors*\/,const string& nachs\/*=defnachs*\/)$/;"	f	class:hcl
 host	DB.h	/^    const string host;$/;"	m	class:DB
 host	cl.h	/^	string host="localhost";  \/\/ fuer MySQL\/MariaDB$/;"	m	class:hhcl
 htuerkis	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-htuerkis	kons1.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-htuerkis	kons2.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 hviolett	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-hviolett	kons1.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-hviolett	kons2.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 indexzahl	DB.h	/^    unsigned indexzahl;$/;"	m	class:Tabelle
 indices	DB.h	/^    Index *indices;$/;"	m	class:Tabelle
 init	DB.cpp	/^void DB::init($/;"	f	class:DB
@@ -1007,24 +721,12 @@ init	kons.cpp	/^template <> void schAcl<optcl>::init(size_t vzahl, ...)$/;"	f	cl
 init	kons.cpp	/^template<class SCL> void schAcl<SCL>::init(vector<SCL*> *sqlvp)$/;"	f	class:schAcl
 init	kons.cpp	/^void elem2::init(const string& vmutter, const string& name) {$/;"	f	class:elem2
 init	kons.cpp	/^void find2cl::init(const string& mutter, const string& name, regex_t *reg, const int folge,const long maxdepth, const int& typbit,$/;"	f	class:find2cl
-init	kons1.cpp	/^template <> void schAcl<WPcl>::init(size_t vzahl, ...)$/;"	f	class:schAcl
-init	kons1.cpp	/^template <> void schAcl<optcl>::init(size_t vzahl, ...)$/;"	f	class:schAcl
-init	kons1.cpp	/^template<class SCL> void schAcl<SCL>::init(vector<SCL*> *sqlvp)$/;"	f	class:schAcl
-init	kons1.cpp	/^void elem2::init(const string& vmutter, const string& name) {$/;"	f	class:elem2
-init	kons1.cpp	/^void find2cl::init(const string& mutter, const string& name, regex_t *reg, const int folge,const long maxdepth, const int& typbit,$/;"	f	class:find2cl
-init	kons2.cpp	/^template <> void schAcl<WPcl>::init(size_t vzahl, ...)$/;"	f	class:schAcl
-init	kons2.cpp	/^template <> void schAcl<optcl>::init(size_t vzahl, ...)$/;"	f	class:schAcl
-init	kons2.cpp	/^template<class SCL> void schAcl<SCL>::init(vector<SCL*> *sqlvp)$/;"	f	class:schAcl
-init	kons2.cpp	/^void elem2::init(const string& vmutter, const string& name) {$/;"	f	class:elem2
-init	kons2.cpp	/^void find2cl::init(const string& mutter, const string& name, regex_t *reg, const int folge,const long maxdepth, const int& typbit,$/;"	f	class:find2cl
 initDB	cl.cpp	/^int hhcl::initDB()$/;"	f	class:hhcl
 ins	DB.h	/^		vector< vector<instyp> > ins;$/;"	m	class:DB
 instmaria	DB.cpp	/^void DB::instmaria(int obverb, int oblog)$/;"	f	class:DB
 instp	kons.h	/^ string instp; \/\/ Befehl zum Installieren ueber das Installationnssystem$/;"	m	class:linst_cl
 instprog	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	g
 instvz	kons.cpp	/^const string& instvz=$/;"	v
-instvz	kons1.cpp	/^const string& instvz=$/;"	v
-instvz	kons2.cpp	/^const string& instvz=$/;"	v
 instyp	DB.h	/^    \/*1*\/template <typename tC> explicit instyp (DBSTyp eDBS, char* const feld, tC vwert): feld(feld) {$/;"	f	class:instyp
 instyp	DB.h	/^    \/*2*\/template <typename tC> explicit instyp (DBSTyp eDBS, const char* feld, tC vwert):feld(feld) {$/;"	f	class:instyp
 instyp	DB.h	/^    \/*3*\/instyp (DBSTyp eDBS, char* feld, char *vwert):feld(feld) {$/;"	f	class:instyp
@@ -1036,8 +738,6 @@ instyp	kons.h	/^ string instyp; \/\/ Befehl zum Installieren ueber das Installat
 ionicepf	kons.h	/^ string ionicepf; \/\/ Pfad zu ionice$/;"	m	class:linst_cl
 ipr	kons.h	/^ instprog ipr=keinp; \/\/ installiertes Program$/;"	m	class:linst_cl
 irfind	kons.cpp	/^size_t irfind(const string& wo, const string& was)$/;"	f
-irfind	kons1.cpp	/^size_t irfind(const string& wo, const string& was)$/;"	f
-irfind	kons2.cpp	/^size_t irfind(const string& wo, const string& was)$/;"	f
 isatty	kons.h	49;"	d
 isneun	kons.h	/^inline int isneun(const std::string& str)$/;"	f
 isnumeric	kons.h	/^inline int isnumeric(const char* str)$/;"	f
@@ -1046,49 +746,25 @@ isql	DB.h	/^    string isql; \/\/ insert-sql$/;"	m	class:RS
 istelnr	kons.h	/^inline int istelnr(const std::string& str)$/;"	f
 it	kons.cpp	/^set<wele>::iterator find3cl::it;$/;"	m	class:find3cl	file:
 it	kons.h	/^    static set<wele>::iterator it;$/;"	m	class:find3cl
-it	kons1.cpp	/^set<wele>::iterator find3cl::it;$/;"	m	class:find3cl	file:
-it	kons2.cpp	/^set<wele>::iterator find3cl::it;$/;"	m	class:find3cl	file:
 it2	kons.cpp	/^el2set::iterator it2;$/;"	v
-it2	kons1.cpp	/^el2set::iterator it2;$/;"	v
-it2	kons2.cpp	/^el2set::iterator it2;$/;"	v
 it3	kons.cpp	/^set<elem3>::iterator it3;$/;"	v
-it3	kons1.cpp	/^set<elem3>::iterator it3;$/;"	v
-it3	kons2.cpp	/^set<elem3>::iterator it3;$/;"	v
 iwert	kons.h	/^    int iwert; \/\/ Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen$/;"	m	struct:optcl
 keineverarbeitung	cl.h	/^	uchar keineverarbeitung=0; \/\/ wenn cronminuten geaendert werden sollen, vorher abkuerzen$/;"	m	class:hhcl
 keinp	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 key	kons.h	/^    char key[90];$/;"	m	class:Schluessel
 kommentar	DB.h	/^    vector<string> kommentar;$/;"	m	class:RS
 kompilbase	kons.cpp	/^int hcl::kompilbase(const string& was, const string& endg)$/;"	f	class:hcl
-kompilbase	kons1.cpp	/^int hcl::kompilbase(const string& was, const string& endg)$/;"	f	class:hcl
-kompilbase	kons2.cpp	/^int hcl::kompilbase(const string& was, const string& endg)$/;"	f	class:hcl
 kompilfort	kons.cpp	/^int hcl::kompilfort(const string& was,const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/,uchar ohneconf\/*=0*\/)$/;"	f	class:hcl
-kompilfort	kons1.cpp	/^int hcl::kompilfort(const string& was,const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/,uchar ohneconf\/*=0*\/)$/;"	f	class:hcl
-kompilfort	kons2.cpp	/^int hcl::kompilfort(const string& was,const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/,uchar ohneconf\/*=0*\/)$/;"	f	class:hcl
 kompiliere	kons.cpp	/^int hcl::kompiliere(const string& was,const string& endg, const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/)$/;"	f	class:hcl
-kompiliere	kons1.cpp	/^int hcl::kompiliere(const string& was,const string& endg, const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/)$/;"	f	class:hcl
-kompiliere	kons2.cpp	/^int hcl::kompiliere(const string& was,const string& endg, const string& vorcfg\/*=nix*\/, const string& cfgbismake\/*==s_dampand*\/)$/;"	f	class:hcl
 kons_H_DRIN	kons.h	6;"	d
 kons_T	kons.cpp	/^const char *kons_T[T_konsMAX+1][SprachZahl]=$/;"	v
-kons_T	kons1.cpp	/^const char *kons_T[T_konsMAX+1][SprachZahl]=$/;"	v
-kons_T	kons2.cpp	/^const char *kons_T[T_konsMAX+1][SprachZahl]=$/;"	v
 kopier	kons.cpp	/^int kopier(const string& quel, const string& ziel, int obverb, int oblog)$/;"	f
-kopier	kons1.cpp	/^int kopier(const string& quel, const string& ziel, int obverb, int oblog)$/;"	f
-kopier	kons2.cpp	/^int kopier(const string& quel, const string& ziel, int obverb, int oblog)$/;"	f
 kopierm	kons.cpp	/^void kopierm(const string *quelle, const string *ziel)$/;"	f
-kopierm	kons1.cpp	/^void kopierm(const string *quelle, const string *ziel)$/;"	f
-kopierm	kons2.cpp	/^void kopierm(const string *quelle, const string *ziel)$/;"	f
 kuerzelogdatei	kons.cpp	/^int kuerzelogdatei(const char* logdatei,int obverb)$/;"	f
-kuerzelogdatei	kons1.cpp	/^int kuerzelogdatei(const char* logdatei,int obverb)$/;"	f
-kuerzelogdatei	kons2.cpp	/^int kuerzelogdatei(const char* logdatei,int obverb)$/;"	f
 kuerzevtz	kons.cpp	/^void kuerzevtz(string *vzp)$/;"	f
-kuerzevtz	kons1.cpp	/^void kuerzevtz(string *vzp)$/;"	f
-kuerzevtz	kons2.cpp	/^void kuerzevtz(string *vzp)$/;"	f
 kurzi	kons.h	/^		const int kurzi=0;$/;"	m	class:optioncl
 kurzi	kons.h	/^		const int kurzi=0;$/;"	m	struct:optcl
 laeuft	kons.cpp	/^int servc::laeuft()$/;"	f	class:servc
-laeuft	kons1.cpp	/^int servc::laeuft()$/;"	f	class:servc
-laeuft	kons2.cpp	/^int servc::laeuft()$/;"	f	class:servc
 langi	kons.h	/^		const int langi=0;$/;"	m	class:optioncl
 langi	kons.h	/^		const int langi=0;$/;"	m	struct:optcl
 langu	kons.h	/^    string langu; \/\/ Sprache (Anfangsbuchstabe)$/;"	m	class:hcl
@@ -1102,42 +778,22 @@ lfd	kons.h	/^		unsigned lfd;$/;"	m	class:hcl
 lgn	kons.h	/^  Sprache lgn; \/\/ Sprache numerisch$/;"	m	class:TxB
 lgnzuw	cl.cpp	/^void hhcl::lgnzuw()$/;"	f	class:hhcl
 lgnzuw	kons.cpp	/^void hcl::lgnzuw()$/;"	f	class:hcl
-lgnzuw	kons1.cpp	/^void hcl::lgnzuw()$/;"	f	class:hcl
-lgnzuw	kons2.cpp	/^void hcl::lgnzuw()$/;"	f	class:hcl
 libs	kons.h	/^ string libs; \/\/ alle lib-Verzeichnisse, fuer find ..$/;"	m	class:linst_cl
 lief	kons.cpp	/^int servc::lief()$/;"	f	class:servc
-lief	kons1.cpp	/^int servc::lief()$/;"	f	class:servc
-lief	kons2.cpp	/^int servc::lief()$/;"	f	class:servc
 lies	kons.cpp	/^int confdat::lies(const string& fname, int obverb)$/;"	f	class:confdat
 lies	kons.cpp	/^int confdcl::lies(const string& fname, int obverb)$/;"	f	class:confdcl
-lies	kons1.cpp	/^int confdat::lies(const string& fname, int obverb)$/;"	f	class:confdat
-lies	kons1.cpp	/^int confdcl::lies(const string& fname, int obverb)$/;"	f	class:confdcl
-lies	kons2.cpp	/^int confdat::lies(const string& fname, int obverb)$/;"	f	class:confdat
-lies	kons2.cpp	/^int confdcl::lies(const string& fname, int obverb)$/;"	f	class:confdcl
 lieskonfein	cl.cpp	/^void hhcl::lieskonfein(const string& dprog)$/;"	f	class:hhcl
 lieskonfein	kons.cpp	/^void hcl::lieskonfein(const string& DPROG)$/;"	f	class:hcl
-lieskonfein	kons1.cpp	/^void hcl::lieskonfein(const string& DPROG)$/;"	f	class:hcl
-lieskonfein	kons2.cpp	/^void hcl::lieskonfein(const string& DPROG)$/;"	f	class:hcl
 lieszaehlerein	kons.cpp	/^void hcl::lieszaehlerein(ulong *arp\/*=0*\/,ulong *tap\/*=0*\/,ulong *map\/*=0*\/, struct tm *lap\/*=0*\/,$/;"	f	class:hcl
-lieszaehlerein	kons1.cpp	/^void hcl::lieszaehlerein(ulong *arp\/*=0*\/,ulong *tap\/*=0*\/,ulong *map\/*=0*\/, struct tm *lap\/*=0*\/,$/;"	f	class:hcl
-lieszaehlerein	kons2.cpp	/^void hcl::lieszaehlerein(ulong *arp\/*=0*\/,ulong *tap\/*=0*\/,ulong *map\/*=0*\/, struct tm *lap\/*=0*\/,$/;"	f	class:hcl
 linst_cl	kons.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_cl
 linst_cl	kons.h	/^class linst_cl$/;"	c
-linst_cl	kons1.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_cl
-linst_cl	kons2.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_cl
 linstp	DB.h	/^		linst_cl *const linstp=0;$/;"	m	class:DB
 linstp	kons.h	/^		linst_cl* linstp=0;$/;"	m	class:hcl
 listz	cl.h	/^	long listz=30;$/;"	m	class:hhcl
 lnk	kons.h	/^    const string lnk;$/;"	m	class:elem3
 loc	kons.cpp	/^const std::locale loc = gen("en_US.UTF-8");$/;"	v
-loc	kons1.cpp	/^const std::locale loc = gen("en_US.UTF-8");$/;"	v
-loc	kons2.cpp	/^const std::locale loc = gen("en_US.UTF-8");$/;"	v
 loeschealleaus	kons.cpp	/^string *loeschealleaus(string *u, const char* const alt) $/;"	f
-loeschealleaus	kons1.cpp	/^string *loeschealleaus(string *u, const char* const alt) $/;"	f
-loeschealleaus	kons2.cpp	/^string *loeschealleaus(string *u, const char* const alt) $/;"	f
 loeschefarbenaus	kons.cpp	/^string* loeschefarbenaus(string *zwi)$/;"	f
-loeschefarbenaus	kons1.cpp	/^string* loeschefarbenaus(string *zwi)$/;"	f
-loeschefarbenaus	kons2.cpp	/^string* loeschefarbenaus(string *zwi)$/;"	f
 logdateineu	kons.h	/^    uchar logdateineu=0; \/\/ logdt vorher loeschen$/;"	m	class:hcl
 logdname	kons.h	/^    string logdname; \/\/ Logdatei-Name ohne Pfad <DPROG>.log$/;"	m	class:hcl
 logdneu	kons.h	/^    uchar logdneu=0;    \/\/ Logdatei geaendert$/;"	m	class:hcl
@@ -1148,33 +804,19 @@ logvz	kons.h	/^    string logvz; \/\/ nur das Verzeichnis \/var\/log$/;"	m	class
 lst	kons.h	/^    const struct stat lst={0};$/;"	m	class:elem3	typeref:struct:elem3::stat
 lstat	kons.h	60;"	d
 lsys	kons.cpp	/^class lsyscl lsys;$/;"	v	typeref:class:lsyscl
-lsys	kons1.cpp	/^class lsyscl lsys;$/;"	v	typeref:class:lsyscl
-lsys	kons2.cpp	/^class lsyscl lsys;$/;"	v	typeref:class:lsyscl
 lsyscl	kons.h	/^class lsyscl$/;"	c
 lsysen	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	g
 ltoa_	kons.cpp	/^char* ltoa_(long value, char* result, int base=10) $/;"	f
-ltoa_	kons1.cpp	/^char* ltoa_(long value, char* result, int base=10) $/;"	f
-ltoa_	kons2.cpp	/^char* ltoa_(long value, char* result, int base=10) $/;"	f
 ltoan	kons.cpp	/^string ltoan(long value, int base\/*=10*\/, uchar obtz\/*=0*\/, uchar minstel\/*=0*\/) $/;"	f
-ltoan	kons1.cpp	/^string ltoan(long value, int base\/*=10*\/, uchar obtz\/*=0*\/, uchar minstel\/*=0*\/) $/;"	f
-ltoan	kons2.cpp	/^string ltoan(long value, int base\/*=10*\/, uchar obtz\/*=0*\/, uchar minstel\/*=0*\/) $/;"	f
 ltrim	kons.h	/^inline std::string *ltrim(std::string *str) {$/;"	f	class:std
 m_color	kons.h	/^  WORD m_color;$/;"	m	struct:color
 mab	kons.h	/^    time_t mab,mbis;$/;"	m	class:find3cl
 mabp	kons.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
 mabp	kons.h	/^    static time_t *mabp,*mbisp;$/;"	m	class:find3cl
-mabp	kons1.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
-mabp	kons2.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
 machbemerk	kons.cpp	/^string& WPcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/) $/;"	f	class:WPcl
 machbemerk	kons.cpp	/^string& optcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/)$/;"	f	class:optcl
-machbemerk	kons1.cpp	/^string& WPcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/) $/;"	f	class:WPcl
-machbemerk	kons1.cpp	/^string& optcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/)$/;"	f	class:optcl
-machbemerk	kons2.cpp	/^string& WPcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/) $/;"	f	class:WPcl
-machbemerk	kons2.cpp	/^string& optcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/)$/;"	f	class:optcl
 machbinaer	DB.cpp	/^int DB::machbinaer(const string& tabs, const size_t aktc,const string& fmeld,int obverb) const$/;"	f	class:DB
 machfit	kons.cpp	/^int servc::machfit(int obverb\/*=0*\/,int oblog\/*=0*\/, binaer nureinmal\/*=falsch*\/)$/;"	f	class:servc
-machfit	kons1.cpp	/^int servc::machfit(int obverb\/*=0*\/,int oblog\/*=0*\/, binaer nureinmal\/*=falsch*\/)$/;"	f	class:servc
-machfit	kons2.cpp	/^int servc::machfit(int obverb\/*=0*\/,int oblog\/*=0*\/, binaer nureinmal\/*=falsch*\/)$/;"	f	class:servc
 machind	DB.cpp	/^int Tabelle::machind(const size_t aktc, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:Tabelle
 machstrikt	DB.cpp	/^void RS::machstrikt(string& altsqlm,const size_t aktc\/*=0*\/)$/;"	f	class:RS
 main	cl.cpp	/^int main(int argc,char** argv)$/;"	f
@@ -1183,21 +825,13 @@ maxd	kons.h	/^    const long maxd;$/;"	m	class:wele
 maxdepth	kons.h	/^    long maxdepth=-1;$/;"	m	class:find3cl
 maxdepthp	kons.cpp	/^long *find3cl::maxdepthp;$/;"	m	class:find3cl	file:
 maxdepthp	kons.h	/^    static long *maxdepthp;$/;"	m	class:find3cl
-maxdepthp	kons1.cpp	/^long *find3cl::maxdepthp;$/;"	m	class:find3cl	file:
-maxdepthp	kons2.cpp	/^long *find3cl::maxdepthp;$/;"	m	class:find3cl	file:
 mbis	kons.h	/^    time_t mab,mbis;$/;"	m	class:find3cl
 mbisp	kons.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
 mbisp	kons.h	/^    static time_t *mabp,*mbisp;$/;"	m	class:find3cl
-mbisp	kons1.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
-mbisp	kons2.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
 mdatei	kons.cpp	/^mdatei::mdatei(const string& name, ios_base::openmode modus\/*=ios_base::in|ios_base::out*\/,uchar faclbak\/*=1*\/,int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:mdatei
 mdatei	kons.h	/^class mdatei: public fstream$/;"	c
-mdatei	kons1.cpp	/^mdatei::mdatei(const string& name, ios_base::openmode modus\/*=ios_base::in|ios_base::out*\/,uchar faclbak\/*=1*\/,int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:mdatei
-mdatei	kons2.cpp	/^mdatei::mdatei(const string& name, ios_base::openmode modus\/*=ios_base::in|ios_base::out*\/,uchar faclbak\/*=1*\/,int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:mdatei
 meinname	kons.h	/^    string meinname; \/\/ base_name(meinpfad()) \/\/ argv[0] \/\/ <DPROG>$/;"	m	class:hcl
 meinpfad	kons.cpp	/^string meinpfad() {$/;"	f
-meinpfad	kons1.cpp	/^string meinpfad() {$/;"	f
-meinpfad	kons2.cpp	/^string meinpfad() {$/;"	f
 miterror	DB.h	/^    uchar miterror;$/;"	m	class:DB
 mitset	kons.h	110;"	d
 mitvtz	kons.h	/^inline std::string mitvtz(std::string const& vz)$/;"	f
@@ -1206,8 +840,6 @@ mpfad	kons.h	/^    string mpfad;  \/\/ meinpfad()$/;"	m	class:hcl
 mpwd	cl.h	/^	string mpwd;  \/\/ Passwort fuer Mysql\/MariaDB \/\/ω$/;"	m	class:hhcl
 msg	kons.h	/^ string msg;$/;"	m	class:errmsgcl
 multischlschreib	kons.cpp	/^int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)$/;"	f
-multischlschreib	kons1.cpp	/^int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)$/;"	f
-multischlschreib	kons2.cpp	/^int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)$/;"	f
 muser	cl.h	/^	string muser; \/\/ Benutzer fuer Mysql\/MariaDB$/;"	m	class:hhcl
 myDBS	cl.cpp	/^const DBSTyp myDBS=Postgres;$/;"	v
 myloghost	DB.h	/^    string myloghost; \/\/ einheitliche Benennung von 'localhost' bzw. '%', zu kompliziert, um in jedem DB::DB aufzufuehren, deshalb nicht const$/;"	m	class:DB
@@ -1218,42 +850,28 @@ name	DB.h	/^		const string name;$/;"	m	class:Index
 name	DB.h	/^    const string name;$/;"	m	class:Feld
 name	kons.h	/^ string name;$/;"	m	class:pidcl
 nersetze	kons.cpp	/^string nersetze(const string& quelle, string const& was, string const& durch)$/;"	f
-nersetze	kons1.cpp	/^string nersetze(const string& quelle, string const& was, string const& durch)$/;"	f
-nersetze	kons2.cpp	/^string nersetze(const string& quelle, string const& was, string const& durch)$/;"	f
 neufind	kons.h	107;"	d
 nicepf	kons.h	/^ string nicepf; \/\/ Pfad zu nice$/;"	m	class:linst_cl
 nichtspeichern	kons.h	/^		uchar nichtspeichern=0;$/;"	m	struct:optcl
 nix	kons.cpp	/^const string nix;$/;"	v
-nix	kons1.cpp	/^const string nix;$/;"	v
-nix	kons2.cpp	/^const string nix;$/;"	v
 nnull	DB.h	/^    bool nnull;$/;"	m	class:Feld
 nochkeincron	kons.h	/^		uchar nochkeincron;$/;"	m	class:hcl
 nr	kons.h	/^ unsigned long nr=0;$/;"	m	class:perfcl
 nrp	kons.h	/^  ull *nrp=0;$/;"	m	class:find2cl
 nrzf	kons.cpp	/^uchar nrzf=0; \/\/ nicht rueckzufragen, fuer Aufruf aus Cron, wird auch in DB verwendet $/;"	v
-nrzf	kons1.cpp	/^uchar nrzf=0; \/\/ nicht rueckzufragen, fuer Aufruf aus Cron, wird auch in DB verwendet $/;"	v
-nrzf	kons2.cpp	/^uchar nrzf=0; \/\/ nicht rueckzufragen, fuer Aufruf aus Cron, wird auch in DB verwendet $/;"	v
 num_fields	DB.h	/^    unsigned int num_fields;$/;"	m	class:RS
 num_rows	DB.h	/^    unsigned long long  num_rows;$/;"	m	class:RS
 nurexec	kons.h	/^		int nurexec;$/;"	m	class:find3cl
 nurexecp	kons.cpp	/^int *find3cl::nurexecp;$/;"	m	class:find3cl	file:
 nurexecp	kons.h	/^		static int *nurexecp;$/;"	m	class:find3cl
-nurexecp	kons1.cpp	/^int *find3cl::nurexecp;$/;"	m	class:find3cl	file:
-nurexecp	kons2.cpp	/^int *find3cl::nurexecp;$/;"	m	class:find3cl	file:
 oausgeb	kons.cpp	/^void optcl::oausgeb()$/;"	f	class:optcl
-oausgeb	kons1.cpp	/^void optcl::oausgeb()$/;"	f	class:optcl
-oausgeb	kons2.cpp	/^void optcl::oausgeb()$/;"	f	class:optcl
 obauto	DB.h	/^    bool obauto;$/;"	m	class:Feld
 obcf	kons.h	/^		uchar obcf=0; \/\/ ob die Option schon einmal vorkam für die Konfigurationsdatei$/;"	m	class:optioncl
 obcl	kons.h	/^		uchar obcl=0; \/\/ ob die Option ueber die Kommandozeile gesetzt wurde$/;"	m	class:optioncl
 obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
-oberreicht	kons1.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
-oberreicht	kons2.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfehlt	kons1.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfehlt	kons2.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
 obfstream	kons.h	989;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
@@ -1268,76 +886,48 @@ oblog	kons.h	/^	int obverb,oblog;$/;"	m	class:find2cl
 oblog	kons.h	/^    int oblog=0;  \/\/ mehr Protokollieren$/;"	m	class:hcl
 oblogp	kons.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
 oblogp	kons.h	/^		static int *obverbp, *oblogp;$/;"	m	class:find3cl
-oblogp	kons1.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
-oblogp	kons2.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
 obnmr	kons.h	/^ uchar obnmr=1;$/;"	m	class:linst_cl
 obno	kons.h	/^    const uchar obno=0; \/\/ ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll$/;"	m	class:optioncl
 obno	kons.h	/^    const uchar obno=0; \/\/ ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll$/;"	m	struct:optcl
 oboffen	kons.h	/^  int oboffen=0;$/;"	m	class:mdatei
 obprogda	kons.cpp	/^int obprogda(const string& prog, int obverb\/*=0*\/, int oblog\/*=0*\/, string *pfad\/*=0*\/)$/;"	f
-obprogda	kons1.cpp	/^int obprogda(const string& prog, int obverb\/*=0*\/, int oblog\/*=0*\/, string *pfad\/*=0*\/)$/;"	f
-obprogda	kons2.cpp	/^int obprogda(const string& prog, int obverb\/*=0*\/, int oblog\/*=0*\/, string *pfad\/*=0*\/)$/;"	f
 obschreibp	kons.h	/^    uchar *obschreibp=0; \/\/ ob Konfiguration geschrieben werden muss$/;"	m	class:optioncl
 obschreibp	kons.h	/^    uchar *obschreibp=0; \/\/ ob Konfiguration geschrieben werden muss$/;"	m	struct:optcl
 obsotiff	kons.h	/^		uchar obsotiff=0; \/\/ 1 = tiff wird von der source verwendet$/;"	m	class:hcl
 obsvfeh	kons.cpp	/^int servc::obsvfeh(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ ob service einrichtungs fehler$/;"	f	class:servc
-obsvfeh	kons1.cpp	/^int servc::obsvfeh(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ ob service einrichtungs fehler$/;"	f	class:servc
-obsvfeh	kons2.cpp	/^int servc::obsvfeh(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ ob service einrichtungs fehler$/;"	f	class:servc
 obverb	kons.h	/^		int obverb=0, oblog=0;$/;"	m	class:find3cl
 obverb	kons.h	/^	int obverb,oblog;$/;"	m	class:find2cl
 obverb	kons.h	/^    int obverb=0; \/\/ verbose$/;"	m	class:hcl
 obverbp	kons.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
 obverbp	kons.h	/^		static int *obverbp, *oblogp;$/;"	m	class:find3cl
-obverbp	kons1.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
-obverbp	kons2.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
 obvi	cl.h	/^  uchar obvi=0; \/\/ ob Konfigurationsdatei editiert werden soll$/;"	m	class:hhcl
 obvs	cl.h	/^	uchar obvs=0;   \/\/ ob Quelldateien bearbeitet werden sollen$/;"	m	class:hhcl
 obzuschreib	kons.h	/^		uchar obzuschreib;$/;"	m	struct:confdcl
 oeffne	kons.cpp	/^oeffne(const string& datei, uchar art, uchar* erfolg,int obverb\/*=0*\/, int oblog\/*=0*\/,uchar faclbak\/*=1*\/)$/;"	f
-oeffne	kons1.cpp	/^oeffne(const string& datei, uchar art, uchar* erfolg,int obverb\/*=0*\/, int oblog\/*=0*\/,uchar faclbak\/*=1*\/)$/;"	f
-oeffne	kons2.cpp	/^oeffne(const string& datei, uchar art, uchar* erfolg,int obverb\/*=0*\/, int oblog\/*=0*\/,uchar faclbak\/*=1*\/)$/;"	f
 oisok	DB.cpp	/^uchar DB::oisok=0;$/;"	m	class:DB	file:
 oisok	DB.h	/^    static uchar oisok; \/\/ 1=Installation von MariaDB wurde ueberprueft$/;"	m	class:DB
 okmap	kons.h	/^		map<const char* const,SCL*> okmap; \/\/ map der Optionen, sortiert nach Tx[<kurzi>]$/;"	m	class:schAcl
 olmap	kons.h	/^		map<const char* const,SCL*> olmap; \/\/ map der Optionen, sortiert nach Tx[<langi>]$/;"	m	class:schAcl
 omap	kons.h	/^		map<string,SCL*> omap; \/\/ map der Optionen$/;"	m	class:schAcl
 omapzuw	kons.cpp	/^template<class SCL> void schAcl<SCL>::omapzuw()$/;"	f	class:schAcl
-omapzuw	kons1.cpp	/^template<class SCL> void schAcl<SCL>::omapzuw()$/;"	f	class:schAcl
-omapzuw	kons2.cpp	/^template<class SCL> void schAcl<SCL>::omapzuw()$/;"	f	class:schAcl
 omit	kons.h	/^		typename map<string,SCL*>::iterator omit; \/\/ Optionen-Iterator$/;"	m	class:schAcl
 operator ()	kons.cpp	/^ostream &ztacl::operator()(std::ostream& out) const {$/;"	f	class:ztacl
-operator ()	kons1.cpp	/^ostream &ztacl::operator()(std::ostream& out) const {$/;"	f	class:ztacl
-operator ()	kons2.cpp	/^ostream &ztacl::operator()(std::ostream& out) const {$/;"	f	class:ztacl
 operator <	kons.cpp	/^const bool elem2::operator<(const elem2& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem2
 operator <	kons.cpp	/^const bool elem3::operator<(const elem3& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem3
 operator <	kons.cpp	/^const bool wele::operator<(const wele& el) const {return (this->pfad<el.pfad);}$/;"	f	class:wele
-operator <	kons1.cpp	/^const bool elem2::operator<(const elem2& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem2
-operator <	kons1.cpp	/^const bool elem3::operator<(const elem3& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem3
-operator <	kons1.cpp	/^const bool wele::operator<(const wele& el) const {return (this->pfad<el.pfad);}$/;"	f	class:wele
-operator <	kons2.cpp	/^const bool elem2::operator<(const elem2& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem2
-operator <	kons2.cpp	/^const bool elem3::operator<(const elem3& el) const {return (this->pfad<el.pfad);}$/;"	f	class:elem3
-operator <	kons2.cpp	/^const bool wele::operator<(const wele& el) const {return (this->pfad<el.pfad);}$/;"	f	class:wele
 operator <<	kons.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f	class:std
 operator <<	kons.cpp	/^ostream &operator<<(ostream &out,ztacl ztaus) {$/;"	f
 operator <<	kons.h	/^    inline svec& operator<<(const std::string& str) {$/;"	f	class:svec
 operator <<	kons.h	/^    inline tsvec<T>& operator<<(const T& str) {$/;"	f	class:tsvec
 operator <<	kons.h	/^ inline pidvec& operator<<(const pidcl& pd) {$/;"	f	class:pidvec
 operator <<	kons.h	/^ inline schAcl& operator<<(const SCL& sch) { schl.push_back(sch); return *this; }$/;"	f	class:schAcl
-operator <<	kons1.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f	class:std
-operator <<	kons1.cpp	/^ostream &operator<<(ostream &out,ztacl ztaus) {$/;"	f
-operator <<	kons2.cpp	/^  std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){$/;"	f	class:std
-operator <<	kons2.cpp	/^ostream &operator<<(ostream &out,ztacl ztaus) {$/;"	f
 operator []	kons.h	/^  inline const char* operator[](long const& nr) const {$/;"	f	class:TxB
 operator []	kons.h	/^ inline SCL& operator[](size_t const& nr) { return schl[nr]; }$/;"	f	class:schAcl
 operator []	kons.h	/^ inline const SCL& operator[](size_t const& nr) const { return schl[nr]; }$/;"	f	class:schAcl
 opn	kons.h	/^		schAcl<optcl> opn; \/\/ Optionen$/;"	m	class:hcl
 optausg	kons.cpp	/^void hcl::optausg(const char *farbe)$/;"	f	class:hcl
-optausg	kons1.cpp	/^void hcl::optausg(const char *farbe)$/;"	f	class:hcl
-optausg	kons2.cpp	/^void hcl::optausg(const char *farbe)$/;"	f	class:hcl
 optcl	kons.cpp	/^optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,$/;"	f	class:optcl
 optcl	kons.h	/^struct optcl$/;"	s
-optcl	kons1.cpp	/^optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,$/;"	f	class:optcl
-optcl	kons2.cpp	/^optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,$/;"	f	class:optcl
 optioncl	kons.cpp	/^template<class SCL> \/*2a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl<SCL> *cpA,const char *pname,uchar* obschreibp) : $/;"	f	class:optioncl
 optioncl	kons.cpp	/^template<class SCL> \/*3a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl<SCL> *cpA, $/;"	f	class:optioncl
 optioncl	kons.cpp	/^template<class SCL> \/*3b*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schAcl<SCL> *cpA\/*=0*\/,$/;"	f	class:optioncl
@@ -1345,14 +935,6 @@ optioncl	kons.cpp	/^template<class SCL> \/*4*\/optioncl::optioncl(int kurzi,int 
 optioncl	kons.h	/^\/*6a*\/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,uchar *pptr,int wert) : $/;"	f	class:optioncl
 optioncl	kons.h	/^\/*9a*\/optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *rottxt,long Txi2,int *pptr,int wert) : $/;"	f	class:optioncl
 optioncl	kons.h	/^class optioncl$/;"	c
-optioncl	kons1.cpp	/^template<class SCL> \/*2a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl<SCL> *cpA,const char *pname,uchar* obschreibp) : $/;"	f	class:optioncl
-optioncl	kons1.cpp	/^template<class SCL> \/*3a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl<SCL> *cpA, $/;"	f	class:optioncl
-optioncl	kons1.cpp	/^template<class SCL> \/*3b*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schAcl<SCL> *cpA\/*=0*\/,$/;"	f	class:optioncl
-optioncl	kons1.cpp	/^template<class SCL> \/*4*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schAcl<SCL> *cpA, const char *pname,uchar* obschreibp) :$/;"	f	class:optioncl
-optioncl	kons2.cpp	/^template<class SCL> \/*2a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl<SCL> *cpA,const char *pname,uchar* obschreibp) : $/;"	f	class:optioncl
-optioncl	kons2.cpp	/^template<class SCL> \/*3a*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl<SCL> *cpA, $/;"	f	class:optioncl
-optioncl	kons2.cpp	/^template<class SCL> \/*3b*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schAcl<SCL> *cpA\/*=0*\/,$/;"	f	class:optioncl
-optioncl	kons2.cpp	/^template<class SCL> \/*4*\/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schAcl<SCL> *cpA, const char *pname,uchar* obschreibp) :$/;"	f	class:optioncl
 opts	kons.h	/^    vector<optioncl> opts;$/;"	m	class:hcl
 optslsz	kons.h	/^    size_t optslsz=0; \/\/ last opts.size()$/;"	m	class:hcl
 p1	cl.h	/^	string p1;$/;"	m	class:hhcl
@@ -1365,14 +947,10 @@ passwd	DB.h	/^    string passwd; \/\/ kann in pruefrpw dem eingegebenen rootpw g
 passwd	kons.h	/^ struct passwd *passwd;$/;"	m	class:cuscl	typeref:struct:cuscl::
 passwddt	kons.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
 passwddt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
-passwddt	kons1.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
-passwddt	kons2.cpp	/^const string	hcl::passwddt="\/etc\/passwd",$/;"	m	class:hcl	file:
 pconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
 pdat	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 perfcl	kons.cpp	/^perfcl::perfcl(const string& vvonwo): vonwo(vvonwo)$/;"	f	class:perfcl
 perfcl	kons.h	/^class perfcl$/;"	c
-perfcl	kons1.cpp	/^perfcl::perfcl(const string& vvonwo): vonwo(vvonwo)$/;"	f	class:perfcl
-perfcl	kons2.cpp	/^perfcl::perfcl(const string& vvonwo): vonwo(vvonwo)$/;"	f	class:perfcl
 pfad	kons.h	/^    const string pfad;$/;"	m	class:wele
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem2
 pfad	kons.h	/^    string pfad;$/;"	m	class:elem3
@@ -1383,8 +961,6 @@ pidcl	kons.h	/^class pidcl$/;"	c
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
 pint	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-pkill	kons1.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-pkill	kons2.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 plong	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 pmconn	DB.h	/^		PGconn *pconn,*pmconn;$/;"	m	class:DB
 pname	kons.h	/^		string pname; \/\/ Name des Konfigurationsparameters$/;"	m	struct:optcl
@@ -1399,80 +975,38 @@ prec	DB.h	/^    const string prec;$/;"	m	class:Feld
 prec	DB.h	/^    vector<long> prec;$/;"	m	class:RS
 pres	DB.h	/^		PGresult *pres;$/;"	m	class:RS
 printBits	kons.cpp	/^void printBits(size_t const size, void const * const ptr)$/;"	f
-printBits	kons1.cpp	/^void printBits(size_t const size, void const * const ptr)$/;"	f
-printBits	kons2.cpp	/^void printBits(size_t const size, void const * const ptr)$/;"	f
 printf_mutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-printf_mutex	kons1.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-printf_mutex	kons2.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-progpar	kons.cpp	/^void hcl::progpar()$/;"	f	class:hcl
-progpar	kons1.cpp	/^void hcl::progpar()$/;"	f	class:hcl
-progpar	kons2.cpp	/^void hcl::progpar()$/;"	f	class:hcl
+progpar	kons.cpp	/^void hcl::progpar(const char* DPROG)$/;"	f	class:hcl
 progvers	kons.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
-progvers	kons1.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
-progvers	kons2.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
 pruefDB	cl.cpp	/^int hhcl::pruefDB(const string& db)$/;"	f	class:hhcl
 pruefberecht	kons.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
-pruefberecht	kons1.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
-pruefberecht	kons2.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
 pruefcl	kons.cpp	/^void hcl::pruefcl() \/\/ commandline mit omap und mit argcmv parsen$/;"	f	class:hcl
-pruefcl	kons1.cpp	/^void hcl::pruefcl() \/\/ commandline mit omap und mit argcmv parsen$/;"	f	class:hcl
-pruefcl	kons2.cpp	/^void hcl::pruefcl() \/\/ commandline mit omap und mit argcmv parsen$/;"	f	class:hcl
 pruefcron	kons.cpp	/^uchar hcl::pruefcron(const string& cm)$/;"	f	class:hcl
-pruefcron	kons1.cpp	/^uchar hcl::pruefcron(const string& cm)$/;"	f	class:hcl
-pruefcron	kons2.cpp	/^uchar hcl::pruefcron(const string& cm)$/;"	f	class:hcl
 prueffunc	DB.cpp	/^void DB::prueffunc(const string& pname, const string& body, const string& para, const size_t aktc, int obverb, int oblog)$/;"	f	class:DB
 pruefggfmehrfach	cl.cpp	/^void hhcl::pruefggfmehrfach()$/;"	f	class:hhcl
 pruefinstv	kons.cpp	/^int hcl::pruefinstv()$/;"	f	class:hcl
-pruefinstv	kons1.cpp	/^int hcl::pruefinstv()$/;"	f	class:hcl
-pruefinstv	kons2.cpp	/^int hcl::pruefinstv()$/;"	f	class:hcl
 pruefmehrfach	kons.cpp	/^void pruefmehrfach(const string& wen,uchar obstumm\/*=0*\/)$/;"	f
-pruefmehrfach	kons1.cpp	/^void pruefmehrfach(const string& wen,uchar obstumm\/*=0*\/)$/;"	f
-pruefmehrfach	kons2.cpp	/^void pruefmehrfach(const string& wen,uchar obstumm\/*=0*\/)$/;"	f
 pruefpar	kons.cpp	/^int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) \/\/ 1 = das war der Parameter, 0 = nicht$/;"	f	class:optioncl
-pruefpar	kons1.cpp	/^int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) \/\/ 1 = das war der Parameter, 0 = nicht$/;"	f	class:optioncl
-pruefpar	kons2.cpp	/^int optioncl::pruefpar(vector<argcl> *const argcvm , size_t *const akt, uchar *hilfe) \/\/ 1 = das war der Parameter, 0 = nicht$/;"	f	class:optioncl
 pruefplatte	kons.cpp	/^void pruefplatte()$/;"	f
-pruefplatte	kons1.cpp	/^void pruefplatte()$/;"	f
-pruefplatte	kons2.cpp	/^void pruefplatte()$/;"	f
 pruefrpw	DB.cpp	/^void DB::pruefrpw(const string& wofuer, unsigned versuchzahl)$/;"	f	class:DB
 pruefsamba	kons.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs, const char* DPROG,const string& cuser)$/;"	f	class:hcl
-pruefsamba	kons1.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs, const char* DPROG,const string& cuser)$/;"	f	class:hcl
-pruefsamba	kons2.cpp	/^void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs, const char* DPROG,const string& cuser)$/;"	f	class:hcl
 prueftab	DB.cpp	/^int Tabelle::prueftab(const size_t aktc,int obverb\/*=0*\/,int oblog\/*=0*\/) $/;"	f	class:Tabelle
 prueftif	kons.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
-prueftif	kons1.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
-prueftif	kons2.cpp	/^void hcl::prueftif(string aktvers)$/;"	f	class:hcl
 pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
-pruefverz	kons1.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
-pruefverz	kons2.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int oblog\/*=0*\/, uchar obmitfacl\/*=0*\/,uchar obmitcon\/*=0*\/, $/;"	f
 psons	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 puchar	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 pverz	kons.h	/^enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 pwk	cl.cpp	/^const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; \/\/ fuer Antlitzaenderung$/;"	v
 pzuweis	kons.cpp	/^int optcl::pzuweis(const char *nacstr, const uchar vgegenteil\/*=0*\/, const uchar vnichtspeichern\/*=0*\/)$/;"	f	class:optcl
-pzuweis	kons1.cpp	/^int optcl::pzuweis(const char *nacstr, const uchar vgegenteil\/*=0*\/, const uchar vnichtspeichern\/*=0*\/)$/;"	f	class:optcl
-pzuweis	kons2.cpp	/^int optcl::pzuweis(const char *nacstr, const uchar vgegenteil\/*=0*\/, const uchar vnichtspeichern\/*=0*\/)$/;"	f	class:optcl
 reduzierlibtiff	kons.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
-reduzierlibtiff	kons1.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
-reduzierlibtiff	kons2.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
 reg	kons.h	/^    regex_t reg;$/;"	m	class:find3cl
 regp	kons.cpp	/^regex_t *find3cl::regp;$/;"	m	class:find3cl	file:
 regp	kons.h	/^    static regex_t *regp;$/;"	m	class:find3cl
-regp	kons1.cpp	/^regex_t *find3cl::regp;$/;"	m	class:find3cl	file:
-regp	kons2.cpp	/^regex_t *find3cl::regp;$/;"	m	class:find3cl	file:
 repos	kons.h	/^ string repos; \/\/ Befehl zum Hinzufuegen des Repositories fuer den Compiler$/;"	m	class:linst_cl
 reset	kons.cpp	/^template<class SCL> void schAcl<SCL>::reset()$/;"	f	class:schAcl
 reset	kons.cpp	/^void WPcl::reset()$/;"	f	class:WPcl
 reset	kons.cpp	/^void optcl::reset()$/;"	f	class:optcl
-reset	kons1.cpp	/^template<class SCL> void schAcl<SCL>::reset()$/;"	f	class:schAcl
-reset	kons1.cpp	/^void WPcl::reset()$/;"	f	class:WPcl
-reset	kons1.cpp	/^void optcl::reset()$/;"	f	class:optcl
-reset	kons2.cpp	/^template<class SCL> void schAcl<SCL>::reset()$/;"	f	class:schAcl
-reset	kons2.cpp	/^void WPcl::reset()$/;"	f	class:WPcl
-reset	kons2.cpp	/^void optcl::reset()$/;"	f	class:optcl
 restart	kons.cpp	/^int servc::restart(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-restart	kons1.cpp	/^int servc::restart(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-restart	kons2.cpp	/^int servc::restart(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 result	DB.h	/^    MYSQL_RES *result;$/;"	m	class:RS
 richtige	kons.h	/^    size_t richtige;$/;"	m	class:confdat
 richtige	kons.h	/^    size_t richtige;$/;"	m	struct:confdcl
@@ -1480,13 +1014,7 @@ right	kons.h	/^inline std::string right(std::string const& source, size_t const 
 rootpwd	DB.h	/^    string rootpwd; \/\/ root-Passwort \/\/ wird in pruefrpw geaendert, deshalb nicht const$/;"	m	class:DB
 rot	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 rot	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-rot	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-rot	kons1.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-rot	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-rot	kons2.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 rots	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-rots	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-rots	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 rottxt	kons.h	/^    const string *rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	class:optioncl
 rottxt	kons.h	/^    string *rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	struct:optcl
 row	DB.h	/^    MYSQL_ROW row;$/;"	m	class:RS
@@ -1496,114 +1024,56 @@ rtrim	kons.h	/^inline void rtrim(char* str,size_t size) {$/;"	f
 rueckfragen	cl.cpp	/^void hhcl::rueckfragen()$/;"	f	class:hhcl
 rzf	kons.h	/^    uchar rzf=0; \/\/ rueckzufragen$/;"	m	class:hcl
 s_dampand	kons.cpp	/^const string s_dampand="&&";$/;"	v
-s_dampand	kons1.cpp	/^const string s_dampand="&&";$/;"	v
-s_dampand	kons2.cpp	/^const string s_dampand="&&";$/;"	v
 s_gz	kons.cpp	/^const string s_gz="gz";$/;"	v
-s_gz	kons1.cpp	/^const string s_gz="gz";$/;"	v
-s_gz	kons2.cpp	/^const string s_gz="gz";$/;"	v
 s_true	kons.cpp	/^const string s_true="true";$/;"	v
-s_true	kons1.cpp	/^const string s_true="true";$/;"	v
-s_true	kons2.cpp	/^const string s_true="true";$/;"	v
 sb	kons.h	/^    const struct stat sb={0};$/;"	m	class:elem3	typeref:struct:elem3::stat
 schAcl	kons.cpp	/^template<class SCL> schAcl<SCL>::schAcl()$/;"	f	class:schAcl
 schAcl	kons.h	/^template <typename SCL> class schAcl {$/;"	c
-schAcl	kons1.cpp	/^template<class SCL> schAcl<SCL>::schAcl()$/;"	f	class:schAcl
-schAcl	kons2.cpp	/^template<class SCL> schAcl<SCL>::schAcl()$/;"	f	class:schAcl
 schau	kons.h	/^ string schau; \/\/ Befehl zum Pruefen auf Vorhandensein ueber das Installationssystem$/;"	m	class:linst_cl
 schl	kons.h	/^ vector<SCL> schl; \/\/ Schlüsselklasse Schlüssel$/;"	m	class:schAcl
 schlussanzeige	kons.cpp	/^void hcl::schlussanzeige()$/;"	f	class:hcl
-schlussanzeige	kons1.cpp	/^void hcl::schlussanzeige()$/;"	f	class:hcl
-schlussanzeige	kons2.cpp	/^void hcl::schlussanzeige()$/;"	f	class:hcl
 schreibzaehler	kons.cpp	/^void hcl::schreibzaehler($/;"	f	class:hcl
-schreibzaehler	kons1.cpp	/^void hcl::schreibzaehler($/;"	f	class:hcl
-schreibzaehler	kons2.cpp	/^void hcl::schreibzaehler($/;"	f	class:hcl
 schwarz	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 schwarz	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-schwarz	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-schwarz	kons1.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
-schwarz	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-schwarz	kons2.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 schwarzs	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-schwarzs	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-schwarzs	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 semanpruef	kons.cpp	/^void servc::semanpruef(int obverb\/*=0*\/,int oblog\/*=0*\/,const string& mod\/*="getty_t*\/)$/;"	f	class:servc
-semanpruef	kons1.cpp	/^void servc::semanpruef(int obverb\/*=0*\/,int oblog\/*=0*\/,const string& mod\/*="getty_t*\/)$/;"	f	class:servc
-semanpruef	kons2.cpp	/^void servc::semanpruef(int obverb\/*=0*\/,int oblog\/*=0*\/,const string& mod\/*="getty_t*\/)$/;"	f	class:servc
 semodpruef	kons.cpp	/^void servc::semodpruef(linst_cl *linstp,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-semodpruef	kons1.cpp	/^void servc::semodpruef(linst_cl *linstp,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-semodpruef	kons2.cpp	/^void servc::semodpruef(linst_cl *linstp,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 sersetze	DB.cpp	/^inline string *instyp::sersetze( string *src, string const& target, string const& repl) $/;"	f	class:instyp
 sersetze	DB.cpp	/^string *sqlft::sersetze( string *src, string const& target, string const& repl) $/;"	f	class:sqlft
 sersetze	kons.cpp	/^string *sersetze(string* src, string const& target, string const& repl) $/;"	f
-sersetze	kons1.cpp	/^string *sersetze(string* src, string const& target, string const& repl) $/;"	f
-sersetze	kons2.cpp	/^string *sersetze(string* src, string const& target, string const& repl) $/;"	f
 servc	kons.cpp	/^servc::servc(const string& vsname,const string& vename,int obverb, int oblog): sname((vsname.empty()?vename:vsname)),ename(vename) $/;"	f	class:servc
 servc	kons.h	/^    servc(const string& vsname,const string& vename): sname((vsname.empty()?vename:vsname)),ename(vename) {}$/;"	f	class:servc
 servc	kons.h	/^class servc {$/;"	c
-servc	kons1.cpp	/^servc::servc(const string& vsname,const string& vename,int obverb, int oblog): sname((vsname.empty()?vename:vsname)),ename(vename) $/;"	f	class:servc
-servc	kons2.cpp	/^servc::servc(const string& vsname,const string& vename,int obverb, int oblog): sname((vsname.empty()?vename:vsname)),ename(vename) $/;"	f	class:servc
 setfaclggf	kons.cpp	/^void setfaclggf(const string& datei,int obverb\/*=0*\/,int oblog\/*=0*\/,const binaer obunter\/*=falsch*\/,int mod\/*=4*\/,uchar obimmer\/*=0*\/,$/;"	f
-setfaclggf	kons1.cpp	/^void setfaclggf(const string& datei,int obverb\/*=0*\/,int oblog\/*=0*\/,const binaer obunter\/*=falsch*\/,int mod\/*=4*\/,uchar obimmer\/*=0*\/,$/;"	f
-setfaclggf	kons2.cpp	/^void setfaclggf(const string& datei,int obverb\/*=0*\/,int oblog\/*=0*\/,const binaer obunter\/*=falsch*\/,int mod\/*=4*\/,uchar obimmer\/*=0*\/,$/;"	f
 setzbemv	kons.cpp	/^template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)$/;"	f	class:schAcl
-setzbemv	kons1.cpp	/^template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)$/;"	f	class:schAcl
-setzbemv	kons2.cpp	/^template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)$/;"	f	class:schAcl
 setzbenutzer	kons.cpp	/^void hcl::setzbenutzer(string *user)$/;"	f	class:hcl
-setzbenutzer	kons1.cpp	/^void hcl::setzbenutzer(string *user)$/;"	f	class:hcl
-setzbenutzer	kons2.cpp	/^void hcl::setzbenutzer(string *user)$/;"	f	class:hcl
 setze	kons.h	/^    template <typename T> void setze(T *var) { strncpy(val,ltoan(*var),sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
 setze	kons.h	/^template <> inline void Schluessel::setze < char* > (char** var) { strncpy(val,*var,sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
 setze	kons.h	/^template <> inline void Schluessel::setze < const char* > (const char** var) { strncpy(val,*var,sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
 setze	kons.h	/^template <> inline void Schluessel::setze < string > (string *var) { strncpy(val,var->c_str(),sizeof val-1);val[sizeof val-1]=0;}$/;"	f	class:Schluessel
 setzebem	kons.cpp	/^template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)$/;"	f	class:optioncl
-setzebem	kons1.cpp	/^template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)$/;"	f	class:optioncl
-setzebem	kons2.cpp	/^template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)$/;"	f	class:optioncl
 setzlog	kons.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
-setzlog	kons1.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
-setzlog	kons2.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
 setzrpw	DB.cpp	/^void DB::setzrpw(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ Setze root-password$/;"	f	class:DB
 setzstr	kons.cpp	/^int WPcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& bemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:WPcl
 setzstr	kons.cpp	/^int optcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& ibemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:optcl
-setzstr	kons1.cpp	/^int WPcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& bemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:WPcl
-setzstr	kons1.cpp	/^int optcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& ibemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:optcl
-setzstr	kons2.cpp	/^int WPcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& bemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:WPcl
-setzstr	kons2.cpp	/^int optcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& ibemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:optcl
 setztmpcron	kons.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
-setztmpcron	kons1.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
-setztmpcron	kons2.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
 setzwert	kons.cpp	/^void optcl::setzwert()$/;"	f	class:optcl
-setzwert	kons1.cpp	/^void optcl::setzwert()$/;"	f	class:optcl
-setzwert	kons2.cpp	/^void optcl::setzwert()$/;"	f	class:optcl
 setzzaehler	kons.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
-setzzaehler	kons1.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
-setzzaehler	kons2.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
 sfeh	kons.cpp	/^const int sfeh[]={ T_Dienst_laeuft,T_Dienst_inexistent, T_Dienst_disabled, T_Dienstdateiname_nicht_ermittelbar, T_Dienst_laeuft_noch_aber_Dienstdatei_inexistent, T_Exec_Dateiname_nicht_ermittelbar, T_Exec_Datei_fehlt, T_activating, T_Dienst_kann_gestartet_werden, T_Sonstiges};$/;"	v
-sfeh	kons1.cpp	/^const int sfeh[]={ T_Dienst_laeuft,T_Dienst_inexistent, T_Dienst_disabled, T_Dienstdateiname_nicht_ermittelbar, T_Dienst_laeuft_noch_aber_Dienstdatei_inexistent, T_Exec_Dateiname_nicht_ermittelbar, T_Exec_Datei_fehlt, T_activating, T_Dienst_kann_gestartet_werden, T_Sonstiges};$/;"	v
-sfeh	kons2.cpp	/^const int sfeh[]={ T_Dienst_laeuft,T_Dienst_inexistent, T_Dienst_disabled, T_Dienstdateiname_nicht_ermittelbar, T_Dienst_laeuft_noch_aber_Dienstdatei_inexistent, T_Exec_Dateiname_nicht_ermittelbar, T_Exec_Datei_fehlt, T_activating, T_Dienst_kann_gestartet_werden, T_Sonstiges};$/;"	v
 shpf	kons.h	/^ string shpf; \/\/ Pfad zu sh$/;"	m	class:linst_cl
 size	kons.h	/^ inline size_t size(){return schl.size();}$/;"	f	class:schAcl
 smbdt	kons.cpp	/^const char* const hcl::smbdt="\/etc\/samba\/smb.conf";$/;"	m	class:hcl	file:
 smbdt	kons.h	/^		static const char* const smbdt;\/\/ "\/etc\/samba\/smb.conf"$/;"	m	class:hcl
-smbdt	kons1.cpp	/^const char* const hcl::smbdt="\/etc\/samba\/smb.conf";$/;"	m	class:hcl	file:
-smbdt	kons2.cpp	/^const char* const hcl::smbdt="\/etc\/samba\/smb.conf";$/;"	m	class:hcl	file:
 sname	kons.h	/^    string sname,ename; \/\/ Dienstname, Exename$/;"	m	class:servc
 snprintf	kons.h	78;"	d
 spalt	DB.h	/^    RS *spalt=nullptr;$/;"	m	class:Tabelle
 spath	kons.cpp	/^const string& spath=$/;"	v
-spath	kons1.cpp	/^const string& spath=$/;"	v
-spath	kons2.cpp	/^const string& spath=$/;"	v
 spezopt	cl.cpp	/^void hhcl::spezopt()$/;"	f	class:hhcl
 splenge	DB.h	/^		const char **spnamen=nullptr, **splenge=nullptr, **sptyp=nullptr;$/;"	m	class:Tabelle
 spnamen	DB.h	/^		const char **spnamen=nullptr, **splenge=nullptr, **sptyp=nullptr;$/;"	m	class:Tabelle
 sprachcstr	kons.cpp	/^const char* sprachcstr=&sprachstr.front();$/;"	v
-sprachcstr	kons1.cpp	/^const char* sprachcstr=&sprachstr.front();$/;"	v
-sprachcstr	kons2.cpp	/^const char* sprachcstr=&sprachstr.front();$/;"	v
 sprachstr	kons.cpp	/^const string sprachstr=string("Language\/Sprache\/Lingue\/Lingua [")+blau+'d'+schwarz+"eutsch,"+blau+'e'+schwarz+"nglisch]"+"";$/;"	v
-sprachstr	kons1.cpp	/^const string sprachstr=string("Language\/Sprache\/Lingue\/Lingua [")+blau+'d'+schwarz+"eutsch,"+blau+'e'+schwarz+"nglisch]"+"";$/;"	v
-sprachstr	kons2.cpp	/^const string sprachstr=string("Language\/Sprache\/Lingue\/Lingua [")+blau+'d'+schwarz+"eutsch,"+blau+'e'+schwarz+"nglisch]"+"";$/;"	v
 spruef	kons.cpp	/^uchar servc::spruef(const string& sbez, uchar obfork, const string& parent, const string& sexec, const string& CondPath, const string& After, $/;"	f	class:servc
-spruef	kons1.cpp	/^uchar servc::spruef(const string& sbez, uchar obfork, const string& parent, const string& sexec, const string& CondPath, const string& After, $/;"	f	class:servc
-spruef	kons2.cpp	/^uchar servc::spruef(const string& sbez, uchar obfork, const string& parent, const string& sexec, const string& CondPath, const string& After, $/;"	f	class:servc
 sptyp	DB.h	/^		const char **spnamen=nullptr, **splenge=nullptr, **sptyp=nullptr;$/;"	m	class:Tabelle
 sql	DB.h	/^    string sql;$/;"	m	class:RS
 sqlft	DB.cpp	/^sqlft::sqlft(DBSTyp eDBS, char* vwert,char* zs):$/;"	f	class:sqlft
@@ -1622,42 +1092,20 @@ sqlft	DB.cpp	/^sqlft::sqlft(DBSTyp eDBS, tm* const zt):$/;"	f	class:sqlft
 sqlft	DB.h	/^class sqlft: public string $/;"	c
 stack	kons.h	/^  vector<string> stack;$/;"	m	class:find2cl
 start	kons.cpp	/^void servc::start(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-start	kons1.cpp	/^void servc::start(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-start	kons2.cpp	/^void servc::start(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 startbar	kons.cpp	/^int servc::startbar()$/;"	f	class:servc
-startbar	kons1.cpp	/^int servc::startbar()$/;"	f	class:servc
-startbar	kons2.cpp	/^int servc::startbar()$/;"	f	class:servc
 startundenable	kons.cpp	/^int servc::startundenable(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-startundenable	kons1.cpp	/^int servc::startundenable(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
-startundenable	kons2.cpp	/^int servc::startundenable(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
 sterg	kons.h	/^    int sterg;$/;"	m	class:elem2
 stmax	DB.cpp	/^void stmax(int *zahl,int stellen=2)$/;"	f
 stop	kons.cpp	/^void servc::stop(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
-stop	kons1.cpp	/^void servc::stop(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
-stop	kons2.cpp	/^void servc::stop(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
 stopdis	kons.cpp	/^void servc::stopdis(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill)$/;"	f	class:servc
-stopdis	kons1.cpp	/^void servc::stopdis(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill)$/;"	f	class:servc
-stopdis	kons2.cpp	/^void servc::stopdis(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill)$/;"	f	class:servc
 stopggf	kons.cpp	/^void servc::stopggf(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
-stopggf	kons1.cpp	/^void servc::stopggf(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
-stopggf	kons2.cpp	/^void servc::stopggf(int obverb\/*=0*\/,int oblog\/*=0*\/,uchar mitpkill\/*=0*\/)$/;"	f	class:servc
 striktzurueck	DB.cpp	/^void RS::striktzurueck(string& altsqlm,const size_t aktc\/*=0*\/)$/;"	f	class:RS
 string_to_hex	kons.cpp	/^std::string string_to_hex(const std::string& input)$/;"	f
-string_to_hex	kons1.cpp	/^std::string string_to_hex(const std::string& input)$/;"	f
-string_to_hex	kons2.cpp	/^std::string string_to_hex(const std::string& input)$/;"	f
 suche	kons.cpp	/^const string& absch::suche(const char* const sname)$/;"	f	class:absch
 suche	kons.cpp	/^const string& absch::suche(const string& sname)$/;"	f	class:absch
-suche	kons1.cpp	/^const string& absch::suche(const char* const sname)$/;"	f	class:absch
-suche	kons1.cpp	/^const string& absch::suche(const string& sname)$/;"	f	class:absch
-suche	kons2.cpp	/^const string& absch::suche(const char* const sname)$/;"	f	class:absch
-suche	kons2.cpp	/^const string& absch::suche(const string& sname)$/;"	f	class:absch
 sudc	kons.cpp	/^const string sudc=(cus.cuid?"sudo ":nix);$/;"	v
-sudc	kons1.cpp	/^const string sudc=(cus.cuid?"sudo ":nix);$/;"	v
-sudc	kons2.cpp	/^const string sudc=(cus.cuid?"sudo ":nix);$/;"	v
 sudoersdt	kons.cpp	/^			hcl::sudoersdt="\/etc\/sudoers";$/;"	m	class:hcl	file:
 sudoersdt	kons.h	/^		static const string passwddt, groupdt, sudoersdt;$/;"	m	class:hcl
-sudoersdt	kons1.cpp	/^			hcl::sudoersdt="\/etc\/sudoers";$/;"	m	class:hcl	file:
-sudoersdt	kons2.cpp	/^			hcl::sudoersdt="\/etc\/sudoers";$/;"	m	class:hcl	file:
 sus	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 svec	kons.h	/^class svec: public vector<std::string>$/;"	c
 svf0	kons.h	/^		int svf0=-1; \/\/ Einstellung nach erstem Ablauf von obsvfeh$/;"	m	class:servc
@@ -1665,8 +1113,6 @@ svfeh	kons.h	/^    int svfeh=-1; \/\/ Ausgangseinstellung$/;"	m	class:servc
 sys	kons.h	/^    lsysen sys=usys; $/;"	m	class:lsyscl
 systemd	kons.h	/^		string systemd; \/\/ Dienst-Datei$/;"	m	class:servc
 systemrueck	kons.cpp	/^int systemrueck(const string& cmd, char obverb\/*=0*\/, int oblog\/*=0*\/, vector<string> *rueck\/*=0*\/, const uchar obsudc\/*=0*\/,$/;"	f
-systemrueck	kons1.cpp	/^int systemrueck(const string& cmd, char obverb\/*=0*\/, int oblog\/*=0*\/, vector<string> *rueck\/*=0*\/, const uchar obsudc\/*=0*\/,$/;"	f
-systemrueck	kons2.cpp	/^int systemrueck(const string& cmd, char obverb\/*=0*\/, int oblog\/*=0*\/, vector<string> *rueck\/*=0*\/, const uchar obsudc\/*=0*\/,$/;"	f
 t0	kons.h	/^ time_t t0=0, t1;$/;"	m	class:perfcl
 t1	kons.h	/^ time_t t0=0, t1;$/;"	m	class:perfcl
 tabelle	cl.h	/^	string tabelle  \/\/ω$/;"	m	class:hhcl
@@ -1678,70 +1124,38 @@ tbupd	DB.cpp	/^void RS::tbupd(const string& utab, vector< instyp > einf,int obve
 tende	kons.h	/^    double tstart, tende;$/;"	m	class:hcl
 tflag	kons.h	/^    int tflag;$/;"	m	class:elem3
 thr_strftime	kons.cpp	/^size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format\/*="%d.%m.%Y %H.%M.%S"*\/)$/;"	f
-thr_strftime	kons1.cpp	/^size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format\/*="%d.%m.%Y %H.%M.%S"*\/)$/;"	f
-thr_strftime	kons2.cpp	/^size_t thr_strftime(const struct tm* timeptr,string *ziel,const char* format\/*="%d.%m.%Y %H.%M.%S"*\/)$/;"	f
 tiffmark	kons.cpp	/^const string tiffmark="\/usr\/local\/sclibtiff";$/;"	v
-tiffmark	kons1.cpp	/^const string tiffmark="\/usr\/local\/sclibtiff";$/;"	v
-tiffmark	kons2.cpp	/^const string tiffmark="\/usr\/local\/sclibtiff";$/;"	v
 timemutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-timemutex	kons1.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-timemutex	kons2.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
 tmmoegl	kons.cpp	/^const char *const tmmoegl[]={$/;"	v
-tmmoegl	kons1.cpp	/^const char *const tmmoegl[]={$/;"	v
-tmmoegl	kons2.cpp	/^const char *const tmmoegl[]={$/;"	v
 tmpcron	kons.h	/^		string tmpcron; \/\/ fuer crontab$/;"	m	class:hcl
 tmtosql	DB.cpp	/^char* DB::tmtosql(tm *tmh,char* buf) $/;"	f	class:DB
 tmtosqlmZ	DB.cpp	/^char* DB::tmtosqlmZ(tm *tmh,char* buf) $/;"	f	class:DB
 touch	kons.cpp	/^int touch(const string& pfad,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f
-touch	kons1.cpp	/^int touch(const string& pfad,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f
-touch	kons2.cpp	/^int touch(const string& pfad,int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f
 tstart	kons.h	/^    double tstart, tende;$/;"	m	class:hcl
 tsvec	kons.h	/^class tsvec: public vector<T>$/;"	c
 tucronschreib	kons.cpp	/^void hcl::tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef)$/;"	f	class:hcl
-tucronschreib	kons1.cpp	/^void hcl::tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef)$/;"	f	class:hcl
-tucronschreib	kons2.cpp	/^void hcl::tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef)$/;"	f	class:hcl
 tuerkis	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 tuerkis	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-tuerkis	kons1.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-tuerkis	kons1.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
-tuerkis	kons2.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-tuerkis	kons2.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 tuerkiss	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-tuerkiss	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-tuerkiss	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 tuerweitern	DB.cpp	/^uchar DB::tuerweitern(const string& tabs, const string& feld,long wlength,const size_t aktc,int obverb) const$/;"	f	class:DB
 tuloeschen	kons.cpp	/^int tuloeschen(const string& zuloe,const string& cuser\/*=nix*\/, int obverb\/*=0*\/, int oblog\/*=0*\/,stringstream *ausgp\/*=0*\/)$/;"	f
-tuloeschen	kons1.cpp	/^int tuloeschen(const string& zuloe,const string& cuser\/*=nix*\/, int obverb\/*=0*\/, int oblog\/*=0*\/,stringstream *ausgp\/*=0*\/)$/;"	f
-tuloeschen	kons2.cpp	/^int tuloeschen(const string& zuloe,const string& cuser\/*=nix*\/, int obverb\/*=0*\/, int oblog\/*=0*\/,stringstream *ausgp\/*=0*\/)$/;"	f
 typ	DB.h	/^    const string typ;$/;"	m	class:Feld
 typ	DB.h	/^    vector<string> typ;$/;"	m	class:RS
 typ	kons.h	/^  string typ;$/;"	m	class:find2cl
 typbit	kons.h	/^    int typbit;$/;"	m	class:find3cl
 typbitp	kons.cpp	/^int *find3cl::typbitp;$/;"	m	class:find3cl	file:
 typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
-typbitp	kons1.cpp	/^int *find3cl::typbitp;$/;"	m	class:find3cl	file:
-typbitp	kons2.cpp	/^int *find3cl::typbitp;$/;"	m	class:find3cl	file:
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6314;"	d	file:
-uebersichtlich	kons1.cpp	6314;"	d	file:
-uebersichtlich	kons2.cpp	6314;"	d	file:
+uebersichtlich	kons.cpp	6321;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-umgek	kons1.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-umgek	kons2.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
-unindt	kons1.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
-unindt	kons2.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
 unsig	DB.h	/^		bool unsig;$/;"	m	class:Feld
 untersuser	kons.cpp	/^int untersuser(const string& uname,__uid_t *uidp\/*=0*\/, __gid_t *gidp\/*=0*\/,vector<gid_t> *gids\/*=0*\/,struct passwd* ustr\/*=0*\/)$/;"	f
-untersuser	kons1.cpp	/^int untersuser(const string& uname,__uid_t *uidp\/*=0*\/, __gid_t *gidp\/*=0*\/,vector<gid_t> *gids\/*=0*\/,struct passwd* ustr\/*=0*\/)$/;"	f
-untersuser	kons2.cpp	/^int untersuser(const string& uname,__uid_t *uidp\/*=0*\/, __gid_t *gidp\/*=0*\/,vector<gid_t> *gids\/*=0*\/,struct passwd* ustr\/*=0*\/)$/;"	f
 upd	kons.h	/^ string upd;    \/\/ Befehl zum Systemupdate$/;"	m	class:linst_cl
 update	kons.cpp	/^void hcl::update(const string& DPROG)$/;"	f	class:hcl
-update	kons1.cpp	/^void hcl::update(const string& DPROG)$/;"	f	class:hcl
-update	kons2.cpp	/^void hcl::update(const string& DPROG)$/;"	f	class:hcl
 upr	kons.h	/^ string upr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem$/;"	m	class:linst_cl
 urp	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 usedb	DB.cpp	/^int DB::usedb(const string& db,const size_t aktc\/*=0*\/)$/;"	f	class:DB
@@ -1750,35 +1164,17 @@ usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
 vagenau	kons.cpp	1156;"	d	file:
-vagenau	kons1.cpp	1156;"	d	file:
-vagenau	kons2.cpp	1156;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
-verarbeit	kons1.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
-verarbeit	kons2.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
 verarbeitkonf	kons.cpp	/^void hcl::verarbeitkonf()$/;"	f	class:hcl
-verarbeitkonf	kons1.cpp	/^void hcl::verarbeitkonf()$/;"	f	class:hcl
-verarbeitkonf	kons2.cpp	/^void hcl::verarbeitkonf()$/;"	f	class:hcl
 versnr	kons.cpp	/^const double& versnr=$/;"	v
-versnr	kons1.cpp	/^const double& versnr=$/;"	v
-versnr	kons2.cpp	/^const double& versnr=$/;"	v
 verszuzahl	kons.cpp	/^double verszuzahl(const string& vers)$/;"	f
-verszuzahl	kons1.cpp	/^double verszuzahl(const string& vers)$/;"	f
-verszuzahl	kons2.cpp	/^double verszuzahl(const string& vers)$/;"	f
 verzneu	kons.h	/^  int eingefuegt, verzneu;$/;"	m	class:find2cl
 viadd	kons.cpp	/^void viadd(string* cmdp,const string& datei,const uchar ro\/*=0*\/,const uchar hinten\/*=0*\/, const uchar unten\/*=0*\/)$/;"	f
-viadd	kons1.cpp	/^void viadd(string* cmdp,const string& datei,const uchar ro\/*=0*\/,const uchar hinten\/*=0*\/, const uchar unten\/*=0*\/)$/;"	f
-viadd	kons2.cpp	/^void viadd(string* cmdp,const string& datei,const uchar ro\/*=0*\/,const uchar hinten\/*=0*\/, const uchar unten\/*=0*\/)$/;"	f
 violett	kons.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-violett	kons1.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
-violett	kons2.cpp	/^			*const dblau="\\e[0;34;1;47m", *const blau="\\e[1;34m", *const violett="\\e[0;35m", *const hviolett="\\e[1;35m",$/;"	v
 violetts	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-violetts	kons1.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
-violetts	kons2.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 vischluss	kons.cpp	/^void hcl::vischluss(string& erg)$/;"	f	class:hcl
-vischluss	kons1.cpp	/^void hcl::vischluss(string& erg)$/;"	f	class:hcl
-vischluss	kons2.cpp	/^void hcl::vischluss(string& erg)$/;"	f	class:hcl
 vonwo	kons.h	/^ string vonwo;$/;"	m	class:perfcl
 vorcm	kons.h	/^		string vorcm; \/\/ Vor-Cron-Minuten$/;"	m	class:hcl
 vtz	kons.h	23;"	d
@@ -1788,28 +1184,16 @@ vtzs	kons.h	27;"	d
 vznp	kons.h	/^  set<string> *vznp=0; $/;"	m	class:find2cl
 wahr	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
 wait	kons.cpp	/^inline void wait () $/;"	f
-wait	kons1.cpp	/^inline void wait () $/;"	f
-wait	kons2.cpp	/^inline void wait () $/;"	f
 war_t	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	g
 wart	kons.h	/^		war_t wart;$/;"	m	struct:WPcl
 wartaufpids	kons.cpp	/^int wartaufpids(pidvec *pidv,const ulong runden\/*=0*\/,const int obverb\/*=0*\/,const int oblog\/*=0*\/,const string& wo\/*=nix*\/)$/;"	f
-wartaufpids	kons1.cpp	/^int wartaufpids(pidvec *pidv,const ulong runden\/*=0*\/,const int obverb\/*=0*\/,const int oblog\/*=0*\/,const string& wo\/*=nix*\/)$/;"	f
-wartaufpids	kons2.cpp	/^int wartaufpids(pidvec *pidv,const ulong runden\/*=0*\/,const int obverb\/*=0*\/,const int oblog\/*=0*\/,const string& wo\/*=nix*\/)$/;"	f
 wbin	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
 wdat	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
 weisezu	DB.cpp	/^void RS::weisezu(const DB* pdb) $/;"	f	class:RS
 weisomapzu	kons.cpp	/^void WPcl::weisomapzu(schAcl<WPcl> *optp)$/;"	f	class:WPcl
 weisomapzu	kons.cpp	/^void optcl::weisomapzu(schAcl<optcl> *schlp)$/;"	f	class:optcl
-weisomapzu	kons1.cpp	/^void WPcl::weisomapzu(schAcl<WPcl> *optp)$/;"	f	class:WPcl
-weisomapzu	kons1.cpp	/^void optcl::weisomapzu(schAcl<optcl> *schlp)$/;"	f	class:optcl
-weisomapzu	kons2.cpp	/^void WPcl::weisomapzu(schAcl<WPcl> *optp)$/;"	f	class:WPcl
-weisomapzu	kons2.cpp	/^void optcl::weisomapzu(schAcl<optcl> *schlp)$/;"	f	class:optcl
 weiss	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-weiss	kons1.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
-weiss	kons2.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 weiszu	kons.cpp	/^void find2cl::weiszu()$/;"	f	class:find2cl
-weiszu	kons1.cpp	/^void find2cl::weiszu()$/;"	f	class:find2cl
-weiszu	kons2.cpp	/^void find2cl::weiszu()$/;"	f	class:find2cl
 wele	kons.h	/^    wele(const string& pfad=nix, const long& maxd=-1):pfad(pfad),maxd(maxd){}$/;"	f	class:wele
 wele	kons.h	/^class wele$/;"	c
 wert	DB.h	/^    string wert;$/;"	m	class:instyp
@@ -1824,28 +1208,16 @@ wstr	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonsti
 wurz	kons.h	/^    set<wele> wurz,fertige;$/;"	m	class:find3cl
 wurzp	kons.cpp	/^set<wele> *find3cl::wurzp;$/;"	m	class:find3cl	file:
 wurzp	kons.h	/^    static set<wele> *wurzp;$/;"	m	class:find3cl
-wurzp	kons1.cpp	/^set<wele> *find3cl::wurzp;$/;"	m	class:find3cl	file:
-wurzp	kons2.cpp	/^set<wele> *find3cl::wurzp;$/;"	m	class:find3cl	file:
 xargspf	kons.h	/^ string xargspf; \/\/ Pfad zu xargs$/;"	m	class:linst_cl
 yum	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 zahlin	kons.cpp	/^size_t zahlin(const string *const str, const char* const was) $/;"	f
-zahlin	kons1.cpp	/^size_t zahlin(const string *const str, const char* const was) $/;"	f
-zahlin	kons2.cpp	/^size_t zahlin(const string *const str, const char* const was) $/;"	f
 zcnfA	kons.h	/^		schAcl<WPcl> zcnfA; \/\/ Zaehlkonfiguration$/;"	m	class:hcl
 zeighilfe	kons.cpp	/^int hcl::zeighilfe(const stringstream *const erkl)$/;"	f	class:hcl
-zeighilfe	kons1.cpp	/^int hcl::zeighilfe(const stringstream *const erkl)$/;"	f	class:hcl
-zeighilfe	kons2.cpp	/^int hcl::zeighilfe(const stringstream *const erkl)$/;"	f	class:hcl
 zeigkonf	kons.cpp	/^void hcl::zeigkonf()$/;"	f	class:hcl
-zeigkonf	kons1.cpp	/^void hcl::zeigkonf()$/;"	f	class:hcl
-zeigkonf	kons2.cpp	/^void hcl::zeigkonf()$/;"	f	class:hcl
 zeigueberschrift	cl.cpp	/^void hhcl::zeigueberschrift()$/;"	f	class:hhcl
 zeigvers	kons.h	/^    uchar zeigvers=0;  \/\/ Version anzeigen$/;"	m	class:hcl
 zeigversion	kons.cpp	/^void hcl::zeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hcl
-zeigversion	kons1.cpp	/^void hcl::zeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hcl
-zeigversion	kons2.cpp	/^void hcl::zeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hcl
 ziehraus	kons.cpp	/^void linst_cl::ziehraus(svec srueck, string *ustringp)$/;"	f	class:linst_cl
-ziehraus	kons1.cpp	/^void linst_cl::ziehraus(svec srueck, string *ustringp)$/;"	f	class:linst_cl
-ziehraus	kons2.cpp	/^void linst_cl::ziehraus(svec srueck, string *ustringp)$/;"	f	class:linst_cl
 zn	kons.h	/^		svec zn;$/;"	m	struct:confdcl
 zn	kons.h	/^    svec zn;$/;"	m	class:confdat
 zp0	kons.h	/^ clock_t zp0, zp1, zp1alt;$/;"	m	class:perfcl
@@ -1860,20 +1232,10 @@ zuloeschen	kons.h	/^  int zuloeschen=1;$/;"	m	class:find2cl
 zustr	kons.h	/^inline string zustr(int _Val) $/;"	f
 zuvec	kons.cpp	/^void find2cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find2cl
 zuvec	kons.cpp	/^void find3cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find3cl
-zuvec	kons1.cpp	/^void find2cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find2cl
-zuvec	kons1.cpp	/^void find3cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find3cl
-zuvec	kons2.cpp	/^void find2cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find2cl
-zuvec	kons2.cpp	/^void find3cl::zuvec(svec *zu,uchar anteil\/*=0*\/)$/;"	f	class:find3cl
 zypper	kons.h	/^enum instprog {keinp,zypper,apt,dnf,yum,urp,pac};$/;"	e	enum:instprog
 ~DB	DB.cpp	/^DB::~DB(void)$/;"	f	class:DB
 ~RS	DB.cpp	/^RS::~RS() $/;"	f	class:RS
 ~find2cl	kons.cpp	/^find2cl::~find2cl()$/;"	f	class:find2cl
-~find2cl	kons1.cpp	/^find2cl::~find2cl()$/;"	f	class:find2cl
-~find2cl	kons2.cpp	/^find2cl::~find2cl()$/;"	f	class:find2cl
 ~hcl	kons.cpp	/^hcl::~hcl()$/;"	f	class:hcl
-~hcl	kons1.cpp	/^hcl::~hcl()$/;"	f	class:hcl
-~hcl	kons2.cpp	/^hcl::~hcl()$/;"	f	class:hcl
 ~hhcl	cl.cpp	/^hhcl::~hhcl()$/;"	f	class:hhcl
 ~schAcl	kons.cpp	/^template<class SCL> schAcl<SCL>::~schAcl()$/;"	f	class:schAcl
-~schAcl	kons1.cpp	/^template<class SCL> schAcl<SCL>::~schAcl()$/;"	f	class:schAcl
-~schAcl	kons2.cpp	/^template<class SCL> schAcl<SCL>::~schAcl()$/;"	f	class:schAcl

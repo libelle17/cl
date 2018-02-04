@@ -392,6 +392,17 @@ enum Tkons_
 	T_fgz_l,
 	T_Erklaerung_haeufiger_Optionen,
 	T_Erklaerung_aller_Optionen,
+	T_cm_k,
+	T_cronminuten_l,
+	T_Alle_wieviel_Minuten_soll,
+	T_aufgerufen_werden_0_ist_gar_nicht,
+	T_vi_k,
+	T_vi_l,
+	T_Konfigurationsdatei,
+	T_Logdatei_usw_bearbeiten_sehen,
+	T_vs_k,
+	T_vs_l,
+	T_Quelldateien_bearbeiten,
 	T_konsMAX
 }; // Tkons_
 
@@ -908,7 +919,6 @@ struct optcl
     int iwert; // Wert, der pptr zugewiesen wird, falls dieser Parameter gewaehlt wird; 0= Wert steht im nächsten Parameter, 1=pro Nennung in der Kommandozeile wert um 1 erhöhen
 //    string *zptr=0; // Zeiger auf Zusatzparameter, der hier eingegeben werden kann (z.B. Zahl der Zeilen nach -n (Zeilenzahl)
 //    schAcl<WPcl> *cpA=0; // Konfigurationsarray, das ggf. geschrieben werden muss
-    uchar *obschreibp=0; // ob Konfiguration geschrieben werden muss
 //    uchar ogefunden=0; // braucht man nicht, ist in argcl
 		// ermittelte Optionen:
     const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
@@ -920,7 +930,7 @@ struct optcl
 		uchar einzutragen(schAcl<optcl> *schlp);
 		void weisomapzu(schAcl<optcl> *schlp);
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
-				         const uchar wi, const long Txi2, string* rottxt, const int iwert, uchar* obschreibp);
+				         const uchar wi, const long Txi2, string* rottxt, const int iwert);
 		void setzwert();
 		int setzstr(const char* neuw,uchar *obzuschreib=0,const string& bemerk=nix,const uchar vwoher=1);
 		string holstr();
@@ -1218,6 +1228,8 @@ class hcl
 	public:
     int obverb=0; // verbose
     int oblog=0;  // mehr Protokollieren
+		uchar obvi=0; // ob Konfigurationsdatei editiert werden soll
+		uchar obvs=0;   // ob Quelldateien bearbeitet werden sollen
     string langu; // Sprache (Anfangsbuchstabe)
     string logdname; // Logdatei-Name ohne Pfad <DPROG>.log
     string logvz; // nur das Verzeichnis /var/log
@@ -1234,7 +1246,6 @@ class hcl
 		ulong tagesaufr=0; // Zahl der bisherigen Programmaufrufe heute
 		ulong monatsaufr=0; // Zahl der bisherigen Programmaufrufe heute
     uchar oblgschreib=0; // Konfigurationsdatei seitens der Sprache voraussichtlich schreiben
-    uchar obkschreib=0; // Konfigurationsdatei schreiben
     uchar logdneu=0;    // Logdatei geaendert
     uchar logvneu=0;    // Logverzeichnis geaendert
     uchar logdateineu=0; // logdt vorher loeschen
