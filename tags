@@ -25,6 +25,7 @@ DB_H_DRIN	DB.h	11;"	d
 DB_T	DB.cpp	/^const char *DB_T[T_dbMAX+1][SprachZahl]={$/;"	v
 DIRFEHLER	kons.h	/^  DIRFEHLER=998, $/;"	e	enum:__anon1
 DPROG	cl.h	1;"	d
+DPROG	kons.h	/^		const char* const DPROG;$/;"	m	class:hcl
 DPROG_T	cl.cpp	/^char const *DPROG_T[T_MAX+1][SprachZahl]={$/;"	v
 Feld	DB.cpp	/^Feld::Feld()$/;"	f	class:Feld
 Feld	DB.cpp	/^Feld::Feld(const string& name, string typ\/*=""*\/, const string& lenge\/*=""*\/, const string& prec\/*=""*\/, $/;"	f	class:Feld
@@ -391,7 +392,7 @@ T_wird_aktualisiert_bitte_ggf_neu_starten	kons.h	/^	T_wird_aktualisiert_bitte_gg
 T_wird_benoetigt_fuer_Befehl	DB.h	/^	T_wird_benoetigt_fuer_Befehl,$/;"	e	enum:Txdb_
 T_wird_deshalb_abgebrochen	kons.h	/^	T_wird_deshalb_abgebrochen,$/;"	e	enum:Tkons_
 T_wird_verwendet_anstatt	kons.h	/^	T_wird_verwendet_anstatt,$/;"	e	enum:Tkons_
-T_zeigvers	cl.cpp	/^	T_zeigvers,$/;"	e	enum:T_	file:
+T_zeigvers	kons.h	/^	T_zeigvers,$/;"	e	enum:Tkons_
 T_zu	kons.h	/^	T_zu,$/;"	e	enum:Tkons_
 T_zu_erstellen	DB.h	/^  T_zu_erstellen,$/;"	e	enum:Txdb_
 T_zu_schreiben	kons.h	/^	T_zu_schreiben,$/;"	e	enum:Tkons_
@@ -619,6 +620,7 @@ erg	kons.h	/^    set<elem3> erg;$/;"	m	class:find3cl
 ergp	kons.cpp	/^set<elem3> *find3cl::ergp;$/;"	m	class:find3cl	file:
 ergp	kons.h	/^    static set<elem3> *ergp;$/;"	m	class:find3cl
 ergp	kons.h	/^  el2set *ergp=0;$/;"	m	class:find2cl
+erkl	kons.h	/^		stringstream erkl; \/\/ Erklärung für die Hilfe$/;"	m	class:hcl
 errmsgcl	kons.h	/^ errmsgcl(int errnr,const string& msg):errnr(errnr),msg(msg){}$/;"	f	class:errmsgcl
 errmsgcl	kons.h	/^class errmsgcl$/;"	c
 errnr	kons.h	/^ int errnr;$/;"	m	class:errmsgcl
@@ -638,7 +640,7 @@ erweitern	DB.cpp	/^void DB::erweitern(const string& tabs, vector<instyp> einf,co
 exitp	DB.cpp	5;"	d	file:
 exitt	kons.h	135;"	d
 falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
-fangan	kons.cpp	/^void hcl::fangan(const char* const DPROG)$/;"	f	class:hcl
+fangan	kons.cpp	/^void hcl::fangan()$/;"	f	class:hcl
 fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 fehler	DB.h	/^    string fehler;$/;"	m	class:RS
 fehler	kons.h	/^    int fehler=0; \/\/ Exit-Code der Exe-Datei$/;"	m	class:servc
@@ -690,12 +692,12 @@ gruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const 
 gruens	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f	class:std
 hccd	kons.h	/^		confdcl hccd;$/;"	m	class:hcl
-hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG)$/;"	f	class:hcl
+hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):DPROG(DPROG)$/;"	f	class:hcl
 hcl	kons.h	/^class hcl$/;"	c
 hgrau	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 hgrau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 hgruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const braun="\\e[0;33m", *const gelb="\\e[1;33m",$/;"	v
-hhcl	cl.cpp	/^hhcl::hhcl(const int argc, const char *const *const argv):hcl(argc,argv)$/;"	f	class:hhcl
+hhcl	cl.cpp	/^hhcl::hhcl(const int argc, const char *const *const argv):hcl(argc,argv,DPROG)$/;"	f	class:hhcl
 hhcl	cl.h	/^class hhcl:public hcl$/;"	c
 hilfezeile	kons.cpp	/^void optcl::hilfezeile(Sprache lg)$/;"	f	class:optcl
 hilfezeile	kons.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
@@ -821,6 +823,7 @@ mabp	kons.h	/^    static time_t *mabp,*mbisp;$/;"	m	class:find3cl
 machbemerk	kons.cpp	/^string& WPcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/) $/;"	f	class:WPcl
 machbemerk	kons.cpp	/^string& optcl::machbemerk(Sprache lg,binaer obfarbe\/*=wahr*\/)$/;"	f	class:optcl
 machbinaer	DB.cpp	/^int DB::machbinaer(const string& tabs, const size_t aktc,const string& fmeld,int obverb) const$/;"	f	class:DB
+macherkl	cl.cpp	/^void hhcl::macherkl()$/;"	f	class:hhcl
 machfit	kons.cpp	/^int servc::machfit(int obverb\/*=0*\/,int oblog\/*=0*\/, binaer nureinmal\/*=falsch*\/)$/;"	f	class:servc
 machind	DB.cpp	/^int Tabelle::machind(const size_t aktc, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:Tabelle
 machstrikt	DB.cpp	/^void RS::machstrikt(string& altsqlm,const size_t aktc\/*=0*\/)$/;"	f	class:RS
@@ -877,7 +880,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	1017;"	d
+obfstream	kons.h	1018;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
@@ -1153,7 +1156,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6390;"	d	file:
+uebersichtlich	kons.cpp	6400;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1168,7 +1171,7 @@ user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1206;"	d	file:
+vagenau	kons.cpp	1208;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl

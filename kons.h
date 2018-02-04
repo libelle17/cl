@@ -649,7 +649,7 @@ struct WPcl { // Wertepaarklasse
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
-		int setzstr(const char* neuw,uchar *obzuschreib=0);
+		int setzstr(const char* neuw,uchar *const obzuschreib=0,const uchar ausDatei=0);
 		string holstr();
 		uchar einzutragen(schAcl<WPcl> *schlp);
     void tusetzbemerkwoher(const string& ibemerk,const uchar vwoher);
@@ -858,7 +858,7 @@ class confdat
 }; // class confdat
 
 // fuer Commandline-Optionen
-enum par_t:uchar {psons,pverz,pfile,puchar,pint,plong,pdat}; // Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)
+enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; // Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)
 
 #ifdef alt
 class optioncl
@@ -950,7 +950,7 @@ struct optcl
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 				         const uchar wi, const long Txi2, const string* const rottxt, const int iwert);
 		void setzwert();
-		int setzstr(const char* neuw,uchar *obzuschreib=0);
+		int setzstr(const char* neuw,uchar *const obzuschreib=0,const uchar ausDatei=0);
     void tusetzbemerkwoher(const string& ibemerk,const uchar vwoher);
 		string holstr();
 		void setzebem(schAcl<WPcl> *cpA,const char *pname);
@@ -1245,9 +1245,15 @@ class hcl
 		static const string passwddt, groupdt, sudoersdt;
 		static const char* const smbdt;// "/etc/samba/smb.conf"
 		uchar autoupd;  // 1=Programm automatisch updadaten
+		string host="localhost";  // fuer MySQL/MariaDB
+		string dbq="faxe"; // Datenbank
+		string tabelle  //ω
+			;  //α
+		string muser; // Benutzer fuer Mysql/MariaDB
+		string mpwd;  // Passwort fuer Mysql/MariaDB //ω
 	public:
-    int obverb=0; // verbose
-    int oblog=0;  // mehr Protokollieren
+		int obverb=0; // verbose
+		int oblog=0;  // mehr Protokollieren
 		uchar obvi=0; // ob Konfigurationsdatei editiert werden soll
 		uchar obvs=0;   // ob Quelldateien bearbeitet werden sollen
     string langu; // Sprache (Anfangsbuchstabe)

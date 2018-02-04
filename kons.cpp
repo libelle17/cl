@@ -9,6 +9,7 @@
 #include <boost/iostreams/device/mapped_file.hpp> // fuer dateivgl
 //#include <typeinfo>
 #define caus cout // nur zum Debuggen
+extern const string& pwk; // fuer Antlitzaenderung
 
 
 #ifdef _WIN32
@@ -2030,7 +2031,7 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
 							// caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
 							// caus<<blau<<"setze!"<<schwarz<<endl;
-							int wiefalsch=sA->schl[ii].setzstr(wert.c_str(),&obzuschreib);
+							int wiefalsch=sA->schl[ii].setzstr(wert.c_str(),&obzuschreib,/*ausDatei=*/1);
 							if (!wiefalsch) {
 								sA->setzbemerkwoher(&sA->schl[ii],/*bemerk=*/ibemerk,/*woher*/2);
 								++richtige;
@@ -3510,13 +3511,14 @@ void optioncl::hilfezeile(Sprache lg)
 	} // if (TxBp)
 } // hilfezeile
 #endif
+
 void optcl::hilfezeile(Sprache lg)
 {
 	if (TxBp) {
 		if (Txi!=-1) {
 			if (TxBp->TCp[Txi][lg]) {
 				cout<<drot<<" -"<<(*TxBp)[kurzi]<<", --"<<(*TxBp)[langi];
-				if (pptr) {if (art==psons || art==pfile) cout<<" <string>"; else if (art==pverz) cout<<" <"<<Txk[T_pfad]<<">"; else cout<<" <zahl>";}
+				if (pptr) {if (art==psons||art==ppwd||art==pfile) cout<<" <string>"; else if (art==pverz) cout<<" <"<<Txk[T_pfad]<<">"; else cout<<" <zahl>";}
 				cout<<schwarz<<": "<< machbemerk(lg)<<endl;
 			} // if (TxBp->TCp[Txi][lg])
 		} // if (Txi!=-1)
@@ -5198,6 +5200,7 @@ hcl::~hcl()
 	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
 	delete linstp;
 	linstp=0;
+	caus<<"mpwd: "<<mpwd<<endl;
 }
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
@@ -5418,7 +5421,7 @@ void optcl::setzwert()
  }
 } // void optcl::setzwert()
 
-int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
+int WPcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar ausDatei/*=0*/)
 {
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
@@ -5521,6 +5524,11 @@ string optcl::holstr()
 			case psons: case pverz: case pfile:
 				rstr=*(string*)pptr;
 				break;
+			case ppwd:
+				caus<<rot<<"Hole pptr: "<<*(string*)pptr<<" ";
+				rstr=XOR(*(string*)pptr,pwk);
+				caus<<"rstr: "<<rstr<<schwarz<<endl;
+				break;
 			case pdat:
 				thr_strftime((struct tm*)pptr,&rstr);
 		}
@@ -5545,7 +5553,7 @@ string& optcl::machbemerk(Sprache lg,binaer obfarbe/*=wahr*/)
 				if (rottxt) bemerk+=(obfarbe?blaus:nix)+*rottxt+(obfarbe?schwarz:nix);
 				if (Txi2!=-1) bemerk+=(const char*)hilf[Txi2][lg]; 
 				////        if (zptr && !strstr(pname,"pwd")) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'"; // pname==0
-				if ((art==psons||art==pverz||art==pfile)&&pptr&&bemerk.find("assw")==string::npos) bemerk+=" '"+(obfarbe?blaus:nix)+*(string*)pptr+(obfarbe?schwarz:nix)+"'";
+				if ((art==psons||art==ppwd||art==pverz||art==pfile)&&pptr&&bemerk.find("assw")==string::npos) bemerk+=" '"+(obfarbe?blaus:nix)+*(string*)pptr+(obfarbe?schwarz:nix)+"'";
 				if (obno) bemerk+=(obfarbe?violetts:nix)+Txk[T_oder_nicht]+(obfarbe?schwarz:nix);
 			} // if (TxBp->TCp[Txi][lg])
 		} // if (Txi!=-1)
@@ -5568,7 +5576,7 @@ void optcl::reset()
 
 
 // weist einer Option einen c-String zu
-int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
+int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar ausDatei/*=0*/)
 {
 	int wiefalsch=0;
 	struct tm tmp={0},tmmax={0},neu={0};
@@ -5576,6 +5584,7 @@ int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
 	if (pptr) {
 		struct stat entryarg={0};
 		uchar neuu;
+		string neuws;
 		int neui;
 		long neul;
 		switch (art) {
@@ -5590,7 +5599,26 @@ int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
 							caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", neuw: "<<neuw<<endl; 
 						}
 					} else {
-						*(string*)pptr=neuw;
+						*(string*)pptr=neuws;
+					}
+				}
+				break;
+			case ppwd:
+				neuws=neuw;
+				// ... dann zuweisen
+				if (*(string*)pptr!=XOR(neuws,pwk)) {
+					// Befehlszeilenoptionen nicht durch Konfigurationsdateioptionen ueberschreiben lassen
+					if (woher) {
+						if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
+							*obzuschreib=1; 
+							caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", XOR(pptr): "<<XOR(*(string*)pptr,pwk)<<", neuw: "<<neuw<<endl; 
+						}
+					} else {
+						if (ausDatei) {
+							*(string*)pptr=XOR(neuws,pwk);
+						} else {
+							*(string*)pptr=neuw;
+						}
 					}
 				}
 				break;
@@ -5716,6 +5744,7 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 					Log(drots+Txk[T_Fehlender_Parameter_Datum_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
 					break;
 				case psons:
+				case ppwd:
 					Log(drots+Txk[T_Fehlender_Parameter_string_zu]+(*TxBp)[kurzi]+Txk[T_oder]+(*TxBp)[langi]+"!"+schwarz,1,1);
 					break;
 				case pverz:
@@ -6206,7 +6235,6 @@ void hcl::lieskonfein(const string& DPROG)
 	lfd=0;
 // afcd.cinit(akonfdt,&agcnfA,obverb,'=',/*mitclear=*/0); // hier werden die Daten aus der Datei eingelesen
 	hccd.lies(akonfdt,obverb);
-	caus<<"akonfdt: "<<blau<<akonfdt<<schwarz<<endl;
 	hccd.auswert(&opn,obverb,'=',0);
 	lgnzuw();
 } // void hcl::lieskonfein()
@@ -6648,6 +6676,7 @@ confdcl::confdcl():obgelesen(0),obzuschreib(0)
 // Achtung: Wegen der Notwendigkeit zur Existenz der Datei zum Aufruf von setfacl kann die Datei erstellt werden!
 int confdcl::lies(const string& fname, int obverb)
 {
+	caus<<violett<<"lies: "<<blau<<fname<<schwarz<<endl;
 	int erg=0;
 	if (fname.empty()) {
 		erg=2;

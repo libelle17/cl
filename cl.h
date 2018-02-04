@@ -4,12 +4,6 @@ class hhcl:public hcl
 {
  private:
  public:
-	string host="localhost";  // fuer MySQL/MariaDB
-	string dbq="faxe"; // Datenbank
-	string tabelle  //ω
-		;  //α
-	string muser; // Benutzer fuer Mysql/MariaDB
-	string mpwd;  // Passwort fuer Mysql/MariaDB //ω
 	const size_t maxconz=12;//aktc: 0=... //α
 	uchar keineverarbeitung=0; // wenn cronminuten geaendert werden sollen, vorher abkuerzen
 	DB* My=0;
