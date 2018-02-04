@@ -559,6 +559,8 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"Quelldateien in ","edit/view source files in "},
 	// T_bearbeiten_sehen
 	{" bearbeiten/sehen (beenden mit ':qa')","(finish with ':qa')"},
+	// T_nicht_erkannt
+	{" nicht erkannt!"," not identified!"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -3108,6 +3110,7 @@ string Tippstrs(const char *frage, vector<string> *moegl, string *vorgabe/*=0*/)
 
 string Tippzahl(const char *frage, const char *vorgabe) 
 {
+	caus<<"Tippzahl 0"<<endl;
 	string input;
 	pthread_mutex_lock(&getmutex);
 	while(1) {
@@ -3124,14 +3127,17 @@ string Tippzahl(const char *frage, const char *vorgabe)
 
 string Tippzahl(const char *frage, const string *vorgabe) 
 {
+	caus<<"Tippzahl 1"<<endl;
 	return Tippzahl(frage,(vorgabe?vorgabe->c_str():0)); 
 }
 string Tippzahl(const string& frage, const string *vorgabe)
 {
+	caus<<"Tippzahl 2"<<endl;
 	return Tippzahl(frage.c_str(),(vorgabe?vorgabe->c_str():0));
 }
 long Tippzahl(const string& frage,const long& vorgabe)
 {
+	caus<<"Tippzahl 3"<<endl;
 	string vgb=ltoan(vorgabe);
 	return atol(Tippzahl(frage.c_str(),&vgb).c_str());
 }
@@ -5112,6 +5118,7 @@ void hcl::progpar(const char* DPROG)
 		obverb=0;
 	}
 	gcl0(); //¿
+	lgnzuw();
 	lieskonfein(DPROG);
 	setzlog();
 	lgnzuw();
@@ -5322,9 +5329,7 @@ void hcl::zeigkonf()
 		//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", &tm);
 	} //   if (!lstat(akonfdt.c_str(),&kstat))
 	cout<<"):"<<endl;
-	for(unsigned i=0;i<agcnfA.schl.size();i++) {
-		cout<<blau<<setw(20)<<agcnfA[i].pname<<schwarz<<": "<<agcnfA[i].wert<<endl;
-	} //   for(unsigned i=0;i<agcnfA.zahl;i++)
+	optausg(blau);
 } // void hcl::zeigkonf()
 // augerufen in: anhalten(), zeigkonf()
 
@@ -5761,6 +5766,18 @@ void hcl::gcl0()
 	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
 	setzlog();
 	optausg(gelb);
+	for(size_t i=0;i<argcmv.size();i++) {
+		if (!argcmv[i].agef) {
+			::Log(rots+"Parameter: "+gruen+argcmv[i].argcs+rot+Tx[T_nicht_erkannt]+schwarz,1,1);
+			if (!obhilfe) obhilfe=1;
+		} //     if (!argcmv[i].agef)
+	} //   for(size_t i=0;i<argcmv.size();i++)
+	/*
+	stringstream erkl;
+	erkl<<blau // 
+	<<schwarz;
+	if (zeighilfe(&erkl)) return;
+	*/
 	caus<<"Ende gcl0"<<endl;
 	return;
 
@@ -5820,8 +5837,17 @@ void hcl::gcl0()
 
 void hcl::verarbeitkonf()
 {
-	caus<<"verarbeitkonf(), Zahl: "<<agcnfA.schl.size()<<endl;
+  if (!nrzf&&obhilfe<=2) {
+	for (size_t i = 0;i<opn.size();i++) {
+		caus<<"i: "<<i<<", "<<opn[i].pname;
+		if (!opn[i].pname.empty() && !opn[i].woher) {
+			caus<<"opn[i].pname: "<<opn[i].pname<<", rzf=1 !!!!!!!!!!!!!"<<endl;
+      rzf=1;
+		}
+	}
+		/*
 	map<string,optcl*>::iterator omit;
+	caus<<"verarbeitkonf(), Zahl: "<<agcnfA.schl.size()<<endl;
 	for (size_t i = 0;i<agcnfA.schl.size();i++) {
 		caus<<"i: "<<i<<", "<<agcnfA[i].pname;
 		if (!agcnfA[i].wert.empty()) {
@@ -5838,6 +5864,7 @@ void hcl::verarbeitkonf()
 			}
 		}
 		caus<<endl;
+		*/
 	}
 	/*
 		 vector<optcl*>::iterator opp=optpv.begin();
@@ -6545,7 +6572,7 @@ int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, co
   return 1;
 } // int multischlschreib(const string& fname, schAcl **mcnfApp, size_t cszahl)
 
-confdcl::confdcl():obgelesen(0)
+confdcl::confdcl():obgelesen(0),obzuschreib(0)
 {
 }
 

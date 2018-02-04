@@ -404,6 +404,7 @@ enum Tkons_
 	T_vs_l,
 	T_Quelldateien_in,
 	T_bearbeiten_sehen,
+	T_nicht_erkannt,
 	T_konsMAX
 }; // Tkons_
 
@@ -1256,7 +1257,7 @@ class hcl
     string mpfad;  // meinpfad()
     string meinname; // base_name(meinpfad()) // argv[0] // <DPROG>
     string akonfdt; // name der Konfigurationsdatei
-    schAcl<WPcl> agcnfA; // Gesamtkonfiguration
+//    schAcl<WPcl> agcnfA; // Gesamtkonfiguration
 		string azaehlerdt; // akonfdt+".zaehl"
 		schAcl<WPcl> zcnfA; // Zaehlkonfiguration
 		string vorcm; // Vor-Cron-Minuten

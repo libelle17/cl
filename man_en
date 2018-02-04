@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "04.02.18" "Version 0.10326" "\fB²DPROG²\fR man page"
+.TH man 1 "04.02.18" "Version 0.10335" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -49,19 +49,15 @@
 .br
 \fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
 .br
 akonfdt: \fB/home/schade/.cl.conf\fR
 .br
-woher: 1, pptr: e, neuw: d
-.br
-\fBobzuschreib: \fB1\fR
-.br
-verarbeitkonf(), Zahl: 0
+\fBobzuschreib: \fB0\fR
 .br
 \fBoptausg()\fR
 .br
@@ -97,9 +93,9 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB# listet Zeilen auf oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       97\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB# listet n Zeilen auf anstatt 30 oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
@@ -107,46 +103,40 @@ verarbeitkonf(), Zahl: 0
 .br
 azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
 .br
-\fBobzuschreib: \fB13\fR
+\fBobzuschreib: \fB0\fR
 .br
-\fBaufrufe: \fR148
+\fBaufrufe: \fR174
 .br
-\fBletztes Datum: \fR04.02.2018 12.43.03
+\fBletztes Datum: \fR04.02.2018 15.09.47
 .br
-\fBtagesaufr: \fR2
+\fBtagesaufr: \fR28
 .br
-\fBmonatsaufr: \fR2
+\fBmonatsaufr: \fR28
 .br
 \fBvor return\fR
 .br
-\fBOptions which are not saved: \fR
+nach pruefggfmehrfach
 .br
-\fB -v, --verbose <zahl>\fR: screen output more verbose\fB or not\fR
+nach tuloeschen
 .br
-\fB -lfn, --logfilenew <zahl>\fR: delete log file afore\fB or not\fR
+Ende pruefcron
 .br
-\fB -cf, --conffile <string>\fR: uses configuration file <string> instead of '\fB/home/schade/.cl.conf\fR'\fB or not\fR
+nach pruefcron
 .br
-\fB -h, --help <zahl>\fR: Explanation of frequent options\fB or not\fR
+\fRProgram: \fB/home/schade/cl/cl\fR, V: \fB0.10333\fR
 .br
-\fB -lh, --longhelp <zahl>\fR: Explanation of all options\fB or not\fR
+nach zeigueberschrift
 .br
-\fB -vi, --vi <zahl>\fR: edit/view configuration file \fB/home/schade/.cl.conf\fR, log file etc. (finish with ':qa')\fB or not\fR
+nach setzzaehler
 .br
-\fB -vs, --vs <zahl>\fR: edit/view source files in \fB/root/cl\fR(finish with ':qa')\fB or not\fR
+nach schreibzaehler
 .br
-\fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
+nach keineverarbeitung
 .br
-\fB -lg, --language <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBe\fR'\fB or not\fR
+\fBobzuschreib: \fB0\fR
 .br
-\fB -ldr, --logdir <path>\fR: choses <path> as log directory, currently '\fB/var/log\fR'\fB or not\fR
+nach autokonfschreib
 .br
-\fB -lf, --logfilename <string>\fR: log file <string> (in path '\fB/var/log\fR') will be used instead of '\fBcl.log\fR'\fB or not\fR
+nach update
 .br
-\fB -l, --log <zahl>\fR: put detailed logs in file '\fB/var/log/cl.log\fR' (otherwise shorter)\fB or not\fR
-.br
-\fB -cm, --cronminutes <string>\fR: every how many minutes shall \fBcl\fR be called in crontab (0=not at all), instead of  '\fB4\fR'\fB or not\fR
-.br
-\fB -lista, --lista <zahl>\fR: lists lines\fB or not\fR
-.br
-\fB -n, --number <zahl>\fR: lists n lines instead of \fB30\fR\fB or not\fR
+nach schlussanzeige

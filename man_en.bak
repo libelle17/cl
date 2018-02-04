@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "04.02.18" "Version 0.10326" "\fB²DPROG²\fR man page"
+.TH man 1 "04.02.18" "Version 0.10335" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -49,61 +49,15 @@
 .br
 \fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
 .br
 akonfdt: \fB/home/schade/.cl.conf\fR
 .br
-auswert() language vor while, wert: d
-.br
-sA->schl[ii].pname: language
-.br
-\fBsetze!\fR
-.br
-woher: 1, pptr: e, neuw: d
-.br
-auswert() logvz vor while, wert: /var/log
-.br
-sA->schl[ii].pname: logvz
-.br
-\fBsetze!\fR
-.br
-auswert() logdname vor while, wert: cl.log
-.br
-sA->schl[ii].pname: logdname
-.br
-\fBsetze!\fR
-.br
-auswert() oblog vor while, wert: 0
-.br
-sA->schl[ii].pname: oblog
-.br
-\fBsetze!\fR
-.br
-auswert() cronminut vor while, wert: 4
-.br
-sA->schl[ii].pname: cronminut
-.br
-\fBsetze!\fR
-.br
-auswert() lista vor while, wert: 1
-.br
-sA->schl[ii].pname: lista
-.br
-\fBsetze!\fR
-.br
-auswert() n vor while, wert: 97
-.br
-sA->schl[ii].pname: n
-.br
-\fBsetze!\fR
-.br
-\fBobzuschreib: \fB1\fR
-.br
-verarbeitkonf(), Zahl: 0
+\fBobzuschreib: \fB0\fR
 .br
 \fBoptausg()\fR
 .br
@@ -139,9 +93,9 @@ verarbeitkonf(), Zahl: 0
 .br
 \fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        1\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB# listet Zeilen auf oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       97\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 61\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB# listet n Zeilen auf anstatt 30 oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 0 zcnfA.zahl: 0
 .br
@@ -149,158 +103,40 @@ verarbeitkonf(), Zahl: 0
 .br
 azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
 .br
-auswert() aufrufe vor while, wert: 147
+\fBobzuschreib: \fB0\fR
 .br
-sA->schl[ii].pname: aufrufe
+\fBaufrufe: \fR172
 .br
-\fBsetze!\fR
+\fBletztes Datum: \fR04.02.2018 15.07.02
 .br
-auswert() lDatum vor while, wert: 04.02.2018 12.42.40
+\fBtagesaufr: \fR26
 .br
-sA->schl[ii].pname: lDatum
-.br
-\fBsetze!\fR
-.br
-Datum neuw: '04.02.2018 12.42.40' 04.02.2020 18.00.00, im: 0, tmmoegl[im]: %d.%m.%y %H.%M.%S, eakt: 0, emax: 0
-.br
-\fR\fB
-.br
-04.02.2018 12.42.40, im: 1, tmmoegl[im]: %d.%m.%Y %H.%M.%S, eakt: 0xb054c3, emax: 0
-.br
-\fR04.02.2020 18.00.00, im: 2, tmmoegl[im]: %d.%m.%y %H:%M:%S, eakt: 0, emax: 0xb054c3
-.br
-\fR04.02.2018 12.00.00, im: 3, tmmoegl[im]: %d.%m.%Y %H:%M:%S, eakt: 0, emax: 0xb054c3
-.br
-\fR04.02.2020 18.00.00, im: 4, tmmoegl[im]: %d.%m.%y %H.%M, eakt: 0, emax: 0xb054c3
-.br
-\fR04.02.2018 12.42.00, im: 5, tmmoegl[im]: %d.%m.%Y %H.%M, eakt: 0xb054c0, emax: 0xb054c3
-.br
-\fR04.02.2020 18.00.00, im: 6, tmmoegl[im]: %d.%m.%y %H:%M, eakt: 0, emax: 0xb054c3
-.br
-\fR04.02.2018 12.00.00, im: 7, tmmoegl[im]: %d.%m.%Y %H:%M, eakt: 0, emax: 0xb054c3
-.br
-\fR04.02.2020 00.00.00, im: 8, tmmoegl[im]: %d.%m.%y, eakt: 0xb054b8, emax: 0xb054c3
-.br
-\fR04.02.2018 00.00.00, im: 9, tmmoegl[im]: %d.%m.%Y, eakt: 0xb054ba, emax: 0xb054c3
-.br
-\fR04.02.2020 00.00.00, im: 10, tmmoegl[im]: %d.%m.%y, eakt: 0xb054b8, emax: 0xb054c3
-.br
-\fR04.02.2018 00.00.00, im: 11, tmmoegl[im]: %d.%m.%Y, eakt: 0xb054ba, emax: 0xb054c3
-.br
-\fR31.03.2002 00.00.00, im: 12, tmmoegl[im]: %m.%y, eakt: 0xb054b5, emax: 0xb054c3
-.br
-\fR31.03.2 00.00.00, im: 13, tmmoegl[im]: %m.%Y, eakt: 0xb054b5, emax: 0xb054c3
-.br
-\fR31.03.1900 00.00.00, im: 14, tmmoegl[im]: %m/%y, eakt: 0, emax: 0xb054c3
-.br
-\fR31.03.1900 00.00.00, im: 15, tmmoegl[im]: %m/%Y, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 16, tmmoegl[im]: %y-%m-%d %H%M%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 17, tmmoegl[im]: %Y-%m-%d %H%M%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 18, tmmoegl[im]: %y-%m-%d %H%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 19, tmmoegl[im]: %Y-%m-%d %H%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 20, tmmoegl[im]: %y-%m-%d %H.%M.%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 21, tmmoegl[im]: %Y-%m-%d %H.%M.%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 22, tmmoegl[im]: %y-%m-%d %H.%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 23, tmmoegl[im]: %Y-%m-%d %H.%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 24, tmmoegl[im]: %y-%m-%d %H:%M:%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 25, tmmoegl[im]: %Y-%m-%d %H:%M:%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 26, tmmoegl[im]: %y-%m-%d %H:%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 27, tmmoegl[im]: %Y-%m-%d %H:%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 28, tmmoegl[im]: %y%m%d %H%M%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 29, tmmoegl[im]: %Y%m%d %H%M%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 30, tmmoegl[im]: %y%m%d %H%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 31, tmmoegl[im]: %Y%m%d %H%M, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 32, tmmoegl[im]: %Y%m%d%H%M%S, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 33, tmmoegl[im]: %y-%m-%d, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 34, tmmoegl[im]: %Y-%m-%d, eakt: 0, emax: 0xb054c3
-.br
-\fR31.12.2003 00.00.00, im: 35, tmmoegl[im]: %y, eakt: 0xb054b2, emax: 0xb054c3
-.br
-\fR31.12.3 00.00.00, im: 36, tmmoegl[im]: %Y, eakt: 0xb054b2, emax: 0xb054c3
-.br
-\fR31.12.1899 00.00.00, im: 37, tmmoegl[im]: %c, eakt: 0, emax: 0xb054c3
-.br
-\fR\fBSieger: 04.02.2018 12.42.40\fR
-.br
-\fBSun Jan  0 00:00:00 1900
-.br
-\fR
-.br
-\fBSun Feb  4 12:42:40 2018
-.br
-\fR
-.br
-auswert() tagesaufr vor while, wert: 1
-.br
-sA->schl[ii].pname: tagesaufr
-.br
-\fBsetze!\fR
-.br
-auswert() monatsaufr vor while, wert: 1
-.br
-sA->schl[ii].pname: monatsaufr
-.br
-\fBsetze!\fR
-.br
-\fBobzuschreib: \fB13\fR
-.br
-\fBaufrufe: \fR147
-.br
-\fBletztes Datum: \fR04.02.2018 12.42.40
-.br
-\fBtagesaufr: \fR1
-.br
-\fBmonatsaufr: \fR1
+\fBmonatsaufr: \fR26
 .br
 \fBvor return\fR
 .br
-\fBOptions which are not saved: \fR
+nach pruefggfmehrfach
 .br
-\fB -v, --verbose <zahl>\fR: screen output more verbose\fB or not\fR
+nach tuloeschen
 .br
-\fB -lfn, --logfilenew <zahl>\fR: delete log file afore\fB or not\fR
+Ende pruefcron
 .br
-\fB -cf, --conffile <string>\fR: uses configuration file <string> instead of '\fB/home/schade/.cl.conf\fR'\fB or not\fR
+nach pruefcron
 .br
-\fB -h, --help <zahl>\fR: Explanation of frequent options\fB or not\fR
+\fRProgram: \fB/home/schade/cl/cl\fR, V: \fB0.10333\fR
 .br
-\fB -lh, --longhelp <zahl>\fR: Explanation of all options\fB or not\fR
+nach zeigueberschrift
 .br
-\fB -vi, --vi <zahl>\fR: edit/view configuration file \fB/home/schade/.cl.conf\fR, log file etc. (finish with ':qa')\fB or not\fR
+nach setzzaehler
 .br
-\fB -vs, --vs <zahl>\fR: edit/view source files in \fB/root/cl\fR(finish with ':qa')\fB or not\fR
+nach schreibzaehler
 .br
-\fBOptions to be saved in the configuration file: (preced. '1'=don't save, 'no'=contrary, e.g. '-noocra','-1noocri'):\fR
+nach keineverarbeitung
 .br
-\fB -lg, --language <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBe\fR'\fB or not\fR
+\fBobzuschreib: \fB0\fR
 .br
-\fB -ldr, --logdir <path>\fR: choses <path> as log directory, currently '\fB/var/log\fR'\fB or not\fR
+nach autokonfschreib
 .br
-\fB -lf, --logfilename <string>\fR: log file <string> (in path '\fB/var/log\fR') will be used instead of '\fBcl.log\fR'\fB or not\fR
+nach update
 .br
-\fB -l, --log <zahl>\fR: put detailed logs in file '\fB/var/log/cl.log\fR' (otherwise shorter)\fB or not\fR
-.br
-\fB -cm, --cronminutes <string>\fR: every how many minutes shall \fBcl\fR be called in crontab (0=not at all), instead of  '\fB4\fR'\fB or not\fR
-.br
-\fB -lista, --lista <zahl>\fR: lists lines\fB or not\fR
-.br
-\fB -n, --number <zahl>\fR: lists n lines instead of \fB30\fR\fB or not\fR
+nach schlussanzeige

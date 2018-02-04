@@ -30,7 +30,6 @@ enum T_
 	T_rueckfragen_l,
 	T_krf_k,
 	T_keinerueckfragen_l,
-	T_nicht_erkannt,
 	T_Logverzeichnis,
 	T_Logdateiname,
 	T_info_k,
@@ -118,8 +117,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"krf","noia"},
 	// T_keinerueckfragen_l
 	{"keinerueckfragen","nointeraction"},
-	// T_nicht_erkannt
-	{" nicht erkannt!"," not identified!"},
 	// T_Logverzeichnis
 	{"Logverzeichnis","log directory"},
 	// T_Logdateiname
@@ -318,18 +315,6 @@ int hhcl::getcommandline()
 		} // for(size_t i=0;i<argcmv.size();i++)
 	} //   for(;optslsz<opts.size();optslsz++)
 #endif
-	if (nrzf||obhilfe>2) rzf=0; // 3 oder 4
-	for(size_t i=0;i<argcmv.size();i++) {
-		if (!argcmv[i].agef) {
-			::Log(rots+"Parameter: "+gruen+argcmv[i].argcs+rot+Tx[T_nicht_erkannt]+schwarz,1,1);
-			if (!obhilfe) obhilfe=1;
-		} //     if (!argcmv[i].agef)
-	} //   for(size_t i=0;i<argcmv.size();i++)
-	stringstream erkl;
-	erkl<<blau //ω
-		<<schwarz; //α
-	if (zeighilfe(&erkl)) 
-		return 1;
 	Log(violetts+Txk[T_Ende]+"getcommandline()"+schwarz);
 	return 0;
 } // int hhcl::getcommandline
@@ -339,25 +324,14 @@ void hhcl::rueckfragen()
 {
 	Log(violetts+Tx[T_rueckfragen]+schwarz);
 	if (rzf) {
-		int lfd=-1;
 		const char *const locale = setlocale(LC_CTYPE,"");
 		if (langu.empty()) if (locale) if (strchr("defi",locale[0])) langu=locale[0];
 		vector<string> sprachen={"e","d"/*,"f","i"*/};
-		if (agcnfA[++lfd].wert.empty()||rzf) {
 			langu=Tippstrs(sprachstr.c_str()/*"Language/Sprache/Lingue/Lingua"*/,&sprachen,&langu);
 			lgnzuw();
-			//agcnfA[lfd].setze(&langu);
-		} // if (agcnfA
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			host=Tippstr(Tx[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
-			//agcnfA[lfd].setze(&host);
-		} //     if (agcnfA[++lfd].wert.empty() || rzf)
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			const string Frage=Tx[T_Benutzer_fuer_MySQL_MariaDB];
 			muser=Tippstr(Frage.c_str(),&muser);
-			//agcnfA[lfd].setze(&muser);
-		} //     if (agcnfA[++lfd].wert.empty() || rzf)
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			string mpw2;
 			mpwd.clear();
 			do {
@@ -365,37 +339,14 @@ void hhcl::rueckfragen()
 				mpw2=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'"+" ("+Txk[T_erneute_Eingabe]+")",&mpw2);
 			} while (mpwd!=mpw2);
 			const string pwdstr=XOR(mpwd,pwk);
-			//agcnfA[lfd].setze(&pwdstr);
-		} // 		if (agcnfA[++lfd].wert.empty() || rzf)
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			dbq=Tippstr(string(Tx[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
-			//agcnfA[lfd].setze(&dbq);
-		} //     if (agcnfA[++lfd].wert.empty() || rzf)
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			tabelle=Tippstr(string(Tx[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
-			//agcnfA[lfd].setze(&tabelle);
-		} //     if (agcnfA[++lfd].wert.empty() || rzf) //ω
-		if (agcnfA[++lfd].wert.empty() || rzf) { //α
-			cronminut=Tippzahl(Tx[T_Alle_wieviel_Minuten_soll]+meinname+Tx[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
-			//agcnfA[lfd].setze(&cronminut);
-		}
-		if (agcnfA[++lfd].wert.empty() || rzf) {
+			cronminut=Tippzahl(Txk[T_Alle_wieviel_Minuten_soll]+meinname+Txk[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
 			autoupd=Tippob(Tx[T_Sollen_neue_Programmversionen_von]+meinname+Tx[T_automatisch_installiert_werden],autoupd?Txk[T_j_af]:"n");
-			//agcnfA[lfd].setze(&autoupd);
-		}
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			logvz=Tippverz(Tx[T_Logverzeichnis],&logvz);
-			//agcnfA[lfd].setze(&logvz);
-		}
-		if (agcnfA[++lfd].wert.empty() || rzf) {
 			logdname=Tippstr(Tx[T_Logdateiname],&logdname);
-			//agcnfA[lfd].setze(&logdname);
-		}
-		setzlog();
-		if (agcnfA[++lfd].wert.empty() || rzf) {
+			setzlog();
 			oblog=Tippzahl(Tx[T_Oblog],oblog);
-			//agcnfA[lfd].setze(&oblog);
-		} // 	if (agcnfA[++lfd].wert.empty() || rzf)
 	} // if (rzf)
 } // void hhcl::rueckfragen()
 
