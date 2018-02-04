@@ -3303,7 +3303,7 @@ void optcl::oausgeb()
 	}
 	cout<<schwarz;
 	cout<<",kurzi:"<<blau<<setw(10)<<(*TxBp)[kurzi]<<schwarz;
-	cout<<",langi:"<<blau<<setw(12)<<(*TxBp)[langi]<<schwarz;
+	cout<<",langi:"<<blau<<setw(13)<<(*TxBp)[langi]<<schwarz;
 	cout<<",wi:"<<blau<<setw(3)<<(int)wi<<schwarz;
 	cout<<",Txi:"<<blau<<setw(3)<<Txi<<schwarz;
 	cout<<",rottxt:"<<blau<<setw(15)<<(rottxt?*rottxt:string(""))<<schwarz;
@@ -5525,16 +5525,15 @@ string optcl::holstr()
 				rstr=*(string*)pptr;
 				break;
 			case ppwd:
-				caus<<rot<<"Hole pptr: "<<*(string*)pptr<<" ";
 				rstr=XOR(*(string*)pptr,pwk);
-				caus<<"rstr: "<<rstr<<schwarz<<endl;
 				break;
 			case pdat:
 				thr_strftime((struct tm*)pptr,&rstr);
 		}
 	}
 	return rstr;
-}
+} // string optcl::holstr()
+
 
 string& WPcl::machbemerk(Sprache lg,binaer obfarbe/*=wahr*/) 
 {
@@ -5553,7 +5552,8 @@ string& optcl::machbemerk(Sprache lg,binaer obfarbe/*=wahr*/)
 				if (rottxt) bemerk+=(obfarbe?blaus:nix)+*rottxt+(obfarbe?schwarz:nix);
 				if (Txi2!=-1) bemerk+=(const char*)hilf[Txi2][lg]; 
 				////        if (zptr && !strstr(pname,"pwd")) bemerk+=" '"+(obfarbe?blaus:nix)+*zptr+(obfarbe?schwarz:nix)+"'"; // pname==0
-				if ((art==psons||art==ppwd||art==pverz||art==pfile)&&pptr&&bemerk.find("assw")==string::npos) bemerk+=" '"+(obfarbe?blaus:nix)+*(string*)pptr+(obfarbe?schwarz:nix)+"'";
+				if ((art==psons||art==plong||art==pint||art==puchar||art==pverz||art==pfile)&&pptr/*&&bemerk.find("assw")==string::npos*/) 
+					bemerk+=" '"+(obfarbe?blaus:nix)+(art==plong||art==pint||art==puchar?ltoan(art==plong?*(long*)pptr:art==pint?*(int*)pptr:*(uchar*)pptr):*(string*)pptr)+(obfarbe?schwarz:nix)+"'";
 				if (obno) bemerk+=(obfarbe?violetts:nix)+Txk[T_oder_nicht]+(obfarbe?schwarz:nix);
 			} // if (TxBp->TCp[Txi][lg])
 		} // if (Txi!=-1)
@@ -5596,10 +5596,9 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 					if (woher) {
 						if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 							*obzuschreib=1; 
-							caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", neuw: "<<neuw<<endl; 
 						}
 					} else {
-						*(string*)pptr=neuws;
+						*(string*)pptr=neuw;
 					}
 				}
 				break;
@@ -5611,7 +5610,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 					if (woher) {
 						if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 							*obzuschreib=1; 
-							caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", XOR(pptr): "<<XOR(*(string*)pptr,pwk)<<", neuw: "<<neuw<<endl; 
 						}
 					} else {
 						if (ausDatei) {
@@ -5635,7 +5633,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 						if (woher) {
 							if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 								*obzuschreib=1; 
-								caus<<"woher: "<<(int)woher<<", pptr: "<<*(string*)pptr<<", neuw: "<<neuw<<endl; 
 							}
 						} else {
 							*(string*)pptr=neuw;
@@ -5656,7 +5653,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 								if (woher) {
 									if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 										*obzuschreib=1; 
-										caus<<"woher: "<<(int)woher<<", pptr: "<<(int)*(uchar*)pptr<<", neuw: "<<neuw<<endl;
 									}
 								} else {
 									*(uchar*)pptr=neuu; 
@@ -5669,7 +5665,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 								if (woher) {
 									if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 										*obzuschreib=1; 
-										caus<<"woher: "<<(int)woher<<", pptr: "<<*(int*)pptr<<", neuw: "<<neuw<<endl; 
 									}
 								} else {
 									*(int*)pptr=neui;
@@ -5682,7 +5677,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 								if (woher) {
 									if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 										*obzuschreib=1; 
-										caus<<"woher: "<<(int)woher<<", pptr: "<<*(long*)pptr<<", neuw: "<<neuw<<endl; 
 									}
 								} else {
 									*(long*)pptr=neul;
@@ -5707,7 +5701,6 @@ int optcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar a
 						if (woher) {
 							if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 								*obzuschreib=1; 
-								caus<<"woher: "<<(int)woher<<", pptr: "<<", tmmax: "<<endl; 
 							}
 						} else {
 							memcpy((struct tm*)pptr,&tmmax,sizeof tmmax);
@@ -5768,7 +5761,7 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 		const uchar wi, const long Txi2, const string* const rottxt, const int iwert):
 	pname(pname),pptr(pptr),art(art),kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),Txi2(Txi2),rottxt(rottxt),iwert(iwert),
-	obno(1)
+	obno(pname.empty())
 {}
 
 void hcl::gcl0()
@@ -5789,10 +5782,10 @@ void hcl::gcl0()
 	opn<<optcl(/*pname*/"cronminut",/*pptr*/&cronminut,/*art*/psons,T_cm_k,T_cronminuten_l,/*TxBp*/&Txk,/*Txi*/T_Alle_wieviel_Minuten_soll,/*wi*/1,/*Txi2*/T_aufgerufen_werden_0_ist_gar_nicht,/*rottxt*/&meinname,/*wert*/0);
 	opn<<optcl(/*pname*/"",/*pptr*/&obvi,/*art*/puchar,T_vi_k,T_vi_l,/*TxBp*/&Txk,/*Txi*/T_Konfigurationsdatei,/*wi*/0,/*Txi2*/T_Logdatei_usw_bearbeiten_sehen,/*rottxt*/&akonfdt,/*wert*/1);
 	opn<<optcl(/*pname*/"",/*pptr*/&obvs,/*art*/puchar,T_vs_k,T_vs_l,/*TxBp*/&Txk,/*Txi*/T_Quelldateien_in,/*wi*/0,/*Txi2*/T_bearbeiten_sehen,/*rottxt*/&instvz,/*wert*/1);
-	opn<<optcl(/*pname*/"autoupd",/*pptr*/&autoupd,/*art*/puchar,T_autoupd_k,T_autoupd_l,/*TxBp*/&Txk,/*Txi*/T_Programm_automatisch_aktualisieren,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
-	opn<<optcl(/*pname*/"",/*pptr*/&rzf,/*art*/puchar,T_rf_k,T_rueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
-	opn<<optcl(/*pname*/"",/*pptr*/&nrzf,/*art*/puchar,T_krf_k,T_keinerueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_keine_Rueckfragen_zB_aus_Cron,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
-	opn<<optcl(/*pname*/"",/*pptr*/&zeigvers,/*art*/puchar,T_info_k,T_version_l,/*TxBp*/&Txk,/*Txi*/T_Zeigt_die_Programmversion_an,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"autoupd",/*pptr*/&autoupd,/*art*/puchar,T_autoupd_k,T_autoupd_l,/*TxBp*/&Txk,/*Txi*/T_Programm_automatisch_aktualisieren,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&rzf,/*art*/puchar,T_rf_k,T_rueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&nrzf,/*art*/puchar,T_krf_k,T_keinerueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_keine_Rueckfragen_zB_aus_Cron,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&zeigvers,/*art*/puchar,T_info_k,T_version_l,/*TxBp*/&Txk,/*Txi*/T_Zeigt_die_Programmversion_an,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	spezopt();
@@ -5933,14 +5926,14 @@ void hcl::gcl0()
 void hcl::verarbeitkonf()
 {
   if (!nrzf&&obhilfe<=2) {
-		caus<<"opn.size: "<<opn.size()<<endl;
+//		caus<<"opn.size: "<<opn.size()<<endl;
 	for (size_t i = 0;i<opn.size();i++) {
-		caus<<"i: "<<i<<", "<<opn[i].pname<<" ,opn[i].woher: "<<(int)opn[i].woher;
+//		caus<<"i: "<<i<<", "<<opn[i].pname<<" ,opn[i].woher: "<<(int)opn[i].woher;
 		if (!opn[i].pname.empty() && !opn[i].woher) {
-			caus<<"opn[i].pname: "<<opn[i].pname<<", rzf=1 !!!!!!!!!!!!!"<<endl;
+//			caus<<"opn[i].pname: "<<opn[i].pname<<", rzf=1 !!!!!!!!!!!!!"<<endl;
       rzf=1;
 		}
-		caus<<endl;
+//		caus<<endl;
 	}
 		/*
 	map<string,optcl*>::iterator omit;
