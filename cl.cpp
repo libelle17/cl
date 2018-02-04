@@ -12,12 +12,8 @@ enum T_
 	T_VorgbSpeziell,
 	T_MusterVorgb,
 	T_rueckfragen,
-	T_autoupd_k,
-	T_autoupd_l,
-	T_Programm_automatisch_aktualisieren,
 	T_Sollen_neue_Programmversionen_von,
 	T_automatisch_installiert_werden,
-	T_zeigvers,
 	T_Logpfad,
 	T_oblog,
 	T_Oblog,
@@ -26,15 +22,8 @@ enum T_
 	T_Minute,
 	T_sqlv_k,
 	T_sql_verbose_l,
-	T_rf_k,
-	T_rueckfragen_l,
-	T_krf_k,
-	T_keinerueckfragen_l,
 	T_Logverzeichnis,
 	T_Logdateiname,
-	T_info_k,
-	T_version_l,
-	T_Zeigt_die_Programmversion_an,
 	Verbindung_zur_Datenbank_nicht_herstellbar,
 	T_Breche_ab,
 	T_pruefDB,
@@ -60,8 +49,6 @@ enum T_
 	T_Datenbankname_fuer_MySQL_MariaDB_auf,
 	T_Tabellenname_in,
 	T_Fehler_beim_Pruefen_von,
-	T_keine_Rueckfragen_zB_aus_Cron,
-	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,
 	T_Fuege_ein, //ω
 	T_lista_k,
 	T_lista_l,
@@ -81,18 +68,10 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"MusterVorgb()","sampleprefs"},
 	// T_rueckfragen
 	{"rueckfragen()","callbacks()"},
-	// 	T_autoupd_k,
-	{"autoakt","autoupd"},
-	// 	T_autoupd_l,
-	{"autoaktual","autoupdate"},
-	// T_Programm_automatisch_aktualisieren
-	{"Programm automatisch aktualisieren","Update program automatically"},
 	// T_Sollen_neue_Programmversionen_von
 	{"Sollen neue Programmversionen von ","Shall new versions of "},
 	// T_automatisch_installiert_werden
 	{" automatisch installiert werden?"," be automatically installed?"},
-	// T_zeigvers
-	{"zeigvers","showvers"},
 	// T_Logpfad,
 	{"Logpfad: '","Log path: '"},
 	// T_oblog,
@@ -109,24 +88,10 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"sqlw","sqlv"},
 	// T_sql_verbose_l
 	{"sql-wortreich","sql-verbose"},
-	// T_rf_k
-	{"rf","ia"},
-	// T_rueckfragen_l
-	{"rueckfragen","interactive"},
-	// T_krf_k
-	{"krf","noia"},
-	// T_keinerueckfragen_l
-	{"keinerueckfragen","nointeraction"},
 	// T_Logverzeichnis
 	{"Logverzeichnis","log directory"},
 	// T_Logdateiname
 	{"Logdateiname","log file name"},
-	// T_info_k
-	{"info","info"},
-	// T_version_l
-	{"version","version"},
-	// T_Zeigt_die_Programmversion_an
-	{"Zeigt die Programmversion an","shows the program version"},
 	// Verbindung_zur_Datenbank_nicht_herstellbar
 	{"Verbindung zur Datenbank nicht herstellbar, fehnr: ","Connection to the database could not be established, errnr: "},
 	// T_Breche_ab
@@ -177,10 +142,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"Tabellenname in '","table name in '"},
 	//	T_Fehler_beim_Pruefen_von
 	{"Fehler beim Pruefen von: ","Error while examining: "},
-	// T_keine_Rueckfragen_zB_aus_Cron
-	{"keine Rueckfragen, z.B. für Aufruf aus cron","no questions, e.g. for a call of " DPROG " within cron"},
-	// T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte
-	{"alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)","all parameters will be prompted (some of them not shown here)"},
 	// T_Fuege_ein
 	{"Füge ein: ","Inserting: "}, //ω
 	// T_lista_k,
@@ -212,7 +173,7 @@ const DBSTyp myDBS=MySQL;
 #endif // mitpostgres else
 
 
-hhcl::hhcl(const int argc, const char *const *const argv):hcl(argc,argv)
+hhcl::hhcl(const int argc, const char *const *const argv):hcl(argc,argv,DPROG)
 {
 } // hhcl::hhcl
 
@@ -229,10 +190,15 @@ void hhcl::lgnzuw()
 
 void hhcl::spezopt()
 {
-	static string rottext=ltoan(listz);
+	static string listzs=ltoan(listz);
 
-	/*4*/opn<<optcl(/*pname*/"lista",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
-	/*4*/opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&rottext,/*wert*/0);
+	opn<<optcl(/*pname*/"",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&listzs,/*wert*/0);
+	opn<<optcl(/*pname*/"host",/*pptr*/&host,/*art*/psons,T_host_k,T_host_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/&host,/*wert*/0);
+	opn<<optcl(/*pname*/"muser",/*pptr*/&muser,/*art*/psons,T_muser_k,T_muser_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&muser,/*wert*/0);
+	opn<<optcl(/*pname*/"mpwd",/*pptr*/&mpwd,/*art*/psons,T_mpwd_k,T_mpwd_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,/*wi*/1,/*Txi2*/-1,/*rottxt*/&mpwd,/*wert*/0);
+	opn<<optcl(/*pname*/"datenbank",/*pptr*/&dbq,/*art*/psons,T_db_k,T_datenbank_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_die_Datenbank_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&dbq,/*wert*/0);
+	opn<<optcl(/*pname*/"tabelle",/*pptr*/&tabelle,/*art*/psons,T_tb_k,T_tabelle_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_die_Tabelle_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/&tabelle,/*wert*/0);
 } // void hhcl::spezopt()
 
 
@@ -416,61 +382,18 @@ int hhcl::pruefDB(const string& db)
 
 #include <map>
 
+void hhcl::macherkl()
+{
+	erkl<<blau<<"Programm "<<violett<<DPROG<<blau<<" ist etwas ganz Spezielles"<<schwarz;
+}
+
 int main(int argc,char** argv)
 {
 	if (argc>1) {
 	}
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
-	/*
-	optcl opt[]={{"p1",&hhi.p1,psons},{"p3",&hhi.p3,psons},{"p2",&hhi.p2,pzahl}};
+	hhi.fangan();
 
-	hhi.omapzuw(opt,sizeof opt/sizeof *opt);
-	for(size_t i=0;i<sizeof opt/sizeof *opt;i++) {
-		if (opt[i].pname=="p3") {
-			*(string*)opt[i].pptr="gefällig";
-		}
-	}
-	for(hhi.omit=hhi.omap.begin();hhi.omit!=hhi.omap.end();hhi.omit++) {
-		caus<<(*hhi.omit).first<<" "<<(*hhi.omit).second->pname<<" ";
-		if ((*hhi.omit).second->art==pzahl) {
-		 caus<<*(int*)(*hhi.omit).second->pptr<<endl;
-		} else {
-		 caus<<*(string*)(*hhi.omit).second->pptr<<endl;
-		}
-		caus<<endl;
-	}
-	caus<<"nach Suche: "<<*(string*)hhi.omap["p3"]->pptr<<endl;
-	for(size_t i=0;i<sizeof opt/sizeof *opt;i++) {
-		caus<<opt[i].pname<<" ";
-		if (opt[i].art==pzahl) {
-			caus<<*(int*)opt[i].pptr;
-		} else {
-			caus<<*(string*)opt[i].pptr;
-		}
-		caus<<endl;
-	}
-	*/
-	/*//
-		if (argc>1) {
-		} // (argc>1)
-	 */
-	hhi.VorgbAllg();
-	hhi.VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
-	hhi.progpar(DPROG); // Programmparameter aus Befehlszeile und Konfigurationsdatei festlegen
-	if (hhi.obhilfe==3) { // Standardausgabe gewaehrleisten
-		hhi.MusterVorgb();
-	} else {
-//		hhi.lieskonfein(DPROG);
-	} // if (hhi.obhilfe==3)
-	if (hhi.getcommandline()) 
-		exit(8); // Hilfe angezeigt
-	if (hhi.obvi) hhi.dovi(); 
-	if (hhi.obvs) exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
-	if (hhi.zeigvers) {
-		hhi.zeigversion();
-		Log(violetts+Txk[T_Ende]+Tx[T_zeigvers]+schwarz,hhi.obverb,hhi.oblog);
-		exit(7);
-	} // if (hhi.zeigvers)
 	if (!hhi.keineverarbeitung) {
 		hhi.rueckfragen();
 		hhi.pruefggfmehrfach();
@@ -492,15 +415,6 @@ int main(int argc,char** argv)
 	caus<<"nach schreibzaehler"<<endl;
 	} //  if (!hhi.keineverarbeitung)
 	caus<<"nach keineverarbeitung"<<endl;
-
-	hhi.autokonfschreib();
-	caus<<"nach autokonfschreib"<<endl;
-	hhi.update(DPROG);
-	caus<<"nach update"<<endl;
-	hhi.schlussanzeige();
-	caus<<"nach schlussanzeige"<<endl;
-	Log(violetts+Txk[T_Ende]+schwarz,hhi.obverb,hhi.oblog);
-	return 0;
 } // int main //ω
 // wird aufgerufen in: main
 

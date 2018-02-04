@@ -405,6 +405,19 @@ enum Tkons_
 	T_Quelldateien_in,
 	T_bearbeiten_sehen,
 	T_nicht_erkannt,
+	T_autoupd_k,
+	T_autoupd_l,
+	T_Programm_automatisch_aktualisieren,
+	T_rf_k,
+	T_rueckfragen_l,
+	T_krf_k,
+	T_keinerueckfragen_l,
+	T_keine_Rueckfragen_zB_aus_Cron,
+	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,
+	T_info_k,
+	T_version_l,
+	T_Zeigt_die_Programmversion_an,
+	T_zeigvers,
 	T_konsMAX
 }; // Tkons_
 
@@ -636,9 +649,10 @@ struct WPcl { // Wertepaarklasse
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
 		WPcl(const string& pname,const string& wert);
-		int setzstr(const char* neuw,uchar *obzuschreib=0,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *obzuschreib=0);
 		string holstr();
 		uchar einzutragen(schAcl<WPcl> *schlp);
+    void tusetzbemerkwoher(const string& ibemerk,const uchar vwoher);
 		void weisomapzu(schAcl<WPcl> *schlp);
 		//    inline WPcl& operator=(WPcl zuzuw){pname=zuzuw.pname;wert=zuzuw.wert; return *this;} // wird nicht benoetigt
     template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }
@@ -725,6 +739,7 @@ template <typename SCL> class schAcl {
 // int setze(const string& pname, const string& wert/*, const string& bem=nix*/);
 // const string& hole(const string& pname);
  void setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe=0,svec *fertige=0);
+ void setzbemerkwoher(SCL *optp,const string& ibemerk,const uchar vwoher);
  void aschreib(mdatei *const f);
  int fschreib(const string& fname,ios_base::openmode modus=ios_base::out,uchar faclbak=1,int obverb=0,int oblog=0);
  void gibaus(const int nr=0);
@@ -737,6 +752,7 @@ template <> void schAcl<WPcl>::eintrinit();
 template <> void schAcl<optcl>::eintrinit();
 
 // soll dann confdat unnötig machen
+// Konfigurationsdatei-Klasse
 struct confdcl {
 		svec zn;
 		uchar obgelesen;
@@ -925,7 +941,7 @@ struct optcl
 		// ermittelte Optionen:
     const uchar obno=0; // ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll
     string bemerk;
-		uchar woher=0; // 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
+		uchar woher=0; // 1= ueber die Befehlszeile gesetzt, 2=ueber Konfigurationsdatei gesetzt
 		uchar gegenteil=0;
 		uchar nichtspeichern=0;
 		uchar eingetragen; // Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei
@@ -934,7 +950,8 @@ struct optcl
 		optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 				         const uchar wi, const long Txi2, const string* const rottxt, const int iwert);
 		void setzwert();
-		int setzstr(const char* neuw,uchar *obzuschreib=0,const string& bemerk=nix,const uchar vwoher=1);
+		int setzstr(const char* neuw,uchar *obzuschreib=0);
+    void tusetzbemerkwoher(const string& ibemerk,const uchar vwoher);
 		string holstr();
 		void setzebem(schAcl<WPcl> *cpA,const char *pname);
 		void oausgeb();
@@ -1211,6 +1228,7 @@ void viadd(string *cmd,const string& datei,const uchar ro=0,const uchar hinten=0
 class hcl
 {
 	protected:
+		const char* const DPROG;
     double tstart, tende;
     size_t optslsz=0; // last opts.size()
 		unsigned lfd;
@@ -1264,6 +1282,7 @@ class hcl
 		linst_cl* linstp=0;
 		vector<string> benutzer; // Benutzer aus /etc/passwd, bearbeitet durch setzbenutzer(&user)
 		uchar obsotiff=0; // 1 = tiff wird von der source verwendet
+		stringstream erkl; // Erklärung für die Hilfe
 		/*
 		map<string,optcl*> omap; // map der Optionen
 		map<string,optcl*> okmap; // map der Optionen, sortiert nach Tx[<kurzi>]
@@ -1276,13 +1295,14 @@ class hcl
 		void setztmpcron();
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg);
+		virtual void macherkl()=0;
 	public:
 		void autokonfschreib(); 
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
-		hcl(const int argc, const char *const *const argv);
+		hcl(const int argc, const char *const *const argv,const char* const DPROG);
+		void fangan();
 		~hcl();
-		void progpar(const char* DPROG);
 		int Log(const string& text,const bool oberr=0,const short klobverb=0) const;
     int pruefinstv();
     void lieskonfein(const string& DPROG);
@@ -1303,6 +1323,9 @@ class hcl
 		void zeigkonf();
 		void gcl0();
 		virtual void spezopt()=0;
+		virtual void VorgbAllg()=0;
+		virtual void VorgbSpeziell()=0;
+    virtual void MusterVorgb()=0;
 		uchar pruefcron(const string& cm);
 		void dodovi(const svec d1,const svec d2);
 		void dovi();

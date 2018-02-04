@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "04.02.18" "Version 0.10335" "Manual-Seite für ²DPROG²"
+.TH man 1 "04.02.18" "Version 0.10348" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -49,94 +49,76 @@
 .br
 \fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 16\fR pname:\fB autoupd\fR,pptr:\fB                        1\fR,kurzi:\fB   autoupd\fR,langi:\fB  autoupdate\fR,wi:\fB  1\fR,Txi:\fB235\fR,rottxt:\fB               \fR,Txi2:\fB  0\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 17\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        ia\fR,langi:\fB interactive\fR,wi:\fB  1\fR,Txi:\fB241\fR,rottxt:\fB               \fR,Txi2:\fB  0\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 18\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      noia\fR,langi:\fBnointeraction\fR,wi:\fB  1\fR,Txi:\fB240\fR,rottxt:\fB               \fR,Txi2:\fB  0\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 19\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      info\fR,langi:\fB     version\fR,wi:\fB  1\fR,Txi:\fB244\fR,rottxt:\fB               \fR,Txi2:\fB  0\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 20\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 46\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 21\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB      number\fR,wi:\fB  1\fR,Txi:\fB 47\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 22\fR pname:\fB    host\fR,pptr:\fB                localhost\fR,kurzi:\fB      host\fR,langi:\fB        host\fR,wi:\fB  1\fR,Txi:\fB 30\fR,rottxt:\fB      localhost\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 23\fR pname:\fB   muser\fR,pptr:\fB                         \fR,kurzi:\fB     muser\fR,langi:\fB       muser\fR,wi:\fB  1\fR,Txi:\fB 31\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 24\fR pname:\fB    mpwd\fR,pptr:\fB                         \fR,kurzi:\fB      mpwd\fR,langi:\fB        mpwd\fR,wi:\fB  1\fR,Txi:\fB 32\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 25\fR pname:\fBdatenbank\fR,pptr:\fB                     faxe\fR,kurzi:\fB        db\fR,langi:\fB    database\fR,wi:\fB  1\fR,Txi:\fB 33\fR,rottxt:\fB           faxe\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+.br
+\fB 26\fR pname:\fB tabelle\fR,pptr:\fB                         \fR,kurzi:\fB        tb\fR,langi:\fB       table\fR,wi:\fB  1\fR,Txi:\fB 34\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende gcl0
 .br
-akonfdt: \fB/home/schade/.cl.conf\fR
+\fBOptionen, die nicht gespeichert werden: \fR
 .br
-\fBobzuschreib: \fB0\fR
+\fB -w, --wortreich <zahl>\fR: Bildschirmausgabe gespraechiger\fB oder nicht\fR
 .br
-\fBoptausg()\fR
+\fB -ldn, --logdateineu <zahl>\fR: logdatei vorher loeschen\fB oder nicht\fR
 .br
-\fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        sp\fR,langi:\fB     sprache\fR,wi:\fB  1\fR,Txi:\fB139\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR
+\fB -kd, --konfdatei <string>\fR: verwendet Konfigurationsdatei <string> anstatt '\fB\fR'\fB oder nicht\fR
 .br
-\fB  1\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB      lang\fR,langi:\fB      lingue\fR,wi:\fB  1\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -h, --hilfe <zahl>\fR: Erklaerung haeufiger Optionen\fB oder nicht\fR
 .br
-\fB  2\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB         w\fR,langi:\fB   wortreich\fR,wi:\fB  1\fR,Txi:\fB152\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -lh, --langhilfe <zahl>\fR: Erklaerung aller Optionen\fB oder nicht\fR
 .br
-\fB  3\fR pname:\fB   logvz\fR,pptr:\fB                 /var/log\fR,kurzi:\fB       lvz\fR,langi:\fB       logvz\fR,wi:\fB  0\fR,Txi:\fB153\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obno:\fB1\fR,bemkg:\fB# waehlt als Logverzeichnis <pfad>, derzeit '/var/log' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -vi, --vi <zahl>\fR: Konfigurationsdatei \fB\fR, Logdatei usw. bearbeiten/sehen (beenden mit ':qa')\fB oder nicht\fR
 .br
-\fB  4\fR pname:\fBlogdname\fR,pptr:\fB                   cl.log\fR,kurzi:\fB        ld\fR,langi:\fB    logdname\fR,wi:\fB  0\fR,Txi:\fB154\fR,rottxt:\fB       /var/log\fR,Txi2:\fB156\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# logdatei <string> (im Pfad '/var/log') wird verwendet anstatt 'cl.log' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -vs, --vs <zahl>\fR: Quelldateien in \fB/root/cl\fR bearbeiten/sehen (beenden mit ':qa')\fB oder nicht\fR
 .br
-\fB  5\fR pname:\fB   oblog\fR,pptr:\fB                        0\fR,kurzi:\fB         l\fR,langi:\fB         log\fR,wi:\fB  1\fR,Txi:\fB161\fR,rottxt:\fB/var/log/cl.log\fR,Txi2:\fB155\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB# protokolliert ausfuehrlich in Datei '/var/log/cl.log' (sonst knapper) oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -rf, --rueckfragen <zahl>\fR: alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)j\fB oder nicht\fR
 .br
-\fB  6\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB       ldn\fR,langi:\fB logdateineu\fR,wi:\fB  0\fR,Txi:\fB157\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -krf, --keinerueckfragen <zahl>\fR: keine Rueckfragen, z.B. f�r Aufruf aus cronj\fB oder nicht\fR
 .br
-\fB  7\fR pname:\fB        \fR,pptr:\fB    /home/schade/.cl.conf\fR,kurzi:\fB        kd\fR,langi:\fB   konfdatei\fR,wi:\fB  0\fR,Txi:\fB158\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB2\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -info, --version <zahl>\fR: Zeigt die Programmversion anj\fB oder nicht\fR
 .br
-\fB  8\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         h\fR,langi:\fB       hilfe\fR,wi:\fB255\fR,Txi:\fB218\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -lista, --lista <zahl>\fR: listet Zeilen auf\fB oder nicht\fR
 .br
-\fB  9\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        lh\fR,langi:\fB   langhilfe\fR,wi:\fB255\fR,Txi:\fB219\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB2\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fBOptionen z.Speich. i.Konfigur'datei (vorausg. '1'=doch nicht speichern, 'no'=Gegenteil, z.B. '-noocra','-1noocri'):\fR
 .br
-\fB 10\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB         ?\fR,langi:\fB          ??\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -sp, --sprache <string>\fR: Language/Sprache/Lingue/Lingua [\fBd\fReutsch,\fBe\fRnglisch] '\fBd\fR'\fB oder nicht\fR
 .br
-\fB 11\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB        sh\fR,langi:\fBstandardhilfe\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB3\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -lvz, --logvz <pfad>\fR: waehlt als Logverzeichnis <pfad>, derzeit '\fB/var/log\fR'\fB oder nicht\fR
 .br
-\fB 12\fR pname:\fB        \fR,pptr:\fB                        3\fR,kurzi:\fB   libtest\fR,langi:\fB     libtest\fR,wi:\fB255\fR,Txi:\fB -1\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB4\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -ld, --logdname <string>\fR: logdatei <string> (im Pfad '\fB/var/log\fR') wird verwendet anstatt '\fBcl.log\fR'\fB oder nicht\fR
 .br
-\fB 13\fR pname:\fBcronminut\fR,pptr:\fB                        4\fR,kurzi:\fB        cm\fR,langi:\fB cronminuten\fR,wi:\fB  1\fR,Txi:\fB222\fR,rottxt:\fB             cl\fR,Txi2:\fB223\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB1\fR,bemkg:\fB# alle wieviel Minuten soll cl ueber crontab aufgerufen werden (0=gar nicht), anstatt  '4' oder nicht\fR,woher:\fB2\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -l, --log <zahl>\fR: protokolliert ausfuehrlich in Datei '\fB/var/log/cl.log\fR' (sonst knapper)\fB oder nicht\fR
 .br
-\fB 14\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vi\fR,langi:\fB          vi\fR,wi:\fB  0\fR,Txi:\fB226\fR,rottxt:\fB/home/schade/.cl.conf\fR,Txi2:\fB227\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -cm, --cronminuten <string>\fR: alle wieviel Minuten soll \fBcl\fR ueber crontab aufgerufen werden (0=gar nicht), anstatt  '\fB0\fR'\fB oder nicht\fR
 .br
-\fB 15\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB        vs\fR,langi:\fB          vs\fR,wi:\fB  0\fR,Txi:\fB230\fR,rottxt:\fB       /root/cl\fR,Txi2:\fB231\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -autoakt, --autoaktual <zahl>\fR: Programm automatisch aktualisierenj\fB oder nicht\fR
 .br
-\fB 16\fR pname:\fB   lista\fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB       lista\fR,wi:\fB  1\fR,Txi:\fB 59\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB3\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -n, --zahl <zahl>\fR: listet n Zeilen auf anstatt \fB30\fR\fB oder nicht\fR
 .br
-\fB 17\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB        zahl\fR,wi:\fB  1\fR,Txi:\fB 60\fR,rottxt:\fB             30\fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB5\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB -host, --host <string>\fR: verwendet die Datenbank auf Host <string> anstatt auf\fBlocalhost\fR '\fBlocalhost\fR'\fB oder nicht\fR
 .br
-0 zcnfA.zahl: 0
+\fB -muser, --muser <string>\fR: verwendet fuer MySQL/MariaDB den Benutzer <string> anstatt\fB\fR '\fB\fR'\fB oder nicht\fR
 .br
-1 zcnfA.zahl: 4
+\fB -mpwd, --mpwd <string>\fR: verwendet fuer MySQL/MariaDB das Passwort <string>\fB\fR\fB oder nicht\fR
 .br
-azaehlerdt: \fB/home/schade/cl/cl.zaehl\fR
+\fB -db, --datenbank <string>\fR: verwendet die Datenbank <string> anstatt\fBfaxe\fR '\fBfaxe\fR'\fB oder nicht\fR
 .br
-\fBobzuschreib: \fB0\fR
-.br
-\fBaufrufe: \fR173
-.br
-\fBletztes Datum: \fR04.02.2018 15.09.47
-.br
-\fBtagesaufr: \fR27
-.br
-\fBmonatsaufr: \fR27
-.br
-\fBvor return\fR
-.br
-nach pruefggfmehrfach
-.br
-nach tuloeschen
-.br
-Ende pruefcron
-.br
-nach pruefcron
-.br
-\fRProgramm: \fB/home/schade/cl/cl\fR, V: \fB0.10333\fR
-.br
-nach zeigueberschrift
-.br
-nach setzzaehler
-.br
-nach schreibzaehler
-.br
-nach keineverarbeitung
-.br
-\fBobzuschreib: \fB0\fR
-.br
-nach autokonfschreib
-.br
-nach update
-.br
-nach schlussanzeige
+\fB -tb, --tabelle <string>\fR: verwendet die Tabelle <string> anstatt\fB\fR '\fB\fR'\fB oder nicht\fR

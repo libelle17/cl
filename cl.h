@@ -20,9 +20,10 @@ class hhcl:public hcl
 	long listz=30;
  private:
 	void lgnzuw();
+	void macherkl();
  public:
   hhcl(const int argc, const char *const *const argv);
-  ~hhcl();
+	~hhcl();
 	void spezopt(); // (programm-)spezifische Optionen
 	void pruefggfmehrfach();
 	int  initDB();

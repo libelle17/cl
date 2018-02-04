@@ -61,7 +61,7 @@ TCtp	kons.h	/^typedef const char * const * const TCtp[SprachZahl];$/;"	t
 T_	cl.cpp	/^enum T_      $/;"	g	file:
 T_Aendere_Feld	DB.h	/^  T_Aendere_Feld,$/;"	e	enum:Txdb_
 T_Aktiviere_Dienst	kons.h	/^  T_Aktiviere_Dienst,$/;"	e	enum:Tkons_
-T_Alle_wieviel_Minuten_soll	cl.cpp	/^	T_Alle_wieviel_Minuten_soll,$/;"	e	enum:T_	file:
+T_Alle_wieviel_Minuten_soll	kons.h	/^	T_Alle_wieviel_Minuten_soll,$/;"	e	enum:Tkons_
 T_Aufrufintervall	cl.cpp	/^	T_Aufrufintervall,$/;"	e	enum:T_	file:
 T_Benutzer	kons.h	/^	T_Benutzer,$/;"	e	enum:Tkons_
 T_Benutzer_fuer_MySQL_MariaDB	cl.cpp	/^	T_Benutzer_fuer_MySQL_MariaDB,$/;"	e	enum:T_	file:
@@ -132,7 +132,7 @@ T_Kann_Datei	kons.h	/^  T_Kann_Datei,$/;"	e	enum:Tkons_
 T_Kein_cron_gesetzt_nicht_zu_setzen	kons.h	/^	T_Kein_cron_gesetzt_nicht_zu_setzen,$/;"	e	enum:Tkons_
 T_Kompiliert	kons.h	/^	T_Kompiliert,$/;"	e	enum:Tkons_
 T_Konfiguration_fuer	kons.h	/^  T_Konfiguration_fuer,$/;"	e	enum:Tkons_
-T_Konfigurations_u_Logdatei_bearbeiten_sehen	cl.cpp	/^	T_Konfigurations_u_Logdatei_bearbeiten_sehen,$/;"	e	enum:T_	file:
+T_Konfigurationsdatei	kons.h	/^	T_Konfigurationsdatei,$/;"	e	enum:Tkons_
 T_Konnte_Datei	kons.h	/^  T_Konnte_Datei,$/;"	e	enum:Tkons_
 T_Konnte_regulaeren_Ausdruck_nicht_kompilieren	kons.h	/^	T_Konnte_regulaeren_Ausdruck_nicht_kompilieren,$/;"	e	enum:Tkons_
 T_Lese_Konfiguration_aus	kons.h	/^  T_Lese_Konfiguration_aus,$/;"	e	enum:Tkons_
@@ -142,6 +142,7 @@ T_Libtiff_Version	kons.h	/^	T_Libtiff_Version,$/;"	e	enum:Tkons_
 T_Linkverzeichnis	kons.h	/^	T_Linkverzeichnis,$/;"	e	enum:Tkons_
 T_Loesche_Ausrufezeichen	kons.h	/^  T_Loesche_Ausrufezeichen,$/;"	e	enum:Tkons_
 T_Logdatei	kons.h	/^  T_Logdatei,$/;"	e	enum:Tkons_
+T_Logdatei_usw_bearbeiten_sehen	kons.h	/^	T_Logdatei_usw_bearbeiten_sehen,$/;"	e	enum:Tkons_
 T_Logdateidpp	kons.h	/^  T_Logdateidpp,$/;"	e	enum:Tkons_
 T_Logdateiname	cl.cpp	/^	T_Logdateiname,$/;"	e	enum:T_	file:
 T_Logpfad	cl.cpp	/^	T_Logpfad,$/;"	e	enum:T_	file:
@@ -164,8 +165,9 @@ T_Pfad_angegeben	kons.h	/^  T_Pfad_angegeben,$/;"	e	enum:Tkons_
 T_PostgreSQL_musste_neu_eingerichtet_werden	DB.h	/^	T_PostgreSQL_musste_neu_eingerichtet_werden,$/;"	e	enum:Txdb_
 T_Program	kons.h	/^  T_Program,$/;"	e	enum:Tkons_
 T_Programm	kons.h	/^	T_Programm,$/;"	e	enum:Tkons_
-T_Programm_automatisch_aktualisieren	cl.cpp	/^	T_Programm_automatisch_aktualisieren,$/;"	e	enum:T_	file:
+T_Programm_automatisch_aktualisieren	kons.h	/^	T_Programm_automatisch_aktualisieren,$/;"	e	enum:Tkons_
 T_Pruefe_Tabelle	DB.h	/^  T_Pruefe_Tabelle,$/;"	e	enum:Txdb_
+T_Quelldateien_in	kons.h	/^	T_Quelldateien_in,$/;"	e	enum:Tkons_
 T_Quelle	kons.h	/^	T_Quelle,$/;"	e	enum:Tkons_
 T_Rueckmeldung	kons.h	/^  T_Rueckmeldung,$/;"	e	enum:Tkons_
 T_Samba_muesste_installiert_werden_soll_ich	kons.h	/^	T_Samba_muesste_installiert_werden_soll_ich,$/;"	e	enum:Tkons_
@@ -194,22 +196,23 @@ T_VorgbSpeziell	cl.cpp	/^	T_VorgbSpeziell,$/;"	e	enum:T_	file:
 T_Weder_zypper_noch_apt_get_noch_dnf_noch_yum_als_Installationspgrogramm_gefunden	kons.h	/^  T_Weder_zypper_noch_apt_get_noch_dnf_noch_yum_als_Installationspgrogramm_gefunden,$/;"	e	enum:Tkons_
 T_Welches_Passwort_soll_der_Benutzer_postgres_haben	DB.h	/^	T_Welches_Passwort_soll_der_Benutzer_postgres_haben,$/;"	e	enum:Txdb_
 T_Wert	kons.h	/^	T_Wert,$/;"	e	enum:Tkons_
-T_Zeigt_die_Programmversion_an	cl.cpp	/^	T_Zeigt_die_Programmversion_an,$/;"	e	enum:T_	file:
+T_Zeigt_die_Programmversion_an	kons.h	/^	T_Zeigt_die_Programmversion_an,$/;"	e	enum:Tkons_
 T_Zeilen	kons.h	/^  T_Zeilen,$/;"	e	enum:Tkons_
 T_Zeit_Doppelpunkt	kons.h	/^	T_Zeit_Doppelpunkt,$/;"	e	enum:Tkons_
 T_activating	kons.h	/^	T_activating,$/;"	e	enum:Tkons_
 T_aktuelle_Einstellungen_aus	kons.h	/^	T_aktuelle_Einstellungen_aus,$/;"	e	enum:Tkons_
 T_alle	kons.h	/^	T_alle,$/;"	e	enum:Tkons_
-T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte	cl.cpp	/^	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,$/;"	e	enum:T_	file:
+T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte	kons.h	/^	T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,$/;"	e	enum:Tkons_
 T_als_Dienst_eingerichtet_von	kons.h	/^  T_als_Dienst_eingerichtet_von,$/;"	e	enum:Tkons_
 T_am	kons.h	/^  T_am,$/;"	e	enum:Tkons_
 T_auf	DB.h	/^  T_auf,$/;"	e	enum:Txdb_
 T_aufgerufen	kons.h	/^	T_aufgerufen,$/;"	e	enum:Tkons_
-T_aufgerufen_werden_0_ist_gar_nicht	cl.cpp	/^	T_aufgerufen_werden_0_ist_gar_nicht,$/;"	e	enum:T_	file:
+T_aufgerufen_werden_0_ist_gar_nicht	kons.h	/^	T_aufgerufen_werden_0_ist_gar_nicht,$/;"	e	enum:Tkons_
 T_autokonfschreib	kons.h	/^	T_autokonfschreib,$/;"	e	enum:Tkons_
 T_automatisch_installiert_werden	cl.cpp	/^	T_automatisch_installiert_werden,$/;"	e	enum:T_	file:
-T_autoupd_k	cl.cpp	/^	T_autoupd_k,$/;"	e	enum:T_	file:
-T_autoupd_l	cl.cpp	/^	T_autoupd_l,$/;"	e	enum:T_	file:
+T_autoupd_k	kons.h	/^	T_autoupd_k,$/;"	e	enum:Tkons_
+T_autoupd_l	kons.h	/^	T_autoupd_l,$/;"	e	enum:Tkons_
+T_bearbeiten_sehen	kons.h	/^	T_bearbeiten_sehen,$/;"	e	enum:Tkons_
 T_beenden	kons.h	/^  T_beenden,$/;"	e	enum:Tkons_
 T_bei	kons.h	/^	T_bei,$/;"	e	enum:Tkons_
 T_bei_Abfrage	DB.h	/^  T_bei_Abfrage,$/;"	e	enum:Txdb_
@@ -218,11 +221,11 @@ T_bei_der_Abfrage_der_Spaltenlaenge_bei_Tabelle	DB.h	/^  T_bei_der_Abfrage_der_S
 T_bei_sql_Befehl	DB.h	/^	T_bei_sql_Befehl,$/;"	e	enum:Txdb_
 T_beim_Initialisieren_von_MySQL	DB.h	/^  T_beim_Initialisieren_von_MySQL,$/;"	e	enum:Txdb_
 T_belassen	kons.h	/^	T_belassen,$/;"	e	enum:Tkons_
-T_cm_k	cl.cpp	/^	T_cm_k,$/;"	e	enum:T_	file:
+T_cm_k	kons.h	/^	T_cm_k,$/;"	e	enum:Tkons_
 T_confdat_lies_Datei	kons.h	/^	T_confdat_lies_Datei,$/;"	e	enum:Tkons_
 T_confdat_lies_Erfolg	kons.h	/^	T_confdat_lies_Erfolg,$/;"	e	enum:Tkons_
 T_confdat_lies_Misserfolg	kons.h	/^	T_confdat_lies_Misserfolg,$/;"	e	enum:Tkons_
-T_cronminuten_l	cl.cpp	/^	T_cronminuten_l,$/;"	e	enum:T_	file:
+T_cronminuten_l	kons.h	/^	T_cronminuten_l,$/;"	e	enum:Tkons_
 T_cronzuplanen	kons.h	/^	T_cronzuplanen,$/;"	e	enum:Tkons_
 T_datei	kons.h	/^	T_datei,$/;"	e	enum:Tkons_
 T_datenbank_l	cl.cpp	/^	T_datenbank_l,$/;"	e	enum:T_	file:
@@ -253,7 +256,7 @@ T_hilfe_l	kons.h	/^	T_hilfe_l,$/;"	e	enum:Tkons_
 T_holsystemsprache	kons.h	/^	T_holsystemsprache,$/;"	e	enum:Tkons_
 T_host_k	cl.cpp	/^	T_host_k,$/;"	e	enum:T_	file:
 T_host_l	cl.cpp	/^	T_host_l,$/;"	e	enum:T_	file:
-T_info_k	cl.cpp	/^	T_info_k,$/;"	e	enum:T_	file:
+T_info_k	kons.h	/^	T_info_k,$/;"	e	enum:Tkons_
 T_ist_leer_Wollen_Sie_eines_festlegen	DB.h	/^  T_ist_leer_Wollen_Sie_eines_festlegen,$/;"	e	enum:Txdb_
 T_j	DB.h	/^  T_j,$/;"	e	enum:Txdb_
 T_j_af	kons.h	/^	T_j_af,$/;"	e	enum:Tkons_
@@ -262,12 +265,12 @@ T_ja	kons.h	/^	T_ja,$/;"	e	enum:Tkons_
 T_kd_k	kons.h	/^	T_kd_k,$/;"	e	enum:Tkons_
 T_kein_Aufruf	cl.cpp	/^	T_kein_Aufruf,$/;"	e	enum:T_	file:
 T_kein_Verzeichnis_nochmal	kons.h	/^  T_kein_Verzeichnis_nochmal,$/;"	e	enum:Tkons_
-T_keine_Rueckfragen_zB_aus_Cron	cl.cpp	/^	T_keine_Rueckfragen_zB_aus_Cron,$/;"	e	enum:T_	file:
-T_keinerueckfragen_l	cl.cpp	/^	T_keinerueckfragen_l,$/;"	e	enum:T_	file:
+T_keine_Rueckfragen_zB_aus_Cron	kons.h	/^	T_keine_Rueckfragen_zB_aus_Cron,$/;"	e	enum:Tkons_
+T_keinerueckfragen_l	kons.h	/^	T_keinerueckfragen_l,$/;"	e	enum:Tkons_
 T_komma_Ergebnis	kons.h	/^  T_komma_Ergebnis,$/;"	e	enum:Tkons_
 T_konfdatei_l	kons.h	/^	T_konfdatei_l,$/;"	e	enum:Tkons_
 T_konsMAX	kons.h	/^	T_konsMAX$/;"	e	enum:Tkons_
-T_krf_k	cl.cpp	/^	T_krf_k,$/;"	e	enum:T_	file:
+T_krf_k	kons.h	/^	T_krf_k,$/;"	e	enum:Tkons_
 T_kuerze_logdatei	kons.h	/^  T_kuerze_logdatei,$/;"	e	enum:Tkons_
 T_l_k	kons.h	/^	T_l_k,$/;"	e	enum:Tkons_
 T_laeuft_jetzt	kons.h	/^	T_laeuft_jetzt,$/;"	e	enum:Tkons_
@@ -313,7 +316,7 @@ T_nicht_als_fstream_zum_Anhaengen_oeffnen	kons.h	/^  T_nicht_als_fstream_zum_Anh
 T_nicht_als_fstream_zum_Lesen_oeffnen	kons.h	/^  T_nicht_als_fstream_zum_Lesen_oeffnen,$/;"	e	enum:Tkons_
 T_nicht_als_fstream_zum_Schreiben_oeffnen	kons.h	/^  T_nicht_als_fstream_zum_Schreiben_oeffnen,$/;"	e	enum:Tkons_
 T_nicht_einfuegbar	kons.h	/^	T_nicht_einfuegbar,$/;"	e	enum:Tkons_
-T_nicht_erkannt	cl.cpp	/^	T_nicht_erkannt,$/;"	e	enum:T_	file:
+T_nicht_erkannt	kons.h	/^	T_nicht_erkannt,$/;"	e	enum:Tkons_
 T_nicht_ermoeglicht	kons.h	/^	T_nicht_ermoeglicht,$/;"	e	enum:Tkons_
 T_nicht_gefunden	kons.h	/^  T_nicht_gefunden,$/;"	e	enum:Tkons_
 T_nicht_gefunden_soll_ich_es_erstellen	kons.h	/^  T_nicht_gefunden_soll_ich_es_erstellen,$/;"	e	enum:Tkons_
@@ -345,9 +348,9 @@ T_prueffunc	DB.h	/^	T_prueffunc,$/;"	e	enum:Txdb_
 T_pruefpar	kons.h	/^  T_pruefpar,$/;"	e	enum:Tkons_
 T_pruefsamba	kons.h	/^	T_pruefsamba,$/;"	e	enum:Tkons_
 T_prueftif	kons.h	/^	T_prueftif,$/;"	e	enum:Tkons_
-T_rf_k	cl.cpp	/^	T_rf_k,$/;"	e	enum:T_	file:
+T_rf_k	kons.h	/^	T_rf_k,$/;"	e	enum:Tkons_
 T_rueckfragen	cl.cpp	/^	T_rueckfragen,$/;"	e	enum:T_	file:
-T_rueckfragen_l	cl.cpp	/^	T_rueckfragen_l,$/;"	e	enum:T_	file:
+T_rueckfragen_l	kons.h	/^	T_rueckfragen_l,$/;"	e	enum:Tkons_
 T_schlussanzeige	kons.h	/^	T_schlussanzeige,$/;"	e	enum:Tkons_
 T_schreibe_Konfiguration	kons.h	/^	T_schreibe_Konfiguration,$/;"	e	enum:Tkons_
 T_semodpruef	kons.h	/^	T_semodpruef,$/;"	e	enum:Tkons_
@@ -369,16 +372,18 @@ T_und_Feld	DB.h	/^  T_und_Feld,$/;"	e	enum:Txdb_
 T_unveraendert	kons.h	/^	T_unveraendert,$/;"	e	enum:Tkons_
 T_v_k	kons.h	/^	T_v_k,$/;"	e	enum:Tkons_
 T_verbose_l	kons.h	/^	T_verbose_l,$/;"	e	enum:Tkons_
-T_version_l	cl.cpp	/^	T_version_l,$/;"	e	enum:T_	file:
+T_version_l	kons.h	/^	T_version_l,$/;"	e	enum:Tkons_
 T_verwendet_Konfigurationsdatei_string_anstatt	kons.h	/^	T_verwendet_Konfigurationsdatei_string_anstatt,$/;"	e	enum:Tkons_
 T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf	cl.cpp	/^	T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,$/;"	e	enum:T_	file:
 T_verwendet_die_Datenbank_string_anstatt	cl.cpp	/^	T_verwendet_die_Datenbank_string_anstatt,$/;"	e	enum:T_	file:
 T_verwendet_die_Tabelle_string_anstatt	cl.cpp	/^	T_verwendet_die_Tabelle_string_anstatt,$/;"	e	enum:T_	file:
 T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string	cl.cpp	/^	T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,$/;"	e	enum:T_	file:
 T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt	cl.cpp	/^	T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,$/;"	e	enum:T_	file:
-T_vi_k	cl.cpp	/^	T_vi_k,$/;"	e	enum:T_	file:
-T_vi_l	cl.cpp	/^	T_vi_l,$/;"	e	enum:T_	file:
+T_vi_k	kons.h	/^	T_vi_k,$/;"	e	enum:Tkons_
+T_vi_l	kons.h	/^	T_vi_l,$/;"	e	enum:Tkons_
 T_von	DB.h	/^  T_von,$/;"	e	enum:Txdb_
+T_vs_k	kons.h	/^	T_vs_k,$/;"	e	enum:Tkons_
+T_vs_l	kons.h	/^	T_vs_l,$/;"	e	enum:Tkons_
 T_waehlt_als_Logverzeichnis_pfad_derzeit	kons.h	/^	T_waehlt_als_Logverzeichnis_pfad_derzeit,$/;"	e	enum:Tkons_
 T_warte	kons.h	/^	T_warte,$/;"	e	enum:Tkons_
 T_wird	kons.h	/^	T_wird,$/;"	e	enum:Tkons_
@@ -446,7 +451,6 @@ abSchl	kons.h	/^class abSchl {$/;"	c
 absch	kons.h	/^class absch$/;"	c
 abschv	kons.h	/^    vector<absch> abschv;$/;"	m	class:confdat
 affrows	DB.cpp	/^my_ulonglong DB::affrows(const size_t aktc) const$/;"	f	class:DB
-agcnfA	kons.h	/^    schAcl<WPcl> agcnfA; \/\/ Gesamtkonfiguration$/;"	m	class:hcl
 agef	kons.h	/^ uchar agef=0; \/\/ dieser wurde gefunden$/;"	m	class:argcl
 akonfdt	kons.h	/^    string akonfdt; \/\/ name der Konfigurationsdatei$/;"	m	class:hcl
 aktprogverz	kons.cpp	/^string aktprogverz()$/;"	f
@@ -520,7 +524,7 @@ confdat	kons.cpp	/^confdat::confdat()$/;"	f	class:confdat
 confdat	kons.cpp	/^confdat::confdat(const string& fname,int obverb):pname(fname)$/;"	f	class:confdat
 confdat	kons.cpp	/^template<class SCL> confdat::confdat(const string& fname, schAcl<SCL> *sA, int obverb\/*=0*\/, const char tz\/*='='*\/,const uchar mitclear\/*=1*\/)$/;"	f	class:confdat
 confdat	kons.h	/^class confdat$/;"	c
-confdcl	kons.cpp	/^confdcl::confdcl():obgelesen(0)$/;"	f	class:confdcl
+confdcl	kons.cpp	/^confdcl::confdcl():obgelesen(0),obzuschreib(0)$/;"	f	class:confdcl
 confdcl	kons.h	/^struct confdcl {$/;"	s
 conn	DB.h	/^    MYSQL **conn;$/;"	m	class:DB
 conz	DB.h	/^		size_t conz; \/\/ Zahl der Verbindungen (s.o., conn)$/;"	m	class:DB
@@ -634,6 +638,7 @@ erweitern	DB.cpp	/^void DB::erweitern(const string& tabs, vector<instyp> einf,co
 exitp	DB.cpp	5;"	d	file:
 exitt	kons.h	135;"	d
 falsch	kons.h	/^enum binaer:uchar {falsch,wahr};$/;"	e	enum:binaer
+fangan	kons.cpp	/^void hcl::fangan(const char* const DPROG)$/;"	f	class:hcl
 fed	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 fehler	DB.h	/^    string fehler;$/;"	m	class:RS
 fehler	kons.h	/^    int fehler=0; \/\/ Exit-Code der Exe-Datei$/;"	m	class:servc
@@ -685,7 +690,7 @@ gruen	kons.cpp	/^			*const gruen="\\e[0;32m", *const hgruen="\\e[1;32m", *const 
 gruens	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 gtrim	kons.h	/^inline std::string *gtrim(std::string *str) {$/;"	f	class:std
 hccd	kons.h	/^		confdcl hccd;$/;"	m	class:hcl
-hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv)$/;"	f	class:hcl
+hcl	kons.cpp	/^hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG)$/;"	f	class:hcl
 hcl	kons.h	/^class hcl$/;"	c
 hgrau	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 hgrau	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
@@ -784,7 +789,7 @@ lies	kons.cpp	/^int confdat::lies(const string& fname, int obverb)$/;"	f	class:c
 lies	kons.cpp	/^int confdcl::lies(const string& fname, int obverb)$/;"	f	class:confdcl
 lieskonfein	cl.cpp	/^void hhcl::lieskonfein(const string& dprog)$/;"	f	class:hhcl
 lieskonfein	kons.cpp	/^void hcl::lieskonfein(const string& DPROG)$/;"	f	class:hcl
-lieszaehlerein	kons.cpp	/^void hcl::lieszaehlerein(ulong *arp\/*=0*\/,ulong *tap\/*=0*\/,ulong *map\/*=0*\/, struct tm *lap\/*=0*\/,$/;"	f	class:hcl
+lieszaehlerein	kons.cpp	/^void hcl::lieszaehlerein()$/;"	f	class:hcl
 linst_cl	kons.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_cl
 linst_cl	kons.h	/^class linst_cl$/;"	c
 linstp	DB.h	/^		linst_cl *const linstp=0;$/;"	m	class:DB
@@ -872,13 +877,12 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	989;"	d
+obfstream	kons.h	1017;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obgelesen	kons.h	/^    uchar obgelesen=0;$/;"	m	class:confdat
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
 obind	DB.h	/^    bool obind;$/;"	m	class:Feld
 obkeinwert	DB.h	/^    unsigned char obkeinwert; \/\/ bei update wird <wert> nicht als Wert, sondern ohne Anf'z.(z.B.als Feld) verwendet (z.B. update xy set altdatum = datum)$/;"	m	class:instyp
-obkschreib	kons.h	/^    uchar obkschreib=0; \/\/ Konfigurationsdatei schreiben$/;"	m	class:hcl
 oblgschreib	kons.h	/^    uchar oblgschreib=0; \/\/ Konfigurationsdatei seitens der Sprache voraussichtlich schreiben$/;"	m	class:hcl
 oblista	cl.h	/^	uchar oblista=0;$/;"	m	class:hhcl
 oblog	kons.h	/^		int obverb=0, oblog=0;$/;"	m	class:find3cl
@@ -892,7 +896,6 @@ obno	kons.h	/^    const uchar obno=0; \/\/ ob auch die Option mit vorangestellte
 oboffen	kons.h	/^  int oboffen=0;$/;"	m	class:mdatei
 obprogda	kons.cpp	/^int obprogda(const string& prog, int obverb\/*=0*\/, int oblog\/*=0*\/, string *pfad\/*=0*\/)$/;"	f
 obschreibp	kons.h	/^    uchar *obschreibp=0; \/\/ ob Konfiguration geschrieben werden muss$/;"	m	class:optioncl
-obschreibp	kons.h	/^    uchar *obschreibp=0; \/\/ ob Konfiguration geschrieben werden muss$/;"	m	struct:optcl
 obsotiff	kons.h	/^		uchar obsotiff=0; \/\/ 1 = tiff wird von der source verwendet$/;"	m	class:hcl
 obsvfeh	kons.cpp	/^int servc::obsvfeh(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ ob service einrichtungs fehler$/;"	f	class:servc
 obverb	kons.h	/^		int obverb=0, oblog=0;$/;"	m	class:find3cl
@@ -900,8 +903,8 @@ obverb	kons.h	/^	int obverb,oblog;$/;"	m	class:find2cl
 obverb	kons.h	/^    int obverb=0; \/\/ verbose$/;"	m	class:hcl
 obverbp	kons.cpp	/^int *find3cl::obverbp, *find3cl::oblogp;$/;"	m	class:find3cl	file:
 obverbp	kons.h	/^		static int *obverbp, *oblogp;$/;"	m	class:find3cl
-obvi	cl.h	/^  uchar obvi=0; \/\/ ob Konfigurationsdatei editiert werden soll$/;"	m	class:hhcl
-obvs	cl.h	/^	uchar obvs=0;   \/\/ ob Quelldateien bearbeitet werden sollen$/;"	m	class:hhcl
+obvi	kons.h	/^		uchar obvi=0; \/\/ ob Konfigurationsdatei editiert werden soll$/;"	m	class:hcl
+obvs	kons.h	/^		uchar obvs=0;   \/\/ ob Quelldateien bearbeitet werden sollen$/;"	m	class:hcl
 obzuschreib	kons.h	/^		uchar obzuschreib;$/;"	m	struct:confdcl
 oeffne	kons.cpp	/^oeffne(const string& datei, uchar art, uchar* erfolg,int obverb\/*=0*\/, int oblog\/*=0*\/,uchar faclbak\/*=1*\/)$/;"	f
 oisok	DB.cpp	/^uchar DB::oisok=0;$/;"	m	class:DB	file:
@@ -976,7 +979,6 @@ prec	DB.h	/^    vector<long> prec;$/;"	m	class:RS
 pres	DB.h	/^		PGresult *pres;$/;"	m	class:RS
 printBits	kons.cpp	/^void printBits(size_t const size, void const * const ptr)$/;"	f
 printf_mutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
-progpar	kons.cpp	/^void hcl::progpar(const char* DPROG)$/;"	f	class:hcl
 progvers	kons.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
 pruefDB	cl.cpp	/^int hhcl::pruefDB(const string& db)$/;"	f	class:hhcl
 pruefberecht	kons.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
@@ -1015,8 +1017,8 @@ rootpwd	DB.h	/^    string rootpwd; \/\/ root-Passwort \/\/ wird in pruefrpw geae
 rot	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", *const blau="", *const gelb="", *const tuerkis="", *const hgrau="";$/;"	v
 rot	kons.cpp	/^const char *const schwarz="\\e[0m", *const dgrau="\\e[1;30m", *const drot="\\e[0;31m", *const rot="\\e[1;31m",$/;"	v
 rots	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
+rottxt	kons.h	/^    const string *const rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	struct:optcl
 rottxt	kons.h	/^    const string *rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	class:optioncl
-rottxt	kons.h	/^    string *rottxt=0; \/\/ ggf rot zu markierender Text zwischen Txi und Txi2$/;"	m	struct:optcl
 row	DB.h	/^    MYSQL_ROW row;$/;"	m	class:RS
 rowformat	DB.h	/^    const string rowformat;$/;"	m	class:Tabelle
 rtrim	kons.h	/^inline std::string *rtrim(std::string *str) {$/;"	f	class:std
@@ -1045,6 +1047,7 @@ servc	kons.cpp	/^servc::servc(const string& vsname,const string& vename,int obve
 servc	kons.h	/^    servc(const string& vsname,const string& vename): sname((vsname.empty()?vename:vsname)),ename(vename) {}$/;"	f	class:servc
 servc	kons.h	/^class servc {$/;"	c
 setfaclggf	kons.cpp	/^void setfaclggf(const string& datei,int obverb\/*=0*\/,int oblog\/*=0*\/,const binaer obunter\/*=falsch*\/,int mod\/*=4*\/,uchar obimmer\/*=0*\/,$/;"	f
+setzbemerkwoher	kons.cpp	/^template<class SCL> void schAcl<SCL>::setzbemerkwoher(SCL *optp,const string& ibemerk,const uchar vwoher)$/;"	f	class:schAcl
 setzbemv	kons.cpp	/^template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)$/;"	f	class:schAcl
 setzbenutzer	kons.cpp	/^void hcl::setzbenutzer(string *user)$/;"	f	class:hcl
 setze	kons.h	/^    template <typename T> void setze(T *var) { strncpy(val,ltoan(*var),sizeof val-1);val[sizeof val-1]=0; }$/;"	f	class:Schluessel
@@ -1054,8 +1057,8 @@ setze	kons.h	/^template <> inline void Schluessel::setze < string > (string *var
 setzebem	kons.cpp	/^template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)$/;"	f	class:optioncl
 setzlog	kons.cpp	/^void hcl::setzlog()$/;"	f	class:hcl
 setzrpw	DB.cpp	/^void DB::setzrpw(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ Setze root-password$/;"	f	class:DB
-setzstr	kons.cpp	/^int WPcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& bemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:WPcl
-setzstr	kons.cpp	/^int optcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/,const string& ibemerk\/*=nix*\/,const uchar vwoher\/*=1*\/)$/;"	f	class:optcl
+setzstr	kons.cpp	/^int WPcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/)$/;"	f	class:WPcl
+setzstr	kons.cpp	/^int optcl::setzstr(const char* neuw,uchar *obzuschreib\/*=0*\/)$/;"	f	class:optcl
 setztmpcron	kons.cpp	/^void hcl::setztmpcron()$/;"	f	class:hcl
 setzwert	kons.cpp	/^void optcl::setzwert()$/;"	f	class:optcl
 setzzaehler	kons.cpp	/^void hcl::setzzaehler()$/;"	f	class:hcl
@@ -1139,6 +1142,8 @@ tuerkis	kons.cpp	/^const char *const drot="", *const rot="", *const schwarz="", 
 tuerkiss	kons.cpp	/^const string drots=drot, rots=rot, schwarzs=schwarz, blaus=blau, dblaus=dblau, gelbs=gelb, tuerkiss=tuerkis, violetts=violett, gruens=gruen;$/;"	v
 tuerweitern	DB.cpp	/^uchar DB::tuerweitern(const string& tabs, const string& feld,long wlength,const size_t aktc,int obverb) const$/;"	f	class:DB
 tuloeschen	kons.cpp	/^int tuloeschen(const string& zuloe,const string& cuser\/*=nix*\/, int obverb\/*=0*\/, int oblog\/*=0*\/,stringstream *ausgp\/*=0*\/)$/;"	f
+tusetzbemerkwoher	kons.cpp	/^void WPcl::tusetzbemerkwoher(const string& ibemerk, const uchar vwoher)$/;"	f	class:WPcl
+tusetzbemerkwoher	kons.cpp	/^void optcl::tusetzbemerkwoher(const string& ibemerk,const uchar vwoher)$/;"	f	class:optcl
 typ	DB.h	/^    const string typ;$/;"	m	class:Feld
 typ	DB.h	/^    vector<string> typ;$/;"	m	class:RS
 typ	kons.h	/^  string typ;$/;"	m	class:find2cl
@@ -1148,7 +1153,7 @@ typbitp	kons.h	/^    static int *typbitp;$/;"	m	class:find3cl
 uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
-uebersichtlich	kons.cpp	6321;"	d	file:
+uebersichtlich	kons.cpp	6390;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1163,7 +1168,7 @@ user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1156;"	d	file:
+vagenau	kons.cpp	1206;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
@@ -1203,7 +1208,7 @@ wert	kons.h	/^   string wert;$/;"	m	class:abSchl
 wi	kons.h	/^		const uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	struct:optcl
 wi	kons.h	/^		uchar wi=0; \/\/ Wichtigkeit: 1= wird mit -lh oder -h, 0= nur mit -lh, 255 (-1) = gar nicht angezeigt$/;"	m	class:optioncl
 wlong	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
-woher	kons.h	/^		uchar woher=0; \/\/ 1= ueber die Kommandozeile gesetzt, 2=ueber Konfigurationsdatei gesetzt$/;"	m	struct:optcl
+woher	kons.h	/^		uchar woher=0; \/\/ 1= ueber die Befehlszeile gesetzt, 2=ueber Konfigurationsdatei gesetzt$/;"	m	struct:optcl
 wstr	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Zahl, binär$/;"	e	enum:war_t
 wurz	kons.h	/^    set<wele> wurz,fertige;$/;"	m	class:find3cl
 wurzp	kons.cpp	/^set<wele> *find3cl::wurzp;$/;"	m	class:find3cl	file:

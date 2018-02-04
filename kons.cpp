@@ -561,6 +561,32 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{" bearbeiten/sehen (beenden mit ':qa')","(finish with ':qa')"},
 	// T_nicht_erkannt
 	{" nicht erkannt!"," not identified!"},
+	// 	T_autoupd_k,
+	{"autoakt","autoupd"},
+	// 	T_autoupd_l,
+	{"autoaktual","autoupdate"},
+	// T_Programm_automatisch_aktualisieren
+	{"Programm automatisch aktualisieren","Update program automatically"},
+	// T_rf_k
+	{"rf","ia"},
+	// T_rueckfragen_l
+	{"rueckfragen","interactive"},
+	// T_krf_k
+	{"krf","noia"},
+	// T_keinerueckfragen_l
+	{"keinerueckfragen","nointeraction"},
+	// T_keine_Rueckfragen_zB_aus_Cron
+	{"keine Rueckfragen, z.B. für Aufruf aus cron","no questions, e.g. for a call from within cron"},
+	// T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte
+	{"alle Parameter werden abgefragt (darunter einige hier nicht gezeigte)","all parameters will be prompted (some of them not shown here)"},
+	// T_info_k
+	{"info","info"},
+	// T_version_l
+	{"version","version"},
+	// T_Zeigt_die_Programmversion_an
+	{"Zeigt die Programmversion an","shows the program version"},
+	// T_zeigvers
+	{"zeigvers","showvers"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -1964,7 +1990,7 @@ template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const ch
 */
 } // void sAdat::auswert(WPcl *sA, size_t csize, int obverb, char tz)
 
-
+// setzt die Werte aus der Datei in der Optionenschar *sA
 template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
 {
   richtige=0;
@@ -2004,9 +2030,12 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
             if (pname==sA->schl[ii].pname) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
 							// caus<<"sA->schl[ii].pname: "<<sA->schl[ii].pname<<endl;
 							// caus<<blau<<"setze!"<<schwarz<<endl;
-							sA->schl[ii].setzstr(wert.c_str(),&obzuschreib,ibemerk,/*woher=*/2);
-							++richtige;
-							ibemerk.clear();
+							int wiefalsch=sA->schl[ii].setzstr(wert.c_str(),&obzuschreib);
+							if (!wiefalsch) {
+								sA->setzbemerkwoher(&sA->schl[ii],/*bemerk=*/ibemerk,/*woher*/2);
+								++richtige;
+								ibemerk.clear();
+							}
 							break;
 						} // if( !strcmp(sA[i].pname.c_str(),zeile->c_str()) ) 
 						/*
@@ -2277,6 +2306,30 @@ template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,siz
   } //   for(size_t ind=0;ind<zahl;ind++)
 } // void schAcl::setzbemv(const string& pname,const string& bem)
 
+// ruft die jeweilige Options-Routine zum Setzen des Woher-Flags mit dem Wert vwoher auf, ggf. fuer alle gleichnamigen Optionen
+template<class SCL> void schAcl<SCL>::setzbemerkwoher(SCL *optp,const string& ibemerk,const uchar vwoher)
+{
+ if (optp->pname.empty()) {
+	 optp->tusetzbemerkwoher(ibemerk,vwoher);
+ } else {
+	for (size_t i = 0;i<schl.size();i++) {
+		if (schl[i].pname==optp->pname) {
+			schl[i].tusetzbemerkwoher(ibemerk,vwoher);
+		}
+	}
+ }
+}
+
+void optcl::tusetzbemerkwoher(const string& ibemerk,const uchar vwoher)
+{
+	bemerk=ibemerk;
+	if (!woher) woher=vwoher;
+}
+
+// woher-Flag gibts nicht
+void WPcl::tusetzbemerkwoher(const string& ibemerk, const uchar vwoher)
+{
+}
 
 template<class SCL> schAcl<SCL>::~schAcl()
 {
@@ -5064,7 +5117,7 @@ const string s_gz="gz";
 const string& defvors="https://github.com/"+gitv+"/";
 const string& defnachs="/archive/master.tar.gz";
 
-hcl::hcl(const int argc, const char *const *const argv)
+hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):DPROG(DPROG)
 {
 	tstart=clock();
 	cl=argv[0];
@@ -5102,29 +5155,49 @@ hcl::hcl(const int argc, const char *const *const argv)
 	setzlog();
 	pruefplatte(); // geht ohne Logaufruf, falls nicht #define systemrueckprofiler
 	linstp=new linst_cl(obverb,oblog);
-} // hcl::hcl()
-
-hcl::~hcl()
-{
-	delete linstp;
-	linstp=0;
 }
-
-// Programmparameter:
-void hcl::progpar(const char* DPROG)
+// zum Aufruf virtueller Funktionen aus dem Konstruktur verschoben
+void hcl::fangan()
 {
-	if (obverb) {
-		cout<<violett<<"progpar()"<<schwarz<<endl;
-		obverb=0;
-	}
+	VorgbAllg();
+	VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
 	gcl0(); //¿
 	lgnzuw();
+	macherkl();
+	if (zeighilfe(&erkl)) 
+		exit(1);
 	lieskonfein(DPROG);
 	setzlog();
 	lgnzuw();
 	verarbeitkonf();
 	optausg(gruen);
 	lieszaehlerein();
+	if (obhilfe==3) { // Standardausgabe gewaehrleisten
+		MusterVorgb();
+	} else {
+//		hhi.lieskonfein(DPROG);
+	} // if (hhi.obhilfe==3)
+//	if (getcommandline()) exit(8); // Hilfe angezeigt
+	if (obvi) dovi(); 
+	if (obvs) exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
+	if (zeigvers) {
+		zeigversion();
+		Log(violetts+Txk[T_Ende]+Tx[T_zeigvers]+schwarz,obverb,oblog);
+		exit(7);
+	} // if (hhi.zeigvers)
+} // hcl::hcl()
+
+hcl::~hcl()
+{
+	autokonfschreib();
+	caus<<"nach autokonfschreib"<<endl;
+	update(DPROG);
+	caus<<"nach update"<<endl;
+	schlussanzeige();
+	caus<<"nach schlussanzeige"<<endl;
+	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
+	delete linstp;
+	linstp=0;
 }
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
@@ -5345,7 +5418,7 @@ void optcl::setzwert()
  }
 } // void optcl::setzwert()
 
-int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& bemerk/*=nix*/,const uchar vwoher/*=1*/)
+int WPcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
 {
 	struct tm tmp={0},tmmax={0},neu={0};
 	char *emax=0,*eakt;
@@ -5488,14 +5561,14 @@ void optcl::reset()
   nichtspeichern=0;	
 	switch (art) {
 		case puchar: case pint: case plong:
-			setzstr("0",0,"",0); break;
-		default: setzstr("",0,"",0);
+			setzstr("0",0); break;
+		default: setzstr("",0);
 	}
 } // void optcl::reset()
 
 
 // weist einer Option einen c-String zu
-int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& ibemerk/*=nix*/,const uchar vwoher/*=1*/)
+int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/)
 {
 	int wiefalsch=0;
 	struct tm tmp={0},tmmax={0},neu={0};
@@ -5510,6 +5583,7 @@ int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& ibeme
 			case psons:
 				// ... dann zuweisen
 				if (*(string*)pptr!=neuw) {
+					// Befehlszeilenoptionen nicht durch Konfigurationsdateioptionen ueberschreiben lassen
 					if (woher) {
 						if (obzuschreib) if (!*obzuschreib) if (!nichtspeichern) { 
 							*obzuschreib=1; 
@@ -5614,15 +5688,12 @@ int optcl::setzstr(const char* neuw,uchar *obzuschreib/*=0*/,const string& ibeme
 				}
 				break;
 		} // switch (art) 
-		if (!woher && !wiefalsch) {
-			woher=vwoher;
-			bemerk=ibemerk;
-		}
 	} // 	if (!woher)
 	return wiefalsch;
 } // void optcl::setzstr
 
 // Rueckgabe: -1: String-Parameter erfolgreich zugewiesen, 0: Zahl erfolgreich zugewiesen
+// Parameter ueber Befehlszeile zuweisen
 int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar vnichtspeichern/*=0*/)
 {
 	int wiefalsch=0;
@@ -5663,7 +5734,7 @@ int optcl::pzuweis(const char *nacstr, const uchar vgegenteil/*=0*/, const uchar
 		}
 	} // 									if (wert) else
 	return wiefalsch;
-} // int optcl::pzuweis(optcl* optp, const char *nacstr, const uchar gegenteil/*=0*/, const uchar nichtspeichern/*=0*/)
+} // int optcl::pzuweis
 
 optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kurzi, const int langi, TxB* TxBp, const long Txi,
 		const uchar wi, const long Txi2, const string* const rottxt, const int iwert):
@@ -5673,22 +5744,26 @@ optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kur
 
 void hcl::gcl0()
 {
-	/*2*/opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-	/*2*/opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obverb,/*art*/puchar,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
-	/*2*/opn<<optcl(/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-	/*3a*/opn<<optcl(/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0);
-	/*3b*/opn<<optcl(/*pname*/"oblog",/*pptr*/&oblog,/*art*/pint,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&logdateineu,/*art*/puchar,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
-	/*2*/opn<<optcl(/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_h_k,T_hilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_haeufiger_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_lh_k,T_lhilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_aller_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/2);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_fgz_k,T_fgz_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3);
-	/*4*/opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4);
-	/*4*/opn<<optcl(/*pname*/"cronminut",/*pptr*/&cronminut,/*art*/psons,T_cm_k,T_cronminuten_l,/*TxBp*/&Txk,/*Txi*/T_Alle_wieviel_Minuten_soll,/*wi*/1,/*Txi2*/T_aufgerufen_werden_0_ist_gar_nicht,/*rottxt*/&meinname,/*wert*/0);
+	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"",/*pptr*/&obverb,/*art*/puchar,T_v_k,T_verbose_l,/*TxBp*/&Txk,/*Txi*/T_Bildschirmausgabe_gespraechiger,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"logvz",/*pptr*/&logvz,/*art*/pverz,T_lvz_k,T_logvz_l,/*TxBp*/&Txk,/*Txi*/T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"logdname",/*pptr*/&logdname,/*art*/psons,T_ld_k,T_logdname_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_string_im_Pfad,/*wi*/0,/*Txi2*/T_wird_verwendet_anstatt,/*rottxt*/&logvz,/*wert*/0);
+	opn<<optcl(/*pname*/"oblog",/*pptr*/&oblog,/*art*/pint,T_l_k,T_log_l,/*TxBp*/&Txk,/*Txi*/T_protokolliert_ausfuehrlich_in_Datei,/*wi*/1,/*Txi2*/T_sonst_knapper,/*rottxt*/&loggespfad,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&logdateineu,/*art*/puchar,T_ldn_k,T_logdateineu_l,/*TxBp*/&Txk,/*Txi*/T_logdatei_vorher_loeschen,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&akonfdt,/*art*/pfile,T_kd_k,T_konfdatei_l,/*TxBp*/&Txk,/*Txi*/T_verwendet_Konfigurationsdatei_string_anstatt,/*wi*/0,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_h_k,T_hilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_haeufiger_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_lh_k,T_lhilfe_l,/*TxBp*/&Txk,/*Txi*/T_Erklaerung_aller_Optionen,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/2);
+	opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_fgz_k,T_fgz_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_sh,T_standardhilfe,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/3);
+	opn<<optcl(/*pname*/"",/*pptr*/&obhilfe,/*art*/puchar,T_libtest,T_libtest,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/255,/*Txi2*/-1,/*rottxt*/0,/*wert*/4);
+	opn<<optcl(/*pname*/"cronminut",/*pptr*/&cronminut,/*art*/psons,T_cm_k,T_cronminuten_l,/*TxBp*/&Txk,/*Txi*/T_Alle_wieviel_Minuten_soll,/*wi*/1,/*Txi2*/T_aufgerufen_werden_0_ist_gar_nicht,/*rottxt*/&meinname,/*wert*/0);
 	opn<<optcl(/*pname*/"",/*pptr*/&obvi,/*art*/puchar,T_vi_k,T_vi_l,/*TxBp*/&Txk,/*Txi*/T_Konfigurationsdatei,/*wi*/0,/*Txi2*/T_Logdatei_usw_bearbeiten_sehen,/*rottxt*/&akonfdt,/*wert*/1);
 	opn<<optcl(/*pname*/"",/*pptr*/&obvs,/*art*/puchar,T_vs_k,T_vs_l,/*TxBp*/&Txk,/*Txi*/T_Quelldateien_in,/*wi*/0,/*Txi2*/T_bearbeiten_sehen,/*rottxt*/&instvz,/*wert*/1);
+	opn<<optcl(/*pname*/"autoupd",/*pptr*/&autoupd,/*art*/puchar,T_autoupd_k,T_autoupd_l,/*TxBp*/&Txk,/*Txi*/T_Programm_automatisch_aktualisieren,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&rzf,/*art*/puchar,T_rf_k,T_rueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&nrzf,/*art*/puchar,T_krf_k,T_keinerueckfragen_l,/*TxBp*/&Txk,/*Txi*/T_keine_Rueckfragen_zB_aus_Cron,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
+	opn<<optcl(/*pname*/"",/*pptr*/&zeigvers,/*art*/puchar,T_info_k,T_version_l,/*TxBp*/&Txk,/*Txi*/T_Zeigt_die_Programmversion_an,/*wi*/1,/*Txi2*/0,/*rottxt*/0,/*wert*/1);
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	spezopt();
@@ -5742,16 +5817,7 @@ void hcl::gcl0()
 									if (ap==argcmv.end()) break;
 								}
 								if (wiefalsch<=0) { // erfolgreich zugewiesen
-									if (omit->second->pname.empty()) {
-										omit->second->woher=1;
-									// bei Optionen ohne leerem Namen Gleichnamige gleichbehandeln
-									} else {
-										for(size_t iru=0;iru<opn.size();iru++) {
-											if (opn[iru].pname==omit->second->pname) {
-												opn[iru].woher=1;
-											}
-										}
-									} // 									if (omit->first.empty()) else
+									opn.setzbemerkwoher(omit->second,/*ibemerk=*/nix,/*vwoher=*/1);
 								} else {
 									if (!obhilfe) obhilfe=1;
 								} // 								if (wiefalsch<=0) else
@@ -5768,7 +5834,7 @@ void hcl::gcl0()
 	optausg(gelb);
 	for(size_t i=0;i<argcmv.size();i++) {
 		if (!argcmv[i].agef) {
-			::Log(rots+"Parameter: "+gruen+argcmv[i].argcs+rot+Tx[T_nicht_erkannt]+schwarz,1,1);
+			::Log(rots+"Parameter: "+gruen+argcmv[i].argcs+rot+Txk[T_nicht_erkannt]+schwarz,1,0);
 			if (!obhilfe) obhilfe=1;
 		} //     if (!argcmv[i].agef)
 	} //   for(size_t i=0;i<argcmv.size();i++)
@@ -5838,12 +5904,14 @@ void hcl::gcl0()
 void hcl::verarbeitkonf()
 {
   if (!nrzf&&obhilfe<=2) {
+		caus<<"opn.size: "<<opn.size()<<endl;
 	for (size_t i = 0;i<opn.size();i++) {
-		caus<<"i: "<<i<<", "<<opn[i].pname;
+		caus<<"i: "<<i<<", "<<opn[i].pname<<" ,opn[i].woher: "<<(int)opn[i].woher;
 		if (!opn[i].pname.empty() && !opn[i].woher) {
 			caus<<"opn[i].pname: "<<opn[i].pname<<", rzf=1 !!!!!!!!!!!!!"<<endl;
       rzf=1;
 		}
+		caus<<endl;
 	}
 		/*
 	map<string,optcl*>::iterator omit;
@@ -6402,7 +6470,8 @@ void hcl::vischluss(string& erg)
 	erg+="tabfirst' -p";
 	string exdt=instvz+"/.exrc";
 	{ifstream is(exdt);if (is.good()) erg+="Nu "+exdt;}
-	exit(systemrueck(cmd+" +'"+erg+" "+devtty,0,0,/*rueck=*/0,/*obsudc=*/1));
+	// caus<<violett<<cmd+" +'"+erg+" "+devtty<<schwarz<<endl;
+	exit(systemrueck(cmd+" +'"+erg+" "+devtty,obverb,0,/*rueck=*/0,/*obsudc=*/0));
 } // void vischluss(string& cmd,string& erg)
 
 // aufgerufen in: main
