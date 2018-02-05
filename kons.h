@@ -1203,7 +1203,7 @@ extern const string s_dampand; // =" && ";
 extern const string s_gz; // ="gz";
 extern const string& defvors; // ="https://github.com/"+gitv+"/";
 extern const string& defnachs; // ="/archive/master.tar.gz";
-void viadd(string *cmd,const string& datei,const uchar ro=0,const uchar hinten=0, const uchar unten=0);
+void viadd(string *cmdp,string* zeigp,const string& datei,const uchar ro=0,const uchar hinten=0, const uchar unten=0);
 
 // Haupt-Klasse
 class hcl
@@ -1279,7 +1279,7 @@ class hcl
     virtual void lgnzuw(); // in vorgaben, lieskonfein, getcommandl0, getcommandline, rueckfragen
 		void setztmpcron();
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
-		void vischluss(string& erg);
+		void vischluss(string& erg,string& zeig);
 		virtual void macherkl()=0;
 	public:
 		void autokonfschreib(); 

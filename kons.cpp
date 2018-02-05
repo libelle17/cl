@@ -2254,7 +2254,7 @@ std::string dir_name(const std::string& path)
 // soll fuer den Fall eines uebergebenen 'rueck'-Zeigers den Rueckgabewert der aufgerufenen Funktion zuruckliefern,
 // ausser bei 'find', da die Zahl der Funde
 // bei rueck==0 liefert es das Ergebnis der system(..)-Funktion zurueck
-// obverb: 1 = Befehl anzeigen, 2 = auch Rueckgabezeilen anzeigen
+// obverb: 1 = Befehl anzeigen, 2 = auch Rueckgabezeilen anzeigen, -1 = nur cmd ohne env mit Rueckgabezeilen anzeigen
 // obergebnisanzeig: 1=falls Fehler und obverb>1, >1=falls Fehler
 // cmd soll kein "sudo " am Anfang enthalten, falls noetig soll obsudc gesetzt werden. Innenliegende sudo-Befehle duerfen fuer den Cron-Aufruf 
 //  nur den Pfad /usr/bin:/bin (fedora und ubuntu) bzw. /usr/bin:/usr/sbin:/sbin:/bin:/usr/lib/news/bin:/root/bin (opensuse) erwarten
@@ -2305,7 +2305,7 @@ int systemrueck(const string& cmd, char obverb/*=0*/, int oblog/*=0*/, vector<st
 		(obdirekt?hcmd:"env PATH='"+spath+"' "+"sh -c '"+ersetzAllezu(hcmd,"'","'\\''")+"'");
 	string hsubs=bef.substr(0,getcols()-7-aktues.length());
 	string meld=aktues+": "+blau+hsubs+schwarz+" ...";
-	if (ausgp&&obverb) *ausgp<<meld<<endl; else Log(meld,obverb>0?-1:0,oblog);
+	if (ausgp&&obverb>0) *ausgp<<meld<<endl; else Log(meld,obverb>0?-1:0,oblog);
 	if (!rueck) if (obergebnisanzeig) {neurueck=1;rueck=new vector<string>;}
 	// #define systemrueckprofiler
 #ifdef systemrueckprofiler
@@ -2429,12 +2429,18 @@ int systemrueck(const string& cmd, char obverb/*=0*/, int oblog/*=0*/, vector<st
     prf.ausgab1000("vor log");
 #endif
 		meld=aktues+": "+blau+bef+schwarz+Txk[T_komma_Ergebnis]+blau+ergebnis+schwarz;
-		if (ausgp&&obverb) *ausgp<<meld<<endl; else Log(meld,obverb>0?obverb:0,oblog);
+		if (ausgp&&obverb>0) *ausgp<<meld<<endl; else Log(meld,obverb>0?obverb:0,oblog);
 	} // if (obverb>0 || oblog)
 	if (obergebnisanzeig && rueck->size()) {
-		if (ausgp&&obverb) *ausgp<<smeld<<endl; else Log(smeld,obverb>1||(ob0heissterfolg && erg && obergebnisanzeig>1),oblog);
+		if (ausgp&&obverb>0) *ausgp<<smeld<<endl; else Log(smeld,obverb>1||(ob0heissterfolg && erg && obergebnisanzeig>1),oblog);
 	} // 	if (obergebnisanzeig && rueck->size())
 	if (neurueck) {delete rueck;rueck=0;}
+	if (obverb==-1) {
+		cout<<blau<<cmd<<schwarz<<":"<<endl;
+		for(unsigned i=0;i<rueck->size();i++) {
+			cout<<rueck->at(i)<<endl;
+		}
+	}
   return erg; 
 } // int systemrueck(const string& cmd, char obverb, int oblog, vector<string> *rueck, binaer ...
 
@@ -5007,7 +5013,11 @@ void hcl::fangan()
 	} // if (hhi.obhilfe==3)
 //	if (getcommandline()) exit(8); // Hilfe angezeigt
 	if (obvi) dovi(); 
-	if (obvs) exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
+	if (obvs) {
+		svec rueck;
+		systemrueck("cd \""+instvz+"\";ls -l $(grep 'DTN' vars|sed 's/DTN::=//g')",-1,oblog,&rueck);
+		exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
+	}
 	if (zeigvers) {
 		zeigversion();
 		Log(violetts+Txk[T_Ende]+Tx[T_zeigvers]+schwarz,obverb,oblog);
@@ -5026,7 +5036,6 @@ hcl::~hcl()
 	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
 	delete linstp;
 	linstp=0;
-	caus<<"mpwd: "<<mpwd<<endl;
 }
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
@@ -6210,11 +6219,13 @@ void hcl::schlussanzeige()
 	Log(Txk[T_Fertig_mit]+blaus+meinname+schwarz+" !");
 }// augerufen in: dovi, dovc, dovh
 
-void viadd(string* cmdp,const string& datei,const uchar ro/*=0*/,const uchar hinten/*=0*/, const uchar unten/*=0*/)
+void viadd(string* cmdp,string* zeigp, const string& datei,const uchar ro/*=0*/,const uchar hinten/*=0*/, const uchar unten/*=0*/)
 {
 	// if (!stat(sudoers.c_str(),&sstat)) KLA // if (sstat.st_mode & S_IRUSR) // lieferte falsch wahr
 	ifstream is(datei);
 	if (is.good()) {
+		*zeigp+=" ";
+		*zeigp+=datei;
 		if (ro) {
 			if (hinten) *cmdp+="tablast|";
 			*cmdp=*cmdp+"tab sview "+datei+"|";
@@ -6225,30 +6236,32 @@ void viadd(string* cmdp,const string& datei,const uchar ro/*=0*/,const uchar hin
 	} //  if (is.good())
 } // void viadd(string *cmdp,string datei)
 
-void hcl::vischluss(string& erg)
+void hcl::vischluss(string& erg,string& zeig)
 {
 	erg+="tabfirst' -p";
 	string exdt=instvz+"/.exrc";
 	{ifstream is(exdt);if (is.good()) erg+="Nu "+exdt;}
 	// caus<<violett<<cmd+" +'"+erg+" "+devtty<<schwarz<<endl;
+	systemrueck("ls -l "+zeig,2);
 	exit(systemrueck(cmd+" +'"+erg+" "+devtty,obverb,0,/*rueck=*/0,/*obsudc=*/0));
 } // void vischluss(string& cmd,string& erg)
 
 // aufgerufen in: main
 void hcl::dodovi(const svec d1,const svec d2)
 {
+	string zeig;
 	cmd=edit;
-	viadd(&cmd,akonfdt);
+	viadd(&cmd,&zeig,akonfdt);
 	for(unsigned i=0;i<d1.size();i++) {
-		viadd(&cmd,d1[i]);
+		viadd(&cmd,&zeig,d1[i]);
 	}
 	string erg;
-	viadd(&erg,logdt,1,0,1);
-	viadd(&erg,azaehlerdt,1,0,0);
+	viadd(&erg,&zeig,logdt,1,0,1);
+	viadd(&erg,&zeig,azaehlerdt,1,0,0);
 	for(unsigned i=0;i<d2.size();i++) {
-		viadd(&erg,d2[i],1,1,0);
+		viadd(&erg,&zeig,d2[i],1,1,0);
 	}
-	vischluss(erg);
+	vischluss(erg,zeig);
 } // void hcl::dovi()
 
 void hcl::update(const string& DPROG)

@@ -333,7 +333,7 @@ void hhcl::zeigueberschrift()
 
 void hhcl::pruefggfmehrfach()
 {
-	if (!obhilfe &&!obvi &&!zeigvers) {
+	if (!obhilfe &&!obvi &&!obvs &&!zeigvers &&!rzf) {
 		pruefmehrfach(meinname,nrzf);
 	}
 } // void hhcl::pruefggfmehrfach()
@@ -392,7 +392,7 @@ int main(int argc,char** argv)
 	if (argc>1) {
 	}
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
-	hhi.fangan();
+	hhi.fangan(); // Einleitungsteil mit Aufruf virtueller Funktionen
 
 	caus<<"keineverarbeitung: "<<(int)hhi.keineverarbeitung<<endl;
 	if (!hhi.keineverarbeitung) {
