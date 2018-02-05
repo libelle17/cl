@@ -648,7 +648,6 @@ struct WPcl { // Wertepaarklasse
 		uchar eingetragen; // Hilfsvariable zur genau einmaligen Eintragung einer Option mit name=pname in Konfigurationsdatei
 		WPcl(const string& pname,const void* pptr,war_t wart);
 		WPcl(const string& pname); // wird benoetigt in: schAcl::init(size_t vzahl, ...)
-		WPcl(const string& pname,const string& wert);
 		int setzstr(const char* neuw,uchar *const obzuschreib=0,const uchar ausDatei=0);
 		string holstr();
 		uchar einzutragen(schAcl<WPcl> *schlp);
@@ -751,18 +750,6 @@ template <> void schAcl<WPcl>::init(size_t vzahl, ...);
 template <> void schAcl<WPcl>::eintrinit();
 template <> void schAcl<optcl>::eintrinit();
 
-// soll dann confdat unnötig machen
-// Konfigurationsdatei-Klasse
-struct confdcl {
-		svec zn;
-		uchar obgelesen;
-		uchar obzuschreib;
-    size_t richtige;
-		confdcl();
-		int lies(const string& fname, int obverb);
-    template <class SCL> void auswert(schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
-};
-
 class abSchl {
  public:
    string pname;
@@ -837,25 +824,19 @@ class absch
  void clear();
 }; // class absch
 
-class confdat
-{
-  private:
-  public:
-    uchar obgelesen=0;
-    svec zn;
-    string pname;
-    vector<absch> abschv;
+// Konfigurationsdatei-Klasse, Nachfolger von confdat
+struct confdcl {
+		svec zn;
+		uchar obgelesen;
+		uchar obzuschreib;
     size_t richtige;
-    confdat(const string& fname, int obverb);
-    template<class SCL> confdat(const string& fname, schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
-		confdat();
-		template<class SCL> void cinit(const string& fname, schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
-////    confdat(const string& fname,WPcl *conf, size_t csize, int obverb=0, char tz='=');
-    int lies(const string& fname,int obverb);
+    vector<absch> abschv;
+		confdcl(const string& fname, int obverb);
+		confdcl();
+		int lies(const string& fname, int obverb);
     template <class SCL> void auswert(schAcl<SCL> *sA, int obverb=0, const char tz='=',const uchar mitclear=1);
-////    void auswert(WPcl *conf, size_t csize, int obverb=0, char tz='=');
     void Abschn_auswert(int obverb=0, const char tz='=');
-}; // class confdat
+};
 
 // fuer Commandline-Optionen
 enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; // Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)
@@ -1231,9 +1212,6 @@ class hcl
 		const char* const DPROG;
     double tstart, tende;
     size_t optslsz=0; // last opts.size()
-		unsigned lfd;
-    uchar rzf=0; // rueckzufragen
-//		confdat afcd;
 		confdcl hccd;
 		string tmpcron; // fuer crontab
     string cronminut; // Minuten fuer crontab; 0 = kein Crontab-Eintrag
@@ -1254,6 +1232,7 @@ class hcl
 	public:
 		int obverb=0; // verbose
 		int oblog=0;  // mehr Protokollieren
+    uchar rzf=0; // rueckzufragen
 		uchar obvi=0; // ob Konfigurationsdatei editiert werden soll
 		uchar obvs=0;   // ob Quelldateien bearbeitet werden sollen
     string langu; // Sprache (Anfangsbuchstabe)

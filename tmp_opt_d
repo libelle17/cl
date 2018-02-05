@@ -1,4 +1,10 @@
 .br
+\fBlies: \fB/etc/sysconfig/language\fR
+.br
+\fBobzuschreib: \fB0\fR
+.br
+Sprache gefunden in \fB/etc/sysconfig/language\fR: \fBd\fR
+.br
 \fBoptausg()\fR
 .br
 \fB  0\fR pname:\fBlanguage\fR,pptr:\fB                        d\fR,kurzi:\fB        lg\fR,langi:\fB     language\fR,wi:\fB  1\fR,Txi:\fB139\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB1\fR,gegent.:\fB0\fR,nichtspei.:\fB1\fR

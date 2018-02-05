@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "05.02.18" "Version 0.10353" "\fB²DPROG²\fR man page"
+.TH man 1 "05.02.18" "Version 0.10359" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -14,6 +14,12 @@
 .SH USAGE
 .SH OPTIONS 
 .SH PRECONDITIONS
+.br
+\fBlies: \fB/etc/sysconfig/language\fR
+.br
+\fBobzuschreib: \fB0\fR
+.br
+Sprache gefunden in \fB/etc/sysconfig/language\fR: \fBd\fR
 .br
 \fBoptausg()\fR
 .br

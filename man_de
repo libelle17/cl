@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "05.02.18" "Version 0.10353" "Manual-Seite für ²DPROG²"
+.TH man 1 "05.02.18" "Version 0.10359" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -14,6 +14,12 @@
 .SH GEBRAUCH
 .SH OPTIONEN 
 .SH VORAUSSETZUNGEN
+.br
+\fBlies: \fB/etc/sysconfig/language\fR
+.br
+\fBobzuschreib: \fB0\fR
+.br
+Sprache gefunden in \fB/etc/sysconfig/language\fR: \fBd\fR
 .br
 \fBoptausg()\fR
 .br

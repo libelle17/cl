@@ -987,9 +987,11 @@ string holsystemsprache(int obverb/*=0*/)
 		struct stat langstat={0};
 		if (!lstat(langdt[lind],&langstat)) {
 			cglangA.init(1, langvr[lind]);
-			confdat langcd(langdt[lind],&cglangA,obverb);
+			confdcl langcd(langdt[lind],obverb);
+			langcd.auswert(&cglangA);
 			if (!cglangA[0].wert.empty()) {
 				ret= cglangA[0].wert[0];
+				caus<<"Sprache gefunden in "<<blau<<langdt[lind]<<schwarz<<": "<<rot<<ret<<schwarz<<endl;
 				break;
 			} // 			if (!cglangA[0].wert.empty())
 		} //     if (!lstat(hylacdt.c_str(),&hstat))
@@ -1850,42 +1852,13 @@ const string& absch::suche(const string& sname)
   return suche(sname.c_str());
 } // const string& absch::suche(const string& sname)
 
-// Achtung: Wegen der Notwendigkeit zur Existenz der Datei zum Aufruf von setfacl kann die Datei erstellt werden!
-int confdat::lies(const string& fname, int obverb)
-{
-	int erg=0;
-	if (fname.empty()) {
-		erg=2;
-	} else {
-		mdatei f(fname,ios::in);
-		if (f.is_open()) {
-			if (obverb>0) cout<<Txk[T_confdat_lies_Datei]<<blau<<fname<<schwarz<<endl;
-			string zeile;
-			while (getline(f,zeile)) {
-				zn<<zeile;
-			}
-			obgelesen=1;
-		} else {
-			erg=1;
-		} //   if (f.is_open())
-	} // 	if (fname.empty())
-	if (obverb>0) {
-		if (erg)
-			cout<<Txk[T_confdat_lies_Misserfolg]<<endl;
-		else
-			cout<<Txk[T_confdat_lies_Erfolg]<<endl;
-	} // 	if (obverb>0) {
-	return erg;
-} // lies(const string& fname, int obverb)
-
 void absch::clear()
 {
  aname.clear();
  av.clear();
 } // void absch::clear()
 
-
-void confdat::Abschn_auswert(int obverb, const char tz)
+void confdcl::Abschn_auswert(int obverb/*=0*/, const char tz/*='='*/)
 {
   absch abp;
   for(size_t i=0;i<zn.size();i++) {
@@ -1926,70 +1899,7 @@ void confdat::Abschn_auswert(int obverb, const char tz)
     <<j<<": "<<abschv[i].av[j].name<<": "<<abschv[i].av[j].wert<<endl;
   KLZ
 */
-} // void confdat::Abschn_auswert(int obverb, char tz)
-
-// aufgerufen in: confdat::confdat(const string& fname, schAcl *sA, int obverb, char tz):name(fname)
-template <class SCL> void confdat::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
-{
-  richtige=0;
-  if (mitclear) {
-		sA->reset();
-	}
-  if (obgelesen) {
-    string ibemerk;
-    for(size_t i=0;i<zn.size();i++) {
-      string *zeile=&zn[i];
-      size_t pos=zeile->find('#');
-      if (pos!=string::npos) {
-        // wir nehmen an, die Kommentarzeile gehoert zum naechsten Parameter, wenn sie vorne beginnt
-        if (!pos) {
-        // Ueberschrift am Anfang  weglassen
-          if (!richtige && zeile->find("onfigura")!=string::npos && zeile->find("automati")!=string::npos) {
-          } else {
-            if (!ibemerk.empty()) ibemerk+='\n';
-            ibemerk+=zeile->substr(pos);
-          } // if (!richtige ... else
-        } // if (!pos)
-        zeile->erase(pos);
-      } // if (pos!=string::npos)
-      ltrim(zeile);
-      if (!zeile->empty()) {
-        if (obverb>1) Log(Txk[T_stern_zeile]+*zeile,obverb);
-        pos=zeile->find(tz);
-        if (pos!=string::npos && pos>0) { 
-          size_t ii=sA->schl.size(),gef;
-          while( ii-- ) {
-            gef=zeile->find(sA->schl[ii].pname);
-            if (!gef) { // conf[ii].name muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
-              sA->schl[ii].gelesen=1;
-              if (strchr((string(" ")+(char)9+tz).c_str(),zeile->at(gef+sA->schl[ii].pname.length()))) {
-                ++richtige;
-                sA->schl[ii].wert=zeile->substr(pos+1);
-                gtrim(&sA->schl[ii].wert); // Leerzeichen entfernen
-                // Anfuehrungszeichen entfernen
-                anfzweg(sA->schl[ii].wert);
-////      if (name.find(<DPROG>)!=string::npos)
-//// <<" name: "<<schwarz<<(*sA)[ii].name<<violett<<" wert: '"<<schwarz<<(*sA)[ii].wert<<"'"<<violett<<" bemerk: '"<<ibemerk<<"'"<<schwarz<<endl;
-                sA->schl[ii].bemerk=ibemerk;
-                ibemerk.clear();
-              } // if (strchr((string(" ")+(char)9+tz).c_str(),gef+(*sA)[ii].name.length())) 
-              break;
-            } // if( !strcmp(sA[i].name.c_str(),zeile->c_str()) ) 
-            if (!gef)
-              Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+sA->schl[ii].pname+rot+Txk[T_nicht_gefunden],obverb+1);
-          } // while( ii-- ) 
-        } // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
-      } // if (!zeile->empty()) 
-    } // for(size_t i=0;i<zn.size();i++) 
-  } // if (obgelesen) 
-/*//	
-  if (name.find("config.tty")!=string::npos) KLA
-    for(size_t ii=0;ii<sA->zahl;ii++) KLA
- <<" name: "<<schwarz<<(*sA)[ii].name<<violett<<" wert: '"<<schwarz<<(*sA)[ii].wert<<"'"<<violett<<" bemerk: '"<<(*sA)[ii].bemerk<<"'"<<schwarz<<endl;
-    KLZ
-  KLZ
-*/
-} // void sAdat::auswert(WPcl *sA, size_t csize, int obverb, char tz)
+} // void confdcl::Abschn_auswert(int obverb, char tz)
 
 // setzt die Werte aus der Datei in der Optionenschar *sA
 template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
@@ -2060,83 +1970,6 @@ template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const ch
 } // void sAdat::auswert
 
 
-/*//
-void confdat::auswert(WPcl *conf, size_t csize, int obverb, char tz)
-{
-  richtige=0;
-  for(size_t i=0;i<csize;i++) {
-    conf[i].wert.clear();
-    conf[i].gelesen=0;
-  }
-  if (obgelesen) {
-    for(size_t i=0;i<zn.size();i++) {
-      string *zeile=&zn[i];
-      size_t pos=zeile->find('#');
-      if (pos!=string::npos) zeile->erase(pos);
-      ltrim(zeile);
-      if (!zeile->empty()) {
-        if (obverb>1) Log(string(Txk[T_stern_zeile])+*zeile,obverb);
-        pos=zeile->find(tz);
-        if (pos!=string::npos && pos>0) { 
-          size_t ii=csize,gef;
-          while( ii-- ) {
-            gef=zeile->find(conf[ii].pname);
-            if (!gef) { // conf[ii].pname muss am Zeilenanfang anfangen, sonst Fehler z.B.: number, faxnumber
-              conf[ii].gelesen=1;
-              if (strchr((string(" ")+(char)9+tz).c_str(),zeile->at(gef+conf[ii].pname.length()))) {
-                ++richtige;
-                conf[ii].wert=zeile->substr(pos+1);
-                gtrim(&conf[ii].wert); // Leerzeichen entfernen
-                // Anfuerhungszeichen entfernen
-                anfzweg(conf[ii].wert);
-              } // if (strchr((string(" ")+(char)9+tz).c_str(),gef+conf[ii].pname.length())) 
-              break;
-            } // if( !strcmp(conf[i].pname.c_str(),zeile->c_str()) ) 
-            if (!gef)
-              Log(rots+Txk[T_Fehler_bei_auswert]+schwarz+conf[ii].pname+rot+Txk[T_nicht_gefunden],obverb+1);
-          } // while( ii-- ) 
-        } // if (pos!=string::npos && 1==sscanf(zeile->c_str(),scs.c_str(),zeile->c_str())) 
-      } // if (!zeile->empty()) 
-    } // for(size_t i=0;i<zn.size();i++) 
-  } // if (obgelesen) 
-} // void confdat::auswert(WPcl *conf, size_t csize, int obverb, char tz)
-*/
-
-confdat::confdat(const string& fname,int obverb):pname(fname)
-{
-  if (!fname.empty())
-  lies(fname,obverb);
-} // confdat::confdat(const string& fname,int obverb):pname(fname)
-
-template<class SCL> confdat::confdat(const string& fname, schAcl<SCL> *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
-{
- cinit(fname,sA,obverb,tz,mitclear);
-} // confdat::confdat
-
-confdat::confdat()
-{
-}
-
-template<class SCL> void confdat::cinit(const string& fname, schAcl<SCL> *sA, int obverb/*=0*/, const char tz/*='='*/,const uchar mitclear/*=1*/)
-{
-  pname=fname;
-  if (obverb>0) 
-    cout<<violett<<Txk[T_Lese_Konfiguration_aus]<<blau<<fname<<violett<<"':"<<schwarz<<endl;
-  if (!fname.empty()) {
-    lies(fname,obverb);
-    auswert(sA,obverb,tz,mitclear);
-  } //   if (!fname.empty())
-} // void confdat::cinit
-
-/*//
-confdat::confdat(const string& fname, WPcl *conf, size_t csize, int obverb, char tz)
-{
-  if (obverb>0) cout<<violett<<Txk[T_Lese_Konfiguration_aus]<<blau<<fname<<schwarz<<endl;
-  lies(fname,obverb);
-  auswert(conf,csize,obverb,tz);
-}
-*/
-
 void WPcl::reset()
 {
 	gelesen=0;
@@ -2196,11 +2029,7 @@ void schAcl::initd(const char* const* sarr,size_t vzahl)
 } // schAcl::initd(const char* const* sarr,size_t vzahl)
 */
 
-WPcl::WPcl(const string& pname):pname(pname)
-{
-}
-
-WPcl::WPcl(const string& pname,const string& wert):pname(pname),wert(wert)
+WPcl::WPcl(const string& pname):pname(pname),pptr(0),wart(wstr),eingetragen(0)
 {
 }
 
@@ -3164,7 +2993,6 @@ string Tippstrs(const char *frage, vector<string> *moegl, string *vorgabe/*=0*/)
 
 string Tippzahl(const char *frage, const char *vorgabe) 
 {
-	caus<<"Tippzahl 0"<<endl;
 	string input;
 	pthread_mutex_lock(&getmutex);
 	while(1) {
@@ -3181,17 +3009,14 @@ string Tippzahl(const char *frage, const char *vorgabe)
 
 string Tippzahl(const char *frage, const string *vorgabe) 
 {
-	caus<<"Tippzahl 1"<<endl;
 	return Tippzahl(frage,(vorgabe?vorgabe->c_str():0)); 
 }
 string Tippzahl(const string& frage, const string *vorgabe)
 {
-	caus<<"Tippzahl 2"<<endl;
 	return Tippzahl(frage.c_str(),(vorgabe?vorgabe->c_str():0));
 }
 long Tippzahl(const string& frage,const long& vorgabe)
 {
-	caus<<"Tippzahl 3"<<endl;
 	string vgb=ltoan(vorgabe);
 	return atol(Tippzahl(frage.c_str(),&vgb).c_str());
 }
@@ -5142,6 +4967,7 @@ hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):
 			cl+=argv[i];
 		} //     if (argv[i][0])
 	langu=holsystemsprache(obverb);
+	lgnzuw();
 	pthread_mutex_init(&printf_mutex, NULL);
 	pthread_mutex_init(&getmutex, NULL);
 	pthread_mutex_init(&timemutex, NULL);
@@ -5468,6 +5294,8 @@ int WPcl::setzstr(const char* neuw,uchar *const obzuschreib/*=0*/,const uchar au
 				break;
 			default: break;
 		} // 		switch (wart) 
+	} else {
+		wert=neuw;
 	} // 	if (pptr)
 	gelesen=1;
 	return gelesen;
@@ -5868,105 +5696,18 @@ void hcl::gcl0()
 	*/
 	caus<<"Ende gcl0"<<endl;
 	return;
-
-#ifdef alt
-	uchar plusverb=0;
-	for(unsigned iru=0;iru<3;iru++) {
-		switch (iru) {
-			case 0:
-				opts.push_back(/*2*/optioncl(T_lg_k,T_language_l, &Txk,T_sprachstr,/*wi=*/1,&langu,psons,&agcnfA,"language",&oblgschreib)); 
-				agcnfA.setzbemv("language",&Txk,T_sprachstr,1);
-				opts.push_back(/*2*/optioncl(T_lang_k,T_lingue_l, &Txk,-1,/*wi=*/1,&langu,psons));
-				break;
-			case 1:
-				opts.push_back(/*4*/optioncl(T_v_k,T_verbose_l, &Txk, T_Bildschirmausgabe_gespraechiger,/*wi=*/1,&plusverb,/*wert=*/1));
-				setzlog();
-				opts.push_back(/*2*/optioncl(T_lvz_k,T_logvz_l, &Txk, T_waehlt_als_Logverzeichnis_pfad_derzeit,/*wi=*/0,&logvz, pverz, &agcnfA,"logvz",&logvneu));
-				opts.push_back(/*3a*/optioncl(T_ld_k,T_logdname_l, &Txk, T_logdatei_string_im_Pfad, /*wi=*/0, &logvz, T_wird_verwendet_anstatt, &logdname, psons, &agcnfA,"logdname",&logdneu));
-				opts.push_back(/*3b*/optioncl(T_l_k,T_log_l,&Txk, T_protokolliert_ausfuehrlich_in_Datei, /*wi=*/1, &loggespfad, T_sonst_knapper, &oblog,psons, &agcnfA,"oblog",&obkschreib));
-				logdt=&loggespfad.front();
-				opts.push_back(/*4*/optioncl(T_ldn_k,T_logdateineu_l, &Txk, T_logdatei_vorher_loeschen, /*wi=*/0, &logdateineu, /*wert=*/1));
-				break;
-			case 2:
-				opts.push_back(/*2*/optioncl(T_kd_k,T_konfdatei_l, &Txk, T_verwendet_Konfigurationsdatei_string_anstatt,/*wi=*/0,&akonfdt,pfile));
-				// Hilfe zur Aktualisierung der manpages
-				opts.push_back(/*4*/optioncl(T_sh,T_standardhilfe, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/3));
-				// Auruf zur Pruefung der library-Fehlerung "no version information" (falls lib-Datei nachtraeglich geaendert wurde)
-				opts.push_back(/*4*/optioncl(T_libtest,T_libtest, &Txk, /*Txi=*/-1, /*wi=*/-1, &obhilfe,/*wert=*/4));
-				break;
-		} //     switch (iru)
-		// hier wird die Befehlszeile ueberprueft:
-		for(;optslsz<opts.size();optslsz++) {
-			for(size_t i=0;i<argcmv.size();i++) {
-				if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe)) {
-					if (iru==1) {
-						if (plusverb) {obverb++;plusverb=0;}
-					} //           if (iru==1)
-					if (opts[optslsz].kurzi!=T_v_k) break;
-				} // if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
-			} // for(size_t i=0;i<argcmv.size();i++) 
-		} //     for(;optslsz<opts.size();optslsz++)
-		optslsz=opts.size();
-		if (!iru) {
-			lgnzuw();
-		} // 		if (!iru)
-	} // for(unsigned iru=0;iru<3;iru++)
-	if (logvneu||logdneu) {
-		if (!logdname.empty()) {
-			setzlog();
-			//// <<rot<<"logdt: "<<logdt<<endl;
-			//// <<rot<<"loggespfad: "<<loggespfad<<endl;
-			////<<violett<<"logdname: "<<*agcnfA.hole("logdname")<<schwarz<<endl;
-		} //     if (!logdname.empty())
-		obkschreib=1;
-	} // if (logvneu ||logdneu) 
-#endif // alt
 } // void hcl::gcl0()
 
 void hcl::verarbeitkonf()
 {
-  if (!nrzf&&obhilfe<=2) {
-//		caus<<"opn.size: "<<opn.size()<<endl;
-	for (size_t i = 0;i<opn.size();i++) {
-//		caus<<"i: "<<i<<", "<<opn[i].pname<<" ,opn[i].woher: "<<(int)opn[i].woher;
-		if (!opn[i].pname.empty() && !opn[i].woher) {
-//			caus<<"opn[i].pname: "<<opn[i].pname<<", rzf=1 !!!!!!!!!!!!!"<<endl;
-      rzf=1;
-		}
-//		caus<<endl;
-	}
-		/*
-	map<string,optcl*>::iterator omit;
-	caus<<"verarbeitkonf(), Zahl: "<<agcnfA.schl.size()<<endl;
-	for (size_t i = 0;i<agcnfA.schl.size();i++) {
-		caus<<"i: "<<i<<", "<<agcnfA[i].pname;
-		if (!agcnfA[i].wert.empty()) {
-			caus<<", wert: "<<agcnfA[i].wert;
-			omit=opn.omap.find(agcnfA[i].pname);
-			if (omit!=opn.omap.end()) {
-				caus<<", gefunden, ";
-				if (!omit->second->woher) {
-					caus<<omit->second->pname<<" ueber Konfig festzulegen ";
-          // wert zuweisen, s.gcl0
-					omit->second->pzuweis(agcnfA[i].wert.c_str());
-					omit->second->woher=2;
-				}
+	if (!nrzf&&obhilfe<=2) {
+		for (size_t i = 0;i<opn.size();i++) {
+			if (!opn[i].pname.empty() && !opn[i].woher) {
+				rzf=1;
 			}
 		}
-		caus<<endl;
-		*/
 	}
-	/*
-		 vector<optcl*>::iterator opp=optpv.begin();
-		 vector<size_t>::iterator ops=optsv.begin();
-		 for(;opp!=optpv.end();opp++,ops++) {
-		 for(size_t iru=0;iru<*ops;iru++) {
-		 caus<<farbe<<setw(3)<<++ru<<schwarz<<" ";
-		 ((optcl*)(*opp))[iru].oausgeb();
-		 }
-		 }
-	 */
-}
+} // void hcl::verarbeitkonf()
 
 // in lieskonfein, getcommandl0, getcommandline, rueckfragen
 void hcl::lgnzuw()
@@ -6069,7 +5810,7 @@ void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const 
 	} // if (dienstzahl<2 || conffehlt) 
 	struct stat sstat={0};
 	if (!(conffehlt=lstat(smbdt,&sstat))) {
-		confdat smbcd(smbdt,obverb);
+		confdcl smbcd(smbdt,obverb);
 		smbcd.Abschn_auswert(obverb);
 		uchar gef[vzn.size()]; memset(gef,0,vzn.size()*sizeof(uchar));
 		for(size_t i=0;i<smbcd.abschv.size();i++) {
@@ -6224,8 +5965,6 @@ void hcl::lieskonfein(const string& DPROG)
 	// agcnfA.init muss spaetetens am Anfang von getcommandl0 kommen
 	// sodann werden die Daten aus gconf den einzelenen Klassenmitgliedsvariablen zugewiesen 
 	// die Reihenfolge muss der in agcnfA.init (in getcommandl0) sowie der in rueckfragen entsprechen
-	rzf=0;
-	lfd=0;
 // afcd.cinit(akonfdt,&agcnfA,obverb,'=',/*mitclear=*/0); // hier werden die Daten aus der Datei eingelesen
 	hccd.lies(akonfdt,obverb);
 	hccd.auswert(&opn,obverb,'=',0);
@@ -6664,6 +6403,12 @@ int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, co
 
 confdcl::confdcl():obgelesen(0),obzuschreib(0)
 {
+}
+
+confdcl::confdcl(const string& fname, int obverb):obgelesen(0),obzuschreib(0)
+{
+ if (!fname.empty())
+	 lies(fname,obverb);
 }
 
 // Achtung: Wegen der Notwendigkeit zur Existenz der Datei zum Aufruf von setfacl kann die Datei erstellt werden!

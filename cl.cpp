@@ -5,6 +5,7 @@
 #include "DB.h" 
 #define VOMHAUPTCODE // um Funktionsdefinition manchmal mit "__attribute__((weak)) " versehen zu können //ω
 #include "cl.h"
+#include <map>
 // für verschiedene Sprachen //α
 enum T_      
 {
@@ -380,7 +381,6 @@ int hhcl::pruefDB(const string& db)
 } // pruefDB //ω
 //α
 
-#include <map>
 
 void hhcl::macherkl()
 {
@@ -394,7 +394,9 @@ int main(int argc,char** argv)
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
 	hhi.fangan();
 
+	caus<<"keineverarbeitung: "<<(int)hhi.keineverarbeitung<<endl;
 	if (!hhi.keineverarbeitung) {
+		caus<<"rzf: "<<(int)hhi.rzf<<endl;
 		hhi.rueckfragen();
 		hhi.pruefggfmehrfach();
 		caus<<"nach pruefggfmehrfach"<<endl;
