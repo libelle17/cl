@@ -5,7 +5,6 @@ class hhcl:public hcl
  private:
  public:
 	const size_t maxconz=12;//aktc: 0=... //α
-	uchar keineverarbeitung=0; // wenn cronminuten geaendert werden sollen, vorher abkuerzen
 	DB* My=0;
 	string p1;
 	int p2;
@@ -31,8 +30,6 @@ class hhcl:public hcl
 #endif
 		;
 	void MusterVorgb();
-	void lieskonfein(const string& dprog);
-	int getcommandline();
 	void rueckfragen(); //ω
 	void zeigueberschrift();//α
 }; // class hhcl //ω

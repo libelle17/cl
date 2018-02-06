@@ -50,7 +50,7 @@ const char *const drot="", *const rot="", *const schwarz="", *const blau="", *co
 ////ffen: bei den Farben muss unterschieden werden zwischen cout (-> _drot) und 
 printf(drot, unter windows escape-Sequenzen rausfieselen und durch SetConsoleTextAttribute-Aufrufe ersetzen)
   ////char logdatei[PATH_MAX+1]="v:\log_termine.txt";
-  template <class _Elem, class _Traits>
+  template <typename _Elem, typename _Traits>
   std::basic_ostream<_Elem,_Traits>& operator<<(std::basic_ostream<_Elem,_Traits>& i, color& c){
     HANDLE hStdout=GetStdHandle(STD_OUTPUT_HANDLE); 
     SetConsoleTextAttribute(hStdout,c.m_color);
@@ -200,8 +200,10 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
   {"Aktiviere Dienst: ","Activating service: "},
   // T_Program
   {"Programm '","Program '"},
-  // T_laeuft_schon_einmal_Breche_ab
-  {"' laeuft schon einmal. Breche ab.","' is running already once. Aborting."},
+  // T_laeuft_schon_einmal_seit
+  {"' laeuft schon einmal seit ","' is running already once since "},
+	// T_sec_Breche_ab
+  {"sec. Breche ab.","sec. Aborting."},
 	// T_laueft_schon_einmal_aber
 	{"' laeuft schon einmal, aber","' is running already once, but"},
 	// T_wird_deshalb_abgebrochen
@@ -588,6 +590,16 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"Zeigt die Programmversion an","shows the program version"},
 	// T_zeigvers
 	{"zeigvers","showvers"},
+	// T_Sollen_neue_Programmversionen_von
+	{"Sollen neue Programmversionen von ","Shall new versions of "},
+	// T_automatisch_installiert_werden
+	{" automatisch installiert werden?"," be automatically installed?"},
+	// T_Logverzeichnis
+	{"Logverzeichnis","log directory"},
+	// T_Logdateiname
+	{"Logdateiname","log file name"},
+	// T_Oblog,
+	{"Oblog (ausführliche Protokollierung): ","Log (detailled logging): "},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -1180,7 +1192,7 @@ int kuerzelogdatei(const char* logdatei,int obverb)
 	 */
 }	 // int kuerzelogdatei(const char* logdatei,int obverb)
 
-// aufgerufen in Log, setzbemv, aschreib
+// aufgerufen in Log, setzbemv, schAschreib
 string* loeschefarbenaus(string *zwi)
 {
 	loeschealleaus(zwi,schwarz);
@@ -1902,7 +1914,7 @@ void confdcl::Abschn_auswert(int obverb/*=0*/, const char tz/*='='*/)
 } // void confdcl::Abschn_auswert(int obverb, char tz)
 
 // setzt die Werte aus der Datei in der Optionenschar *sA
-template <class SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
+template <typename SCL> void confdcl::auswert(schAcl<SCL> *sA, int obverb, const char tz,const uchar mitclear/*=1*/)
 {
   richtige=0;
   if (mitclear) {
@@ -1977,14 +1989,14 @@ void WPcl::reset()
 	bemerk.clear();
 }
 
-template<class SCL> void schAcl<SCL>::reset()
+template<typename SCL> void schAcl<SCL>::reset()
 {
   for(size_t i=0;i<schl.size();i++) {
 		schl[i].reset();
   }
 } // void schAcl::reset()
 
-template<class SCL> schAcl<SCL>::schAcl()
+template<typename SCL> schAcl<SCL>::schAcl()
 {
  //schl=0;
 } // schAcl::schAcl()
@@ -2005,7 +2017,7 @@ schAcl::schAcl(size_t zahl): zahl(zahl)
  schl = new WPcl[zahl];
 }
 */
-template<class SCL> void schAcl<SCL>::init(vector<SCL*> *sqlvp)
+template<typename SCL> void schAcl<SCL>::init(vector<SCL*> *sqlvp)
 {
 // if (schl) delete[] schl;
 	schl.clear();
@@ -2062,7 +2074,7 @@ template <> void schAcl<WPcl>::init(size_t vzahl, ...)
 
 /*
 // das Setzen auch der Bemerkung wird bisher nicht benoetigt
-template<class SCL> int schAcl<SCL>::setze(const string& pname, const string& wert*//*, const string& bem*//*)
+template<typename SCL> int schAcl<SCL>::setze(const string& pname, const string& wert*//*, const string& bem*//*)
 {
 	for(size_t ind=0;ind<schl.size();ind++) {
     if (schl[ind].pname==pname) {
@@ -2074,7 +2086,7 @@ template<class SCL> int schAcl<SCL>::setze(const string& pname, const string& we
   return 1;
 } // int schAcl::setze(const string& pname, const string& wert)
  
-template<class SCL> const string& schAcl<SCL>::hole(const string& pname)
+template<typename SCL> const string& schAcl<SCL>::hole(const string& pname)
 {
   static const string nix;
   for(size_t ind=0;ind<schl.size();ind++) {
@@ -2097,8 +2109,8 @@ void WPcl::hole (struct tm *tmp) {
 
 // wenn die bisherige Bemerkung in einer Sprache mit der zu setzenden identisch, also nicht zwischenzeitlich manuell geaendert, 
 // dann in aktueller Sprache uebernehmen
-// fertige wird nur aufgerufen aus optioncl::setzebem(
-template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)
+// 5.2.18: unsicher, ob benoetigt
+template<typename SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,size_t Tind,uchar obfarbe,svec *fertige)
 {
   string bemst; 
   svec bemv, *vp;
@@ -2137,7 +2149,7 @@ template<class SCL> void schAcl<SCL>::setzbemv(const string& pname,TxB *TxBp,siz
 } // void schAcl::setzbemv(const string& pname,const string& bem)
 
 // ruft die jeweilige Options-Routine zum Setzen des Woher-Flags mit dem Wert vwoher auf, ggf. fuer alle gleichnamigen Optionen
-template<class SCL> void schAcl<SCL>::setzbemerkwoher(SCL *optp,const string& ibemerk,const uchar vwoher)
+template<typename SCL> void schAcl<SCL>::setzbemerkwoher(SCL *optp,const string& ibemerk,const uchar vwoher)
 {
  if (optp->pname.empty()) {
 	 optp->tusetzbemerkwoher(ibemerk,vwoher);
@@ -2161,7 +2173,7 @@ void WPcl::tusetzbemerkwoher(const string& ibemerk, const uchar vwoher)
 {
 }
 
-template<class SCL> schAcl<SCL>::~schAcl()
+template<typename SCL> schAcl<SCL>::~schAcl()
 {
 //  if (schl) delete[] schl;
 	schl.clear();
@@ -2481,9 +2493,7 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 					if (sek>smax) {    // wenn es mindestens eine Stunde laeuft
 						cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laueft_schon_einmal_aber]<<" "<<rot<<sek<<schwarz<<" s (> "<<blau<<smax<<schwarz<<" s), "<<Txk[T_wird_deshalb_abgebrochen]<<endl;
 						if (!systemrueck(string("kill ")+(aru?"-9 ":"")+pvec[2]+" 2>/dev/null",!obstumm,0,0,/*obsudc=*/1)) {
-	caus<<"vor erase"<<endl;
 							rueck.erase(rueck.begin()+iru);
-	caus<<"nach erase"<<endl;
 							continue;
 						}
 					} // 				if (sek>15)
@@ -2493,7 +2503,7 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 		} else { 
 			if (obstumm)
 				exit(0);
-			cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laeuft_schon_einmal_Breche_ab]<<endl;
+			cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laeuft_schon_einmal_seit]<<blau<<smax<<schwarz<<Txk[T_sec_Breche_ab]<<endl;
 			exit(98);
 		} // if (aru<2) else
 	} // 	for(int aru=0;aru<3;aru++) 
@@ -4311,49 +4321,6 @@ int tuloeschen(const string& zuloe,const string& cuser/*=nix*/, int obverb/*=0*/
 	if (ausgp&&obverb) *ausgp<<meld<<endl; else Log(meld,obverb,oblog);
 	return 0;
 } // int tuloeschen(string zuloe,int obverb, int oblog)
-#ifdef alt
-// in optioncl::optioncl
-template<class SCL> void optioncl::setzebem(schAcl<SCL> *cpA,const char *pname)
-{
-	if (cpA && pname) {
-		svec bems;
-		for(int akts=0;akts<SprachZahl;akts++) bems<<machbemerk((Sprache)akts,falsch);
-		cpA->setzbemv(pname,&Txk,0,0,&bems);
-	} //   if (cpA && pname)
-} // void optioncl::setzebem(TxB *TxBp,schAcl *cpA,const char *pname)
-
-// /*2*/optioncl::optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,string *zptr, par_t art,schAcl *cpA, const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) { setzebem(cpA,pname); }
-
-template<class SCL> /*2a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,string *zptr,par_t art,schAcl<SCL> *cpA,const char *pname,uchar* obschreibp) : 
-	kurzi(kurzi), langi(langi), TxBp(TxBp), Txi(Txi), wi(wi), zptr(zptr), art(art), cpA(cpA), pname(pname), obschreibp(obschreibp) 
-{
-	setzebem(cpA,pname);
-}
-
-// /*3*/optioncl::optioncl(string kurz, string lang, TxB *TxBp,long Txi,uchar wi,const string *rottxt, long Txi2, string *zptr, par_t art,schAcl *cpA, const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) { setzebem(cpA,pname); }
-
-template<class SCL> /*3a*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,string *zptr,par_t art,schAcl<SCL> *cpA, 
-		const char *pname,uchar* obschreibp) : 
-	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),zptr(zptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) 
-{
-	setzebem(cpA,pname);
-}
-
-template<class SCL> /*3b*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,const string *rottxt,long Txi2,int *pptr,par_t art,schAcl<SCL> *cpA/*=0*/,
-		const char *pname/*=0*/,uchar* obschreibp/*=0*/):
-	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),rottxt(rottxt),Txi2(Txi2),pptr((uchar*)pptr),art(art),cpA(cpA),pname(pname),obschreibp(obschreibp) 
-{
-	setzebem(cpA,pname);
-}
-
-// /*4a*/optioncl::optioncl(string kurz,string lang,TxB *TxBp,long Txi,uchar wi,uchar *pptr, int wert,schAcl *cpA,const char *pname,uchar* obschreibp) : kurz(kurz),lang(lang),TxBp(TxBp),Txi(Txi),pptr(pptr),wert(wert),cpA(cpA),pname(pname),obschreibp(obschreibp),obno(obschreibp?1:0) { setzebem(cpA,pname); }
-
-template<class SCL> /*4*/optioncl::optioncl(int kurzi,int langi,TxB *TxBp,long Txi,uchar wi,uchar *pptr,int wert,schAcl<SCL> *cpA, const char *pname,uchar* obschreibp) :
-	kurzi(kurzi),langi(langi),TxBp(TxBp),Txi(Txi),wi(wi),pptr(pptr),wert(wert),art(psons),cpA(cpA),pname(pname),obschreibp(obschreibp),obno(obschreibp?1:0)
-{
-	setzebem(cpA,pname);
-}
-#endif
 
 // gleicht das Datum von <zu> an <gemaess> an, aehnlich touch
 int attrangleich(const string& zu, const string& gemaess,const string* const zeitvondtp/*=0*/, int obverb/*=0*/, int oblog/*=0*/)
@@ -4989,20 +4956,20 @@ hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):
 	setzlog();
 	pruefplatte(); // geht ohne Logaufruf, falls nicht #define systemrueckprofiler
 	linstp=new linst_cl(obverb,oblog);
-}
+} // hcl::hcl
+
 // zum Aufruf virtueller Funktionen aus dem Konstruktur verschoben
 void hcl::fangan()
 {
 	VorgbAllg();
 	VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
-	gcl0(); //¿
-	lgnzuw();
+	initopt();//¿
+	parsecl();
 	macherkl();
 	if (zeighilfe(&erkl)) 
 		exit(1);
-	lieskonfein(DPROG);
+	lieskonfein();
 	setzlog();
-	lgnzuw();
 	verarbeitkonf();
 	optausg(gruen);
 	lieszaehlerein();
@@ -5011,7 +4978,6 @@ void hcl::fangan()
 	} else {
 //		hhi.lieskonfein(DPROG);
 	} // if (hhi.obhilfe==3)
-//	if (getcommandline()) exit(8); // Hilfe angezeigt
 	if (obvi) dovi(); 
 	if (obvs) {
 		svec rueck;
@@ -5036,7 +5002,7 @@ hcl::~hcl()
 	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
 	delete linstp;
 	linstp=0;
-}
+} // hcl::~hcl()
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
 int hcl::pruefinstv()
@@ -5601,7 +5567,7 @@ optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kur
 	obno(pname.empty())
 {}
 
-void hcl::gcl0()
+void hcl::initopt()
 {
 	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
@@ -5627,7 +5593,11 @@ void hcl::gcl0()
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	spezopt();
 	opn.omapzuw();
+	caus<<"Ende initopt"<<endl;
+} // hcl::initopt
 
+void hcl::parsecl()
+{
 	// (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe))
 	vector<argcl>::iterator ap,apn;
 	for(ap=argcmv.begin();ap!=argcmv.end();ap++) {
@@ -5676,6 +5646,14 @@ void hcl::gcl0()
 									if (ap==argcmv.end()) break;
 								}
 								if (wiefalsch<=0) { // erfolgreich zugewiesen
+									if (omit->second->pptr==&langu) 
+										lgnzuw();
+									else if (omit->second->pptr==&logvz || omit->second->pptr==&logdname) 
+										setzlog();
+									else if (omit->second->pptr==&cronminut) {
+										keineverarbeitung=1;
+										cmeingegeben=1;
+									}
 									opn.setzbemerkwoher(omit->second,/*ibemerk=*/nix,/*vwoher=*/1);
 								} else {
 									if (!obhilfe) obhilfe=1;
@@ -5689,7 +5667,6 @@ void hcl::gcl0()
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
 	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
-	setzlog();
 	optausg(gelb);
 	for(size_t i=0;i<argcmv.size();i++) {
 		if (!argcmv[i].agef) {
@@ -5703,9 +5680,9 @@ void hcl::gcl0()
 	<<schwarz;
 	if (zeighilfe(&erkl)) return;
 	*/
-	caus<<"Ende gcl0"<<endl;
+	caus<<"Ende parsecl"<<endl;
 	return;
-} // void hcl::gcl0()
+} // void hcl::parsecl()
 
 void hcl::verarbeitkonf()
 {
@@ -5718,7 +5695,7 @@ void hcl::verarbeitkonf()
 	}
 } // void hcl::verarbeitkonf()
 
-// in lieskonfein, getcommandl0, getcommandline, rueckfragen
+// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
 void hcl::lgnzuw()
 {
 	if (langu=="d" || langu=="D" || langu=="deutsch" || langu=="Deutsch") {
@@ -5728,7 +5705,7 @@ void hcl::lgnzuw()
 	} else {
 		Txk.lgn=deutsch;
 	} // 	if (langu=="d" || langu=="D" || langu=="deutsch" || langu=="Deutsch") else else
-} // void hcl::lgnzuw()
+} // void hcl::lgnzuw
 
 int hcl::Log(const string& text,const bool oberr/*=0*/,const short klobverb/*=0*/) const
 {
@@ -5959,7 +5936,7 @@ void hcl::pruefsamba(const vector<const string*>& vzn,const svec& abschni,const 
 	} //   if (!(conffehlt=lstat(smbdt,&sstat)))
 } // pruefsamba
 
-void hcl::lieskonfein(const string& DPROG)
+void hcl::lieskonfein()
 {
 	Log(violetts+Txk[T_lieskonfein]+schwarz);
 //	if (akonfdt.empty()) akonfdt=aktprogverz()+".conf";
@@ -5978,7 +5955,8 @@ void hcl::lieskonfein(const string& DPROG)
 	hccd.lies(akonfdt,obverb);
 	hccd.auswert(&opn,obverb,'=',0);
 	lgnzuw();
-} // void hcl::lieskonfein()
+	setzlog();
+} // void hcl::lieskonfein
 
 // wird aufgerufen von der von hcl abgeleiteten Klasse, dort lieskonfein()
 void hcl::setzlog()
@@ -6073,10 +6051,9 @@ void hcl::setzzaehler()
 } // void hcl::setzzaehler()
 
 // wird aufgerufen in main vom hclthread
-void hcl::schreibzaehler(
-		)
+void hcl::schreibzaehler()
 {
-	zcnfA.fschreib(azaehlerdt,ios::out,0);
+	zcnfA.confschreib(azaehlerdt,ios::out,mpfad,/*faclbak=*/0);
 } // void hcl::schreibzaehler(const string* obgesap, const string* obsendCp, const string* obsendHp)
 
 // aufgerufen in pruefcron, pruefmodcron und anhalten
@@ -6370,7 +6347,7 @@ void WPcl::weisomapzu(schAcl<WPcl> *optp)
 {
 }
 
-template<class SCL> void schAcl<SCL>::omapzuw()
+template<typename SCL> void schAcl<SCL>::omapzuw()
 {
 	for(size_t i=0;i<size();i++) {
 		schl[i].weisomapzu(this);
@@ -6389,30 +6366,6 @@ void hcl::optausg(const char *farbe)
 void hcl::pruefcl() // commandline mit omap und mit argcmv parsen
 {
 }
-
-int multischlschreib(const string& fname, schAcl<WPcl> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
-{
-  mdatei f(fname,ios::out);
-  if (f.is_open()) {
-    if (!mpfad.empty()) {
-      //// char buf[30];
-      time_t jetzt=time(0);
-			f<<Txk[T_Konfiguration_fuer]<<mpfad<<Txk[T_erstellt_automatisch_durch_dieses_am]<<ztacl(jetzt,"%d.%m.%Y %H.%M.%S")<<endl;
-			//// pthread_mutex_lock(&timemutex);
-			//// tm *ltm = localtime(&jetzt);
-			//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", ltm);
-			//// f<<put_time(localtime(&jetzt),"%d.%m.%Y %H.%M.%S")<<endl;
-			//// pthread_mutex_unlock(&timemutex);
-			//// const string ueberschr=Txk[T_Konfiguration_fuer]+mpfad+Txk[T_erstellt_automatisch_durch_dieses_am]+buf;
-			//// if (!ueberschr.empty()) f<<ueberschr<<endl;
-    } //     if (!mpfad.empty())
-    for (size_t j=0;j<cszahl;j++) {
-     mcnfApp[j]->aschreib(&f);
-    }
-    return 0;
-  } //   if (f.is_open())
-  return 1;
-} // int multischlschreib(const string& fname, schAcl **mcnfApp, size_t cszahl)
 
 confdcl::confdcl():obgelesen(0),obzuschreib(0)
 {
@@ -6461,7 +6414,7 @@ void hcl::autokonfschreib()
 	caus<<rot<<"obzuschreib: "<<violett<<(int)hccd.obzuschreib<<schwarz<<endl;
 	if (rzf||hccd.obzuschreib) {
 		Log(gruens+Txk[T_schreibe_Konfiguration]+schwarz);
-		opn.fschreib(akonfdt,ios::out,0);
+		opn.confschreib(akonfdt,ios::out,mpfad,0);
 	} // if (rzf||obzuschreib)
 	return;
 	/*
@@ -6470,6 +6423,24 @@ void hcl::autokonfschreib()
 	chmod(akonfdt.c_str(),S_IRWXU);
 	*/
 } // void hhcl::autokonfschreib
+
+
+void hcl::rueckfragen()
+{
+	if (rzf) {
+		const char *const locale = setlocale(LC_CTYPE,"");
+		if (langu.empty()) if (locale) if (strchr("defi",locale[0])) langu=locale[0];
+		vector<string> sprachen={"e","d"/*,"f","i"*/};
+		langu=Tippstrs(sprachstr.c_str()/*"Language/Sprache/Lingue/Lingua"*/,&sprachen,&langu);
+		lgnzuw();
+		cronminut=Tippzahl(Txk[T_Alle_wieviel_Minuten_soll]+meinname+Txk[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
+		autoupd=Tippob(Txk[T_Sollen_neue_Programmversionen_von]+meinname+Txk[T_automatisch_installiert_werden],autoupd?Txk[T_j_af]:"n");
+		logvz=Tippverz(Txk[T_Logverzeichnis],&logvz);
+		logdname=Tippstr(Txk[T_Logdateiname],&logdname);
+		setzlog();
+		oblog=Tippzahl(Txk[T_Oblog],oblog);
+	} // 	if (rzf)
+} // 		void hcl::rueckfragen
 
 template <> void schAcl<WPcl>::eintrinit()
 {
@@ -6499,7 +6470,7 @@ uchar optcl::einzutragen(schAcl<optcl> *schlp)
 	return 0;
 } // uchar optcl::einzutragen(schAcl<optcl> *schlp)
 
-template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)
+template<typename SCL> void schAcl<SCL>::schAschreib(mdatei *const f)
 {
 	eintrinit();
 	for (size_t i = 0;i<schl.size();i++) {
@@ -6507,11 +6478,11 @@ template<class SCL> void schAcl<SCL>::aschreib(mdatei *const f)
 			schl[i].machbemerk(Txk.lgn);
 			if (!schl[i].bemerk.empty()) *f<<(schl[i].bemerk[0]=='#'?"":"# ")<<*loeschefarbenaus(&schl[i].bemerk)<<endl;
 			*f<<schl[i].pname<<" = \""<<schl[i].holstr()<<"\""<<endl;
-		}
+		} // 		if (!schl[i].pname.empty() && schl[i].einzutragen(this))
 	} //   for (size_t i = 0;i<zahl;i++)
-} // void schAcl::aschreib(mdatei *f)
+} // void schAcl::schAschreib(mdatei *f)
 
-template<class SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
+template<typename SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
 {
 	cout<<"gibaus("<<nr<<")"<<endl;
   for(size_t i=0;i<schl.size();i++) {
@@ -6520,16 +6491,44 @@ template<class SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
 } // void schAcl::ausgeb()
 
 
-template<class SCL> int schAcl<SCL>::fschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,uchar faclbak/*=1*/,
+template<typename SCL> int schAcl<SCL>::confschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,const string& mpfad,uchar faclbak/*=1*/,
 		int obverb/*=0*/,int oblog/*=0*/)
 {
   mdatei f(fname,modus);
   if (f.is_open()) {
-    aschreib(&f);
+		time_t jetzt=time(0);
+		f<<Txk[T_Konfiguration_fuer]<<mpfad<<Txk[T_erstellt_automatisch_durch_dieses_am]<<ztacl(jetzt,"%d.%m.%Y %H.%M.%S")<<endl;
+    schAschreib(&f);
     return 0;
   } //   if (f.is_open())
   return 1;
-} // int schAcl::fschreib(const string& fname)
+} // int schAcl::confschreib(const string& fname)
 
+// schreibt ein Array von Schluessel-Arrays der Klasse WPcl in die Datei fname
+template<typename SCL> int multischlschreib(const string& fname, schAcl<SCL> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
+{
+  mdatei f(fname,ios::out);
+  if (f.is_open()) {
+    if (!mpfad.empty()) {
+      //// char buf[30];
+      time_t jetzt=time(0);
+			f<<Txk[T_Konfiguration_fuer]<<mpfad<<Txk[T_erstellt_automatisch_durch_dieses_am]<<ztacl(jetzt,"%d.%m.%Y %H.%M.%S")<<endl;
+			//// pthread_mutex_lock(&timemutex);
+			//// tm *ltm = localtime(&jetzt);
+			//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", ltm);
+			//// f<<put_time(localtime(&jetzt),"%d.%m.%Y %H.%M.%S")<<endl;
+			//// pthread_mutex_unlock(&timemutex);
+			//// const string ueberschr=Txk[T_Konfiguration_fuer]+mpfad+Txk[T_erstellt_automatisch_durch_dieses_am]+buf;
+			//// if (!ueberschr.empty()) f<<ueberschr<<endl;
+    } //     if (!mpfad.empty())
+    for (size_t j=0;j<cszahl;j++) {
+     mcnfApp[j]->schAschreib(&f);
+    }
+    return 0;
+  } //   if (f.is_open())
+  return 1;
+} // int multischlschreib(const string& fname, schAcl **mcnfApp, size_t cszahl)
+
+// damit nicht Template-Klassen-Funktionen in Header-Dateien geschrieben werden muessen
 template class schAcl<WPcl>;
 template class schAcl<optcl>;

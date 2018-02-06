@@ -13,19 +13,14 @@ enum T_
 	T_VorgbSpeziell,
 	T_MusterVorgb,
 	T_rueckfragen,
-	T_Sollen_neue_Programmversionen_von,
-	T_automatisch_installiert_werden,
 	T_Logpfad,
 	T_oblog,
-	T_Oblog,
 	T_Aufrufintervall,
 	T_kein_Aufruf,
 	T_Minute,
 	T_sqlv_k,
 	T_sql_verbose_l,
-	T_Logverzeichnis,
-	T_Logdateiname,
-	Verbindung_zur_Datenbank_nicht_herstellbar,
+	T_Verbindung_zur_Datenbank_nicht_herstellbar,
 	T_Breche_ab,
 	T_pruefDB,
 	T_host_k,
@@ -69,16 +64,10 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"MusterVorgb()","sampleprefs"},
 	// T_rueckfragen
 	{"rueckfragen()","callbacks()"},
-	// T_Sollen_neue_Programmversionen_von
-	{"Sollen neue Programmversionen von ","Shall new versions of "},
-	// T_automatisch_installiert_werden
-	{" automatisch installiert werden?"," be automatically installed?"},
 	// T_Logpfad,
 	{"Logpfad: '","Log path: '"},
 	// T_oblog,
 	{"' (oblog: ","' (with logging: "},
-	// T_Oblog,
-	{"Oblog (ausführliche Protokollierung): ","Log (detailled logging): "},
 	// T_Aufrufintervall
 	{"; Aufrufintervall: ","; (cron) call interval: "},
 	// T_kein_Aufruf
@@ -89,11 +78,7 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"sqlw","sqlv"},
 	// T_sql_verbose_l
 	{"sql-wortreich","sql-verbose"},
-	// T_Logverzeichnis
-	{"Logverzeichnis","log directory"},
-	// T_Logdateiname
-	{"Logdateiname","log file name"},
-	// Verbindung_zur_Datenbank_nicht_herstellbar
+	// T_Verbindung_zur_Datenbank_nicht_herstellbar
 	{"Verbindung zur Datenbank nicht herstellbar, fehnr: ","Connection to the database could not be established, errnr: "},
 	// T_Breche_ab
 	{". Breche ab.","Stopping."},
@@ -182,7 +167,7 @@ hhcl::~hhcl()
 {
 } // hhcl::~hhcl
 
-// wird aufgerufen in: rueckfragen, als virtualle Funktion von hcl::gcl0()
+// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
 void hhcl::lgnzuw()
 {
 	hcl::lgnzuw();
@@ -200,7 +185,8 @@ void hhcl::spezopt()
 	opn<<optcl(/*pname*/"mpwd",/*pptr*/&mpwd,/*art*/ppwd,T_mpwd_k,T_mpwd_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"datenbank",/*pptr*/&dbq,/*art*/psons,T_db_k,T_datenbank_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_die_Datenbank_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"tabelle",/*pptr*/&tabelle,/*art*/psons,T_tb_k,T_tabelle_l,/*TxBp*/&Tx,/*Txi*/T_verwendet_die_Tabelle_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-} // void hhcl::spezopt()
+	opn<<optcl(/*pname*/"",/*pptr*/&ZDB,/*art*/puchar,T_sqlv_k,T_sql_verbose_l,/*TxBp*/&Tx,/*Txi*/T_Bildschirmausgabe_mit_SQL_Befehlen,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+} // void hhcl::spezopt
 
 
 void hhcl::VorgbAllg()
@@ -221,99 +207,25 @@ void hhcl::MusterVorgb()
 	Log(violetts+Tx[T_MusterVorgb]+schwarz);
 } // void hhcl::MusterVorgb
 
-// wird aufgerufen in: main
-void hhcl::lieskonfein(const string& dprog)
-{
-	hcl::lieskonfein(dprog);
-	/*
-	lfd++;
-	if (logvneu) agcnfA[lfd].setze(&logvz);
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&logvz); else rzf=1; lfd++;
-	if (logdneu) agcnfA[lfd].setze(&logdname);
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&logdname); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&oblog); else rzf=1; lfd++; 
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&cronminut); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&autoupd); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&host); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&muser); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) mpwd=XOR(string(agcnfA[lfd].wert),pwk); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&dbq); else rzf=1; lfd++;
-	if (agcnfA[lfd].gelesen) agcnfA[lfd].hole(&tabelle); else rzf=1; lfd++; //ω
-	*/
-	setzlog(); //α
-	if (nrzf) rzf=0;
-} // void hhcl::lieskonfein
-
-//wird aufgerufen in: main
-int hhcl::getcommandline()
-{
-#ifdef alt
-	Log(violetts+"getcommandline()"+schwarz);
-	opts.push_back(/*2*/optioncl(T_host_k,T_host_l,&Tx, T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,0,&host,psons,&agcnfA,"host",&obkschreib));
-	opts.push_back(/*2*/optioncl(T_muser_k,T_muser_l,&Tx, T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,0,&muser,psons,&agcnfA, "muser",&obkschreib));
-	opts.push_back(/*2*/optioncl(T_mpwd_k,T_mpwd_l,&Tx, T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,0,&mpwd,psons,&agcnfA,"mpwd",&obkschreib));
-	opts.push_back(/*2*/optioncl(T_db_k,T_datenbank_l,&Tx, T_verwendet_die_Datenbank_string_anstatt,0,&dbq,psons,&agcnfA,"datenbank",&obkschreib));
-	opts.push_back(/*2*/optioncl(T_tb_k,T_tabelle_l,&Tx, T_verwendet_die_Tabelle_string_anstatt,0,&tabelle,psons,&agcnfA,"tabelle",&obkschreib)); //ω
-	opts.push_back(/*3*/optioncl(T_cm_k,T_cronminuten_l,&Tx,T_Alle_wieviel_Minuten_soll,1,&meinname,T_aufgerufen_werden_0_ist_gar_nicht,&cronminut, psons, &agcnfA,"cronminut",&obkschreib)); //α
-	opts.push_back(/*4*/optioncl(T_autoupd_k,T_autoupd_l, &Tx, T_Programm_automatisch_aktualisieren,1,&autoupd,1,&agcnfA,"autoupd",&obkschreib));
-	opts.push_back(/*4*/optioncl(T_sqlv_k,T_sql_verbose_l, &Tx, T_Bildschirmausgabe_mit_SQL_Befehlen,1,&ZDB,1));
-	opts.push_back(/*4*/optioncl(T_rf_k,T_rueckfragen_l, &Tx, T_alle_Parameter_werden_abgefragt_darunter_einige_hier_nicht_gezeigte,1,&rzf,1));
-	opts.push_back(/*4*/optioncl(T_krf_k,T_keinerueckfragen_l, &Tx, T_keine_Rueckfragen_zB_aus_Cron,1,&nrzf,1));
-	opts.push_back(/*4*/optioncl(T_info_k,T_version_l, &Tx, T_Zeigt_die_Programmversion_an, 1, &zeigvers,1));
-	opts.push_back(/*4*/optioncl(T_vi_k,T_vi_l, &Tx, T_Konfigurations_u_Logdatei_bearbeiten_sehen, 1, &obvi,1));
-	opts.push_back(/*4*/optioncl(T_h_k,T_hilfe_l, &Tx, T_Erklaerung_haeufiger_Optionen, 1, &obhilfe,1));
-	opts.push_back(/*4*/optioncl(T_lh_k,T_lhilfe_l, &Tx, T_Erklaerung_aller_Optionen, 1, &obhilfe,2));
-	opts.push_back(/*4*/optioncl(T_fgz_k,T_fgz_l, &Tx, -1, 1, &obhilfe,1));
-
-	// hier wird die Befehlszeile ueberprueft:
-	for(;optslsz<opts.size();optslsz++) {
-		for(size_t i=0;i<argcmv.size();i++) {
-			if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe)) {
-				if (opts[optslsz].kurzi==T_cm_k) { // cronminuten
-					keineverarbeitung=1;
-					cmeingegeben=1;
-				}
-				else if (opts[optslsz].kurzi==T_mpwd_k) {
-					const string pwdstr=XOR(mpwd,pwk);
-					agcnfA.setze(string(Tx[T_mpwd_k]),pwdstr);
-				} // 				if (opts[optslsz].kurzi==T_mpwd_k) //ω
-				break; //α
-			} //       if (opts[optslsz].pruefpar(&argcmv,&i,&obhilfe,Tx.lgn))
-		} // for(size_t i=0;i<argcmv.size();i++)
-	} //   for(;optslsz<opts.size();optslsz++)
-#endif
-	Log(violetts+Txk[T_Ende]+"getcommandline()"+schwarz);
-	return 0;
-} // int hhcl::getcommandline
 
 // wird aufgerufen in: main
 void hhcl::rueckfragen()
 {
 	Log(violetts+Tx[T_rueckfragen]+schwarz);
+	hcl::rueckfragen();
 	if (rzf) {
-		const char *const locale = setlocale(LC_CTYPE,"");
-		if (langu.empty()) if (locale) if (strchr("defi",locale[0])) langu=locale[0];
-		vector<string> sprachen={"e","d"/*,"f","i"*/};
-			langu=Tippstrs(sprachstr.c_str()/*"Language/Sprache/Lingue/Lingua"*/,&sprachen,&langu);
-			lgnzuw();
-			host=Tippstr(Tx[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
-			const string Frage=Tx[T_Benutzer_fuer_MySQL_MariaDB];
-			muser=Tippstr(Frage.c_str(),&muser);
-			string mpw2;
-			mpwd.clear();
-			do {
-				mpwd=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'",&mpwd);
-				mpw2=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'"+" ("+Txk[T_erneute_Eingabe]+")",&mpw2);
-			} while (mpwd!=mpw2);
-			const string pwdstr=XOR(mpwd,pwk);
-			dbq=Tippstr(string(Tx[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
-			tabelle=Tippstr(string(Tx[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
-			cronminut=Tippzahl(Txk[T_Alle_wieviel_Minuten_soll]+meinname+Txk[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
-			autoupd=Tippob(Tx[T_Sollen_neue_Programmversionen_von]+meinname+Tx[T_automatisch_installiert_werden],autoupd?Txk[T_j_af]:"n");
-			logvz=Tippverz(Tx[T_Logverzeichnis],&logvz);
-			logdname=Tippstr(Tx[T_Logdateiname],&logdname);
-			setzlog();
-			oblog=Tippzahl(Tx[T_Oblog],oblog);
+		host=Tippstr(Tx[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
+		const string Frage=Tx[T_Benutzer_fuer_MySQL_MariaDB];
+		muser=Tippstr(Frage.c_str(),&muser);
+		string mpw2;
+		mpwd.clear();
+		do {
+			mpwd=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'",&mpwd);
+			mpw2=Tippstr(string(Tx[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'"+" ("+Txk[T_erneute_Eingabe]+")",&mpw2);
+		} while (mpwd!=mpw2);
+		const string pwdstr=XOR(mpwd,pwk);
+		dbq=Tippstr(string(Tx[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
+		tabelle=Tippstr(string(Tx[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
 	} // if (rzf)
 } // void hhcl::rueckfragen()
 
@@ -358,7 +270,7 @@ int hhcl::initDB()
 		fehler=My->fehnr;
 	} // 	if (dbq.empty())
 	if (fehler) {
-		Log(rots+Tx[Verbindung_zur_Datenbank_nicht_herstellbar]+schwarz+ltoan(fehler)+rot+Tx[T_Breche_ab]+schwarz);
+		Log(rots+Tx[T_Verbindung_zur_Datenbank_nicht_herstellbar]+schwarz+ltoan(fehler)+rot+Tx[T_Breche_ab]+schwarz);
 		return 1;
 	} //   if (My->fehnr)
 	return 0;
