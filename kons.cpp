@@ -5136,7 +5136,7 @@ void hcl::prueftif(string aktvers)
 		}
 	} // 	if (obsotiff)
 	reduzierlibtiff();
-} // void paramcl::prueftif()
+} // void paramcl::prueftif
 
 /*//
 	void hcl::prueftif()
