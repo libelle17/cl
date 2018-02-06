@@ -6490,7 +6490,6 @@ template<typename SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
   }
 } // void schAcl::ausgeb()
 
-
 template<typename SCL> int schAcl<SCL>::confschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,const string& mpfad,uchar faclbak/*=1*/,
 		int obverb/*=0*/,int oblog/*=0*/)
 {
