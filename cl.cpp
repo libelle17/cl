@@ -15,9 +15,6 @@ enum T_
 	T_rueckfragen,
 	T_Logpfad,
 	T_oblog,
-	T_Aufrufintervall,
-	T_kein_Aufruf,
-	T_Minute,
 	T_Fehler_beim_Pruefen_von,
 	T_Fuege_ein, //ω
 	T_lista_k,
@@ -42,12 +39,6 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	{"Logpfad: '","Log path: '"},
 	// T_oblog,
 	{"' (oblog: ","' (with logging: "},
-	// T_Aufrufintervall
-	{"; Aufrufintervall: ","; (cron) call interval: "},
-	// T_kein_Aufruf
-	{"kein cron-Aufruf","no cron call"},
-	// T_Minute
-	{" Minute"," minute"},
 	//	T_Fehler_beim_Pruefen_von
 	{"Fehler beim Pruefen von: ","Error while examining: "},
 	// T_Fuege_ein
@@ -86,13 +77,6 @@ hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
 hhcl::~hhcl()
 {
 } // hhcl::~hhcl
-
-// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
-void hhcl::lgnzuw()
-{
-	dhcl::lgnzuw();
-	Tx.lgn=Txk.lgn;
-} // void hhcl::lgnzuw
 
 void hhcl::initopt()
 {
@@ -135,27 +119,6 @@ void hhcl::rueckfragen()
 } // void hhcl::rueckfragen()
 
 
-// wird aufgerufen in: main
-void hhcl::zeigueberschrift()
-{
-	char buf[20]; snprintf(buf,sizeof buf,"%.5f",versnr);
-	::Log(schwarzs+Txk[T_Programm]+blau+mpfad+schwarz+", V: "+blau+buf+schwarz
-			+(crongeprueft?
-				Tx[T_Aufrufintervall]+blaus
-				+(vorcm!=cronminut&&!(vorcm.empty()&&cronminut=="0")?((vorcm.empty()?Txk[T_gar_nicht]:vorcm)+" -> "):"")
-				+(cronminut=="0"?Tx[T_kein_Aufruf]+schwarzs:cronminut+schwarz+(cronminut=="1"?Tx[T_Minute]:Txk[T_Minuten])):
-				"")
-			,1,oblog);
-} // void hhcl::zeigueberschrift
-
-void hhcl::pruefggfmehrfach()
-{
-	if (!obhilfe &&!obvi &&!obvs &&!zeigvers &&!rzf) {
-		pruefmehrfach(meinname,nrzf);
-	}
-} // void hhcl::pruefggfmehrfach()
-//ω
-
 void hhcl::macherkl()
 {
 	erkl<<blau<<"Programm "<<violett<<DPROG<<blau<<" ist etwas ganz Spezielles"<<schwarz;
@@ -168,29 +131,20 @@ int main(int argc,char** argv)
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz
 	hhi.fangan(); // Einleitungsteil mit Aufruf virtueller Funktionen
 
-	caus<<"keineverarbeitung: "<<(int)hhi.keineverarbeitung<<endl;
 	if (!hhi.keineverarbeitung) {
-		caus<<"rzf: "<<(int)hhi.rzf<<endl;
 		hhi.rueckfragen();
 		hhi.pruefggfmehrfach();
-		caus<<"nach pruefggfmehrfach"<<endl;
 		if (hhi.logdateineu) tuloeschen(logdt,"",hhi.obverb,hhi.oblog);
-		caus<<"nach tuloeschen"<<endl;
 		hhi.Log(Tx[T_Logpfad]+drots+hhi.loggespfad+schwarz+Tx[T_oblog]+drot+ltoan((int)hhi.oblog)+schwarz+")");
 //		if (hhi.initDB()) return 10; //ω
 	} // 	if (!hhi.keineverarbeitung) //α
 
 	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
-	caus<<"nach pruefcron"<<endl;
 	if (!hhi.keineverarbeitung) {
 		hhi.zeigueberschrift(); //ω
-	caus<<"nach zeigueberschrift"<<endl;
 		hhi.setzzaehler(); //α
-	caus<<"nach setzzaehler"<<endl;
 		hhi.schreibzaehler();
-	caus<<"nach schreibzaehler"<<endl;
 	} //  if (!hhi.keineverarbeitung)
-	caus<<"nach keineverarbeitung"<<endl;
 } // int main //ω
 // wird aufgerufen in: main
 

@@ -12,12 +12,10 @@ class hhcl:public dhcl
  private:
 	void macherkl();
  protected:
-	void lgnzuw();
  public:
   hhcl(const int argc, const char *const *const argv);
 	~hhcl();
 	void initopt(); // (programm-)spezifische Optionen
-	void pruefggfmehrfach();
 	void pruefanrufe(DB *My, const string& tabelle, const int obverb, const int oblog, const uchar direkt=0);
 	void getcommandl0();
 	void VorgbAllg();
@@ -28,5 +26,4 @@ class hhcl:public dhcl
 		;
 	void MusterVorgb();
 	void rueckfragen(); //ω
-	void zeigueberschrift();//α
 }; // class hhcl //ω

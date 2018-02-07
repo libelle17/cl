@@ -2148,6 +2148,7 @@ void dhcl::initopt()
 	hcl::initopt();
 } // void hhcl::initopt
 
+// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
 void dhcl::lgnzuw()
 {
 	hcl::lgnzuw();

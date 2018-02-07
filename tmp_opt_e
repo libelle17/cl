@@ -9,9 +9,9 @@ Ende initopt
 .br
 \fBoptausg()\fR
 .br
-\fB  0\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB        lista\fR,wi:\fB  1\fR,Txi:\fB 15\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  0\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB        lista\fR,wi:\fB  1\fR,Txi:\fB 12\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB  1\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB       number\fR,wi:\fB  1\fR,Txi:\fB 16\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB6\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB  1\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB       number\fR,wi:\fB  1\fR,Txi:\fB 13\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB6\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 \fB  2\fR pname:\fB    host\fR,pptr:\fB                localhost\fR,kurzi:\fB      host\fR,langi:\fB         host\fR,wi:\fB  1\fR,Txi:\fB 52\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br

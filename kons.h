@@ -424,6 +424,9 @@ enum Tkons_
 	T_Logverzeichnis,
 	T_Logdateiname,
 	T_Oblog,
+	T_Aufrufintervall,
+	T_kein_Aufruf,
+	T_Minute,
 	T_konsMAX
 }; // Tkons_
 
@@ -440,6 +443,8 @@ class Txkonscl : public TxB
 };
 */
 extern class TxB Txk;
+extern char const *DPROG_T[][SprachZahl];
+extern class TxB Tx;
 
 extern uchar nrzf; // nicht rueckzufragen, fuer Aufruf aus Cron
 
@@ -1234,6 +1239,7 @@ class hcl
 		virtual void rueckfragen();
 	public:
 		void autokonfschreib(); 
+		void zeigueberschrift();
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv,const char* const DPROG);
@@ -1259,6 +1265,7 @@ class hcl
 		void zeigkonf();
 		void parsecl();
 		virtual void initopt();
+		void pruefggfmehrfach();
 		virtual void VorgbAllg();
 		virtual void VorgbSpeziell()=0;
     virtual void MusterVorgb()=0;

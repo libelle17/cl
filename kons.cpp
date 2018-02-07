@@ -600,6 +600,12 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"Logdateiname","log file name"},
 	// T_Oblog,
 	{"Oblog (ausführliche Protokollierung): ","Log (detailled logging): "},
+	// T_Aufrufintervall
+	{"; Aufrufintervall: ","; (cron) call interval: "},
+	// T_kein_Aufruf
+	{"kein cron-Aufruf","no cron call"},
+	// T_Minute
+	{" Minute"," minute"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -5704,6 +5710,7 @@ void hcl::lgnzuw()
 	} else {
 		Txk.lgn=deutsch;
 	} // 	if (langu=="d" || langu=="D" || langu=="deutsch" || langu=="Deutsch") else else
+	Tx.lgn=Txk.lgn;
 } // void hcl::lgnzuw
 
 int hcl::Log(const string& text,const bool oberr/*=0*/,const short klobverb/*=0*/) const
@@ -6540,6 +6547,26 @@ void hcl::VorgbSpeziell()
 void hcl::MusterVorgb()
 {
 } // void hhcl::MusterVorgb
+
+void hcl::pruefggfmehrfach()
+{
+	if (!obhilfe &&!obvi &&!obvs &&!zeigvers &&!rzf) {
+		pruefmehrfach(meinname,nrzf);
+	}
+} // void hhcl::pruefggfmehrfach()
+
+// wird aufgerufen in: main
+void hcl::zeigueberschrift()
+{
+	char buf[20]; snprintf(buf,sizeof buf,"%.5f",versnr);
+	::Log(schwarzs+Txk[T_Programm]+blau+mpfad+schwarz+", V: "+blau+buf+schwarz
+			+(crongeprueft?
+				Txk[T_Aufrufintervall]+blaus
+				+(vorcm!=cronminut&&!(vorcm.empty()&&cronminut=="0")?((vorcm.empty()?Txk[T_gar_nicht]:vorcm)+" -> "):"")
+				+(cronminut=="0"?Txk[T_kein_Aufruf]+schwarzs:cronminut+schwarz+(cronminut=="1"?Txk[T_Minute]:Txk[T_Minuten])):
+				"")
+			,1,oblog);
+} // void hcl::zeigueberschrift
 
 
 // damit nicht Template-Klassen-Funktionen in Header-Dateien geschrieben werden muessen
