@@ -1,26 +1,23 @@
 #define DPROG "cl"
 //α
-class hhcl:public hcl
+class hhcl:public dhcl
 {
  private:
  public:
-	const size_t maxconz=12;//aktc: 0=... //α
-	DB* My=0;
 	string p1;
 	int p2;
 	string p3;
 	uchar oblista=0;
 	long listz=30;
  private:
-	void lgnzuw();
 	void macherkl();
+ protected:
+	void lgnzuw();
  public:
   hhcl(const int argc, const char *const *const argv);
 	~hhcl();
-	void spezopt(); // (programm-)spezifische Optionen
+	void initopt(); // (programm-)spezifische Optionen
 	void pruefggfmehrfach();
-	int  initDB();
-	int  pruefDB(const string& db);
 	void pruefanrufe(DB *My, const string& tabelle, const int obverb, const int oblog, const uchar direkt=0);
 	void getcommandl0();
 	void VorgbAllg();

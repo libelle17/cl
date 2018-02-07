@@ -1257,10 +1257,9 @@ class hcl
 		void prueftif(string aktvers);
 		void zeigversion(const string& ltiffv=nix);
 		void zeigkonf();
-	  void initopt();
 		void parsecl();
-		virtual void spezopt()=0;
-		virtual void VorgbAllg()=0;
+		virtual void initopt();
+		virtual void VorgbAllg();
 		virtual void VorgbSpeziell()=0;
     virtual void MusterVorgb()=0;
 		uchar pruefcron(const string& cm);

@@ -5591,7 +5591,6 @@ void hcl::initopt()
 	opn<<optcl(/*pname*/"",/*pptr*/&zeigvers,/*art*/puchar,T_info_k,T_version_l,/*TxBp*/&Txk,/*Txi*/T_Zeigt_die_Programmversion_an,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
-	spezopt();
 	opn.omapzuw();
 	caus<<"Ende initopt"<<endl;
 } // hcl::initopt
@@ -6527,6 +6526,21 @@ template<typename SCL> int multischlschreib(const string& fname, schAcl<SCL> *co
   } //   if (f.is_open())
   return 1;
 } // int multischlschreib(const string& fname, schAcl **mcnfApp, size_t cszahl)
+
+void hcl::VorgbAllg()
+{
+	cronminut="0";
+	autoupd=1;
+} // void hhcl::VorgbAllg
+
+void hcl::VorgbSpeziell()
+{
+} // void hhcl::VorgbSpeziell
+
+void hcl::MusterVorgb()
+{
+} // void hhcl::MusterVorgb
+
 
 // damit nicht Template-Klassen-Funktionen in Header-Dateien geschrieben werden muessen
 template class schAcl<WPcl>;

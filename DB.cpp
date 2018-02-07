@@ -91,12 +91,65 @@ const char *DB_T[T_dbMAX+1][SprachZahl]={
 	{"prueffunc()","checkfunc()"},
 	// T_Datenbankbenutzer_leer
 	{"Datenbankbenutzer leer!","database user empty!"},
+	// T_host_k
+	{"host","host"},
+	// T_host_l
+	{"host","host"},
+	// T_muser_k
+	{"muser","muser"},
+	// T_muser_l
+	{"muser","muser"},
+	// T_mpwd_k
+	{"mpwd","mpwd"},
+	// T_mpwd_l
+	{"mpwd","mpwd"},
+	// T_db_k
+	{"db","db"},
+	// T_datenbank_l
+	{"datenbank","database"},
+	// T_tb_k,
+	{"tb","tb"},
+	// T_tabelle_l,
+	{"tabelle","table"},
+	// T_Bildschirmausgabe_mit_SQL_Befehlen
+	{"Bildschirmausgabe mit SQL-Befehlen","screen output with SQL commands"},
+	// T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf
+	{"verwendet die Datenbank auf Host <string> anstatt auf","takes the database on host <string> instead of"},
+	// T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt
+	{"verwendet fuer MySQL/MariaDB den Benutzer <string> anstatt","takes the user <string> for MySQL/MariaDB instead of"},
+	// T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string
+	{"verwendet fuer MySQL/MariaDB das Passwort <string>","takes the password <string> for MySQL/MariaDB"},
+	// T_verwendet_die_Datenbank_string_anstatt
+	{"verwendet die Datenbank <string> anstatt","uses the database <string> instead of"},
+	// T_verwendet_die_Tabelle_string_anstatt
+	{"verwendet die Tabelle <string> anstatt","uses the table <string> instead of"},
+	// T_sqlv_k
+	{"sqlw","sqlv"},
+	// T_sql_verbose_l
+	{"sql-wortreich","sql-verbose"},
+	// T_Verbindung_zur_Datenbank_nicht_herstellbar
+	{"Verbindung zur Datenbank nicht herstellbar, fehnr: ","Connection to the database could not be established, errnr: "},
+	// T_Breche_ab
+	{". Breche ab.","Stopping."},
+	// T_pruefDB
+	{"pruefDB(","checkDB("},
+	// T_Host_fuer_MySQL_MariaDB_Datenbank
+	{"Host fuer MySQL/MariaDB-Datenbank","host for mysql/mariadb-database"},
+	// T_Benutzer_fuer_MySQL_MariaDB,
+	{"Benutzer fuer MySQL/MariaDB:","user for mysql/mariadb:"},
+	// T_Passwort_fuer_MySQL_MariaDB,
+	{"Passwort fuer MySQL/MariaDB (Achtung: nur schwach verschluesselt!)","password for mysql/mariadb (caution: only weakly encrypted!)"},
+	// T_Datenbankname_fuer_MySQL_MariaDB_auf
+	{"Datenbankname fuer MySQL/MariaDB auf '","database name for mysql/mariabd on '"},
+	// T_Tabellenname_in
+	{"Tabellenname in '","table name in '"},
 	{"",""}
 };
 // Txdbcl::Txdbcl() {TCp=(const char* const * const * const *)&TextC;}
 // class Txdbcl Txd;
 // class TxB Txd(DB_T);
 class TxB Txd((const char* const* const* const*)DB_T);
+const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; // fuer Antlitzaenderung
 
 // Datenbanknamen aus sql-String extrahieren
 svec holdbaussql(string sql) 
@@ -2070,7 +2123,7 @@ void RS::clear()
 {
   sql.clear();
   obfehl=-1;
-  fehler="";
+  fehler.clear();
   fnr=0;
   result=NULL;
   row=NULL;
@@ -2083,3 +2136,106 @@ void RS::clear()
   kommentar.clear();
 	isql.clear();
 } // clear
+
+void dhcl::initopt()
+{
+	opn<<optcl(/*pname*/"host",/*pptr*/&host,/*art*/psons,T_host_k,T_host_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"muser",/*pptr*/&muser,/*art*/psons,T_muser_k,T_muser_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"mpwd",/*pptr*/&mpwd,/*art*/ppwd,T_mpwd_k,T_mpwd_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"datenbank",/*pptr*/&dbq,/*art*/psons,T_db_k,T_datenbank_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Datenbank_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"tabelle",/*pptr*/&tabelle,/*art*/psons,T_tb_k,T_tabelle_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Tabelle_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	opn<<optcl(/*pname*/"",/*pptr*/&ZDB,/*art*/puchar,T_sqlv_k,T_sql_verbose_l,/*TxBp*/&Txd,/*Txi*/T_Bildschirmausgabe_mit_SQL_Befehlen,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+	hcl::initopt();
+} // void hhcl::initopt
+
+void dhcl::lgnzuw()
+{
+	hcl::lgnzuw();
+	Txd.lgn=Txk.lgn;
+} // void hhcl::lgnzuw
+
+dhcl::dhcl(const int argc, const char *const *const argv,const char* const DPROG):hcl(argc,argv,DPROG)
+{
+}
+
+// wird aufgerufen in: main 
+int dhcl::initDB()
+{
+	Log(violetts+"initDB(), db: "+blau+dbq+schwarz);
+	unsigned int fehler=0;
+	if (dbq.empty()) {
+		fehler=1046;
+	} else {
+		if (!My) {
+			My=new DB(myDBS,linstp,host,muser,mpwd,maxconz,dbq,/*port=*/0,/*unix_socket=*/0,/*client_flag=*/0,obverb,oblog);
+			if (My->ConnError) {
+				delete My;
+				My=0;
+			} else {
+				My->lassoffen=1;
+			} // 			if (My->ConnError) else
+		} // 		if (!My)
+		fehler=My->fehnr;
+	} // 	if (dbq.empty())
+	if (fehler) {
+		Log(rots+Txd[T_Verbindung_zur_Datenbank_nicht_herstellbar]+schwarz+ltoan(fehler)+rot+Txd[T_Breche_ab]+schwarz);
+		return 1;
+	} //   if (My->fehnr)
+	return 0;
+} // initDB
+
+// wird aufgerufen in rueckfragen
+int dhcl::pruefDB(const string& db)
+{
+	Log(violetts+Txk[T_pruefDB]+db+")"+schwarz);
+	if (!My) {
+		My=new DB(myDBS,linstp,host,muser,mpwd,maxconz,db,0,0,0,obverb,oblog,DB::defmycharset,DB::defmycollat,3,0);
+		if (My->ConnError) {
+			delete My;
+			My=0;
+		}else {
+			My->lassoffen=1;
+		}
+	} // 	if (!My)
+	return (My->fehnr); 
+} // pruefDB
+
+dhcl::~dhcl()
+{
+} // dhcl::~dhcl
+
+// wird aufgerufen in: main
+void dhcl::rueckfragen()
+{
+	if (rzf) {
+		host=Tippstr(Txd[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
+		const string Frage=Txd[T_Benutzer_fuer_MySQL_MariaDB];
+		muser=Tippstr(Frage.c_str(),&muser);
+		string mpw2;
+		mpwd.clear();
+		do {
+			mpwd=Tippstr(string(Txd[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'",&mpwd);
+			mpw2=Tippstr(string(Txd[T_Passwort_fuer_MySQL_MariaDB])+Txk[T_fuer_Benutzer]+dblau+muser+schwarz+"'"+" ("+Txk[T_erneute_Eingabe]+")",&mpw2);
+		} while (mpwd!=mpw2);
+		const string pwdstr=XOR(mpwd,pwk);
+		dbq=Tippstr(string(Txd[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
+		tabelle=Tippstr(string(Txd[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
+	} // if (rzf)
+	hcl::rueckfragen();
+} // void hhcl::rueckfragen()
+
+void dhcl::VorgbAllg()
+{
+	hcl::VorgbAllg();
+} // void hhcl::VorgbAllg
+
+void dhcl::VorgbSpeziell()
+{
+	hcl::VorgbSpeziell();
+} // void hhcl::VorgbAllg
+
+void dhcl::MusterVorgb()
+{
+	hcl::MusterVorgb();
+} // void hhcl::VorgbAllg
+

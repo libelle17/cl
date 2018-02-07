@@ -82,6 +82,32 @@ enum Txdb_
 	T_gelungen,
 	T_prueffunc,
 	T_Datenbankbenutzer_leer,
+	T_host_k,
+	T_host_l,
+	T_muser_k,
+	T_muser_l,
+	T_mpwd_k,
+	T_mpwd_l,
+	T_db_k,
+	T_datenbank_l,
+	T_tb_k,
+	T_tabelle_l,
+	T_Bildschirmausgabe_mit_SQL_Befehlen,
+	T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,
+	T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,
+	T_verwendet_fuer_MySQL_MariaDB_das_Passwort_string,
+	T_verwendet_die_Datenbank_string_anstatt,
+	T_verwendet_die_Tabelle_string_anstatt,
+	T_sqlv_k,
+	T_sql_verbose_l,
+	T_Verbindung_zur_Datenbank_nicht_herstellbar,
+	T_Breche_ab,
+	T_pruefDB,
+	T_Host_fuer_MySQL_MariaDB_Datenbank,
+	T_Benutzer_fuer_MySQL_MariaDB,
+	T_Passwort_fuer_MySQL_MariaDB,
+	T_Datenbankname_fuer_MySQL_MariaDB_auf,
+	T_Tabellenname_in,
 	T_dbMAX,
 }; // enum Txdb_ 
 
@@ -99,6 +125,7 @@ class Txdbcl: public TxB
 svec holdbaussql(string sql);
 
 enum DBSTyp {MySQL, Postgres};
+extern const DBSTyp myDBS;
 
 class sqlft: public string 
 {
@@ -408,3 +435,29 @@ class RS
 
 ////string ersetze(const char *u, const char* alt, const char* neu);
 #endif // DB_H_DRIN
+
+class dhcl:public hcl
+{
+ private:
+ public:
+	 uchar ZDB=0; // fuer Zusatz-Debugging (SQL): ZDB 1, sonst: 0
+	 DB* My=0;
+	const size_t maxconz=12;//aktc: 0=... //α
+ private:
+ protected:
+	void lgnzuw();
+ public:
+	dhcl(const int argc, const char *const *const argv,const char* const DPROG);
+	~dhcl();
+	void initopt(); // (programm-)spezifische Optionen
+	int  initDB();
+	int  pruefDB(const string& db);
+	void VorgbAllg();
+	void VorgbSpeziell()
+#ifdef VOMHAUPTCODE
+		__attribute__((weak)) // implementationsspezifische Vorgaben, Modul vgb.cpp)
+#endif
+		;
+	void MusterVorgb();
+	void rueckfragen(); //ω
+}; // class hhcl //ω
