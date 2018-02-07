@@ -2,7 +2,7 @@
 .\" manual page for ²DPROG²
 .\" write to geraldschade@gmx.de if You discover an error or a deficit in the program
 .pc
-.TH man 1 "06.02.18" "Version 0.10376" "\fB²DPROG²\fR man page"
+.TH man 1 "07.02.18" "Version 0.10377" "\fB²DPROG²\fR man page"
 .SH NAME
 \fB²DPROG² \- Fax server functionality\fR: induces automatic fax transmission of files, naming of received faxes and logging of all of them in a database
 .br
@@ -65,21 +65,21 @@ Ende initopt
 .br
 \fB 19\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      info\fR,langi:\fB      version\fR,wi:\fB  1\fR,Txi:\fB245\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 20\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB        lista\fR,wi:\fB  1\fR,Txi:\fB 46\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 20\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB     lista\fR,langi:\fB        lista\fR,wi:\fB  1\fR,Txi:\fB 41\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 21\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB       number\fR,wi:\fB  1\fR,Txi:\fB 47\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB6\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 21\fR pname:\fB       n\fR,pptr:\fB                       30\fR,kurzi:\fB         n\fR,langi:\fB       number\fR,wi:\fB  1\fR,Txi:\fB 42\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB6\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 22\fR pname:\fB    host\fR,pptr:\fB                localhost\fR,kurzi:\fB      host\fR,langi:\fB         host\fR,wi:\fB  1\fR,Txi:\fB 30\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 22\fR pname:\fB    host\fR,pptr:\fB                localhost\fR,kurzi:\fB      host\fR,langi:\fB         host\fR,wi:\fB  1\fR,Txi:\fB 25\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 23\fR pname:\fB   muser\fR,pptr:\fB                         \fR,kurzi:\fB     muser\fR,langi:\fB        muser\fR,wi:\fB  1\fR,Txi:\fB 31\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 23\fR pname:\fB   muser\fR,pptr:\fB                         \fR,kurzi:\fB     muser\fR,langi:\fB        muser\fR,wi:\fB  1\fR,Txi:\fB 26\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 24\fR pname:\fB    mpwd\fR,pptr:\fB                         \fR,kurzi:\fB      mpwd\fR,langi:\fB         mpwd\fR,wi:\fB  1\fR,Txi:\fB 32\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 24\fR pname:\fB    mpwd\fR,pptr:\fB                         \fR,kurzi:\fB      mpwd\fR,langi:\fB         mpwd\fR,wi:\fB  1\fR,Txi:\fB 27\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB1\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 25\fR pname:\fBdatenbank\fR,pptr:\fB                     faxe\fR,kurzi:\fB        db\fR,langi:\fB     database\fR,wi:\fB  1\fR,Txi:\fB 33\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 25\fR pname:\fBdatenbank\fR,pptr:\fB                     faxe\fR,kurzi:\fB        db\fR,langi:\fB     database\fR,wi:\fB  1\fR,Txi:\fB 28\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 26\fR pname:\fB tabelle\fR,pptr:\fB                         \fR,kurzi:\fB        tb\fR,langi:\fB        table\fR,wi:\fB  1\fR,Txi:\fB 34\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 26\fR pname:\fB tabelle\fR,pptr:\fB                         \fR,kurzi:\fB        tb\fR,langi:\fB        table\fR,wi:\fB  1\fR,Txi:\fB 29\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB0\fR,obno:\fB0\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-\fB 27\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      sqlv\fR,langi:\fB  sql-verbose\fR,wi:\fB  1\fR,Txi:\fB 29\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
+\fB 27\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      sqlv\fR,langi:\fB  sql-verbose\fR,wi:\fB  1\fR,Txi:\fB 24\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB0\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
 Ende parsecl
 .br

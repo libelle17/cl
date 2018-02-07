@@ -212,7 +212,6 @@ void hhcl::MusterVorgb()
 void hhcl::rueckfragen()
 {
 	Log(violetts+Tx[T_rueckfragen]+schwarz);
-	hcl::rueckfragen();
 	if (rzf) {
 		host=Tippstr(Tx[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
 		const string Frage=Tx[T_Benutzer_fuer_MySQL_MariaDB];
@@ -227,6 +226,7 @@ void hhcl::rueckfragen()
 		dbq=Tippstr(string(Tx[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
 		tabelle=Tippstr(string(Tx[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
 	} // if (rzf)
+	hcl::rueckfragen();
 } // void hhcl::rueckfragen()
 
 
