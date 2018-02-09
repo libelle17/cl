@@ -2449,20 +2449,16 @@ int systemrueck(const string& cmd, char obverb/*=0*/, int oblog/*=0*/, vector<st
 		if (ausgp&&obverb>0) *ausgp<<meld<<endl; else Log(meld,obverb>0?obverb:0,oblog);
 	} // if (obverb>0 || oblog)
 	if (rueck) {
-		caus<<"1 rueck!!!!!!!!!!!!!!!!!!!! rueck.size(): "<<rueck->size()<<endl;
 		if (obergebnisanzeig && rueck->size()) {
 			if (ausgp&&obverb>0) *ausgp<<smeld<<endl; else Log(smeld,obverb>1||(ob0heissterfolg && erg && obergebnisanzeig>1),oblog);
 		} // 	if (obergebnisanzeig && rueck->size())
-		if (neurueck) {delete rueck;rueck=0;}
 		if (obverb==-1) {
 			cout<<blau<<cmd<<schwarz<<":"<<endl;
-		caus<<"2 rueck!!!!!!!!!!!!!!!!!!!! rueck.size(): "<<rueck->size()<<endl;
 			for(unsigned i=0;i<rueck->size();i++) {
 				cout<<rueck->at(i)<<endl;
 			}
-		caus<<"3 rueck!!!!!!!!!!!!!!!!!!!! rueck.size(): "<<rueck->size()<<endl;
 		}
-		caus<<"4 rueck!!!!!!!!!!!!!!!!!!!! rueck.size(): "<<rueck->size()<<endl;
+		if (neurueck) {delete rueck;rueck=0;}
 	} // 	if (rueck)
 	return erg; 
 } // int systemrueck(const string& cmd, char obverb, int oblog, vector<string> *rueck, binaer ...
@@ -2478,12 +2474,12 @@ void pruefplatte()
 } // pruefplatte
 
 // ob das aktuelle Programm mehrfach laeuft; bei obstumm Exit-Code 0
-void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
+void pruefmehrfach(const string& wen,int obverb/*=0*/,uchar obstumm/*=0*/)
 {
 	const long smax=3600; // maximal tolerierte Sekundenzahl, bevor statt dem eigenen Prozess der andere abgebrochen wird
 	svec rueck;
 	const string iwen=wen.empty()?base_name(meinpfad()):wen;
-	systemrueck("ps -eo comm,cputime,pid|grep -P '^"+iwen+"([[:space:]]|\\z)'",!obstumm,0,&rueck,/*obsudc=*/0);
+	systemrueck("ps -eo comm,cputime,pid|grep -P '^"+iwen+"([[:space:]]|\\z)'",obverb,0,&rueck,/*obsudc=*/0);
 	for(int aru=0;aru<3;aru++) {
 		if (rueck.size()==1) // ich
 			break;
@@ -2501,7 +2497,7 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 					} // 				if (pvec[1].size()==8)
 					if (sek>smax) {    // wenn es mindestens eine Stunde laeuft
 						cout<<Txk[T_Program]<<blau<<iwen<<schwarz<<Txk[T_laueft_schon_einmal_aber]<<" "<<rot<<sek<<schwarz<<" s (> "<<blau<<smax<<schwarz<<" s), "<<Txk[T_wird_deshalb_abgebrochen]<<endl;
-						if (!systemrueck(string("kill ")+(aru?"-9 ":"")+pvec[2]+" 2>/dev/null",!obstumm,0,0,/*obsudc=*/1)) {
+						if (!systemrueck(string("kill ")+(aru?"-9 ":"")+pvec[2]+" 2>/dev/null",obverb,0,0,/*obsudc=*/1)) {
 							rueck.erase(rueck.begin()+iru);
 							continue;
 						}
@@ -2558,7 +2554,7 @@ void pruefmehrfach(const string& wen,uchar obstumm/*=0*/)
 
 		 process_time = (now - boottime) - (atof(tmp.at(21).c_str()))/HZ;
 	 */
-} // void pruefmehrfach(char* ich)
+} // void pruefmehrfach
 
 // aufgerufen in: setfaclggf, pruefberecht, pruefverz
 int untersuser(const string& uname,__uid_t *uidp/*=0*/, __gid_t *gidp/*=0*/,vector<gid_t> *gids/*=0*/,struct passwd* ustr/*=0*/)
@@ -3161,7 +3157,7 @@ void optcl::oausgeb()
 	cout<<",iwert:"<<blau<<iwert<<schwarz;
 	cout<<",part:"<<blau<<art<<schwarz;
 	cout<<",obno:"<<blau<<(int)obno<<schwarz;
-	cout<<",bemkg:"<<blau<<bemerk<<schwarz;
+	cout<<endl<<setw(22)<<",bemkg:"<<blau<<bemerk<<schwarz;
 	cout<<",woher:"<<blau<<(int)woher<<schwarz;
 	cout<<",gegent.:"<<blau<<(int)gegenteil<<schwarz;
 	cout<<",nichtspei.:"<<blau<<(int)nichtspeichern<<schwarz;
@@ -4980,7 +4976,7 @@ void hcl::fangan()
 	lieskonfein();
 	setzlog();
 	verarbeitkonf();
-	optausg(gruen);
+	if (obverb) optausg(gruen);
 	lieszaehlerein();
 	if (obhilfe==3) { // Standardausgabe gewaehrleisten
 		MusterVorgb();
@@ -5212,7 +5208,7 @@ void hcl::zeigkonf()
 		//// strftime(buf, sizeof(buf), "%d.%m.%Y %H.%M.%S", &tm);
 	} //   if (!lstat(akonfdt.c_str(),&kstat))
 	cout<<"):"<<endl;
-	optausg(blau);
+	if (obverb) optausg(blau);
 } // void hcl::zeigkonf()
 // augerufen in: anhalten(), zeigkonf()
 
@@ -5675,7 +5671,7 @@ void hcl::parsecl()
 			} // 			if (kurzp||langp)
 		} // if (aclen>1)
 	} // 	for(ap=argcmv.begin();ap!=argcmv.end();ap++)
-	optausg(gelb);
+	if (obverb) optausg(gelb);
 	for(size_t i=0;i<argcmv.size();i++) {
 		if (!argcmv[i].agef) {
 			::Log(rots+"Parameter: "+gruen+argcmv[i].argcs+rot+Txk[T_nicht_erkannt]+schwarz,1,0);
@@ -5693,8 +5689,8 @@ void hcl::verarbeitkonf()
 			if (!opn[i].pname.empty() && !opn[i].woher) {
 				rzf=1;
 			}
-		}
-	}
+		} // 		for (size_t i = 0;i<opn.size();i++)
+	} // 	if (!nrzf&&obhilfe<=2)
 } // void hcl::verarbeitkonf()
 
 // wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
@@ -6007,25 +6003,24 @@ WPcl::WPcl(const string& pname,const void* pptr,war_t wart):pname(pname),pptr(pp
 void hcl::lieszaehlerein()
 {
 	azaehlerdt=aktprogverz()+".zaehl";
-	caus<<"0 zcnfA.zahl: "<<zcnfA.size()<<endl;
+	////<<"0 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	zcnfA<<WPcl("aufrufe",&aufrufe,wlong);
 	zcnfA<<WPcl("lDatum",&laufrtag,wdat);
 	zcnfA<<WPcl("tagesaufr",&tagesaufr,wlong);
 	zcnfA<<WPcl("monatsaufr",&monatsaufr,wlong);
-	caus<<"1 zcnfA.zahl: "<<zcnfA.size()<<endl;
+	////<<"1 zcnfA.zahl: "<<zcnfA.size()<<endl;
 	confdcl zlzn;
 	zlzn.lies(azaehlerdt,obverb);
-	caus<<"azaehlerdt: "<<blau<<azaehlerdt<<schwarz<<endl;
+	////<<"azaehlerdt: "<<blau<<azaehlerdt<<schwarz<<endl;
 	zlzn.auswert(&zcnfA);
-	if (&aufrufe) caus<<blau<<"aufrufe: "<<schwarz<<aufrufe<<endl;
+	//// if (&aufrufe) <<blau<<"aufrufe: "<<schwarz<<aufrufe<<endl;
 	if (&laufrtag) {
 		string ldat;
 		thr_strftime(&laufrtag,&ldat);
-		caus<<blau<<"letztes Datum: "<<schwarz<<ldat<<endl;
+		////<<blau<<"letztes Datum: "<<schwarz<<ldat<<endl;
 	}
-	if (&tagesaufr) caus<<blau<<"tagesaufr: "<<schwarz<<tagesaufr<<endl;
-	if (&monatsaufr) caus<<blau<<"monatsaufr: "<<schwarz<<monatsaufr<<endl;
-	caus<<blau<<"vor return"<<schwarz<<endl;
+	//// if (&tagesaufr) <<blau<<"tagesaufr: "<<schwarz<<tagesaufr<<endl;
+	//// if (&monatsaufr) <<blau<<"monatsaufr: "<<schwarz<<monatsaufr<<endl;
 } // void hcl::lieszaehlerein
 
 
@@ -6095,7 +6090,6 @@ void hcl::tucronschreib(const string& zsauf,const uchar cronzuplanen,const strin
 // wird aufgerufen in: main
 uchar hcl::pruefcron(const string& cm)
 {
-	caus<<"Anfang pruefcron"<<endl;
 	uchar obschreib=0;
 	// damit nicht nur deshalb das root-Passwort abgefragt werden muss => cronminuten nur ueberpruefen/aendern, wenn etweder ohnehin root oder ueber Befehlszeile neue Minutenzahl gewuenscht
 ////	<<"opn.olmap[Txk[T_cronminuten_l]]->woher: "<<(int)opn.olmap[Txk[T_cronminuten_l]]->woher<<", !cus.cuid: "<<cus.cuid<<endl;
@@ -6115,40 +6109,27 @@ uchar hcl::pruefcron(const string& cm)
 			linstp->doinst("cron",1,1);
 			////  int obionice=!systemrueck("which ionice > /dev/null 2>&1",0,0);
 		} //   for (uchar runde=0;runde<2;runde++) 
-	caus<<"1 pruefcron"<<endl;
 		if (cronda) {
-	caus<<"2 pruefcron"<<endl;
 			////		string vorcm; // Vor-Cron-Minuten
 			nochkeincron = systemrueck("crontab -l",obverb-1,0,0,/*obsudc=*/1,2);
-	caus<<"21 pruefcron"<<endl;
 			setztmpcron();
-	caus<<"22 pruefcron"<<endl;
 			const string vaufr=mpfad+" -noia"; // /usr/bin/<DPROG> -noia // (vollaufruf) z.B. '/usr/bin/<DPROG> -noia >/dev/null 2>&1'
-	caus<<"23 pruefcron"<<endl;
 			const string zsaufr=base_name(vaufr); // ersetzAllezu(cbef,"/","\\/"); // Suchstring zum Loeschen
-	caus<<"24 pruefcron"<<endl;
 			const string vorsaetze=" "+linstp->ionicepf+" -c2 -n7 "+linstp->nicepf+" -n19 ";
-	caus<<"25 pruefcron"<<endl;
 			const string cabfr=vorsaetze+".*"+zsaufr;// <DPROG> -noia // Suchstring in Crontab // Befehl zum Abfragen der Cronminuten aus aktuellem Cron-Script
-	caus<<"26 pruefcron"<<endl;
 			const string cbef=string("*/")+cmhier+" * * * *"+vorsaetze+vaufr+" -cf "+akonfdt+" >/dev/null 2>&1"; // "-"-Zeichen nur als cron
-	caus<<"27 pruefcron"<<endl;
 			const string czt=" \\* \\* \\* \\*";
-	caus<<"3 pruefcron"<<endl;
 			////		string vorcm; // Vor-Cron-Minuten
 			if (!nochkeincron) {
 				cmd="bash -c 'grep \"\\*/.*"+czt+cabfr+"\" <(crontab -l 2>/dev/null)| sed \"s_\\*/\\([^ ]*\\) .*_\\1_\"'"; // fuer debian usw.: dash geht hier nicht
 				svec cmrueck;
-	caus<<"4 pruefcron"<<endl;
 				systemrueck(cmd,obverb,oblog,&cmrueck,/*obsudc=*/1);
 				if (cmrueck.size()) vorcm=cmrueck[0];
 			} // 		if (!nochkeincron) 
 			if (vorcm.empty() && !cronzuplanen) {
-	caus<<"5 pruefcron"<<endl;
 				if (obverb||cmeingegeben) 
 					::Log(Txk[T_Kein_cron_gesetzt_nicht_zu_setzen],1,oblog);
 			} else {
-	caus<<"5 pruefcron"<<endl;
 				if (cmhier==vorcm) {
 					if (cmeingegeben) ::Log(blaus+"'"+zsaufr+"'"+schwarz+Txk[T_wird]+Txk[T_unveraendert]+
 							+blau+(vorcm.empty()?Txk[T_gar_nicht]:Txk[T_alle]+vorcm+Txk[T_Minuten])+schwarz+Txk[T_aufgerufen],1,oblog);
@@ -6194,7 +6175,6 @@ uchar hcl::pruefcron(const string& cm)
 #endif // anders
 		} //   if (cronda) 
 	}
-	caus<<"Ende pruefcron"<<endl;
 	return obschreib;
 	//  systemrueck(string("mv -i '")+mpfad+"' /root/bin",1,0);
 } // pruefcron
@@ -6236,7 +6216,7 @@ void hcl::vischluss(string& erg,string& zeig)
 	erg+="tabfirst' -p";
 	string exdt=instvz+"/.exrc";
 	{ifstream is(exdt);if (is.good()) erg+="Nu "+exdt;}
-	// caus<<violett<<cmd+" +'"+erg+" "+devtty<<schwarz<<endl;
+	//// <<violett<<cmd+" +'"+erg+" "+devtty<<schwarz<<endl;
 	systemrueck("ls -l "+zeig,2);
 	exit(systemrueck(cmd+" +'"+erg+" "+devtty,obverb,0,/*rueck=*/0,/*obsudc=*/0));
 } // void vischluss(string& cmd,string& erg)
@@ -6359,7 +6339,7 @@ void optcl::weisomapzu(schAcl<optcl> *schlp)
 			schlp->okmap[(*TxBp)[kurzi]]=this;
 			schlp->olmap[(*TxBp)[langi]]=this;
 		} // 		for(unsigned akts=0;akts<SprachZahl;akts++)
-}
+} // void optcl::weisomapzu
 
 void WPcl::weisomapzu(schAcl<WPcl> *optp)
 {
@@ -6374,12 +6354,12 @@ template<typename SCL> void schAcl<SCL>::omapzuw()
 
 void hcl::optausg(const char *farbe)
 {
-	caus<<violett<<"optausg()"<<schwarz<<endl;
+	cout<<violett<<"optausg()"<<schwarz<<endl;
 	for(size_t iru=0;iru<opn.size();iru++) {
-			caus<<farbe<<setw(3)<<iru<<schwarz<<" ";
+			cout<<farbe<<setw(3)<<iru<<schwarz<<" ";
 			opn[iru].oausgeb();
 	}
-}
+} // void hcl::optausg
 
 void hcl::pruefcl() // commandline mit omap und mit argcmv parsen
 {
@@ -6387,15 +6367,13 @@ void hcl::pruefcl() // commandline mit omap und mit argcmv parsen
 
 confdcl::confdcl():obgelesen(0),obzuschreib(0)
 {
-	caus<<"1 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!"<<endl;
 }
 
 confdcl::confdcl(const string& fname, int obverb):obgelesen(0),obzuschreib(0)
 {
-	caus<<"2 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!"<<endl;
  if (!fname.empty())
 	 lies(fname,obverb);
-}
+} // confdcl::confdcl
 
 // Achtung: Wegen der Notwendigkeit zur Existenz der Datei zum Aufruf von setfacl kann die Datei erstellt werden!
 int confdcl::lies(const string& fname, int obverb)
@@ -6422,9 +6400,9 @@ int confdcl::lies(const string& fname, int obverb)
 			cout<<Txk[T_confdat_lies_Misserfolg]<<endl;
 		else
 			cout<<Txk[T_confdat_lies_Erfolg]<<endl;
-	} // 	if (obverb>0) {
+	} // 	if (obverb>0)
 	return erg;
-} // lies(const string& fname, int obverb)
+} // confdcl::lies
 
 
 // wird aufgerufen in: main
@@ -6488,7 +6466,7 @@ uchar optcl::einzutragen(schAcl<optcl> *schlp)
 		return 1;
 	}
 	return 0;
-} // uchar optcl::einzutragen(schAcl<optcl> *schlp)
+} // uchar optcl::einzutragen
 
 template<typename SCL> void schAcl<SCL>::schAschreib(mdatei *const f)
 {
@@ -6500,7 +6478,7 @@ template<typename SCL> void schAcl<SCL>::schAschreib(mdatei *const f)
 			*f<<schl[i].pname<<" = \""<<schl[i].holstr()<<"\""<<endl;
 		} // 		if (!schl[i].pname.empty() && schl[i].einzutragen(this))
 	} //   for (size_t i = 0;i<zahl;i++)
-} // void schAcl::schAschreib(mdatei *f)
+} // void schAcl::schAschreib
 
 template<typename SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
 {
@@ -6508,10 +6486,10 @@ template<typename SCL> void schAcl<SCL>::gibaus(const int nr/*=0*/)
   for(size_t i=0;i<schl.size();i++) {
    cout<<"i: "<<gruen<<i<<schwarz<<" pname: "<<blau<<schl[i].pname<<schwarz<<Txk[T_Wert]<<blau<<schl[i].holstr()<<schwarz<<endl;
   }
-} // void schAcl::ausgeb()
+} // template<typename SCL> void schAcl
 
-template<typename SCL> int schAcl<SCL>::confschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,const string& mpfad,uchar faclbak/*=1*/,
-		int obverb/*=0*/,int oblog/*=0*/)
+template<typename SCL> int schAcl<SCL>::confschreib(const string& fname,ios_base::openmode modus/*=ios_base::out*/,const string& mpfad,
+		uchar faclbak/*=1*/, int obverb/*=0*/,int oblog/*=0*/)
 {
   mdatei f(fname,modus);
   if (f.is_open()) {
@@ -6521,7 +6499,7 @@ template<typename SCL> int schAcl<SCL>::confschreib(const string& fname,ios_base
     return 0;
   } //   if (f.is_open())
   return 1;
-} // int schAcl::confschreib(const string& fname)
+} // int schAcl::confschreib
 
 // schreibt ein Array von Schluessel-Arrays der Klasse WPcl in die Datei fname
 template<typename SCL> int multischlschreib(const string& fname, schAcl<SCL> *const *const mcnfApp, const size_t cszahl,const string& mpfad)
@@ -6546,7 +6524,7 @@ template<typename SCL> int multischlschreib(const string& fname, schAcl<SCL> *co
     return 0;
   } //   if (f.is_open())
   return 1;
-} // int multischlschreib(const string& fname, schAcl **mcnfApp, size_t cszahl)
+} // int multischlschreib
 
 void hcl::VorgbAllg()
 {
@@ -6565,9 +6543,9 @@ void hcl::MusterVorgb()
 void hcl::pruefggfmehrfach()
 {
 	if (!obhilfe &&!obvi &&!obvs &&!zeigvers &&!rzf) {
-		pruefmehrfach(meinname,nrzf);
+		pruefmehrfach(meinname,obverb,nrzf);
 	}
-} // void hhcl::pruefggfmehrfach()
+} // void hhcl::pruefggfmehrfach
 
 // wird aufgerufen in: main
 void hcl::zeigueberschrift()

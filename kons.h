@@ -926,7 +926,7 @@ int systemrueck(const string& cmd, char obverb=0, int oblog=0, vector<string> *r
                 const int verbergen=0, int obergebnisanzeig=wahr, const string& ueberschr=nix,vector<errmsgcl> *errm=0,uchar obincron=0,
 								stringstream *ausgp=0,uchar obdirekt=0);
 void pruefplatte();
-void pruefmehrfach(const string& wen=nix,uchar obstumm=0);
+void pruefmehrfach(const string& wen=nix,int obverb=0,uchar obstumm=0);
 void setfaclggf(const string& datei,int obverb=0,int oblog=0,const binaer obunter=falsch,int mod=4,uchar obimmer=0,
                 uchar faclbak=0,const string& user=nix,uchar fake=0,stringstream *ausgp=0);
 int pruefverz(const string& verz,int obverb=0,int oblog=0, uchar obmitfacl=0, uchar obmitcon=0,
