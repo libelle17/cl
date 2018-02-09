@@ -2,7 +2,7 @@
 .\" Manual-Seite für ²DPROG²
 .\" Schreiben Sie an geraldschade@gmx.de, wenn Sie Fehler oder Mängel entdeckt haben
 .pc
-.TH man 1 "08.02.18" "Version 0.1039" "Manual-Seite für ²DPROG²"
+.TH man 1 "09.02.18" "Version 0.10391" "Manual-Seite für ²DPROG²"
 .SH NAME
 \fB²DPROG² \- FaxServer-Funktionalität\fR: veranlasst automatischen Faxversand von Dateien, Benennung empfangener Faxe und Protokollierung aller Faxe in einer Datenbank 
 .br
@@ -15,13 +15,11 @@
 .SH OPTIONEN 
 .SH VORAUSSETZUNGEN
 .br
+1 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!
+.br
+2 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!
+.br
 \fBlies: \fB/etc/sysconfig/language\fR
-.br
-\fBobzuschreib: \fB0\fR
-.br
-Sprache gefunden in \fB/etc/sysconfig/language\fR: \fBd\fR
-.br
-Ende initopt
 .br
 \fBoptausg()\fR
 .br
@@ -81,7 +79,7 @@ Ende initopt
 .br
 \fB 27\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      info\fR,langi:\fB      version\fR,wi:\fB  1\fR,Txi:\fB245\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-Ende parsecl
+\fBEnde parsecl, obzuschreib: \fB0\fR
 .br
 \fBOptionen, die nicht gespeichert werden: \fR
 .br

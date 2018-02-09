@@ -1,11 +1,9 @@
 .br
+1 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!
+.br
+2 Hier wird obzuschreib zu 0 gesetzt!!!!!!!!!!!!!!!!!
+.br
 \fBlies: \fB/etc/sysconfig/language\fR
-.br
-\fBobzuschreib: \fB0\fR
-.br
-Sprache gefunden in \fB/etc/sysconfig/language\fR: \fBd\fR
-.br
-Ende initopt
 .br
 \fBoptausg()\fR
 .br
@@ -65,7 +63,7 @@ Ende initopt
 .br
 \fB 27\fR pname:\fB        \fR,pptr:\fB                        0\fR,kurzi:\fB      info\fR,langi:\fB      version\fR,wi:\fB  1\fR,Txi:\fB245\fR,rottxt:\fB               \fR,Txi2:\fB -1\fR,iwert:\fB1\fR,part:\fB4\fR,obno:\fB1\fR,bemkg:\fB\fR,woher:\fB0\fR,gegent.:\fB0\fR,nichtspei.:\fB0\fR
 .br
-Ende parsecl
+\fBEnde parsecl, obzuschreib: \fB0\fR
 .br
 \fBOptionen, die nicht gespeichert werden: \fR
 .br
