@@ -5,7 +5,6 @@
 #include "DB.h" 
 #define VOMHAUPTCODE // um Funktionsdefinition manchmal mit "__attribute__((weak)) " versehen zu können //ω
 #include "cl.h"
-#include <map>
 // für verschiedene Sprachen //α
 enum T_      
 {
@@ -63,26 +62,17 @@ const char *logdt="/var/log/" DPROG "vorgabe.log";//darauf wird in kons.h verwie
 
 using namespace std;
 
-#ifdef mitpostgres 
-const DBSTyp myDBS=Postgres;
-#else // mitpostgre
-const DBSTyp myDBS=MySQL;
-#endif // mitpostgres else
-
 
 hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
 {
-} // hhcl::hhcl
 
-hhcl::~hhcl()
-{
-} // hhcl::~hhcl
+} // hhcl::hhcl
 
 void hhcl::initopt()
 {
-	static string listzs=ltoan(listz);
 	opn<<optcl(/*pname*/"",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
 	opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
+
 	dhcl::initopt();
 } // void hhcl::initopt
 
@@ -90,6 +80,7 @@ void hhcl::initopt()
 void hhcl::VorgbAllg()
 {
 	Log(violetts+Tx[T_VorgbAllg]+schwarz);
+
 	dhcl::VorgbAllg();
 
 } // void hhcl::VorgbAllg
@@ -97,6 +88,7 @@ void hhcl::VorgbAllg()
 void hhcl::VorgbSpeziell()
 {
 	Log(violetts+Tx[T_VorgbSpeziell]+schwarz);
+
 	dhcl::VorgbSpeziell();
 	MusterVorgb();
 } // void hhcl::VorgbSpeziell
@@ -104,6 +96,7 @@ void hhcl::VorgbSpeziell()
 void hhcl::MusterVorgb()
 {
 	Log(violetts+Tx[T_MusterVorgb]+schwarz);
+
 	dhcl::MusterVorgb();
 } // void hhcl::MusterVorgb
 
@@ -121,15 +114,17 @@ void hhcl::rueckfragen()
 
 void hhcl::macherkl()
 {
-	erkl<<blau<<"Programm "<<violett<<DPROG<<blau<<" ist etwas ganz Spezielles"<<schwarz;
+	erkl<<blau<<"Programm "<<violett<<DPROG
+		
+		<<blau<<" ist etwas ganz Spezielles"<<schwarz;
 }
 
 int main(int argc,char** argv)
 {
 	if (argc>1) {
 	}
-	hhcl hhi(argc,argv); // hiesige Hauptinstanz
-	hhi.fangan(); // Einleitungsteil mit Aufruf virtueller Funktionen
+	hhcl hhi(argc,argv); // hiesige Hauptinstanz, mit lngzuw, setzlog und pruefplatte
+	hhi.fangan(); // Einleitungsteil mit virtuellen Funktionen, mit VorgbAllg,VorgbSpeziell,initopt,parsecl,macherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,zeigversion
 
 	if (!hhi.keineverarbeitung) {
 		hhi.rueckfragen();
@@ -145,6 +140,7 @@ int main(int argc,char** argv)
 		hhi.setzzaehler(); //α
 		hhi.schreibzaehler();
 	} //  if (!hhi.keineverarbeitung)
+	// in hcl::~hcl: autokonfschreib,update,
 } // int main //ω
 // wird aufgerufen in: main
 

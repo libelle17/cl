@@ -151,6 +151,12 @@ const char *DB_T[T_dbMAX+1][SprachZahl]={
 class TxB Txd((const char* const* const* const*)DB_T);
 const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; // fuer Antlitzaenderung
 
+#ifdef mitpostgres 
+const DBSTyp myDBS=Postgres;
+#else // mitpostgre
+const DBSTyp myDBS=MySQL;
+#endif // mitpostgres else
+
 // Datenbanknamen aus sql-String extrahieren
 svec holdbaussql(string sql) 
 {

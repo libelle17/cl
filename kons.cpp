@@ -3157,7 +3157,7 @@ void optcl::oausgeb()
 	cout<<",iwert:"<<blau<<iwert<<schwarz;
 	cout<<",part:"<<blau<<art<<schwarz;
 	cout<<",obno:"<<blau<<(int)obno<<schwarz;
-	cout<<endl<<setw(22)<<",bemkg:"<<blau<<bemerk<<schwarz;
+	cout<</*endl<<setw(22)<<*/",bemkg:"<<blau<<bemerk<<schwarz;
 	cout<<",woher:"<<blau<<(int)woher<<schwarz;
 	cout<<",gegent.:"<<blau<<(int)gegenteil<<schwarz;
 	cout<<",nichtspei.:"<<blau<<(int)nichtspeichern<<schwarz;
@@ -4974,7 +4974,6 @@ void hcl::fangan()
 	if (zeighilfe(&erkl)) 
 		exit(1);
 	lieskonfein();
-	setzlog();
 	verarbeitkonf();
 	if (obverb) optausg(gruen);
 	lieszaehlerein();

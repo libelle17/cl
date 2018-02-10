@@ -14,7 +14,7 @@ class hhcl:public dhcl
  protected:
  public:
   hhcl(const int argc, const char *const *const argv);
-	~hhcl();
+//	~hhcl();
 	void initopt(); // (programm-)spezifische Optionen
 	void pruefanrufe(DB *My, const string& tabelle, const int obverb, const int oblog, const uchar direkt=0);
 	void getcommandl0();
