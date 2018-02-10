@@ -444,8 +444,8 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{" aufgerufen.","."},
 	// T_statt
 	{" statt "," instead of "},
-	// T_schlussanzeige
-	{"schlussanzeige()","finaldisplay()"},
+	// T_virtschlussanzeige
+	{"virtschlussanzeige()","virtfinaldisplay()"},
 	// T_Zeit_Doppelpunkt
 	{"Zeit: ","Time: "},
 	// T_Fertig_mit
@@ -598,7 +598,7 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"Logverzeichnis","log directory"},
 	// T_Logdateiname
 	{"Logdateiname","log file name"},
-	// T_Oblog,
+	// T_Oblog_ausf_Protok,
 	{"Oblog (ausführliche Protokollierung): ","Log (detailled logging): "},
 	// T_Aufrufintervall
 	{"; Aufrufintervall: ","; (cron) call interval: "},
@@ -606,6 +606,10 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"kein cron-Aufruf","no cron call"},
 	// T_Minute
 	{" Minute"," minute"},
+	// T_Logpfad,
+	{"Logpfad: '","Log path: '"},
+	// T_oblog,
+	{"' (oblog: ","' (with logging: "},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -4894,7 +4898,7 @@ int dateivgl(const string& d1, const string& d2,uchar obzeit/*=0*/)
 	return erg;
 } // int dateivgl(const string& d1, const string& d2)
 
-// wird aufgerufen in: paramcl::setzhylavz, pruefcvz, rueckfragen
+// wird aufgerufen in: paramcl::setzhylavz, pruefcvz, virtrueckfragen
 void kuerzevtz(string *vzp)
 {
 	if (!vzp->empty()) {
@@ -4945,12 +4949,13 @@ hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):
 			cl+=argv[i];
 		} //     if (argv[i][0])
 	langu=holsystemsprache(obverb);
-	lgnzuw();
+	virtlgnzuw();
 	pthread_mutex_init(&printf_mutex, NULL);
 	pthread_mutex_init(&getmutex, NULL);
 	pthread_mutex_init(&timemutex, NULL);
 	mpfad=meinpfad();
 	meinname=base_name(mpfad); // argv[0];
+	uebers<<schwarz<<Txk[T_Programm]<<blau<<mpfad<<schwarz<<", V: "<<blau<<fixed<<setprecision(5)<<versnr<<defaultfloat<<schwarz;
 	pruefinstv();
 #ifdef _WIN32
 	logvz = "C:\\Dokumente und Einstellungen\\All Users\\Anwendungsdaten";
@@ -4963,14 +4968,19 @@ hcl::hcl(const int argc, const char *const *const argv,const char* const DPROG):
 	linstp=new linst_cl(obverb,oblog);
 } // hcl::hcl
 
-// zum Aufruf virtueller Funktionen aus dem Konstruktur verschoben
-void hcl::fangan()
+// virtuelle Funktion
+void hcl::virtpruefweiteres()
 {
-	VorgbAllg();
-	VorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::VorgbSpeziell()" ueberladbar sind
-	initopt();//¿
+}
+
+// zum Aufruf virtueller Funktionen aus dem Konstruktur verschoben
+void hcl::lauf()
+{
+	virtVorgbAllg();
+	virtVorgbSpeziell(); // die Vorgaben, die in einer zusaetzlichen Datei mit einer weiteren Funktion "void hhcl::virtVorgbSpeziell()" ueberladbar sind
+	virtinitopt();
 	parsecl();
-	macherkl();
+	virtmacherkl();
 	if (zeighilfe(&erkl)) 
 		exit(1);
 	lieskonfein();
@@ -4978,32 +4988,44 @@ void hcl::fangan()
 	if (obverb) optausg(gruen);
 	lieszaehlerein();
 	if (obhilfe==3) { // Standardausgabe gewaehrleisten
-		MusterVorgb();
+		virtMusterVorgb();
 	} else {
-//		hhi.lieskonfein(DPROG);
-	} // if (hhi.obhilfe==3)
+//		lieskonfein(DPROG);
+	} // if (obhilfe==3)
 	if (obvi) dovi(); 
-	if (obvs) {
+	else if (obvs) {
 		svec rueck;
 		systemrueck("cd \""+instvz+"\";ls -l $(grep 'DTN' vars|sed 's/DTN::=//g')",-1,oblog,&rueck);
 		exit(systemrueck("cd \""+instvz+"\"; sh viall"+devtty,/*obverb=*/0,/*oblog=*/0,/*rueck=*/0,/*obsudc=*/1));
 	}
-	if (zeigvers) {
-		zeigversion();
+	else if (zeigvers) {
+		virtzeigversion();
 		Log(violetts+Txk[T_Ende]+Tx[T_zeigvers]+schwarz,obverb,oblog);
 		exit(7);
-	} // if (hhi.zeigvers)
-} // hcl::hcl()
-
-hcl::~hcl()
-{
+	} // if (zeigvers)
+	virtvorrueckfragen();
+	else if (!keineverarbeitung) {
+		virtrueckfragen();
+		pruefggfmehrfach();
+		if (logdateineu) tuloeschen(logdt,"",obverb,oblog);
+		Log(Txk[T_Logpfad]+drots+loggespfad+schwarz+Txk[T_oblog]+drot+ltoan((int)oblog)+schwarz+")");
+		virtpruefweiteres();
+	} // 	if (!keineverarbeitung)
+	if (!virtohnecron()) {
+		if (mitcron) pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
+		if (!keineverarbeitung) {
+			virtzeigueberschrift();
+			setzzaehler();
+			schreibzaehler();
+		} //  if (!keineverarbeitung)
+	}
 	autokonfschreib();
 	update(DPROG);
-	schlussanzeige();
+	virtschlussanzeige();
 	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
 	delete linstp;
 	linstp=0;
-} // hcl::~hcl()
+} // hcl::hcl()
 
 // wird aufgerufen in paramcl::paramcl, pruefunpaper, holvomnetz, kompilbase, kompilfort
 int hcl::pruefinstv()
@@ -5097,7 +5119,7 @@ int hcl::kompilfort(const string& was,const string& vorcfg/*=nix*/, const string
 
 const string tiffmark="/usr/local/sclibtiff";
 
-// aufgerufen bei autofax in: pruefhyla, empfcapi, rueckfragen
+// aufgerufen bei autofax in: pruefhyla, empfcapi, virtrueckfragen
 void hcl::prueftif(string aktvers)
 {
 	Log(violetts+Txk[T_prueftif]+schwarz+" "+aktvers);
@@ -5168,7 +5190,7 @@ int hcl::kompiliere(const string& was,const string& endg, const string& vorcfg/*
 } // int hcl::kompiliere(const string was,const string endg,const string nachtar, const string vorcfg,const string cfgbismake)
 
 // augerufen in: main
-void hcl::zeigversion(const string& ltiffv/*=nix*/)
+void hcl::virtzeigversion(const string& ltiffv/*=nix*/)
 {
 	struct tm tm={0};
 	//// char buf[100];
@@ -5190,7 +5212,7 @@ void hcl::zeigversion(const string& ltiffv/*=nix*/)
 	if (!ltiffv.empty())
 		cout<<Txk[T_Libtiff_Version]<<blau<<ltiffv.substr(0,ltiffv.find("\n"))<<schwarz<<endl;
 	cout<<Txk[T_Hilfe]<<braun<<"man "<<base_name(mpfad)<<schwarz<<Txk[T_or]<<braun<<"man -Lde "<<base_name(mpfad)<<schwarz<<"'"<<endl;
-} // void hcl::zeigversion(const char* const prog)
+} // void hcl::virtzeigversion
 
 // aufgerufen in: main
 void hcl::zeigkonf()
@@ -5570,7 +5592,7 @@ optcl::optcl(const string& pname,const void* pptr,const par_t art, const int kur
 	obno(pname.empty())
 {}
 
-void hcl::initopt()
+void hcl::virtinitopt()
 {
 	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lg_k,T_language_l,/*TxBp*/&Txk,/*Txi*/T_sprachstr,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"language",/*pptr*/&langu,/*art*/psons,T_lang_k,T_lingue_l,/*TxBp*/&Txk,/*Txi*/-1,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
@@ -5595,8 +5617,8 @@ void hcl::initopt()
 
 	//  for(int i=argc-1;i>0;i--) KLA if (argv[i][0]==0) argc--; KLZ // damit fuer das Compilermakro auch im bash-script argc stimmt
 	opn.omapzuw();
-	//// <<"Ende initopt"<<endl;
-} // hcl::initopt
+	//// <<"Ende virtinitopt"<<endl;
+} // hcl::virtinitopt
 
 void hcl::parsecl()
 {
@@ -5650,7 +5672,7 @@ void hcl::parsecl()
 								}
 								if (wiefalsch<=0) { // erfolgreich zugewiesen
 									if (omit->second->pptr==&langu) {
-										lgnzuw();
+										virtlgnzuw();
 									} else if (omit->second->pptr==&logvz || omit->second->pptr==&logdname) 
 										setzlog();
 									else if (omit->second->pptr==&cronminut) {
@@ -5692,8 +5714,8 @@ void hcl::verarbeitkonf()
 	} // 	if (!nrzf&&obhilfe<=2)
 } // void hcl::verarbeitkonf()
 
-// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
-void hcl::lgnzuw()
+// wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
+void hcl::virtlgnzuw()
 {
 	if (langu=="d" || langu=="D" || langu=="deutsch" || langu=="Deutsch") {
 		Txk.lgn=deutsch;
@@ -5703,7 +5725,7 @@ void hcl::lgnzuw()
 		Txk.lgn=deutsch;
 	} // 	if (langu=="d" || langu=="D" || langu=="deutsch" || langu=="Deutsch") else else
 	Tx.lgn=Txk.lgn;
-} // void hcl::lgnzuw
+} // void hcl::virtlgnzuw
 
 int hcl::Log(const string& text,const bool oberr/*=0*/,const short klobverb/*=0*/) const
 {
@@ -5948,11 +5970,11 @@ void hcl::lieskonfein()
 	} // 	if (akonfdt.empty()) 
 	// agcnfA.init muss spaetetens am Anfang von getcommandl0 kommen
 	// sodann werden die Daten aus gconf den einzelenen Klassenmitgliedsvariablen zugewiesen 
-	// die Reihenfolge muss der in agcnfA.init (in getcommandl0) sowie der in rueckfragen entsprechen
+	// die Reihenfolge muss der in agcnfA.init (in getcommandl0) sowie der in virtrueckfragen entsprechen
 // afcd.cinit(akonfdt,&agcnfA,obverb,'=',/*mitclear=*/0); // hier werden die Daten aus der Datei eingelesen
 	hccd.lies(akonfdt,obverb);
 	hccd.auswert(&opn,obverb,'=',0);
-	lgnzuw();
+	virtlgnzuw();
 	setzlog();
 	caus<<violett<<"Ende lieskonfein, obzuschreib: "<<rot<<(int)hccd.obzuschreib<<schwarz<<endl;
 } // void hcl::lieskonfein
@@ -6179,9 +6201,9 @@ uchar hcl::pruefcron(const string& cm)
 } // pruefcron
 // wird aufgerufen in: main
 
-void hcl::schlussanzeige()
+void hcl::virtschlussanzeige()
 {
-	Log(violetts+Txk[T_schlussanzeige]+schwarz);
+	Log(violetts+Txk[T_virtschlussanzeige]+schwarz);
 	tende = clock();
 	////  ausg.str(std::string()); ausg.clear();
 	////  ausg<<schwarz<<"Pfad: "<<tuerkis<<zufaxenvz<<schwarz<<"; Dateien: "<<tuerkis<<geszahl<<schwarz<<"; Zeit: "<<drot<<setprecision(7)<<fixed<<((tende-tstart)/CLOCKS_PER_SEC)<<schwarz<<setprecision(0)<<" s";
@@ -6422,22 +6444,22 @@ void hcl::autokonfschreib()
 } // void hhcl::autokonfschreib
 
 
-void hcl::rueckfragen()
+void hcl::virtrueckfragen()
 {
 	if (rzf) {
 		const char *const locale = setlocale(LC_CTYPE,"");
 		if (langu.empty()) if (locale) if (strchr("defi",locale[0])) langu=locale[0];
 		vector<string> sprachen={"e","d"/*,"f","i"*/};
 		langu=Tippstrs(sprachstr.c_str()/*"Language/Sprache/Lingue/Lingua"*/,&sprachen,&langu);
-		lgnzuw();
+		virtlgnzuw();
 		cronminut=Tippzahl(Txk[T_Alle_wieviel_Minuten_soll]+meinname+Txk[T_aufgerufen_werden_0_ist_gar_nicht],&cronminut);
 		autoupd=Tippob(Txk[T_Sollen_neue_Programmversionen_von]+meinname+Txk[T_automatisch_installiert_werden],autoupd?Txk[T_j_af]:"n");
 		logvz=Tippverz(Txk[T_Logverzeichnis],&logvz);
 		logdname=Tippstr(Txk[T_Logdateiname],&logdname);
 		setzlog();
-		oblog=Tippzahl(Txk[T_Oblog],oblog);
+		oblog=Tippzahl(Txk[T_Oblog_ausf_Protok],oblog);
 	} // 	if (rzf)
-} // 		void hcl::rueckfragen
+} // 		void hcl::virtrueckfragen
 
 template <> void schAcl<WPcl>::eintrinit()
 {
@@ -6525,17 +6547,17 @@ template<typename SCL> int multischlschreib(const string& fname, schAcl<SCL> *co
   return 1;
 } // int multischlschreib
 
-void hcl::VorgbAllg()
+void hcl::virtVorgbAllg()
 {
 	cronminut="0";
 	autoupd=1;
-} // void hhcl::VorgbAllg
+} // void hhcl::virtVorgbAllg
 
-void hcl::VorgbSpeziell()
+void hcl::virtVorgbSpeziell()
 {
-} // void hhcl::VorgbSpeziell
+} // void hhcl::virtVorgbSpeziell
 
-void hcl::MusterVorgb()
+void hcl::virtMusterVorgb()
 {
 } // void hhcl::MusterVorgb
 
@@ -6547,17 +6569,24 @@ void hcl::pruefggfmehrfach()
 } // void hhcl::pruefggfmehrfach
 
 // wird aufgerufen in: main
-void hcl::zeigueberschrift()
+void hcl::virtzeigueberschrift()
 {
-	char buf[20]; snprintf(buf,sizeof buf,"%.5f",versnr);
-	::Log(schwarzs+Txk[T_Programm]+blau+mpfad+schwarz+", V: "+blau+buf+schwarz
+////	char buf[20]; snprintf(buf,sizeof buf,"%.5f",versnr);
+/*//	::Log(schwarzs+Txk[T_Programm]+blau+mpfad+schwarz+", V: "+blau+buf+schwarz
 			+(crongeprueft?
 				Txk[T_Aufrufintervall]+blaus
 				+(vorcm!=cronminut&&!(vorcm.empty()&&cronminut=="0")?((vorcm.empty()?Txk[T_gar_nicht]:vorcm)+" -> "):"")
 				+(cronminut=="0"?Txk[T_kein_Aufruf]+schwarzs:cronminut+schwarz+(cronminut=="1"?Txk[T_Minute]:Txk[T_Minuten])):
 				"")
 			,1,oblog);
-} // void hcl::zeigueberschrift
+ */
+	if (mitcron) uebers<<(crongeprueft?
+				Txk[T_Aufrufintervall]+blaus
+				+(vorcm!=cronminut&&!(vorcm.empty()&&cronminut=="0")?((vorcm.empty()?Txk[T_gar_nicht]:vorcm)+" -> "):"")
+				+(cronminut=="0"?Txk[T_kein_Aufruf]+schwarzs:cronminut+schwarz+(cronminut=="1"?Txk[T_Minute]:Txk[T_Minuten])):
+				"");
+	::Log(uebers.str(),1,oblog);
+} // void hcl::virtzeigueberschrift
 
 
 // damit nicht Template-Klassen-Funktionen in Header-Dateien geschrieben werden muessen

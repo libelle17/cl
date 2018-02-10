@@ -3,17 +3,16 @@
 // sed -n '/\/\/α/,/\/\/ω/p' test
 #include "kons.h" //α
 #include "DB.h" 
+#include <tiffio.h>
 #define VOMHAUPTCODE // um Funktionsdefinition manchmal mit "__attribute__((weak)) " versehen zu können //ω
 #include "cl.h"
 // für verschiedene Sprachen //α
 enum T_      
 {
-	T_VorgbAllg,
-	T_VorgbSpeziell,
-	T_MusterVorgb,
-	T_rueckfragen,
-	T_Logpfad,
-	T_oblog,
+	T_virtVorgbAllg,
+	T_virtVorgbSpeziell,
+	T_virtMusterVorgb,
+	T_virtrueckfragen,
 	T_Fehler_beim_Pruefen_von,
 	T_Fuege_ein, //ω
 	T_lista_k,
@@ -24,24 +23,21 @@ enum T_
 	T_listet_n_Zeilen_auf_anstatt,
 	T_MAX //α
 }; // enum T_ //ω
+
 // für verschiedene Sprachen //α
 char const *DPROG_T[T_MAX+1][SprachZahl]={
-	// T_VorgbAllg
-	{"VorgbAllg()","generalprefs()"},
-	// T_VorgbSpeziell
-	{"VorgbSpeziell()","specialprefs()"},
-	// T_MusterVorgb
-	{"MusterVorgb()","sampleprefs"},
-	// T_rueckfragen
-	{"rueckfragen()","callbacks()"},
-	// T_Logpfad,
-	{"Logpfad: '","Log path: '"},
-	// T_oblog,
-	{"' (oblog: ","' (with logging: "},
+	// T_virtVorgbAllg
+	{"virtVorgbAllg()","virtgeneralprefs()"},
+	// T_virtVorgbSpeziell
+	{"virtVorgbSpeziell()","virtspecialprefs()"},
+	// T_virtMusterVorgb
+	{"virtMusterVorgb()","virtsampleprefs"},
+	// T_virtrueckfragen
+	{"virtrueckfragen()","virtcallbacks()"},
 	//	T_Fehler_beim_Pruefen_von
 	{"Fehler beim Pruefen von: ","Error while examining: "},
 	// T_Fuege_ein
-	{"Füge ein: ","Inserting: "}, //ω
+	{"Fuege ein: ","Inserting: "}, //ω
 	// T_lista_k,
 	{"lista","lista"},
 	// T_lista_l,
@@ -58,65 +54,71 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 }; // char const *DPROG_T[T_MAX+1][SprachZahl]=
 
 class TxB Tx((const char* const* const* const*)DPROG_T);
-const char *logdt="/var/log/" DPROG "vorgabe.log";//darauf wird in kons.h verwiesen; muss dann auf lgp zeigen;
+const char *logdt="/var/log/" DPROG "vorgabe.log";//darauf wird in kons.h verwiesen;
 
 using namespace std;
 
 
 hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
 {
-
+ // mitcron=0;
 } // hhcl::hhcl
 
-void hhcl::initopt()
+void hhcl::virtinitopt()
 {
 	opn<<optcl(/*pname*/"",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
 	opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 
-	dhcl::initopt();
-} // void hhcl::initopt
+	dhcl::virtinitopt();
+} // void hhcl::virtinitopt
 
 
-void hhcl::VorgbAllg()
+void hhcl::virtVorgbAllg()
 {
-	Log(violetts+Tx[T_VorgbAllg]+schwarz);
+	Log(violetts+Tx[T_virtVorgbAllg]+schwarz);
 
-	dhcl::VorgbAllg();
+	dhcl::virtVorgbAllg();
 
-} // void hhcl::VorgbAllg
+} // void hhcl::virtVorgbAllg
 
-void hhcl::VorgbSpeziell()
+void hhcl::virtVorgbSpeziell()
 {
-	Log(violetts+Tx[T_VorgbSpeziell]+schwarz);
+	Log(violetts+Tx[T_virtVorgbSpeziell]+schwarz);
 
-	dhcl::VorgbSpeziell();
-	MusterVorgb();
-} // void hhcl::VorgbSpeziell
+	dhcl::virtVorgbSpeziell();
+	virtMusterVorgb();
+} // void hhcl::virtVorgbSpeziell
 
-void hhcl::MusterVorgb()
+void hhcl::virtMusterVorgb()
 {
-	Log(violetts+Tx[T_MusterVorgb]+schwarz);
+	Log(violetts+Tx[T_virtMusterVorgb]+schwarz);
 
-	dhcl::MusterVorgb();
+	dhcl::virtMusterVorgb();
 } // void hhcl::MusterVorgb
 
 
 // wird aufgerufen in: main
-void hhcl::rueckfragen()
+void hhcl::virtrueckfragen()
 {
-	Log(violetts+Tx[T_rueckfragen]+schwarz);
+	Log(violetts+Tx[T_virtrueckfragen]+schwarz);
 	if (rzf) {
 
   }
-	dhcl::rueckfragen();
-} // void hhcl::rueckfragen()
+	dhcl::virtrueckfragen();
+} // void hhcl::virtrueckfragen()
 
 
-void hhcl::macherkl()
+void hhcl::virtmacherkl()
 {
 	erkl<<blau<<"Programm "<<violett<<DPROG
 		
 		<<blau<<" ist etwas ganz Spezielles"<<schwarz;
+}
+
+void hhcl::virtzeigueberschrift()
+{
+
+	hcl::virtzeigueberschrift();
 }
 
 int main(int argc,char** argv)
@@ -124,23 +126,9 @@ int main(int argc,char** argv)
 	if (argc>1) {
 	}
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz, mit lngzuw, setzlog und pruefplatte
-	hhi.fangan(); // Einleitungsteil mit virtuellen Funktionen, mit VorgbAllg,VorgbSpeziell,initopt,parsecl,macherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,zeigversion
-
-	if (!hhi.keineverarbeitung) {
-		hhi.rueckfragen();
-		hhi.pruefggfmehrfach();
-		if (hhi.logdateineu) tuloeschen(logdt,"",hhi.obverb,hhi.oblog);
-		hhi.Log(Tx[T_Logpfad]+drots+hhi.loggespfad+schwarz+Tx[T_oblog]+drot+ltoan((int)hhi.oblog)+schwarz+")");
-//		if (hhi.initDB()) return 10; //ω
-	} // 	if (!hhi.keineverarbeitung) //α
-
-	hhi.pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
-	if (!hhi.keineverarbeitung) {
-		hhi.zeigueberschrift(); //ω
-		hhi.setzzaehler(); //α
-		hhi.schreibzaehler();
-	} //  if (!hhi.keineverarbeitung)
-	// in hcl::~hcl: autokonfschreib,update,
+	hhi.lauf(); // Einleitungsteil mit virtuellen Funktionen, 
+	// mit virtVorgbAllg,virtVorgbSpeziell,initopt,parsecl,virtmacherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,virtzeigversion
+	// autokonfschreib,update,
 } // int main //ω
 // wird aufgerufen in: main
 

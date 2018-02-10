@@ -347,7 +347,7 @@ enum Tkons_
 	T_gar_nicht,
 	T_aufgerufen,
 	T_statt,
-	T_schlussanzeige,
+	T_virtschlussanzeige,
 	T_Zeit_Doppelpunkt,
 	T_Fertig_mit,
 	T_eigene,
@@ -423,10 +423,12 @@ enum Tkons_
 	T_automatisch_installiert_werden,
 	T_Logverzeichnis,
 	T_Logdateiname,
-	T_Oblog,
+	T_Oblog_ausf_Protok,
 	T_Aufrufintervall,
 	T_kein_Aufruf,
 	T_Minute,
+	T_Logpfad,
+	T_oblog,
 	T_konsMAX
 }; // Tkons_
 
@@ -1183,6 +1185,8 @@ class hcl
 			;  //α
 		string muser; // Benutzer fuer Mysql/MariaDB
 		string mpwd;  // Passwort fuer Mysql/MariaDB //ω
+		stringstream uebers; // Ueberschrift fuer Verarbeitungslauf
+		uchar mitcron; // ob Programm auch in Cron eingetragen werden kann
 	public:
 		int obverb=0; // verbose
 		int oblog=0;  // mehr Protokollieren
@@ -1231,20 +1235,19 @@ class hcl
 		*/
 	private:
 	protected:
-    virtual void lgnzuw(); // wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
+    virtual void virtlgnzuw(); // wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
 		void setztmpcron();
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg,string& zeig);
-		virtual void macherkl()=0;
-		virtual void rueckfragen();
+		virtual void virtmacherkl()=0;
+		virtual void virtrueckfragen();
 	public:
 		void autokonfschreib(); 
-		void zeigueberschrift();
+		virtual void virtzeigueberschrift();
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv,const char* const DPROG);
-		void fangan();
-		~hcl();
+		void lauf();
 		int Log(const string& text,const bool oberr=0,const short klobverb=0) const;
     int pruefinstv();
     void lieskonfein();
@@ -1261,18 +1264,19 @@ class hcl
 		int kompilfort(const string& was,const string& vorcfg=nix,const string& cfgbismake=s_dampand,uchar ohneconf=0);
 		double progvers(const string& prog);
 		void prueftif(string aktvers);
-		void zeigversion(const string& ltiffv=nix);
+		virtual void virtzeigversion(const string& ltiffv=nix);
 		void zeigkonf();
 		void parsecl();
-		virtual void initopt();
+		virtual void virtinitopt();
 		void pruefggfmehrfach();
-		virtual void VorgbAllg();
-		virtual void VorgbSpeziell()=0;
-    virtual void MusterVorgb()=0;
+		virtual void virtpruefweiteres();
+		virtual void virtVorgbAllg();
+		virtual void virtVorgbSpeziell()=0;
+    virtual void virtMusterVorgb()=0;
 		uchar pruefcron(const string& cm);
 		void dodovi(const svec d1,const svec d2);
 		void dovi();
-		virtual void schlussanzeige();
+		virtual void virtschlussanzeige();
 		void update(const string& DPROG);
 		void reduzierlibtiff();
 		void setzbenutzer(string *user);

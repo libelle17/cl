@@ -445,19 +445,19 @@ class dhcl:public hcl
 	const size_t maxconz=12;//aktc: 0=... //α
  private:
  protected:
-	void lgnzuw();
+	void virtlgnzuw();
  public:
 	dhcl(const int argc, const char *const *const argv,const char* const DPROG);
 	~dhcl();
-	void initopt(); // (programm-)spezifische Optionen
+	void virtinitopt(); // (programm-)spezifische Optionen
 	int  initDB();
 	int  pruefDB(const string& db);
-	void VorgbAllg();
-	void VorgbSpeziell()
+	void virtVorgbAllg();
+	void virtVorgbSpeziell()
 #ifdef VOMHAUPTCODE
 		__attribute__((weak)) // implementationsspezifische Vorgaben, Modul vgb.cpp)
 #endif
 		;
-	void MusterVorgb();
-	void rueckfragen(); //ω
+	void virtMusterVorgb();
+	void virtrueckfragen(); //ω
 }; // class hhcl //ω

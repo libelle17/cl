@@ -2143,7 +2143,7 @@ void RS::clear()
 	isql.clear();
 } // clear
 
-void dhcl::initopt()
+void dhcl::virtinitopt()
 {
 	opn<<optcl(/*pname*/"host",/*pptr*/&host,/*art*/psons,T_host_k,T_host_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Datenbank_auf_Host_string_anstatt_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"muser",/*pptr*/&muser,/*art*/psons,T_muser_k,T_muser_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_fuer_MySQL_MariaDB_den_Benutzer_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
@@ -2151,15 +2151,15 @@ void dhcl::initopt()
 	opn<<optcl(/*pname*/"datenbank",/*pptr*/&dbq,/*art*/psons,T_db_k,T_datenbank_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Datenbank_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"tabelle",/*pptr*/&tabelle,/*art*/psons,T_tb_k,T_tabelle_l,/*TxBp*/&Txd,/*Txi*/T_verwendet_die_Tabelle_string_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 	opn<<optcl(/*pname*/"",/*pptr*/&ZDB,/*art*/puchar,T_sqlv_k,T_sql_verbose_l,/*TxBp*/&Txd,/*Txi*/T_Bildschirmausgabe_mit_SQL_Befehlen,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
-	hcl::initopt();
-} // void hhcl::initopt
+	hcl::virtinitopt();
+} // void hhcl::virtinitopt
 
-// wird aufgerufen in: rueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
-void dhcl::lgnzuw()
+// wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
+void dhcl::virtlgnzuw()
 {
-	hcl::lgnzuw();
+	hcl::virtlgnzuw();
 	Txd.lgn=Txk.lgn;
-} // void hhcl::lgnzuw
+} // void hhcl::virtlgnzuw
 
 dhcl::dhcl(const int argc, const char *const *const argv,const char* const DPROG):hcl(argc,argv,DPROG)
 {
@@ -2191,7 +2191,7 @@ int dhcl::initDB()
 	return 0;
 } // initDB
 
-// wird aufgerufen in rueckfragen
+// wird aufgerufen in virtrueckfragen
 int dhcl::pruefDB(const string& db)
 {
 	Log(violetts+Txk[T_pruefDB]+db+")"+schwarz);
@@ -2212,7 +2212,7 @@ dhcl::~dhcl()
 } // dhcl::~dhcl
 
 // wird aufgerufen in: main
-void dhcl::rueckfragen()
+void dhcl::virtrueckfragen()
 {
 	if (rzf) {
 		host=Tippstr(Txd[T_Host_fuer_MySQL_MariaDB_Datenbank],&host);
@@ -2228,21 +2228,21 @@ void dhcl::rueckfragen()
 		dbq=Tippstr(string(Txd[T_Datenbankname_fuer_MySQL_MariaDB_auf])+dblau+host+schwarz+"'",&dbq);
 		tabelle=Tippstr(string(Txd[T_Tabellenname_in])+dblau+dbq+schwarz+"'",&tabelle);
 	} // if (rzf)
-	hcl::rueckfragen();
-} // void hhcl::rueckfragen()
+	hcl::virtrueckfragen();
+} // void hhcl::virtrueckfragen()
 
-void dhcl::VorgbAllg()
+void dhcl::virtVorgbAllg()
 {
-	hcl::VorgbAllg();
-} // void hhcl::VorgbAllg
+	hcl::virtVorgbAllg();
+} // void hhcl::virtVorgbAllg
 
-void dhcl::VorgbSpeziell()
+void dhcl::virtVorgbSpeziell()
 {
-	hcl::VorgbSpeziell();
-} // void hhcl::VorgbAllg
+	hcl::virtVorgbSpeziell();
+} // void hhcl::virtVorgbSpeziell
 
-void dhcl::MusterVorgb()
+void dhcl::virtMusterVorgb()
 {
-	hcl::MusterVorgb();
-} // void hhcl::VorgbAllg
+	hcl::virtMusterVorgb();
+} // void hhcl::virtMusterVorgb
 
