@@ -572,6 +572,7 @@ neuproj:
 		echo 0.1>versdt; touch entwickeln; echo $$Z>pname;\
 		L="\"/var/log/\" DPROG \"vorgabe.log\"";\
 		sh configure;\
+		sed -i '/\$DTN [^'\'']/s/ +.* -pNu/ -pNu/' viall;\
 		sed -i.bak '/\$DTN [^'\'']/s/\$DTN /\$DTN +'\''tabfirst|tab sview ..\/$(DPROG)\/$(DPROG).cpp|tabnext|tab sview ..\/$(DPROG)\/$(DPROG).h|tabfirst'\'' /' viall;\
 		sh viall;\
 		echo Weiter mit/Go on with: \"cd ../"$$Z"\";
