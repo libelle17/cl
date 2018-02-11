@@ -1,8 +1,6 @@
 .br
 \fBlies: \fB/etc/sysconfig/language\fR
 .br
-\fBEnde parsecl, obzuschreib: \fB0\fR
-.br
 \fBOptions which are not saved: \fR
 .br
 \fB -lista, --lista <zahl>\fR: lists lines '\fB0\fR'\fB or not\fR

@@ -1239,52 +1239,55 @@ class hcl
 		map<string,optcl*>::iterator omit; // Optionen-Iterator
 		*/
 	private:
-	protected:
-    virtual void virtlgnzuw(); // wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
-		void setztmpcron();
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
+		void dodovi(const svec d1,const svec d2);
 		void vischluss(string& erg,string& zeig);
-		virtual void virtmacherkl()=0;
-		virtual void virtvorrueckfragen();
+	protected:
+		void holbefz0(const int argc, const char *const *const argv);
+    virtual void virtlgnzuw(); // wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
+    int pruefinstv();
+		void setzlog();
+
+		void setztmpcron();
+
+		virtual void virtVorgbAllg();
+		virtual void pvirtVorgbSpeziell()=0;
+		virtual void virtinitopt();
+		void parsecl();
+		virtual void pvirtmacherkl()=0;
+    virtual void virtMusterVorgb();
+    void lieskonfein();
+    void verarbeitkonf();
+		int zeighilfe(const stringstream *const erkl);
+		void lieszaehlerein();
+		void dovi();
+		virtual void virtzeigversion(const string& ltiffv=nix);
+		virtual void pvirtvorrueckfragen()=0;
 		virtual void virtrueckfragen();
-	public:
-		void autokonfschreib(); 
+		void pruefggfmehrfach();
+		virtual void virtpruefweiteres();
+		uchar pruefcron(const string& cm);
 		virtual void virtzeigueberschrift();
+    virtual void pvirtfuehraus()=0;
+		void autokonfschreib(); 
+		void update(const string& DPROG);
+		void setzzaehler();
+		void schreibzaehler();
+		virtual void virtschlussanzeige();
+	public:
 		void optausg(const char *farbe); // Optionen ausgeben
 		void pruefcl(); // commandline mit omap und mit argcmv parsen
 		hcl(const int argc, const char *const *const argv,const char* const DPROG);
 		void lauf();
 		int Log(const string& text,const bool oberr=0,const short klobverb=0) const;
-    int pruefinstv();
-    void lieskonfein();
-    void verarbeitkonf();
-		void setzlog();
-		int zeighilfe(const stringstream *const erkl);
 		void pruefsamba(const vector<const string*>& vzn,const svec& abschni,const svec& suchs,const char* DPROG,const string& cuser);
-		void lieszaehlerein();
-		void schreibzaehler();
-		void setzzaehler();
 		int holvomnetz(const string& datei,const string& vors=defvors,const string& nachs=defnachs);
 		int kompilbase(const string& was,const string& endg);
 		int kompiliere(const string& was,const string& endg,const string& vorcfg=nix,const string& cfgbismake=s_dampand);
 		int kompilfort(const string& was,const string& vorcfg=nix,const string& cfgbismake=s_dampand,uchar ohneconf=0);
 		double progvers(const string& prog);
 		void prueftif(string aktvers);
-		virtual void virtzeigversion(const string& ltiffv=nix);
 		void zeigkonf();
-		void parsecl();
-		virtual void virtinitopt();
-		void pruefggfmehrfach();
-		virtual void virtpruefweiteres();
-		virtual void virtVorgbAllg();
-		virtual void virtVorgbSpeziell()=0;
-    virtual void virtMusterVorgb()=0;
-    virtual void virtfuehraus()=0;
-		uchar pruefcron(const string& cm);
-		void dodovi(const svec d1,const svec d2);
-		void dovi();
-		virtual void virtschlussanzeige();
-		void update(const string& DPROG);
 		void reduzierlibtiff();
 		void setzbenutzer(string *user);
 }; // class hcl

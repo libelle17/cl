@@ -445,19 +445,27 @@ class dhcl:public hcl
 	const size_t maxconz=12;//aktc: 0=... //α
  private:
  protected:
-	void virtlgnzuw();
+	void virtlgnzuw(); // wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
+	void virtVorgbAllg();
+	void pvirtVorgbSpeziell();
+	void virtinitopt(); // (programm-)spezifische Optionen
+	//		void pvirtmacherkl();
+	void virtMusterVorgb();
+	void virtzeigversion(const string& ltiffv=nix);
+	//	void pvirtvorrueckfragen();
+	void virtrueckfragen();
+	//	void virtpruefweiteres();
+	//	void virtzeigueberschrift();
+	//  void pvirtfuehraus();
+	void virtschlussanzeige();
  public:
 	dhcl(const int argc, const char *const *const argv,const char* const DPROG);
 	~dhcl();
-	void virtinitopt(); // (programm-)spezifische Optionen
 	int  initDB();
 	int  pruefDB(const string& db);
-	void virtVorgbAllg();
-	void virtVorgbSpeziell()
 #ifdef VOMHAUPTCODE
-		__attribute__((weak)) // implementationsspezifische Vorgaben, Modul vgb.cpp)
+	__attribute__((weak)) // implementationsspezifische Vorgaben, Modul vgb.cpp)
 #endif
 		;
-	void virtMusterVorgb();
-	void virtrueckfragen(); //ω
+
 }; // class hhcl //ω

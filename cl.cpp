@@ -12,6 +12,7 @@ enum T_
 	T_virtVorgbAllg,
 	T_virtVorgbSpeziell,
 	T_virtMusterVorgb,
+	T_pvirtvorrueckfragen,
 	T_virtrueckfragen,
 	T_Fehler_beim_Pruefen_von,
 	T_Fuege_ein, //ω
@@ -29,9 +30,11 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 	// T_virtVorgbAllg
 	{"virtVorgbAllg()","virtgeneralprefs()"},
 	// T_virtVorgbSpeziell
-	{"virtVorgbSpeziell()","virtspecialprefs()"},
+	{"pvirtVorgbSpeziell()","pvirtspecialprefs()"},
 	// T_virtMusterVorgb
 	{"virtMusterVorgb()","virtsampleprefs"},
+	// T_pvirtvorrueckfragen
+	{"pvirtvorrueckfragen()","pvirtbeforecallbacks()"},
 	// T_virtrueckfragen
 	{"virtrueckfragen()","virtcallbacks()"},
 	//	T_Fehler_beim_Pruefen_von
@@ -65,6 +68,28 @@ hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
 	
 } // hhcl::hhcl //α
 
+
+
+
+// wird aufgerufen in lauf
+void hhcl::virtVorgbAllg()
+{
+	Log(violetts+Tx[T_virtVorgbAllg]+schwarz); //ω
+
+	dhcl::virtVorgbAllg(); //α
+
+} // void hhcl::virtVorgbAllg
+
+// wird aufgerufen in lauf
+void hhcl::pvirtVorgbSpeziell()
+{
+	Log(violetts+Tx[T_virtVorgbSpeziell]+schwarz); //ω
+
+	dhcl::pvirtVorgbSpeziell(); //α
+	virtMusterVorgb();
+} // void hhcl::pvirtVorgbSpeziell
+
+// wird aufgerufen in lauf
 void hhcl::virtinitopt()
 { //ω
 	opn<<optcl(/*pname*/"",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
@@ -73,67 +98,71 @@ void hhcl::virtinitopt()
 	dhcl::virtinitopt(); //α
 } // void hhcl::virtinitopt
 
-
-void hhcl::virtVorgbAllg()
+// wird aufgerufen in lauf
+void hhcl::pvirtmacherkl()
 {
-	Log(violetts+Tx[T_virtVorgbAllg]+schwarz); //ω
+	erkl<<blau<<Txk[T_Program]<<violett<<DPROG //ω
+		
+		<<blau<<" ist etwas ganz Spezielles"<<schwarz; //α
+} // void hhcl::pvirtmacherkl
 
-	dhcl::virtVorgbAllg();
-
-} // void hhcl::virtVorgbAllg
-
-void hhcl::virtVorgbSpeziell()
-{
-	Log(violetts+Tx[T_virtVorgbSpeziell]+schwarz);
-
-	dhcl::virtVorgbSpeziell();
-	virtMusterVorgb();
-} // void hhcl::virtVorgbSpeziell
-
+// wird aufgerufen in lauf
 void hhcl::virtMusterVorgb()
 {
-	Log(violetts+Tx[T_virtMusterVorgb]+schwarz);
+	Log(violetts+Tx[T_virtMusterVorgb]+schwarz); //ω
 
-	dhcl::virtMusterVorgb();
+	dhcl::virtMusterVorgb(); //α
 } // void hhcl::MusterVorgb
 
-// wird aufgerufen in: main
-void hhcl::virtvorrueckfragen()
+// wird aufgerufen in lauf
+void hhcl::virtzeigversion(const string& ltiffv/*=nix*/)
 {
-	Log(violetts+Tx[T_virtrueckfragen]+schwarz);
-	if (rzf) {
+	dhcl::virtzeigversion(ltiffv);
+} // void hhcl::virtzeigversion
 
-  }
-	dhcl::virtvorrueckfragen();
-} // void hhcl::virtrueckfragen()
+// wird aufgerufen in lauf
+void hhcl::pvirtvorrueckfragen()
+{
+	Log(violetts+Tx[T_pvirtvorrueckfragen]+schwarz);
+	if (rzf) { //ω
 
+  } //α
+} // void hhcl::pvirtvorrueckfragen
 
-// wird aufgerufen in: main
+// wird aufgerufen in lauf
 void hhcl::virtrueckfragen()
 {
 	Log(violetts+Tx[T_virtrueckfragen]+schwarz);
-	if (rzf) {
+	if (rzf) { //ω
 
-  }
+  } //α
 	dhcl::virtrueckfragen();
 } // void hhcl::virtrueckfragen()
 
-
-void hhcl::virtmacherkl()
+// wird aufgerufen in lauf
+void hhcl::virtpruefweiteres()
 {
-	erkl<<blau<<"Programm "<<violett<<DPROG
-		
-		<<blau<<" ist etwas ganz Spezielles"<<schwarz;
+
+	hcl::virtpruefweiteres(); // z.Zt. leer
 }
 
+// wird aufgerufen in lauf
 void hhcl::virtzeigueberschrift()
 {
   // hier ggf. noch etwas an 'uebers' anhaengen
 	hcl::virtzeigueberschrift();
 }
 
-void hhcl::virtfuehraus()
+// wird aufgerufen in lauf
+void hhcl::pvirtfuehraus()
 {
+
+}
+
+// wird aufgerufen in lauf
+void hhcl::virtschlussanzeige()
+{
+	dhcl::virtschlussanzeige();
 }
 
 int main(int argc,char** argv)
@@ -142,7 +171,7 @@ int main(int argc,char** argv)
 	}
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz, mit lngzuw, setzlog und pruefplatte
 	hhi.lauf(); // Einleitungsteil mit virtuellen Funktionen, 
-	// mit virtVorgbAllg,virtVorgbSpeziell,initopt,parsecl,virtmacherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,virtzeigversion
+	// mit virtVorgbAllg,pvirtVorgbSpeziell,initopt,parsecl,pvirtmacherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,virtzeigversion
 	// autokonfschreib,update,
 } // int main //ω
 // wird aufgerufen in: main

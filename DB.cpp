@@ -2154,16 +2154,16 @@ void dhcl::virtinitopt()
 	hcl::virtinitopt();
 } // void hhcl::virtinitopt
 
+dhcl::dhcl(const int argc, const char *const *const argv,const char* const DPROG):hcl(argc,argv,DPROG)
+{
+}
+
 // wird aufgerufen in: virtrueckfragen, parsecl, lieskonfein, hcl::hcl nach holsystemsprache
 void dhcl::virtlgnzuw()
 {
 	hcl::virtlgnzuw();
 	Txd.lgn=Txk.lgn;
 } // void hhcl::virtlgnzuw
-
-dhcl::dhcl(const int argc, const char *const *const argv,const char* const DPROG):hcl(argc,argv,DPROG)
-{
-}
 
 // wird aufgerufen in: main 
 int dhcl::initDB()
@@ -2231,18 +2231,32 @@ void dhcl::virtrueckfragen()
 	hcl::virtrueckfragen();
 } // void hhcl::virtrueckfragen()
 
+// wird aufgerufen in lauf
 void dhcl::virtVorgbAllg()
 {
 	hcl::virtVorgbAllg();
 } // void hhcl::virtVorgbAllg
 
-void dhcl::virtVorgbSpeziell()
+// wird aufgerufen in lauf
+void dhcl::pvirtVorgbSpeziell()
 {
-	hcl::virtVorgbSpeziell();
-} // void hhcl::virtVorgbSpeziell
 
+} // void hhcl::pvirtVorgbSpeziell
+
+// wird aufgerufen in lauf
 void dhcl::virtMusterVorgb()
 {
 	hcl::virtMusterVorgb();
 } // void hhcl::virtMusterVorgb
 
+// wird aufgerufen in lauf
+void dhcl::virtzeigversion(const string& ltiffv/*=nix*/)
+{
+	hcl::virtzeigversion(ltiffv);
+} // void virtzeigversion
+
+// wird aufgerufen in lauf
+void dhcl::virtschlussanzeige()
+{
+	hcl::virtschlussanzeige();
+}

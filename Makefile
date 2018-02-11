@@ -260,16 +260,10 @@ git: # README.md
 	@grep remote\ \"origin\"] .git/config >/dev/null 2>&1||git remote add origin https://github.com/$$(sed 's/"//g' gitvdt)/$(DPROG).git
 	@git push -u origin master
 
-.PHONY: giterlaub
 giterlaub:
 	@git config credential.helper store	
 	@git config --global credential.helper 'cache --timeout=36000'
 
-.PHONY: pull
-	@git pull
-	@sh configure
-
-.PHONY: anzeig
 anzeig:
 # 'echo -e' geht nicht z.B. in ubuntu
 	@[ "$(DPROG)" ]||{ printf "Datei/File %b'vars'%b fehlerhaft/faulty, bitte vorher/please call %b'./install.sh'%b aufrufen/before!\n" \
@@ -282,7 +276,6 @@ anzeig:
 	@printf " Target path for/Zielpfad fuer '%bmake install%b': %b%s%b\n" $(blau) $(reset) $(blau) "'$(EXPFAD)'" $(reset) >$(BA)
 	-@rm -f fehler.txt $(KF)
 
-.PHONY: debug debugnew debugneu
 debug debugnew debugneu: DEBUG=-g 
 debug: all
 debugneu debugnew: neu

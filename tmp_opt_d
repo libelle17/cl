@@ -1,8 +1,6 @@
 .br
 \fBlies: \fB/etc/sysconfig/language\fR
 .br
-\fBEnde parsecl, obzuschreib: \fB0\fR
-.br
 \fBOptionen, die nicht gespeichert werden: \fR
 .br
 \fB -lista, --lista <zahl>\fR: listet Zeilen auf '\fB0\fR'\fB oder nicht\fR
