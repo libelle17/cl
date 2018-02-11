@@ -266,6 +266,7 @@ giterlaub:
 	@git config --global credential.helper 'cache --timeout=36000'
 
 .PHONY: pull
+pull:
 	@git pull
 	@sh configure
 
@@ -353,8 +354,7 @@ endif
 # ggf. Korrektur eines Fehlers in libtiff 4.0.7, notwendig fuer hylafax+, 17.1.17 in Programm verlagert
 	@printf "                                  \r" >$(BA)
 
-.PHONY: stumminst
-.PHONY: stumm
+.PHONY: stumm stumminst
 stumm stumminst: BA::=/dev/null
 stumm stumminst: BFA::=
 stumm stumminst: rot::=""
@@ -572,12 +572,9 @@ neuproj:
 		echo 0.1>versdt; touch entwickeln; echo $$Z>pname;\
 		L="\"/var/log/\" DPROG \"vorgabe.log\"";\
 		sh configure;\
-		sed -i '/\$DTN [^'\'']/s/ +.* -pNu/ -pNu/' viall;\
 		sed -i.bak '/\$DTN [^'\'']/s/\$DTN /\$DTN +'\''tabfirst|tab sview ..\/$(DPROG)\/$(DPROG).cpp|tabnext|tab sview ..\/$(DPROG)\/$(DPROG).h|tabfirst'\'' /' viall;\
 		sh viall;\
 		echo Weiter mit/Go on with: \"cd ../"$$Z"\";
-
-nix:
 
 
 -include $(patsubst %,$(DEPDIR)/%.d,$(basename $(SRCS)))
