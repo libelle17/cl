@@ -96,6 +96,16 @@ void hhcl::virtMusterVorgb()
 	dhcl::virtMusterVorgb();
 } // void hhcl::MusterVorgb
 
+// wird aufgerufen in: main
+void hhcl::virtvorrueckfragen()
+{
+	Log(violetts+Tx[T_virtrueckfragen]+schwarz);
+	if (rzf) {
+
+  }
+	dhcl::virtvorrueckfragen();
+} // void hhcl::virtrueckfragen()
+
 
 // wird aufgerufen in: main
 void hhcl::virtrueckfragen()
@@ -117,8 +127,12 @@ void hhcl::virtmacherkl()
 
 void hhcl::virtzeigueberschrift()
 {
-
+  // hier ggf. noch etwas an 'uebers' anhaengen
 	hcl::virtzeigueberschrift();
+}
+
+void hhcl::virtfuehraus()
+{
 }
 
 int main(int argc,char** argv)

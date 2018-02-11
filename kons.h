@@ -429,6 +429,7 @@ enum Tkons_
 	T_Minute,
 	T_Logpfad,
 	T_oblog,
+	T_in_main_pidv_am_Schluss,
 	T_konsMAX
 }; // Tkons_
 
@@ -1164,6 +1165,10 @@ void viadd(string *cmdp,string* zeigp,const string& datei,const uchar ro=0,const
 // Haupt-Klasse
 class hcl
 {
+	private:
+		uchar obsetz=1; // setzzaehler
+		uchar mitpids=0; // mehrere pids
+		pidvec pidv;
 	protected:
 		const char* const DPROG;
     double tstart, tende;
@@ -1240,6 +1245,7 @@ class hcl
 		void tucronschreib(const string& zsauf,const uchar cronzuplanen,const string& cbef);
 		void vischluss(string& erg,string& zeig);
 		virtual void virtmacherkl()=0;
+		virtual void virtvorrueckfragen();
 		virtual void virtrueckfragen();
 	public:
 		void autokonfschreib(); 
@@ -1273,6 +1279,7 @@ class hcl
 		virtual void virtVorgbAllg();
 		virtual void virtVorgbSpeziell()=0;
     virtual void virtMusterVorgb()=0;
+    virtual void virtfuehraus()=0;
 		uchar pruefcron(const string& cm);
 		void dodovi(const svec d1,const svec d2);
 		void dovi();

@@ -610,6 +610,8 @@ const char *kons_T[T_konsMAX+1][SprachZahl]=
 	{"Logpfad: '","Log path: '"},
 	// T_oblog,
 	{"' (oblog: ","' (with logging: "},
+	// T_in_main_pidv_am_Schluss
+	{"in main, pidv, am Schluss","in main, pidv, at the end"},
   {"",""}
 }; // const char *Txkonscl::TextC[T_konsMAX+1][SprachZahl]=
 
@@ -5003,24 +5005,26 @@ void hcl::lauf()
 		Log(violetts+Txk[T_Ende]+Tx[T_zeigvers]+schwarz,obverb,oblog);
 		exit(7);
 	} // if (zeigvers)
-	virtvorrueckfragen();
 	else if (!keineverarbeitung) {
+		virtvorrueckfragen();
 		virtrueckfragen();
 		pruefggfmehrfach();
 		if (logdateineu) tuloeschen(logdt,"",obverb,oblog);
 		Log(Txk[T_Logpfad]+drots+loggespfad+schwarz+Txk[T_oblog]+drot+ltoan((int)oblog)+schwarz+")");
 		virtpruefweiteres();
 	} // 	if (!keineverarbeitung)
-	if (!virtohnecron()) {
-		if (mitcron) pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
-		if (!keineverarbeitung) {
-			virtzeigueberschrift();
-			setzzaehler();
-			schreibzaehler();
-		} //  if (!keineverarbeitung)
-	}
+	if (mitcron) pruefcron(nix); // soll vor Log(Tx[T_Verwende ... stehen
+	if (!keineverarbeitung) {
+		virtzeigueberschrift();
+		virtfuehraus();
+	} //  if (!keineverarbeitung)
 	autokonfschreib();
 	update(DPROG);
+	if (mitpids) wartaufpids(&pidv,0,obverb,oblog,Txk[T_in_main_pidv_am_Schluss]);
+	if (obsetz) {
+		setzzaehler();
+		schreibzaehler();
+	}
 	virtschlussanzeige();
 	Log(violetts+Txk[T_Ende]+schwarz,obverb,oblog);
 	delete linstp;
@@ -6443,6 +6447,9 @@ void hcl::autokonfschreib()
 	*/
 } // void hhcl::autokonfschreib
 
+void hcl::virtvorrueckfragen()
+{
+}
 
 void hcl::virtrueckfragen()
 {
@@ -6588,6 +6595,9 @@ void hcl::virtzeigueberschrift()
 	::Log(uebers.str(),1,oblog);
 } // void hcl::virtzeigueberschrift
 
+void hcl::virtfuehraus()
+{
+}
 
 // damit nicht Template-Klassen-Funktionen in Header-Dateien geschrieben werden muessen
 template class schAcl<WPcl>;

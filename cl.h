@@ -26,6 +26,8 @@ class hhcl:public dhcl
 #endif
 		;
 	void virtMusterVorgb();
+	void virtvorrueckfragen(); //ω
 	void virtrueckfragen(); //ω
 	void virtzeigueberschrift();
+  void virtfuehraus();
 }; // class hhcl //ω
