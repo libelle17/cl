@@ -254,6 +254,7 @@ T_hilfe_l	kons.h	/^	T_hilfe_l,$/;"	e	enum:Tkons_
 T_holsystemsprache	kons.h	/^	T_holsystemsprache,$/;"	e	enum:Tkons_
 T_host_k	DB.h	/^	T_host_k,$/;"	e	enum:Txdb_
 T_host_l	DB.h	/^	T_host_l,$/;"	e	enum:Txdb_
+T_in_main_pidv_am_Schluss	kons.h	/^	T_in_main_pidv_am_Schluss,$/;"	e	enum:Tkons_
 T_info_k	kons.h	/^	T_info_k,$/;"	e	enum:Tkons_
 T_ist_leer_Wollen_Sie_eines_festlegen	DB.h	/^  T_ist_leer_Wollen_Sie_eines_festlegen,$/;"	e	enum:Txdb_
 T_j	DB.h	/^  T_j,$/;"	e	enum:Txdb_
@@ -815,6 +816,7 @@ meinname	kons.h	/^    string meinname; \/\/ base_name(meinpfad()) \/\/ argv[0] \
 meinpfad	kons.cpp	/^string meinpfad() {$/;"	f
 mitcron	kons.h	/^		uchar mitcron; \/\/ ob Programm auch in Cron eingetragen werden kann$/;"	m	class:hcl
 miterror	DB.h	/^    uchar miterror;$/;"	m	class:DB
+mitpids	kons.h	/^		uchar mitpids=0; \/\/ mehrere pids$/;"	m	class:hcl
 mitset	kons.h	110;"	d
 mitvtz	kons.h	/^inline std::string mitvtz(std::string const& vz)$/;"	f
 monatsaufr	kons.h	/^		ulong monatsaufr=0; \/\/ Zahl der bisherigen Programmaufrufe heute$/;"	m	class:hcl
@@ -853,7 +855,7 @@ obenabled	kons.h	/^		int obenabled=0;$/;"	m	class:servc
 oberreicht	kons.cpp	/^int perfcl::oberreicht(unsigned long sek)$/;"	f	class:perfcl
 obfehl	DB.h	/^    uchar obfehl;$/;"	m	class:RS
 obfehlt	kons.cpp	/^int linst_cl::obfehlt(const string& prog,int obverb,int oblog)$/;"	f	class:linst_cl
-obfstream	kons.h	955;"	d
+obfstream	kons.h	956;"	d
 obgelesen	kons.h	/^		uchar obgelesen;$/;"	m	struct:confdcl
 obhilfe	kons.h	/^    uchar obhilfe=0;      \/\/ Hilfe anzeigen: 1=kurze Hilfe, 2=lange Hilfe, 3=Standardhilfe$/;"	m	class:hcl
 obind	DB.h	/^    bool obind;$/;"	m	class:Feld
@@ -869,6 +871,7 @@ obnmr	kons.h	/^ uchar obnmr=1;$/;"	m	class:linst_cl
 obno	kons.h	/^    const uchar obno=0; \/\/ ob auch die Option mit vorangestelltem 'no' eingefuegt werden soll$/;"	m	struct:optcl
 oboffen	kons.h	/^  int oboffen=0;$/;"	m	class:mdatei
 obprogda	kons.cpp	/^int obprogda(const string& prog, int obverb\/*=0*\/, int oblog\/*=0*\/, string *pfad\/*=0*\/)$/;"	f
+obsetz	kons.h	/^		uchar obsetz=1; \/\/ setzzaehler$/;"	m	class:hcl
 obsotiff	kons.h	/^		uchar obsotiff=0; \/\/ 1 = tiff wird von der source verwendet$/;"	m	class:hcl
 obsvfeh	kons.cpp	/^int servc::obsvfeh(int obverb\/*=0*\/,int oblog\/*=0*\/) \/\/ ob service einrichtungs fehler$/;"	f	class:servc
 obverb	kons.h	/^		int obverb=0, oblog=0;$/;"	m	class:find3cl
@@ -928,6 +931,7 @@ pfile	kons.h	/^enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat};
 pid	kons.h	/^ pid_t pid;$/;"	m	class:pidcl
 pidcl	kons.h	/^ pidcl(const pid_t pid,const string& name):pid(pid),name(name){}$/;"	f	class:pidcl
 pidcl	kons.h	/^class pidcl$/;"	c
+pidv	kons.h	/^		pidvec pidv;$/;"	m	class:hcl
 pidvec	kons.h	/^class pidvec: public vector<pidcl>$/;"	c
 pint	kons.h	/^enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:par_t
 pkill	kons.cpp	/^void servc::pkill(int obverb\/*=0*\/,int oblog\/*=0*\/)$/;"	f	class:servc
@@ -1114,7 +1118,7 @@ uchar	DB.h	/^typedef unsigned char	uchar;	\/* Short for unsigned char *\/$/;"	t
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
 uebers	kons.h	/^		stringstream uebers; \/\/ Ueberschrift fuer Verarbeitungslauf$/;"	m	class:hcl
-uebersichtlich	kons.cpp	6166;"	d	file:
+uebersichtlich	kons.cpp	6170;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1129,7 +1133,7 @@ user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:lsysen
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1233;"	d	file:
+vagenau	kons.cpp	1235;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
@@ -1149,6 +1153,8 @@ virtVorgbAllg	kons.cpp	/^void hcl::virtVorgbAllg()$/;"	f	class:hcl
 virtVorgbSpeziell	DB.cpp	/^void dhcl::virtVorgbSpeziell()$/;"	f	class:dhcl
 virtVorgbSpeziell	cl.cpp	/^void hhcl::virtVorgbSpeziell()$/;"	f	class:hhcl
 virtVorgbSpeziell	kons.cpp	/^void hcl::virtVorgbSpeziell()$/;"	f	class:hcl
+virtfuehraus	cl.cpp	/^void hhcl::virtfuehraus()$/;"	f	class:hhcl
+virtfuehraus	kons.cpp	/^void hcl::virtfuehraus()$/;"	f	class:hcl
 virtinitopt	DB.cpp	/^void dhcl::virtinitopt()$/;"	f	class:dhcl
 virtinitopt	cl.cpp	/^void hhcl::virtinitopt()$/;"	f	class:hhcl
 virtinitopt	kons.cpp	/^void hcl::virtinitopt()$/;"	f	class:hcl
@@ -1160,6 +1166,8 @@ virtrueckfragen	DB.cpp	/^void dhcl::virtrueckfragen()$/;"	f	class:dhcl
 virtrueckfragen	cl.cpp	/^void hhcl::virtrueckfragen()$/;"	f	class:hhcl
 virtrueckfragen	kons.cpp	/^void hcl::virtrueckfragen()$/;"	f	class:hcl
 virtschlussanzeige	kons.cpp	/^void hcl::virtschlussanzeige()$/;"	f	class:hcl
+virtvorrueckfragen	cl.cpp	/^void hhcl::virtvorrueckfragen()$/;"	f	class:hhcl
+virtvorrueckfragen	kons.cpp	/^void hcl::virtvorrueckfragen()$/;"	f	class:hcl
 virtzeigueberschrift	cl.cpp	/^void hhcl::virtzeigueberschrift()$/;"	f	class:hhcl
 virtzeigueberschrift	kons.cpp	/^void hcl::virtzeigueberschrift()$/;"	f	class:hcl
 virtzeigversion	kons.cpp	/^void hcl::virtzeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hcl

@@ -61,21 +61,22 @@ using namespace std;
 
 hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
 {
- // mitcron=0;
-} // hhcl::hhcl
+ // mitcron=0; //ω
+	
+} // hhcl::hhcl //α
 
 void hhcl::virtinitopt()
-{
+{ //ω
 	opn<<optcl(/*pname*/"",/*pptr*/&oblista,/*art*/puchar,T_lista_k,T_lista_l,/*TxBp*/&Tx,/*Txi*/T_listet_Zeilen_auf,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/1);
 	opn<<optcl(/*pname*/"n",/*pptr*/&listz,/*art*/plong,T_listz_k,T_listz_l,/*TxBp*/&Tx,/*Txi*/T_listet_n_Zeilen_auf_anstatt,/*wi*/1,/*Txi2*/-1,/*rottxt*/0,/*wert*/0);
 
-	dhcl::virtinitopt();
+	dhcl::virtinitopt(); //α
 } // void hhcl::virtinitopt
 
 
 void hhcl::virtVorgbAllg()
 {
-	Log(violetts+Tx[T_virtVorgbAllg]+schwarz);
+	Log(violetts+Tx[T_virtVorgbAllg]+schwarz); //ω
 
 	dhcl::virtVorgbAllg();
 
