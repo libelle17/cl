@@ -804,11 +804,13 @@ machfit	kons.cpp	/^int servc::machfit(int obverb\/*=0*\/,int oblog\/*=0*\/, bina
 machind	DB.cpp	/^int Tabelle::machind(const size_t aktc, int obverb\/*=0*\/, int oblog\/*=0*\/)$/;"	f	class:Tabelle
 machstrikt	DB.cpp	/^void RS::machstrikt(string& altsqlm,const size_t aktc\/*=0*\/)$/;"	f	class:RS
 main	cl.cpp	/^int main(int argc,char** argv) \/\/α$/;"	f
+maxcapiv	cl.h	/^    string maxcapiv; \/\/ maximale Versuchnr in Capi, bis Hyla versucht wird$/;"	m	class:hhcl
 maxconz	DB.h	/^	const size_t maxconz=12;\/\/aktc: 0=... \/\/α$/;"	m	class:dhcl
 maxd	kons.h	/^    const long maxd;$/;"	m	class:wele
 maxdepth	kons.h	/^    long maxdepth=-1;$/;"	m	class:find3cl
 maxdepthp	kons.cpp	/^long *find3cl::maxdepthp;$/;"	m	class:find3cl	file:
 maxdepthp	kons.h	/^    static long *maxdepthp;$/;"	m	class:find3cl
+maxhylav	cl.h	/^    string maxhylav; \/\/ maixmale Versuchsnr in Hylafax, bis Capi versucht wird$/;"	m	class:hhcl
 mbis	kons.h	/^    time_t mab,mbis;$/;"	m	class:find3cl
 mbisp	kons.cpp	/^time_t *find3cl::mabp,*find3cl::mbisp;$/;"	m	class:find3cl	file:
 mbisp	kons.h	/^    static time_t *mabp,*mbisp;$/;"	m	class:find3cl

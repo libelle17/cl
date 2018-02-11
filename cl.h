@@ -3,6 +3,8 @@
 class hhcl:public dhcl
 {
  private: //ω
+    string maxcapiv; // maximale Versuchnr in Capi, bis Hyla versucht wird
+    string maxhylav; // maixmale Versuchsnr in Hylafax, bis Capi versucht wird
  protected: //α
 	string p1;
 	int p2;
