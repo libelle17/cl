@@ -59,17 +59,14 @@ char const *DPROG_T[T_MAX+1][SprachZahl]={
 class TxB Tx((const char* const* const* const*)DPROG_T);
 const char *logdt="/var/log/" DPROG "vorgabe.log";//darauf wird in kons.h verwiesen;
 
-using namespace std;
+using namespace std; //ω
 
 
-hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG)
+hhcl::hhcl(const int argc, const char *const *const argv):dhcl(argc,argv,DPROG) //α
 {
  // mitcron=0; //ω
 	
 } // hhcl::hhcl //α
-
-
-
 
 // wird aufgerufen in lauf
 void hhcl::virtVorgbAllg()
@@ -77,7 +74,6 @@ void hhcl::virtVorgbAllg()
 	Log(violetts+Tx[T_virtVorgbAllg]+schwarz); //ω
 
 	dhcl::virtVorgbAllg(); //α
-
 } // void hhcl::virtVorgbAllg
 
 // wird aufgerufen in lauf
@@ -116,8 +112,9 @@ void hhcl::virtMusterVorgb()
 
 // wird aufgerufen in lauf
 void hhcl::virtzeigversion(const string& ltiffv/*=nix*/)
-{
-	dhcl::virtzeigversion(ltiffv);
+{ //ω
+
+	dhcl::virtzeigversion(ltiffv); //α
 } // void hhcl::virtzeigversion
 
 // wird aufgerufen in lauf
@@ -141,38 +138,39 @@ void hhcl::virtrueckfragen()
 
 // wird aufgerufen in lauf
 void hhcl::virtpruefweiteres()
-{
+{ //ω
 
-	hcl::virtpruefweiteres(); // z.Zt. leer
-}
+	hcl::virtpruefweiteres(); // z.Zt. leer //α
+} // void hhcl::virtpruefweiteres
 
 // wird aufgerufen in lauf
 void hhcl::virtzeigueberschrift()
-{
-  // hier ggf. noch etwas an 'uebers' anhaengen
+{ //ω
+
+  // hier ggf. noch etwas an 'uebers' anhaengen //α
 	hcl::virtzeigueberschrift();
-}
+} // void hhcl::virtzeigueberschrift
 
 // wird aufgerufen in lauf
 void hhcl::pvirtfuehraus()
-{
+{ //ω
 
-}
+} // void hhcl::pvirtfuehraus  //α
 
 // wird aufgerufen in lauf
 void hhcl::virtschlussanzeige()
-{
-	dhcl::virtschlussanzeige();
-}
+{   //ω
 
-int main(int argc,char** argv)
+	dhcl::virtschlussanzeige(); //α
+} // void hhcl::virtschlussanzeige
+ //ω
+
+int main(int argc,char** argv) //α
 {
-	if (argc>1) {
-	}
+	if (argc>1) { //ω
+	} //α
 	hhcl hhi(argc,argv); // hiesige Hauptinstanz, mit lngzuw, setzlog und pruefplatte
 	hhi.lauf(); // Einleitungsteil mit virtuellen Funktionen, 
 	// mit virtVorgbAllg,pvirtVorgbSpeziell,initopt,parsecl,pvirtmacherkl,zeighilfe,lieskonfein,verarbeitkonf,lieszaehlerein,MusterVorgb,dovi,dovs,virtzeigversion
 	// autokonfschreib,update,
 } // int main //ω
-// wird aufgerufen in: main
-

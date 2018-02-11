@@ -347,6 +347,7 @@ T_prueffunc	DB.h	/^	T_prueffunc,$/;"	e	enum:Txdb_
 T_pruefpar	kons.h	/^  T_pruefpar,$/;"	e	enum:Tkons_
 T_pruefsamba	kons.h	/^	T_pruefsamba,$/;"	e	enum:Tkons_
 T_prueftif	kons.h	/^	T_prueftif,$/;"	e	enum:Tkons_
+T_pvirtvorrueckfragen	cl.cpp	/^	T_pvirtvorrueckfragen,$/;"	e	enum:T_	file:
 T_rf_k	kons.h	/^	T_rf_k,$/;"	e	enum:Tkons_
 T_rueckfragen_l	kons.h	/^	T_rueckfragen_l,$/;"	e	enum:Tkons_
 T_schreibe_Konfiguration	kons.h	/^	T_schreibe_Konfiguration,$/;"	e	enum:Tkons_
@@ -685,6 +686,7 @@ hhcl	cl.cpp	/^hhcl::hhcl(const int argc, const char *const *const argv):dhcl(arg
 hhcl	cl.h	/^class hhcl:public dhcl$/;"	c
 hilfezeile	kons.cpp	/^void optcl::hilfezeile(Sprache lg)$/;"	f	class:optcl
 hilfezeile	kons.cpp	/^void optioncl::hilfezeile(Sprache lg)$/;"	f	class:optioncl
+holbefz0	kons.cpp	/^void hcl::holbefz0(const int argc, const char *const *const argv)$/;"	f	class:hcl
 holdbaussql	DB.cpp	/^svec holdbaussql(string sql) $/;"	f
 hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(val); }$/;"	f	class:Schluessel
 hole	kons.h	/^    template <typename T> void hole(T *var) { *var=atol(wert.c_str()); }$/;"	f	struct:WPcl
@@ -770,7 +772,7 @@ linst_cl	kons.cpp	/^linst_cl::linst_cl(int obverb,int oblog)$/;"	f	class:linst_c
 linst_cl	kons.h	/^class linst_cl$/;"	c
 linstp	DB.h	/^		linst_cl *const linstp=0;$/;"	m	class:DB
 linstp	kons.h	/^		linst_cl* linstp=0;$/;"	m	class:hcl
-listz	cl.h	/^	long listz=30;$/;"	m	class:hhcl
+listz	cl.h	/^	long listz=30; \/\/Ï‰$/;"	m	class:hhcl
 lnk	kons.h	/^    const string lnk;$/;"	m	class:elem3
 loc	kons.cpp	/^const std::locale loc = gen("en_US.UTF-8");$/;"	v
 loeschealleaus	kons.cpp	/^string *loeschealleaus(string *u, const char* const alt) $/;"	f
@@ -948,7 +950,6 @@ printf_mutex	kons.cpp	/^pthread_mutex_t printf_mutex, getmutex, timemutex;$/;"	v
 progvers	kons.cpp	/^double hcl::progvers(const string& prog)$/;"	f	class:hcl
 pruefDB	DB.cpp	/^int dhcl::pruefDB(const string& db)$/;"	f	class:dhcl
 pruefberecht	kons.cpp	/^int pruefberecht(const string& datei,const string& benutzer,const mode_t mod\/*=01*\/,int obverb\/*=0*\/)$/;"	f
-pruefcl	kons.cpp	/^void hcl::pruefcl() \/\/ commandline mit omap und mit argcmv parsen$/;"	f	class:hcl
 pruefcron	kons.cpp	/^uchar hcl::pruefcron(const string& cm)$/;"	f	class:hcl
 prueffunc	DB.cpp	/^void DB::prueffunc(const string& pname, const string& body, const string& para, const size_t aktc, int obverb, int oblog)$/;"	f	class:DB
 pruefggfmehrfach	kons.cpp	/^void hcl::pruefggfmehrfach()$/;"	f	class:hcl
@@ -964,6 +965,11 @@ pruefverz	kons.cpp	/^int pruefverz(const string& verz,int obverb\/*=0*\/,int obl
 psons	kons.h	/^enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:uchar
 puchar	kons.h	/^enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:uchar
 pverz	kons.h	/^enum par_t:uchar {psons,ppwd,pverz,pfile,puchar,pint,plong,pdat}; \/\/ Parameterart: Sonstiges, Verzeichnis, Datei, uchar, int, long, Datum (struct tm)$/;"	e	enum:uchar
+pvirtVorgbSpeziell	DB.cpp	/^void dhcl::pvirtVorgbSpeziell()$/;"	f	class:dhcl
+pvirtVorgbSpeziell	cl.cpp	/^void hhcl::pvirtVorgbSpeziell()$/;"	f	class:hhcl
+pvirtfuehraus	cl.cpp	/^void hhcl::pvirtfuehraus()$/;"	f	class:hhcl
+pvirtmacherkl	cl.cpp	/^void hhcl::pvirtmacherkl()$/;"	f	class:hhcl
+pvirtvorrueckfragen	cl.cpp	/^void hhcl::pvirtvorrueckfragen()$/;"	f	class:hhcl
 pwk	DB.cpp	/^const string& pwk = "4893019320jfdksalö590ßs89d0qÃ9m0943Ã09Ãax"; \/\/ fuer Antlitzaenderung$/;"	v
 pzuweis	kons.cpp	/^int optcl::pzuweis(const char *nacstr, const uchar vgegenteil\/*=0*\/, const uchar vnichtspeichern\/*=0*\/)$/;"	f	class:optcl
 reduzierlibtiff	kons.cpp	/^void hcl::reduzierlibtiff()$/;"	f	class:hcl
@@ -1119,7 +1125,7 @@ uchar	kons.h	/^enum war_t:uchar {wlong,wbin,wstr,wdat}; \/\/ Parameterart: Sonst
 uchar	kons.h	/^typedef unsigned char uchar; \/\/ 1 Byte$/;"	t
 udpr	kons.h	/^ string udpr;   \/\/ Befehl zum direkten Deinstallieren$/;"	m	class:linst_cl
 uebers	kons.h	/^		stringstream uebers; \/\/ Ueberschrift fuer Verarbeitungslauf$/;"	m	class:hcl
-uebersichtlich	kons.cpp	6170;"	d	file:
+uebersichtlich	kons.cpp	5368;"	d	file:
 ull	kons.h	/^typedef unsigned long long ull;$/;"	t
 umgek	kons.cpp	/^      *const tuerkis="\\e[0;36m", *const htuerkis="\\e[1;36m", *const hgrau="\\e[0;37m", *const weiss="\\e[1;37m", *const umgek="\\e[7m";$/;"	v
 unindt	kons.cpp	/^const string& unindt=instvz+"\/uninstallinv"; \/\/ # Name muss identisch sein mit Variabler UNF in install.sh$/;"	v
@@ -1134,7 +1140,7 @@ user	DB.h	/^    const string user;$/;"	m	class:DB
 usr_lib64_vz	kons.h	/^		string usr_lib64_vz;$/;"	m	class:lsyscl
 usys	kons.h	/^enum lsysen:uchar {usys,sus,deb,fed};$/;"	e	enum:uchar
 uypr	kons.h	/^ string uypr;   \/\/ Befehl zum Deinstallieren ueber das Installationssystem ohne Rueckfrage$/;"	m	class:linst_cl
-vagenau	kons.cpp	1235;"	d	file:
+vagenau	kons.cpp	1210;"	d	file:
 val	kons.h	/^    char val[100];$/;"	m	class:Schluessel
 vector_incl	kons.h	32;"	d
 verarbeit	kons.cpp	/^int find3cl::verarbeit(const char *fpath, const struct stat *sb, int tflag, struct FTW *ftwbuf)$/;"	f	class:find3cl
@@ -1151,26 +1157,23 @@ virtMusterVorgb	kons.cpp	/^void hcl::virtMusterVorgb()$/;"	f	class:hcl
 virtVorgbAllg	DB.cpp	/^void dhcl::virtVorgbAllg()$/;"	f	class:dhcl
 virtVorgbAllg	cl.cpp	/^void hhcl::virtVorgbAllg()$/;"	f	class:hhcl
 virtVorgbAllg	kons.cpp	/^void hcl::virtVorgbAllg()$/;"	f	class:hcl
-virtVorgbSpeziell	DB.cpp	/^void dhcl::virtVorgbSpeziell()$/;"	f	class:dhcl
-virtVorgbSpeziell	cl.cpp	/^void hhcl::virtVorgbSpeziell()$/;"	f	class:hhcl
-virtVorgbSpeziell	kons.cpp	/^void hcl::virtVorgbSpeziell()$/;"	f	class:hcl
-virtfuehraus	cl.cpp	/^void hhcl::virtfuehraus()$/;"	f	class:hhcl
-virtfuehraus	kons.cpp	/^void hcl::virtfuehraus()$/;"	f	class:hcl
 virtinitopt	DB.cpp	/^void dhcl::virtinitopt()$/;"	f	class:dhcl
 virtinitopt	cl.cpp	/^void hhcl::virtinitopt()$/;"	f	class:hhcl
 virtinitopt	kons.cpp	/^void hcl::virtinitopt()$/;"	f	class:hcl
 virtlgnzuw	DB.cpp	/^void dhcl::virtlgnzuw()$/;"	f	class:dhcl
 virtlgnzuw	kons.cpp	/^void hcl::virtlgnzuw()$/;"	f	class:hcl
-virtmacherkl	cl.cpp	/^void hhcl::virtmacherkl()$/;"	f	class:hhcl
+virtpruefweiteres	cl.cpp	/^void hhcl::virtpruefweiteres()$/;"	f	class:hhcl
 virtpruefweiteres	kons.cpp	/^void hcl::virtpruefweiteres()$/;"	f	class:hcl
 virtrueckfragen	DB.cpp	/^void dhcl::virtrueckfragen()$/;"	f	class:dhcl
 virtrueckfragen	cl.cpp	/^void hhcl::virtrueckfragen()$/;"	f	class:hhcl
 virtrueckfragen	kons.cpp	/^void hcl::virtrueckfragen()$/;"	f	class:hcl
+virtschlussanzeige	DB.cpp	/^void dhcl::virtschlussanzeige()$/;"	f	class:dhcl
+virtschlussanzeige	cl.cpp	/^void hhcl::virtschlussanzeige()$/;"	f	class:hhcl
 virtschlussanzeige	kons.cpp	/^void hcl::virtschlussanzeige()$/;"	f	class:hcl
-virtvorrueckfragen	cl.cpp	/^void hhcl::virtvorrueckfragen()$/;"	f	class:hhcl
-virtvorrueckfragen	kons.cpp	/^void hcl::virtvorrueckfragen()$/;"	f	class:hcl
 virtzeigueberschrift	cl.cpp	/^void hhcl::virtzeigueberschrift()$/;"	f	class:hhcl
 virtzeigueberschrift	kons.cpp	/^void hcl::virtzeigueberschrift()$/;"	f	class:hcl
+virtzeigversion	DB.cpp	/^void dhcl::virtzeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:dhcl
+virtzeigversion	cl.cpp	/^void hhcl::virtzeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hhcl
 virtzeigversion	kons.cpp	/^void hcl::virtzeigversion(const string& ltiffv\/*=nix*\/)$/;"	f	class:hcl
 vischluss	kons.cpp	/^void hcl::vischluss(string& erg,string& zeig)$/;"	f	class:hcl
 vonwo	kons.h	/^ string vonwo;$/;"	m	class:perfcl
